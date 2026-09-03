@@ -1,0 +1,270 @@
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    height: 80px;
+    width: calc(100% - 260px);
+    margin-left: 260px;
+
+    background: #111315;
+    border-bottom: 1px solid #333333;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+    box-sizing: border-box;
+
+    color: #ffffff;
+}
+
+
+/* =========================
+   LEFT SIDE
+========================= */
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.page-title h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.page-title p {
+    margin: 5px 0 0;
+    font-size: 12px;
+    color: #888888;
+}
+
+
+/* =========================
+   RIGHT SIDE
+========================= */
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+/* =========================
+   SEARCH BOX
+========================= */
+
+.search-box {
+    width: 220px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+
+    background: #191b1d;
+    border: 1px solid #383838;
+    border-radius: 8px;
+
+    padding: 0 13px;
+    box-sizing: border-box;
+
+    transition: 0.25s ease;
+}
+
+.search-box i {
+    color: #888888;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+
+    background: transparent;
+    color: #ffffff;
+
+    font-size: 13px;
+}
+
+.search-box input::placeholder {
+    color: #777777;
+}
+
+.search-box:focus-within {
+    border-color: #f5b900;
+}
+
+.search-box:focus-within i {
+    color: #f5b900;
+}
+
+
+/* =========================
+   NOTIFICATION
+========================= */
+
+.notification-btn {
+    width: 40px;
+    height: 40px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #383838;
+    border-radius: 8px;
+
+    background: #191b1d;
+    color: #bbbbbb;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.notification-btn i {
+    font-size: 17px;
+}
+
+.notification-btn:hover {
+    color: #f5b900;
+    border-color: #f5b900;
+}
+
+
+/* Notification Dot */
+
+.notification-dot {
+    position: absolute;
+
+    top: 8px;
+    right: 8px;
+
+    width: 6px;
+    height: 6px;
+
+    background: #f5b900;
+    border-radius: 50%;
+}
+
+
+/* =========================
+   NAVBAR PROFILE
+========================= */
+
+.navbar-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding-left: 10px;
+
+    cursor: pointer;
+}
+
+
+/* Profile Image */
+
+.navbar-profile-image {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    border: 2px solid #f5b900;
+}
+
+.navbar-profile-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    display: block;
+}
+
+
+/* Profile Information */
+
+.navbar-profile-info h3 {
+    margin: 0;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    color: #ffffff;
+}
+
+.navbar-profile-info p {
+    margin: 3px 0 0;
+
+    font-size: 10px;
+    color: #888888;
+}
+
+
+/* Dropdown Arrow */
+
+.profile-arrow {
+    margin-left: 4px;
+
+    color: #888888;
+    font-size: 11px;
+
+    transition: 0.25s ease;
+}
+
+.navbar-profile:hover .profile-arrow {
+    color: #f5b900;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        width: 100%;
+        margin-left: 0;
+        padding: 0 20px;
+    }
+
+    .search-box {
+        width: 170px;
+    }
+
+    .navbar-profile-info {
+        display: none;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .page-title p {
+        display: none;
+    }
+
+    .page-title h1 {
+        font-size: 18px;
+    }
+
+    .search-box {
+        display: none;
+    }
+
+    .navbar-right {
+        gap: 10px;
+    }
+}

@@ -1,0 +1,169 @@
+   /*=========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background: #111315;
+    border-right: 1px solid #3a3a3a;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 18px;
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    top: 0;
+    color: #ffffff;
+    overflow-y:auto ;
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 5px 10px 25px;
+    border-bottom: 1px solid #333333;
+}
+
+.sidebar-logo img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+.sidebar-logo h2 {
+    margin: 0;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.sidebar-logo h2 span {
+    color: #f5b900;
+}
+
+
+/* =========================
+   ADMIN PROFILE
+========================= */
+
+.admin-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 22px 10px;
+    border-bottom: 1px solid #333333;
+}
+
+.profile-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #f5b900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #f5b900;
+    flex-shrink: 0;
+}
+
+.admin-profile h3 {
+    margin: 0 0 4px;
+    font-size: 15px;
+}
+
+.admin-profile p {
+    margin: 0;
+    color: #999999;
+    font-size: 12px;
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+.sidebar-menu {
+    flex: 1;
+    padding-top: 18px;
+}
+
+.menu-title {
+    color: #777777;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    margin: 22px 10px 8px;
+}
+
+
+/* =========================
+   MENU ITEM
+========================= */
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    margin: 4px 0;
+    border-radius: 8px;
+    color: #bdbdbd;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.25s ease;
+}
+
+.menu-item i {
+    width: 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.menu-item:hover {
+    background: #1d1f21;
+    color: #f5b900;
+}
+
+.menu-item.active {
+    background: #2a2414;
+    color: #f5b900;
+    border-left: 3px solid #f5b900;
+}
+
+.menu-item.active i {
+    color: #f5b900;
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+.sidebar-bottom {
+    border-top: 1px solid #333333;
+    padding-top: 15px;
+    margin-top: 10px;
+    flex-shrink: 0;
+}
+
+.menu-item.logout:hover {
+    color: #ff5c5c;
+}
+
+.menu-item.logout:hover i {
+    color: #ff5c5c;
+}

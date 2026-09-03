@@ -1,0 +1,298 @@
+/*=============
+MODLE COMPONENT
+================*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: #0d0f10;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+}
+/*======================== 
+MODLE OVerly
+====================*/
+.modal-overlay
+{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.75);
+
+}
+/*==============
+DASHBOARD MODAL
+===============*/
+.dashbord-modal{
+    width: 100%;
+    max-width: 500px;
+    background: #111315;
+    border: 1px solid #333333;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+
+}
+.modal-header{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid#333333;
+
+}
+.modal-tital{
+    margin-bottom: 5px;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 600;
+
+}
+.modal-tital p{
+    color: #999999;
+    font-size: 12px;
+
+}
+.modal-icon {
+    width: 42px;
+    height: 42px;
+
+    min-width: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #2a2414;
+
+    border: 1px solid #4a3d19;
+    border-radius: 9px;
+}
+
+.modal-icon i {
+    color: #f5b900;
+    font-size: 17px;
+}
+
+
+/* =========================
+   CLOSE BUTTON
+========================= */
+
+.modal-close {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+
+    border: 1px solid #333333;
+    border-radius: 6px;
+
+    color: #888888;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.modal-close:hover {
+    color: #f5b900;
+
+    border-color: #4a3d19;
+
+    background: #2a2414;
+}
+
+
+/* =========================
+   MODAL BODY
+========================= */
+
+.modal-body {
+    padding: 20px;
+}
+
+
+/* =========================
+   FORM GROUP
+========================= */
+
+.form-group {
+    margin-bottom: 17px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #cccccc;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   INPUT & SELECT
+========================= */
+
+.form-group input,
+.form-group select {
+    width: 100%;
+
+    padding: 11px 12px;
+
+    background: #16181a;
+
+    border: 1px solid #333333;
+    border-radius: 7px;
+
+    outline: none;
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    transition: 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: #666666;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #f5b900;
+    box-shadow: 0 0 0 2px rgba(245, 185, 0, 0.08);
+}
+
+
+/* =========================
+   SELECT OPTION
+========================= */
+
+.form-group select option {
+    background: #111315;
+    color: #ffffff;
+}
+
+
+/* =========================
+   MODAL FOOTER
+========================= */
+
+.modal-footer {
+    padding: 16px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    border-top: 1px solid #333333;
+}
+
+
+/* =========================
+   CANCEL BUTTON
+========================= */
+
+.modal-cancel {
+    padding: 9px 16px;
+
+    background: transparent;
+
+    border: 1px solid #333333;
+    border-radius: 7px;
+
+    color: #999999;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.modal-cancel:hover {
+    color: #ffffff;
+
+    border-color: #555555;
+
+    background: #16181a;
+}
+
+
+/* =========================
+   SUBMIT BUTTON
+========================= */
+
+.modal-submit {
+    padding: 9px 16px;
+
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    background: #f5b900;
+
+    border: 1px solid #f5b900;
+    border-radius: 7px;
+
+    color: #111315;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.modal-submit:hover {
+    background: #dca600;
+    border-color: #dca600;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+
+    .modal-overlay {
+        padding: 15px;
+    }
+
+    .modal-header {
+        padding: 16px;
+    }
+
+    .modal-body {
+        padding: 16px;
+    }
+
+    .modal-footer {
+        padding: 14px 16px;
+    }
+
+    .modal-title h3 {
+        font-size: 15px;
+    }
+
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Management System</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="../components/Button/button.css">
+</head>
+
+<body>
+    <div class="login-container">
+         <div class="login-card">
+        <div class="login-logo">
+               
+            <img src="../assets/images/gym-logo.png.png" alt="Gym Management System Logo">
+        </div>
+    
+        <!-- Heading -->
+        <h1>GYM MANAGEMENT SYSTEM</h1>
+
+        <p class="tagline">Manage. Train. Transform.</p>
+
+        <h2>Welcome Back!</h2>
+
+        <!-- Login Fields -->
+        <div class="login-fields">
+
+        <input type="text" id="loginId" name="loginId" placeholder="Enter Email / Member ID" autocomplete="off">
+
+<input type="password" id="password" name="password" placeholder="Enter Password" autocomplete="new-password">
+
+        </div>
+
+        <p class="or-text">OR</p>
+
+        <!-- Role Selection -->
+        <div class="role-selection">
+
+            <!-- Admin -->
+            <button type="button" class="role-button" id="adminRole">
+
+         <span class="role-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3L4 6v5c0 5.2 3.4 9.2 8 
+        4.6-.8 8-4.8 8-10V6l-8-3z
+        M12 7v10
+        M8.5 10.5h7" />
+        </svg>
+        </span>
+
+        <span>ADMIN</span>
+
+        </button>
+
+
+            <!-- Trainer -->
+            <button type="button" class="role-button" id="trainerRole">
+
+                <span class="role-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6 9v6
+                         M4 10v4
+                         M8 8v8
+                        M18 9v6
+                        M20 10v4
+                        M16 8v8
+                        M8 12h8" />
+                    </svg>
+                </span>
+
+                <span>TRAINER</span>
+
+            </button>
+
+
+            <!-- Member -->
+            <button type="button" class="role-button" id="memberRole">
+
+                <span class="role-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="8" r="3" />
+                        <path d="M6 20c.5-4 2.5-6 6-6s5.5 2 6 6" />
+                    </svg>
+                </span>
+
+                <span>MEMBER</span>
+
+            </button>
+
+        </div>
+
+        <!-- Reusable Login Button -->
+        <button type="button" class="reusable-button">
+
+            <span class="button-text">LOGIN</span>
+
+            <span class="button-arrow">→</span>
+
+        </button>
+
+        <!-- Bottom Text -->
+
+    </div>
+</div>
+<!-- Bottom Text -->
+        <p class="bottom-text">
+            GET FIT • STAY STRONG • LIVE HEALTHY
+        </p>
+    
+<script src="login.js"></script>
+</body>
+
+</html>

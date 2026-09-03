@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard Card</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Card CSS -->
+    <link rel="stylesheet" href="card.css">
+</head>
+
+<body>
+
+    <!-- Dashboard Cards -->
+    <div class="dashboard-cards">
+
+        <!-- Total Members -->
+        <div class="dashboard-card">
+
+            <div class="card-icon">
+                <i class="fa-solid fa-users"></i>
+            </div>
+
+            <div class="card-content">
+                <p>Total Members</p>
+                <h2>1,250</h2>
+                <span class="card-status">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    8.5% this month
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- Total Trainers -->
+        <div class="dashboard-card">
+
+            <div class="card-icon">
+                <i class="fa-solid fa-user-tie"></i>
+            </div>
+
+            <div class="card-content">
+                <p>Total Trainers</p>
+                <h2>24</h2>
+                <span class="card-status">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    4.2% this month
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- Active Memberships -->
+        <div class="dashboard-card">
+
+            <div class="card-icon">
+                <i class="fa-solid fa-id-card"></i>
+            </div>
+
+            <div class="card-content">
+                <p>Active Memberships</p>
+                <h2>980</h2>
+                <span class="card-status">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    6.8% this month
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- Pending Payments -->
+        <div class="dashboard-card">
+
+            <div class="card-icon">
+                <i class="fa-solid fa-credit-card"></i>
+            </div>
+
+            <div class="card-content">
+                <p>Pending Payments</p>
+                <h2>45</h2>
+                <span class="card-status pending">
+                    <i class="fa-solid fa-clock"></i>
+                    Requires attention
+                </span>
+            </div>
+            <!--- Expired Memberships-->
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-user-clock"></i>
+                </div>
+                <div class="card-content">
+                    <p>Expired Memderships</p>
+                    <h2>145</h2>
+                    <div class="card-status pending">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        Needs attention
+                    </div>
+                </div>
+            </div>
+            <!--Today Attendance-->
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-calender-check"></i>
+                </div>
+    
+                <div class="card-content">
+                    <p> Today Attendance</p>
+                    <h2>342</h2>
+                    <div class="card-status">
+                        <i class="fa-solid fa-arrow-up"></i>
+                        9% this month
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Card JavaScript -->
+    <script src="card.js"></script>
+
+</body>
+</html>

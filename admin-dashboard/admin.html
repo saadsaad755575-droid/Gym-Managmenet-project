@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+<!----font Awesome-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="../components/Button/button.css">
+<link rel="stylesheet" href="../components/sidebar/sidebar.css">
+<link rel="stylesheet" href="../components/navbar/navbar.css">
+<link rel="stylesheet" href="../components/card/card.css">
+<link rel="stylesheet" href="../components/modal/modal.css">
+<link rel="stylesheet" href="../components/table/table.css">
+<link rel="stylesheet" href="admin.css">
+
+</head>
+<body>
+    <div class="admin-layout">
+        <aside id="sidebar"></aside>
+        <main class="admin-main">
+            <header id="navbar"></header>
+            <section class="dashboard-content">
+                <div id="cards"></div>
+
+
+                <!-- Quick Actions -->
+<section class="quick-actions">
+
+    <h2>Quick Actions</h2>
+
+    <div class="quick-actions-container">
+
+        <!-- Add Member -->
+        <button class="quick-action-btn">
+            <span class="quick-action-icon">
+                <i class="fa-solid fa-user-plus"></i>
+            </span>
+
+            <span class="button-text">
+                Add New Member
+            </span>
+
+            <span class="button-arrow">
+                <i class="fa-solid fa-chevron-right"></i>
+            </span>
+        </button>
+
+
+        <!-- Add Trainer -->
+        <button class="quick-action-btn">
+            <span class="quick-action-icon">
+                <i class="fa-solid fa-dumbbell"></i>
+            </span>
+
+            <span class="button-text">
+                Add New Trainer
+            </span>
+
+            <span class="button-arrow">
+                <i class="fa-solid fa-chevron-right"></i>
+            </span>
+        </button>
+
+
+        <!-- New Membership -->
+        <button class="quick-action-btn">
+            <span class="quick-action-icon">
+                <i class="fa-solid fa-id-card"></i>
+            </span>
+
+            <span class="button-text">
+                New Membership
+            </span>
+
+            <span class="button-arrow">
+                <i class="fa-solid fa-chevron-right"></i>
+            </span>
+        </button>
+
+
+        <!-- Mark Attendance -->
+        <button class="quick-action-btn">
+            <span class="quick-action-icon">
+                <i class="fa-solid fa-calendar-check"></i>
+            </span>
+
+            <span class="button-text">
+                Mark Attendance
+            </span>
+
+            <span class="button-arrow">
+                <i class="fa-solid fa-chevron-right"></i>
+            </span>
+        </button>
+
+    </div>
+
+</section>
+                <div id="table"></div>
+            </section>
+        </main>
+    </div>
+    <script src="admin.js"></script>
+    
+</body>
+</html>

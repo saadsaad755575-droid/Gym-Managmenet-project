@@ -1,0 +1,137 @@
+/*=========================
+   DASHBOARD CARDS
+========================= */
+
+.dashboard-cards {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+/* =========================
+   SINGLE CARD
+========================= */
+
+.dashboard-card {
+    background: #111315;
+    border: 1px solid #333333;
+    border-radius: 12px;
+
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    box-sizing: border-box;
+
+    transition: 0.25s ease;
+}
+
+
+/* Card Hover */
+
+.dashboard-card:hover {
+    border-color: #f5b900;
+    transform: translateY(-3px);
+}
+
+
+/* =========================
+   CARD ICON
+========================= */
+
+.card-icon {
+    width: 50px;
+    height: 50px;
+
+    min-width: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #2a2414;
+    border: 1px solid #4a3d19;
+    border-radius: 10px;
+}
+
+.card-icon i {
+    color: #f5b900;
+    font-size: 21px;
+}
+
+
+/* =========================
+   CARD CONTENT
+========================= */
+
+.card-content {
+    min-width: 0;
+}
+
+.card-content p {
+    margin: 0 0 6px;
+
+    color: #999999;
+    font-size: 12px;
+}
+
+.card-content h2 {
+    margin: 0 0 7px;
+
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   CARD STATUS
+========================= */
+
+.card-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    color: #f5b900;
+    font-size: 11px;
+}
+
+.card-status i {
+    font-size: 10px;
+}
+
+
+/* Pending Status */
+
+.card-status.pending {
+    color: #d6a800;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1100px) {
+
+    .dashboard-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-card {
+        padding: 18px;
+    }
+}

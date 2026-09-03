@@ -1,0 +1,76 @@
+
+.reusable-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+    min-width: 180px;
+
+    padding: 14px 20px;
+
+    background: #151515;
+    color: #FFD15C;
+
+    border: 1px solid #FFD15C;
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+
+/* =========================
+   BUTTON TEXT
+========================= */
+
+.reusable-button .button-text {
+    white-space: nowrap;
+}
+
+
+/* =========================
+   BUTTON ARROW
+========================= */
+
+.reusable-button .button-arrow {
+    font-size: 22px;
+    line-height: 1;
+
+    transition: transform 0.3s ease;
+}
+
+
+/* =========================
+   HOVER EFFECT
+========================= */
+
+.reusable-button:hover {
+    background: #FFD15C;
+    color: #151515;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 18px rgba(225, 209, 92, 0.25);
+}
+
+
+/* Arrow Animation */
+
+.reusable-button:hover .button-arrow {
+    transform: translateX(5px);
+}
+
+
+/* =========================
+   CLICK EFFECT
+========================= */
+
+.reusable-button:active {
+    transform: translateY(0);
+}
