@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Member Management</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Components CSS -->
+    <link rel="stylesheet" href="../../components/sidebar/sidebar.css">
+    <link rel="stylesheet" href="../../components/navbar/navbar.css">
+    <link rel="stylesheet" href="../../components/button/button.css">
+    <link rel="stylesheet" href="../../components/table/table.css">
+    <link rel="stylesheet" href="../../components/modal/modal.css">
+
+    <!-- Members CSS -->
+    <link rel="stylesheet" href="Member.css">
+
+</head>
+
+
+<body>
+
+    <!-- =========================
+         MEMBER MANAGEMENT
+    ========================== -->
+
+    <div class="admin-layout">
+
+
+        <!-- Sidebar -->
+        <aside id="sidebar"></aside>
+
+
+        <!-- Main Area -->
+        <main class="admin-main">
+
+
+            <!-- Navbar -->
+            <header id="navbar"></header>
+
+
+            <!-- Member Content -->
+            <section class="member-content">
+
+
+                <!-- Page Header -->
+                <div class="page-header">
+
+                    <div>
+                        <h1>Member Management</h1>
+
+                        <p>
+                            Manage members, memberships, trainers and payments.
+                        </p>
+                    </div>
+
+
+                    <!-- Add Member -->
+                    <button
+                        type="button"
+                        class="reusable-button"
+                        id="addMemberBtn"
+                    >
+
+                        <span class="button-text">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                            Add Member
+
+                        </span>
+
+                        <span class="button-arrow">→</span>
+
+                    </button>
+
+                </div>
+
+
+                <!-- =========================
+                     SEARCH & FILTER
+                ========================== -->
+
+                <div class="member-tools">
+
+
+                    <!-- Search -->
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="text"
+                            id="memberSearch"
+                            placeholder="Search member..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <!-- Membership Filter -->
+
+                    <select id="membershipFilter">
+
+                        <option value="all">
+                            All Memberships
+                        </option>
+
+                        <option value="active">
+                            Active
+                        </option>
+
+                        <option value="expired">
+                            Expired
+                        </option>
+
+                        <option value="pending">
+                            Pending
+                        </option>
+
+                    </select>
+
+
+                    <!-- Payment Filter -->
+
+                    <select id="paymentFilter">
+
+                        <option value="all">
+                            All Payments
+                        </option>
+
+                        <option value="paid">
+                            Paid
+                        </option>
+
+                        <option value="pending">
+                            Pending
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+                <!-- =========================
+                     MEMBER TABLE
+                ========================== -->
+
+                <div class="member-table-wrapper">
+
+                    <table class="member-table">
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Member</th>
+
+                                <th>Contact</th>
+
+                                <th>Membership</th>
+
+                                <th>Assigned Trainer</th>
+
+                                <th>Payment</th>
+
+                                <th>Join Date</th>
+
+                                <th>Status</th>
+
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="memberTableBody">
+
+
+                            <!-- Member 1 -->
+
+                            <tr>
+
+                                <td>#M001</td>
+
+
+                                <td>
+
+                                    <div class="member-info">
+
+                                        <div class="member-icon">
+
+                                            <i class="fa-solid fa-user"></i>
+
+                                        </div>
+
+
+                                        <div>
+
+                                            <strong>Ali Raza</strong>
+
+                                            <small>Regular Member</small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span>0300-1234567</span>
+
+                                    <small class="email">
+                                        ali@example.com
+                                    </small>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span class="membership active">
+                                        Premium
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+                                    Ahmed Khan
+                                </td>
+
+
+                                <td>
+
+                                    <span class="payment paid">
+                                        Paid
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+                                    12 Jan 2026
+                                </td>
+
+
+                                <td>
+
+                                    <span class="member-status active">
+                                        Active
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    <button
+                                        class="action-btn view-btn"
+                                        title="View"
+                                    >
+
+                                        <i class="fa-solid fa-eye"></i>
+
+                                    </button>
+
+
+                                    <button
+                                        class="action-btn edit-btn"
+                                        title="Edit"
+                                    >
+
+                                        <i class="fa-solid fa-pen"></i>
+
+                                    </button>
+
+
+                                    <button
+                                        class="action-btn delete-btn"
+                                        title="Delete"
+                                    >
+
+                                        <i class="fa-solid fa-trash"></i>
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- Member 2 -->
+
+                            <tr>
+
+                                <td>#M002</td>
+
+
+                                <td>
+
+                                    <div class="member-info">
+
+                                        <div class="member-icon">
+
+                                            <i class="fa-solid fa-user"></i>
+
+                                        </div>
+
+
+                                        <div>
+
+                                            <strong>Fatima Noor</strong>
+
+                                            <small>Regular Member</small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span>0312-9876543</span>
+
+                                    <small class="email">
+                                        fatima@example.com
+                                    </small>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span class="membership pending">
+                                        Basic
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+                                    Hassan Ali
+                                </td>
+
+
+                                <td>
+
+                                    <span class="payment pending">
+                                        Pending
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+                                    05 Feb 2026
+                                </td>
+
+
+                                <td>
+
+                                    <span class="member-status active">
+                                        Active
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    <button class="action-btn view-btn">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+
+                                    <button class="action-btn edit-btn">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </button>
+
+                                    <button class="action-btn delete-btn">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- Member 3 -->
+
+                            <tr>
+
+                                <td>#M003</td>
+
+
+                                <td>
+
+                                    <div class="member-info">
+
+                                        <div class="member-icon">
+
+                                            <i class="fa-solid fa-user"></i>
+
+                                        </div>
+
+
+                                        <div>
+
+                                            <strong>Usman Khan</strong>
+
+                                            <small>Regular Member</small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span>0321-4567890</span>
+
+                                    <small class="email">
+                                        usman@example.com
+                                    </small>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span class="membership expired">
+                                        Standard
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+                                    Usman Ahmed
+                                </td>
+
+
+                                <td>
+
+                                    <span class="payment paid">
+                                        Paid
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+                                    18 Dec 2025
+                                </td>
+
+
+                                <td>
+
+                                    <span class="member-status expired">
+                                        Expired
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    <button class="action-btn view-btn">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+
+                                    <button class="action-btn edit-btn">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </button>
+
+                                    <button class="action-btn delete-btn">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+            </section>
+
+        </main>
+
+    </div>
+<script src="../../components/sidebar/sidebar.js"></script>
+<script src="../../components/navbar/navbar.js"></script>
+
+
+    <!-- Member JavaScript -->
+    <script src="Member.js"></script>
+
+</body>
+
+</html>
