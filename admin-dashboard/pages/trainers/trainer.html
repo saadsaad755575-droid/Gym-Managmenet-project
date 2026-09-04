@@ -1,344 +1,242 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Trainer Management</title>
 
     <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
 
-    <link rel="stylesheet" href="../components/Button/button.css">
-    <link rel="stylesheet" href="../components/sidebar/sidebar.css">
-    <link rel="stylesheet" href="../components/navbar/navbar.css">
-    <link rel="stylesheet" href="../components/card/card.css">
-    <link rel="stylesheet" href="../components/modal/modal.css">
-    <link rel="stylesheet" href="../components/table/table.css">
-    <link rel="stylesheet" href="trainer.css">
-</head>
+    <link rel="stylesheet" href="../components/Button/button.css" />
+    <link rel="stylesheet" href="../components/sidebar/sidebar.css" />
+    <link rel="stylesheet" href="../components/navbar/navbar.css" />
+    <link rel="stylesheet" href="../components/card/card.css" />
+    <link rel="stylesheet" href="../components/modal/modal.css" />
+    <link rel="stylesheet" href="../components/table/table.css" />
+    <link rel="stylesheet" href="trainer.css" />
+  </head>
 
-<body>
-
+  <body>
     <div class="admin-layout">
+      <!-- Sidebar -->
+      <aside id="sidebar"></aside>
 
-        <!-- Sidebar -->
-        <aside id="sidebar"></aside>
+      <!-- Main Area -->
+      <div class="admin-main">
+        <!-- Navbar -->
+        <header id="navbar"></header>
 
+        <!-- Trainer Content -->
+        <section class="trainer-content">
+          <!-- Page Header -->
+          <div class="page-header">
+            <div>
+              <h1>Trainer Management</h1>
+              <p>Manage trainers, availability and assigned members</p>
+            </div>
 
-        <!-- Main Area -->
-        <div class="admin-main">
+            <button type="button" class="reuseable-button" id="addTrainerBtn">
+              <span class="button-text">
+                <i class="fa-solid fa-plus"></i>
+                Add Trainer
+              </span>
 
-            <!-- Navbar -->
-            <header id="navbar"></header>
+              <span class="button-arrow"></span>
+            </button>
+          </div>
 
+          <!-- Search & Filter -->
+          <div class="trainer-tools">
+            <div class="search-box">
+              <i class="fa-solid fa-magnifying-glass"></i>
 
-            <!-- Trainer Content -->
-            <section class="trainer-content">
+              <input
+                type="text"
+                id="trainerSearch"
+                placeholder="Search trainer..."
+                autocomplete="off"
+              />
+            </div>
 
-                <!-- Page Header -->
-                <div class="page-header">
+            <select id="statusFilter">
+              <option value="all">All Status</option>
 
-                    <div>
-                        <h1>Trainer Management</h1>
-                        <p>Manage trainers, availability and assigned members</p>
+              <option value="available">Available</option>
+
+              <option value="limited">Limited Slot</option>
+
+              <option value="busy">Assigned / Busy</option>
+            </select>
+          </div>
+
+          <!-- Trainer Table -->
+          <div class="trainer-table-wrapper">
+            <table class="trainer-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Trainer</th>
+                  <th>Qualification</th>
+                  <th>Experience</th>
+                  <th>Skills</th>
+                  <th>Services</th>
+                  <th>Available Timing</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody id="trainerTableBody">
+                <!-- Trainer 001 -->
+                <tr>
+                  <td>#001</td>
+
+                  <td>
+                    <div class="trainer-info">
+                      <div class="trainer-icon">
+                        <i class="fa-solid fa-user"></i>
+                      </div>
+
+                      <div>
+                        <strong>Ahmed Khan</strong>
+                        <small>Fitness Trainer</small>
+                      </div>
                     </div>
+                  </td>
 
-                    <button type="button"
-                        class="reuseable-button"
-                        id="addTrainerBtn">
+                  <td>Certified Trainer</td>
 
-                        <span class="button-text">
-                            <i class="fa-solid fa-plus"></i>
-                            Add Trainer
-                        </span>
+                  <td>5 Years</td>
 
-                        <span class="button-arrow"></span>
+                  <td>Strength, Fitness</td>
 
+                  <td>Personal Training</td>
+
+                  <td>08:00 AM - 02:00 PM</td>
+
+                  <td>
+                    <span class="status available"> Available </span>
+                  </td>
+
+                  <td>
+                    <button class="action-btn view-btn" title="View">
+                      <i class="fa-solid fa-eye"></i>
                     </button>
 
-                </div>
+                    <button class="action-btn edit-btn" title="Edit">
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
 
+                    <button class="action-btn delete-btn" title="Delete">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
 
-                <!-- Search & Filter -->
-                <div class="trainer-tools">
+                <!-- Trainer 002 -->
+                <tr>
+                  <td>#002</td>
 
-                    <div class="search-box">
+                  <td>
+                    <div class="trainer-info">
+                      <div class="trainer-icon">
+                        <i class="fa-solid fa-user"></i>
+                      </div>
 
-                        <i class="fa-solid fa-magnifying-glass"></i>
-
-                        <input type="text"
-                            id="trainerSearch"
-                            placeholder="Search trainer..."
-                            autocomplete="off">
-
+                      <div>
+                        <strong>Saad Khan</strong>
+                        <small>Personal Trainer</small>
+                      </div>
                     </div>
+                  </td>
 
+                  <td>Sports Science</td>
 
-                    <select id="statusFilter">
+                  <td>3 Years</td>
 
-                        <option value="all">All Status</option>
+                  <td>Cardio, Weight Loss</td>
 
-                        <option value="available">
-                            Available
-                        </option>
+                  <td>Personal Training</td>
 
-                        <option value="limited">
-                            Limited Slot
-                        </option>
+                  <td>02:00 PM - 07:00 PM</td>
 
-                        <option value="busy">
-                            Assigned / Busy
-                        </option>
+                  <td>
+                    <span class="status limited"> Limited Slot </span>
+                  </td>
 
-                    </select>
+                  <td>
+                    <button class="action-btn view-btn" title="View">
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
 
-                </div>
+                    <button class="action-btn edit-btn" title="Edit">
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
 
+                    <button class="action-btn delete-btn" title="Delete">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
 
-                <!-- Trainer Table -->
-                <div class="trainer-table-wrapper">
+                <!-- Trainer 003 -->
+                <tr>
+                  <td>#003</td>
 
-                    <table class="trainer-table">
+                  <td>
+                    <div class="trainer-info">
+                      <div class="trainer-icon">
+                        <i class="fa-solid fa-user"></i>
+                      </div>
 
-                        <thead>
+                      <div>
+                        <strong>Usman Ahmed</strong>
+                        <small>Fitness Coach</small>
+                      </div>
+                    </div>
+                  </td>
 
-                            <tr>
+                  <td>Fitness Diploma</td>
 
-                                <th>ID</th>
-                                <th>Trainer</th>
-                                <th>Qualification</th>
-                                <th>Experience</th>
-                                <th>Skills</th>
-                                <th>Services</th>
-                                <th>Available Timing</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                  <td>6 Years</td>
 
-                            </tr>
+                  <td>Strength, Bodybuilding</td>
 
-                        </thead>
+                  <td>Weight Training</td>
 
+                  <td>10:00 AM - 06:00 PM</td>
 
-                        <tbody id="trainerTableBody">
+                  <td>
+                    <span class="status busy"> Assigned / Busy </span>
+                  </td>
 
-                            <!-- Trainer 001 -->
-                            <tr>
+                  <td>
+                    <button class="action-btn view-btn" title="View">
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
 
-                                <td>#001</td>
+                    <button class="action-btn edit-btn" title="Edit">
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
 
-                                <td>
-
-                                    <div class="trainer-info">
-
-                                        <div class="trainer-icon">
-                                            <i class="fa-solid fa-user"></i>
-                                        </div>
-
-                                        <div>
-                                            <strong>Ahmed Khan</strong>
-                                            <small>Fitness Trainer</small>
-                                        </div>
-
-                                    </div>
-
-                                </td>
-
-                                <td>Certified Trainer</td>
-
-                                <td>5 Years</td>
-
-                                <td>Strength, Fitness</td>
-
-                                <td>Personal Training</td>
-
-                                <td>08:00 AM - 02:00 PM</td>
-
-                                <td>
-                                    <span class="status available">
-                                        Available
-                                    </span>
-                                </td>
-
-                                <td>
-
-                                    <button class="action-btn view-btn"
-                                        title="View">
-
-                                        <i class="fa-solid fa-eye"></i>
-
-                                    </button>
-
-                                    <button class="action-btn edit-btn"
-                                        title="Edit">
-
-                                        <i class="fa-solid fa-pen"></i>
-
-                                    </button>
-
-                                    <button class="action-btn delete-btn"
-                                        title="Delete">
-
-                                        <i class="fa-solid fa-trash"></i>
-
-                                    </button>
-
-                                </td>
-
-                            </tr>
-
-
-                            <!-- Trainer 002 -->
-                            <tr>
-
-                                <td>#002</td>
-
-                                <td>
-
-                                    <div class="trainer-info">
-
-                                        <div class="trainer-icon">
-                                            <i class="fa-solid fa-user"></i>
-                                        </div>
-
-                                        <div>
-                                            <strong>Saad Khan</strong>
-                                            <small>Personal Trainer</small>
-                                        </div>
-
-                                    </div>
-
-                                </td>
-
-                                <td>Sports Science</td>
-
-                                <td>3 Years</td>
-
-                                <td>Cardio, Weight Loss</td>
-
-                                <td>Personal Training</td>
-
-                                <td>02:00 PM - 07:00 PM</td>
-
-                                <td>
-                                    <span class="status limited">
-                                        Limited Slot
-                                    </span>
-                                </td>
-
-                                <td>
-
-                                    <button class="action-btn view-btn"
-                                        title="View">
-
-                                        <i class="fa-solid fa-eye"></i>
-
-                                    </button>
-
-                                    <button class="action-btn edit-btn"
-                                        title="Edit">
-
-                                        <i class="fa-solid fa-pen"></i>
-
-                                    </button>
-
-                                    <button class="action-btn delete-btn"
-                                        title="Delete">
-
-                                        <i class="fa-solid fa-trash"></i>
-
-                                    </button>
-
-                                </td>
-
-                            </tr>
-
-
-                            <!-- Trainer 003 -->
-                            <tr>
-
-                                <td>#003</td>
-
-                                <td>
-
-                                    <div class="trainer-info">
-
-                                        <div class="trainer-icon">
-                                            <i class="fa-solid fa-user"></i>
-                                        </div>
-
-                                        <div>
-                                            <strong>Usman Ahmed</strong>
-                                            <small>Fitness Coach</small>
-                                        </div>
-
-                                    </div>
-
-                                </td>
-
-                                <td>Fitness Diploma</td>
-
-                                <td>6 Years</td>
-
-                                <td>Strength, Bodybuilding</td>
-
-                                <td>Weight Training</td>
-
-                                <td>10:00 AM - 06:00 PM</td>
-
-                                <td>
-                                    <span class="status busy">
-                                        Assigned / Busy
-                                    </span>
-                                </td>
-
-                                <td>
-
-                                    <button class="action-btn view-btn"
-                                        title="View">
-
-                                        <i class="fa-solid fa-eye"></i>
-
-                                    </button>
-
-                                    <button class="action-btn edit-btn"
-                                        title="Edit">
-
-                                        <i class="fa-solid fa-pen"></i>
-
-                                    </button>
-
-                                    <button class="action-btn delete-btn"
-                                        title="Delete">
-
-                                        <i class="fa-solid fa-trash"></i>
-
-                                    </button>
-
-                                </td>
-
-                            </tr>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </section>
-
-        </div>
-
+                    <button class="action-btn delete-btn" title="Delete">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
     </div>
-
 
     <!-- Trainer JavaScript -->
     <script src="trainer.js"></script>
-
-</body>
-
+  </body>
 </html>
-

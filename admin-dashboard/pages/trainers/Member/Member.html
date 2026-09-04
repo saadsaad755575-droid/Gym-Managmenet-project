@@ -1,528 +1,334 @@
-<!DOCTYPE html>
+```html
+<!doctype html>
 <html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Member Management</title>
 
     <!-- Font Awesome -->
     <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
 
     <!-- Components CSS -->
-    <link rel="stylesheet" href="../../components/sidebar/sidebar.css">
-    <link rel="stylesheet" href="../../components/navbar/navbar.css">
-    <link rel="stylesheet" href="../../components/button/button.css">
-    <link rel="stylesheet" href="../../components/table/table.css">
-    <link rel="stylesheet" href="../../components/modal/modal.css">
+    <link rel="stylesheet" href="../../components/sidebar/sidebar.css" />
+
+    <link rel="stylesheet" href="../../components/navbar/navbar.css" />
+
+    <link rel="stylesheet" href="../../components/button/button.css" />
+
+    <link rel="stylesheet" href="../../components/table/table.css" />
+
+    <link rel="stylesheet" href="../../components/modal/modal.css" />
 
     <!-- Members CSS -->
-    <link rel="stylesheet" href="Member.css">
+    <link rel="stylesheet" href="Member.css" />
+  </head>
 
-</head>
-
-
-<body>
-
+  <body>
     <!-- =========================
-         MEMBER MANAGEMENT
+         ADMIN LAYOUT
     ========================== -->
 
     <div class="admin-layout">
+      <!-- =========================
+             SIDEBAR
+        ========================== -->
 
+      <aside id="sidebar"></aside>
 
-        <!-- Sidebar -->
-        <aside id="sidebar"></aside>
+      <!-- =========================
+             MAIN AREA
+        ========================== -->
 
+      <main class="admin-main">
+        <!-- Navbar -->
 
-        <!-- Main Area -->
-        <main class="admin-main">
+        <header id="navbar"></header>
 
+        <!-- =========================
+                 MEMBER CONTENT
+            ========================== -->
 
-            <!-- Navbar -->
-            <header id="navbar"></header>
+        <section class="member-content">
+          <!-- PAGE HEADER -->
 
+          <div class="page-header">
+            <div>
+              <h1>Member Management</h1>
 
-            <!-- Member Content -->
-            <section class="member-content">
+              <p>Manage members, memberships, trainers and payments.</p>
+            </div>
 
+            <!-- ADD MEMBER BUTTON -->
 
-                <!-- Page Header -->
-                <div class="page-header">
+            <button type="button" class="reusable-button" id="addMemberBtn">
+              <span class="button-text">
+                <i class="fa-solid fa-plus"></i>
 
-                    <div>
-                        <h1>Member Management</h1>
+                Add Member
+              </span>
 
-                        <p>
-                            Manage members, memberships, trainers and payments.
-                        </p>
-                    </div>
+              <span class="button-arrow"> → </span>
+            </button>
+          </div>
 
-
-                    <!-- Add Member -->
-                    <button
-                        type="button"
-                        class="reusable-button"
-                        id="addMemberBtn"
-                    >
-
-                        <span class="button-text">
-
-                            <i class="fa-solid fa-plus"></i>
-
-                            Add Member
-
-                        </span>
-
-                        <span class="button-arrow">→</span>
-
-                    </button>
-
-                </div>
-
-
-                <!-- =========================
+          <!-- =========================
                      SEARCH & FILTER
                 ========================== -->
 
-                <div class="member-tools">
+          <div class="member-tools">
+            <!-- SEARCH -->
 
+            <div class="search-box">
+              <i class="fa-solid fa-magnifying-glass"></i>
 
-                    <!-- Search -->
+              <input
+                type="text"
+                id="memberSearch"
+                placeholder="Search member..."
+                autocomplete="off"
+              />
+            </div>
 
-                    <div class="search-box">
+            <!-- MEMBERSHIP FILTER -->
 
-                        <i class="fa-solid fa-magnifying-glass"></i>
+            <select id="membershipFilter">
+              <option value="all">All Memberships</option>
 
-                        <input
-                            type="text"
-                            id="memberSearch"
-                            placeholder="Search member..."
-                            autocomplete="off"
-                        >
+              <option value="active">Active</option>
 
-                    </div>
+              <option value="expired">Expired</option>
 
+              <option value="pending">Pending</option>
+            </select>
 
-                    <!-- Membership Filter -->
+            <!-- PAYMENT FILTER -->
 
-                    <select id="membershipFilter">
+            <select id="paymentFilter">
+              <option value="all">All Payments</option>
 
-                        <option value="all">
-                            All Memberships
-                        </option>
+              <option value="paid">Paid</option>
 
-                        <option value="active">
-                            Active
-                        </option>
+              <option value="pending">Pending</option>
+            </select>
+          </div>
 
-                        <option value="expired">
-                            Expired
-                        </option>
-
-                        <option value="pending">
-                            Pending
-                        </option>
-
-                    </select>
-
-
-                    <!-- Payment Filter -->
-
-                    <select id="paymentFilter">
-
-                        <option value="all">
-                            All Payments
-                        </option>
-
-                        <option value="paid">
-                            Paid
-                        </option>
-
-                        <option value="pending">
-                            Pending
-                        </option>
-
-                    </select>
-
-
-                </div>
-
-
-                <!-- =========================
+          <!-- =========================
                      MEMBER TABLE
                 ========================== -->
 
-                <div class="member-table-wrapper">
+          <div class="member-table-wrapper">
+            <table class="member-table">
+              <!-- TABLE HEADER -->
 
-                    <table class="member-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
 
+                  <th>Member</th>
 
-                        <thead>
+                  <th>Contact</th>
 
-                            <tr>
+                  <th>Membership</th>
 
-                                <th>ID</th>
+                  <th>Assigned Trainer</th>
 
-                                <th>Member</th>
+                  <th>Payment</th>
 
-                                <th>Contact</th>
+                  <th>Join Date</th>
 
-                                <th>Membership</th>
+                  <th>Status</th>
 
-                                <th>Assigned Trainer</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
 
-                                <th>Payment</th>
+              <!-- TABLE BODY -->
 
-                                <th>Join Date</th>
+              <tbody id="memberTableBody">
+                <!-- MEMBER 1 -->
 
-                                <th>Status</th>
+                <tr>
+                  <td>#M001</td>
 
-                                <th>Action</th>
+                  <td>
+                    <div class="member-info">
+                      <div class="member-icon">
+                        <i class="fa-solid fa-user"></i>
+                      </div>
 
-                            </tr>
+                      <div>
+                        <strong> Ali Raza </strong>
 
-                        </thead>
+                        <small> Regular Member </small>
+                      </div>
+                    </div>
+                  </td>
 
+                  <td>
+                    <span> 0300-1234567 </span>
 
-                        <tbody id="memberTableBody">
+                    <small class="email"> ali@example.com </small>
+                  </td>
 
+                  <td>
+                    <span class="membership active"> Premium </span>
+                  </td>
 
-                            <!-- Member 1 -->
+                  <td>Ahmed Khan</td>
 
-                            <tr>
+                  <td>
+                    <span class="payment paid"> Paid </span>
+                  </td>
 
-                                <td>#M001</td>
+                  <td>12 Jan 2026</td>
 
+                  <td>
+                    <span class="member-status active"> Active </span>
+                  </td>
 
-                                <td>
+                  <td>
+                    <button class="action-btn view-btn" title="View">
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
 
-                                    <div class="member-info">
+                    <button class="action-btn edit-btn" title="Edit">
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
 
-                                        <div class="member-icon">
+                    <button class="action-btn delete-btn" title="Delete">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
 
-                                            <i class="fa-solid fa-user"></i>
+                <!-- MEMBER 2 -->
 
-                                        </div>
+                <tr>
+                  <td>#M002</td>
 
+                  <td>
+                    <div class="member-info">
+                      <div class="member-icon">
+                        <i class="fa-solid fa-user"></i>
+                      </div>
 
-                                        <div>
+                      <div>
+                        <strong> Fatima Noor </strong>
 
-                                            <strong>Ali Raza</strong>
-
-                                            <small>Regular Member</small>
-
-                                        </div>
-
-                                    </div>
-
-                                </td>
-
-
-                                <td>
-
-                                    <span>0300-1234567</span>
-
-                                    <small class="email">
-                                        ali@example.com
-                                    </small>
-
-                                </td>
-
-
-                                <td>
-
-                                    <span class="membership active">
-                                        Premium
-                                    </span>
-
-                                </td>
-
-
-                                <td>
-                                    Ahmed Khan
-                                </td>
-
-
-                                <td>
-
-                                    <span class="payment paid">
-                                        Paid
-                                    </span>
-
-                                </td>
-
-
-                                <td>
-                                    12 Jan 2026
-                                </td>
-
-
-                                <td>
-
-                                    <span class="member-status active">
-                                        Active
-                                    </span>
-
-                                </td>
-
-
-                                <td>
-
-                                    <button
-                                        class="action-btn view-btn"
-                                        title="View"
-                                    >
-
-                                        <i class="fa-solid fa-eye"></i>
-
-                                    </button>
-
-
-                                    <button
-                                        class="action-btn edit-btn"
-                                        title="Edit"
-                                    >
-
-                                        <i class="fa-solid fa-pen"></i>
-
-                                    </button>
-
-
-                                    <button
-                                        class="action-btn delete-btn"
-                                        title="Delete"
-                                    >
-
-                                        <i class="fa-solid fa-trash"></i>
-
-                                    </button>
-
-                                </td>
-
-                            </tr>
-
-
-                            <!-- Member 2 -->
-
-                            <tr>
-
-                                <td>#M002</td>
-
-
-                                <td>
-
-                                    <div class="member-info">
-
-                                        <div class="member-icon">
-
-                                            <i class="fa-solid fa-user"></i>
-
-                                        </div>
-
-
-                                        <div>
-
-                                            <strong>Fatima Noor</strong>
-
-                                            <small>Regular Member</small>
-
-                                        </div>
-
-                                    </div>
-
-                                </td>
-
-
-                                <td>
-
-                                    <span>0312-9876543</span>
-
-                                    <small class="email">
-                                        fatima@example.com
-                                    </small>
-
-                                </td>
-
-
-                                <td>
-
-                                    <span class="membership pending">
-                                        Basic
-                                    </span>
-
-                                </td>
-
-
-                                <td>
-                                    Hassan Ali
-                                </td>
-
-
-                                <td>
-
-                                    <span class="payment pending">
-                                        Pending
-                                    </span>
-
-                                </td>
-
-
-                                <td>
-                                    05 Feb 2026
-                                </td>
-
-
-                                <td>
-
-                                    <span class="member-status active">
-                                        Active
-                                    </span>
-
-                                </td>
-
-
-                                <td>
-
-                                    <button class="action-btn view-btn">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </button>
-
-                                    <button class="action-btn edit-btn">
-                                        <i class="fa-solid fa-pen"></i>
-                                    </button>
-
-                                    <button class="action-btn delete-btn">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-
-                                </td>
-
-                            </tr>
-
-
-                            <!-- Member 3 -->
-
-                            <tr>
-
-                                <td>#M003</td>
-
-
-                                <td>
-
-                                    <div class="member-info">
-
-                                        <div class="member-icon">
-
-                                            <i class="fa-solid fa-user"></i>
-
-                                        </div>
-
-
-                                        <div>
-
-                                            <strong>Usman Khan</strong>
-
-                                            <small>Regular Member</small>
-
-                                        </div>
-
-                                    </div>
-
-                                </td>
-
-
-                                <td>
-
-                                    <span>0321-4567890</span>
-
-                                    <small class="email">
-                                        usman@example.com
-                                    </small>
-
-                                </td>
-
-
-                                <td>
-
-                                    <span class="membership expired">
-                                        Standard
-                                    </span>
-
-                                </td>
-
-
-                                <td>
-                                    Usman Ahmed
-                                </td>
-
-
-                                <td>
-
-                                    <span class="payment paid">
-                                        Paid
-                                    </span>
-
-                                </td>
-
-
-                                <td>
-                                    18 Dec 2025
-                                </td>
-
-
-                                <td>
-
-                                    <span class="member-status expired">
-                                        Expired
-                                    </span>
-
-                                </td>
-
-
-                                <td>
-
-                                    <button class="action-btn view-btn">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </button>
-
-                                    <button class="action-btn edit-btn">
-                                        <i class="fa-solid fa-pen"></i>
-                                    </button>
-
-                                    <button class="action-btn delete-btn">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-
-                                </td>
-
-                            </tr>
-
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-
-            </section>
-
-        </main>
-
+                        <small> Regular Member </small>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td>
+                    <span> 0312-9876543 </span>
+
+                    <small class="email"> fatima@example.com </small>
+                  </td>
+
+                  <td>
+                    <span class="membership pending"> Basic </span>
+                  </td>
+
+                  <td>Hassan Ali</td>
+
+                  <td>
+                    <span class="payment pending"> Pending </span>
+                  </td>
+
+                  <td>05 Feb 2026</td>
+
+                  <td>
+                    <span class="member-status active"> Active </span>
+                  </td>
+
+                  <td>
+                    <button class="action-btn view-btn">
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
+
+                    <button class="action-btn edit-btn">
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+
+                    <button class="action-btn delete-btn">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- MEMBER 3 -->
+
+                <tr>
+                  <td>#M003</td>
+
+                  <td>
+                    <div class="member-info">
+                      <div class="member-icon">
+                        <i class="fa-solid fa-user"></i>
+                      </div>
+
+                      <div>
+                        <strong> Usman Khan </strong>
+
+                        <small> Regular Member </small>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td>
+                    <span> 0321-4567890 </span>
+
+                    <small class="email"> usman@example.com </small>
+                  </td>
+
+                  <td>
+                    <span class="membership expired"> Standard </span>
+                  </td>
+
+                  <td>Usman Ahmed</td>
+
+                  <td>
+                    <span class="payment paid"> Paid </span>
+                  </td>
+
+                  <td>18 Dec 2025</td>
+
+                  <td>
+                    <span class="member-status expired"> Expired </span>
+                  </td>
+
+                  <td>
+                    <button class="action-btn view-btn">
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
+
+                    <button class="action-btn edit-btn">
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+
+                    <button class="action-btn delete-btn">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
     </div>
-<script src="../../components/sidebar/sidebar.js"></script>
-<script src="../../components/navbar/navbar.js"></script>
 
+    <!-- =========================
+         MEMBER JAVASCRIPT
+    ========================== -->
 
-    <!-- Member JavaScript -->
     <script src="Member.js"></script>
-
-</body>
-
+  </body>
 </html>
+```
