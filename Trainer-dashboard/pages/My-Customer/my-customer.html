@@ -1,0 +1,176 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Customers</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- My Customers CSS -->
+    <link rel="stylesheet" href="my-customer.css">
+
+    <!-- Reusable Component CSS -->
+    <link rel="stylesheet"
+        href="../../../components/trainer-navbar/trainer-navbar.css">
+
+    <link rel="stylesheet"
+        href="../../../components/trainer.sidebar/trainer.sidebar.css">
+
+    <link rel="stylesheet"
+        href="../../../components/trainer-table/trainer-table.css">
+
+</head>
+
+
+<body>
+
+    <!-- =========================
+         REUSABLE TRAINER SIDEBAR
+    ========================== -->
+
+    <div id="trainer-sidebar"></div>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="trainer-main">
+
+
+        <!-- =========================
+             REUSABLE TRAINER NAVBAR
+        ========================== -->
+
+        <div id="trainer-navbar"></div>
+
+
+        <!-- =========================
+             MY CUSTOMERS CONTENT
+        ========================== -->
+
+        <div class="customers-content">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="page-header">
+
+                <div>
+
+                    <h1>My Customers</h1>
+
+                    <p>
+                        Customers assigned to you
+                    </p>
+
+                </div>
+
+
+                <div class="customer-count">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <div>
+
+                        <span>Total Assigned</span>
+
+                        <strong id="totalCustomers">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 SEARCH & FILTER
+            ========================== -->
+
+            <div class="customer-toolbar">
+
+
+                <div class="customer-search">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        id="customerSearch"
+                        placeholder="Search customer..."
+                    >
+
+                </div>
+
+
+                <div class="customer-filter">
+
+                    <i class="fa-solid fa-filter"></i>
+
+                    <select id="statusFilter">
+
+                        <option value="all">
+                            All Status
+                        </option>
+
+                        <option value="active">
+                            Active
+                        </option>
+
+                        <option value="inactive">
+                            Inactive
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 REUSABLE TRAINER TABLE
+            ========================== -->
+
+            <div id="trainer-table"></div>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         REUSABLE COMPONENT JS
+    ========================== -->
+
+    <script src="../../../components/trainer-navbar/trainer-navbar.js"></script>
+
+    <script src="../../../components/trainer.sidebar/trainer.sidebar.js"></script>
+
+    <script src="../../../components/trainer-table/trainer-table.js"></script>
+    
+
+
+    <!-- =========================
+         MY CUSTOMERS JS
+    ========================== -->
+
+    <script src="my-customer.js"></script>
+
+
+</body>
+
+</html>

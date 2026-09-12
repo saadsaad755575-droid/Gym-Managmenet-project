@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Attendance Management</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+
+    <link rel="stylesheet" href="../../components/sidebar/sidebar.css" />
+
+    <link rel="stylesheet" href="../../components/navbar/navbar.css" />
+
+    <link rel="stylesheet" href="../../components/table/table.css" />
+
+    <link rel="stylesheet" href="../../components/modal/modal.css" />
+
+    <link rel="stylesheet" href="../../components/button/button.css" />
+
+    <!-- =========================
+         ATTENDANCE PAGE CSS
+    ========================== -->
+
+    <link rel="stylesheet" href="attendance.css" />
+  </head>
+
+  <body>
+    <div class="admin-layout">
+
+      <aside id="sidebar"></aside>
+
+      <main class="admin-main">
+
+        <header id="navbar"></header>
+
+        <section class="attendance-content">
+
+          <div class="page-header">
+            <div>
+              <h1>Attendance Management</h1>
+
+              <p>Monitor and manage overall gym attendance.</p>
+            </div>
+
+            <button class="reusable-button" id="markAttendanceBtn">
+              <i class="fa-solid fa-user-check"></i>
+
+              Mark Attendance
+            </button>
+          </div>
+          <div class="attendance-summary">
+            <!-- Today's Attendance -->
+
+            <div class="attendance-card">
+              <div class="attendance-icon">
+                <i class="fa-solid fa-calendar-check"></i>
+              </div>
+
+              <div>
+                <p>Today's Attendance</p>
+
+                <h2 id="todayAttendance">0</h2>
+              </div>
+            </div>
+
+            <!-- Present -->
+
+            <div class="attendance-card">
+              <div class="attendance-icon">
+                <i class="fa-solid fa-circle-check"></i>
+              </div>
+
+              <div>
+                <p>Present</p>
+
+                <h2 id="totalPresent">0</h2>
+              </div>
+            </div>
+
+            <!-- Absent -->
+
+            <div class="attendance-card">
+              <div class="attendance-icon">
+                <i class="fa-solid fa-circle-xmark"></i>
+              </div>
+
+              <div>
+                <p>Absent</p>
+
+                <h2 id="totalAbsent">0</h2>
+              </div>
+            </div>
+
+            <!-- Late -->
+
+            <div class="attendance-card">
+              <div class="attendance-icon">
+                <i class="fa-solid fa-clock"></i>
+              </div>
+
+              <div>
+                <p>Late</p>
+
+                <h2 id="totalLate">0</h2>
+              </div>
+            </div>
+          </div>
+
+          <!-- =========================
+                     SEARCH + FILTER
+                ========================== -->
+
+          <div class="attendance-tools">
+            <!-- Search Member -->
+
+            <div class="search-box">
+              <i class="fa-solid fa-magnifying-glass"></i>
+
+              <input
+                type="text"
+                id="attendanceSearch"
+                placeholder="Search member..."
+              />
+            </div>
+
+            <!-- Date Filter -->
+
+            <input type="date" id="attendanceDateFilter" />
+
+            <!-- Status Filter -->
+
+            <select id="attendanceStatusFilter">
+              <option value="all">All Attendance</option>
+
+              <option value="present">Present</option>
+
+              <option value="absent">Absent</option>
+
+              <option value="late">Late</option>
+            </select>
+          </div>
+
+          <!-- =========================
+                     ATTENDANCE TABLE SECTION
+                ========================== -->
+
+          <div class="attendance-table-section">
+            <!-- Section Header -->
+
+            <div class="section-header">
+              <div>
+                <h2>Member Attendance</h2>
+
+                <p>Attendance records of gym members.</p>
+              </div>
+            </div>
+
+            <!-- =========================
+                         TABLE
+                    ========================== -->
+
+            <div class="table-container">
+              <table class="attendance-table">
+                <!-- Table Head -->
+
+                <thead>
+                  <tr>
+                    <th>Attendance ID</th>
+
+                    <th>Member</th>
+
+                    <th>Date</th>
+
+                    <th>Check-in</th>
+
+                    <th>Check-out</th>
+
+                    <th>Status</th>
+
+                    <th>Action</th>
+                  </tr>
+                </thead>
+
+                <!-- Table Body -->
+
+                <tbody id="attendanceTableBody">
+
+
+                  <tr>
+                    <!-- Attendance ID -->
+
+                    <td>#A001</td>
+
+                    <!-- Member -->
+
+                    <td>
+                      <div class="member-info">
+                        <div class="member-avatar">
+                          <i class="fa-solid fa-user"></i>
+                        </div>
+
+                        <span> Ali Raza </span>
+                      </div>
+                    </td>
+
+                    <!-- Date -->
+
+                    <td>05 Sep 2026</td>
+
+                    <td>08:30 AM</td>
+
+                    <td>10:00 AM</td>
+
+
+                    <td>
+                      <span class="attendance-status present"> Present </span>
+                    </td>
+
+
+                    <td>
+                      <div class="table-actions">
+
+                        <button class="action-btn view-attendance" title="View">
+                          <i class="fa-solid fa-eye"></i>
+                        </button>
+                        <button class="action-btn edit-attendance" title="Edit">
+                          <i class="fa-solid fa-pen"></i>
+                        </button>
+
+                        <button
+                          class="action-btn delete-attendance"
+                          title="Delete"
+                        >
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- =====================================================
+         MARK ATTENDANCE MODAL
+    ====================================================== -->
+
+    <div id="attendanceModal" class="modal">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h2>Mark Attendance</h2>
+
+          <button class="modal-close" id="closeAttendanceModal">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- =========================
+                 MODAL BODY
+            ========================== -->
+
+        <div class="modal-body">
+          <!-- Member -->
+
+          <div class="form-group">
+            <label for="attendanceMember"> Select Member </label>
+
+            <select id="attendanceMember">
+              <option value="">Select existing member</option>
+
+              <option value="ali">Ali Raza</option>
+
+              <option value="hassan">Hassan Khan</option>
+
+              <option value="talha">Talha</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="attendanceDate"> Attendance Date </label>
+
+            <input type="date" id="attendanceDate" />
+          </div>
+
+          <div class="form-group">
+            <label for="checkInTime"> Check-in Time </label>
+
+            <input type="time" id="checkInTime" />
+          </div>
+
+
+          <div class="form-group">
+            <label for="checkOutTime"> Check-out Time </label>
+
+            <input type="time" id="checkOutTime" />
+          </div>
+
+          <div class="form-group">
+            <label for="attendanceStatus"> Attendance Status </label>
+
+            <select id="attendanceStatus">
+              <option value="present">Present</option>
+
+              <option value="absent">Absent</option>
+
+              <option value="late">Late</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- =========================
+                 MODAL FOOTER
+            ========================== -->
+
+        <div class="modal-footer">
+          <!-- Cancel -->
+
+          <button class="modal-cancel" id="cancelAttendance">Cancel</button>
+
+          <!-- Save -->
+
+          <button class="modal-submit" id="saveAttendance">
+            <i class="fa-solid fa-user-check"></i>
+
+            Mark Attendance
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================
+         ATTENDANCE JAVASCRIPT
+    ========================== -->
+
+    <script src="Attendance.js"></script>
+  </body>
+</html>

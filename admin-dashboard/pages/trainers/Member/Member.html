@@ -1,4 +1,4 @@
-```html
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -34,36 +34,20 @@
     ========================== -->
 
     <div class="admin-layout">
-      <!-- =========================
-             SIDEBAR
-        ========================== -->
 
       <aside id="sidebar"></aside>
-
-      <!-- =========================
-             MAIN AREA
-        ========================== -->
-
       <main class="admin-main">
         <!-- Navbar -->
 
         <header id="navbar"></header>
 
-        <!-- =========================
-                 MEMBER CONTENT
-            ========================== -->
-
         <section class="member-content">
-          <!-- PAGE HEADER -->
-
           <div class="page-header">
             <div>
               <h1>Member Management</h1>
 
               <p>Manage members, memberships, trainers and payments.</p>
             </div>
-
-            <!-- ADD MEMBER BUTTON -->
 
             <button type="button" class="reusable-button" id="addMemberBtn">
               <span class="button-text">
@@ -116,11 +100,6 @@
               <option value="pending">Pending</option>
             </select>
           </div>
-
-          <!-- =========================
-                     MEMBER TABLE
-                ========================== -->
-
           <div class="member-table-wrapper">
             <table class="member-table">
               <!-- TABLE HEADER -->
@@ -315,6 +294,9 @@
                     <button class="action-btn delete-btn">
                       <i class="fa-solid fa-trash"></i>
                     </button>
+                    <button class="action-btn assign-trainer-btn" title="Assign Trainer">
+                      <i class="fa-solid fa-user-check"></i>
+                    </button>
                   </td>
                 </tr>
               </tbody>
@@ -331,4 +313,4 @@
     <script src="Member.js"></script>
   </body>
 </html>
-```
+

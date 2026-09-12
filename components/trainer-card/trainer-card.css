@@ -1,0 +1,117 @@
+
+
+/* =========================
+   TRAINER DASHBOARD CARDS
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.trainer-cards {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+
+/* =========================
+   TRAINER CARD
+========================= */
+
+.trainer-card {
+    background: #151719;
+    border: 1px solid #333333;
+    border-radius: 10px;
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    transition: 0.3s ease;
+}
+
+
+/* =========================
+   HOVER EFFECT
+========================= */
+
+.trainer-card:hover {
+    border-color: #f5b900;
+    transform: translateY(-3px);
+}
+
+
+/* =========================
+   CARD ICON
+========================= */
+
+.card-icon {
+    width: 50px;
+    height: 50px;
+
+    background: #242628;
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+.card-icon i {
+    font-size: 22px;
+    color: #f5b900;
+}
+
+
+/* =========================
+   CARD CONTENT
+========================= */
+
+.card-content p {
+    font-size: 14px;
+    color: #aaaaaa;
+    margin-bottom: 6px;
+}
+
+.card-content h2 {
+    font-size: 26px;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+.card-content span {
+    font-size: 12px;
+    color: #888888;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1100px) {
+
+    .trainer-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .trainer-cards {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+

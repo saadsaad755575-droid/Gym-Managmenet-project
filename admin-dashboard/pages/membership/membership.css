@@ -1,0 +1,414 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0d0f10;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* =========================
+   MEMBERSHIP PAGE LAYOUT
+========================= */
+
+.admin-layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.admin-main {
+    flex: 1;
+    min-width: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* =========================
+   MEMBERSHIP CONTENT
+========================= */
+
+.membership-content {
+    width: 100%;
+    min-width: 0;
+    padding: 25px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* =========================
+   PAGE HEADER
+========================= */
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.page-header h1 {
+    font-size: 28px;
+    margin-bottom: 7px;
+}
+
+.page-header p {
+    color: #999999;
+    font-size: 14px;
+}
+
+.add-membership-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 12px 18px;
+    background: #f5b900;
+    color: #111315;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.add-membership-btn:hover {
+    background: #ffd15c;
+    transform: translateY(-2px);
+}
+
+/* =========================
+   MEMBERSHIP SECTION
+========================= */
+
+.membership-section,
+.payment-section {
+    width: 100%;
+    background: #111315;
+    border: 1px solid #333333;
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 25px;
+    min-width: 0;
+}
+
+.section-header {
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    color: #f5b900;
+    font-size: 19px;
+    margin-bottom: 5px;
+}
+
+.section-header p {
+    color: #888888;
+    font-size: 13px;
+}
+
+/* =========================
+   MEMBERSHIP CARDS
+========================= */
+
+.membership-cards {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.membership-card {
+    width: 100%;
+    min-width: 0;
+    background: #151719;
+    border: 1px solid #333333;
+    border-radius: 10px;
+    padding: 22px;
+    text-align: center;
+    transition: 0.25s ease;
+}
+
+.membership-card:hover {
+    border-color: #f5b900;
+    transform: translateY(-4px);
+}
+
+.membership-icon {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #2a2414;
+    border: 1px solid #4a3d19;
+    border-radius: 50%;
+}
+
+.membership-icon i {
+    color: #f5b900;
+    font-size: 21px;
+}
+
+.membership-card h3 {
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+
+.membership-duration {
+    color: #999999;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.membership-card h2 {
+    color: #f5b900;
+    font-size: 22px;
+    margin-bottom: 18px;
+}
+
+.membership-card ul {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.membership-card li {
+    color: #bbbbbb;
+    font-size: 12px;
+    margin-bottom: 9px;
+}
+
+.membership-card li i {
+    color: #f5b900;
+    margin-right: 7px;
+}
+
+.plan-btn {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    color: #f5b900;
+    border: 1px solid #f5b900;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.plan-btn:hover {
+    background: #f5b900;
+    color: #111315;
+}
+
+/* =========================
+   PAYMENT STATUS
+========================= */
+
+.payment-status-cards {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.status-card {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px;
+    background: #151719;
+    border: 1px solid #333333;
+    border-radius: 10px;
+}
+
+.status-card > i {
+    font-size: 25px;
+    color: #f5b900;
+}
+
+.status-card h3 {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.status-card p {
+    color: #888888;
+    font-size: 12px;
+}
+
+/* =========================
+   MEMBERSHIP RECORDS
+========================= */
+
+.membership-records-section {
+    width: 100%;
+    background: #111315;
+    border: 1px solid #333333;
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 25px;
+    overflow-x: auto;
+    min-width: 0;
+}
+
+.membership-records-section table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 850px;
+}
+
+.membership-records-section th {
+    background: #151719;
+    color: #f5b900;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    padding: 14px 15px;
+    border-bottom: 1px solid #333333;
+}
+
+.membership-records-section td {
+    color: #bbbbbb;
+    font-size: 13px;
+    padding: 14px 15px;
+    border-bottom: 1px solid #292929;
+}
+
+.membership-records-section tbody tr {
+    transition: 0.25s ease;
+}
+
+.membership-records-section tbody tr:hover {
+    background: #151719;
+}
+
+.membership-records-section .payment-status {
+    color: #f5b900;
+    font-weight: 600;
+}
+
+.membership-records-section .manage-membership-btn {
+    padding: 7px 12px;
+    background: transparent;
+    color: #f5b900;
+    border: 1px solid #f5b900;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.membership-records-section .manage-membership-btn:hover {
+    background: #f5b900;
+    color: #111315;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1100px) {
+
+    .membership-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .payment-status-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .membership-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-status-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .membership-content {
+        padding: 15px;
+    }
+
+    .membership-section,
+    .payment-section,
+    .membership-records-section {
+        padding: 15px;
+    }
+}
+
+/* =========================
+   SIDEBAR + MEMBERSHIP FIX
+========================= */
+
+.admin-main {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    min-width: 0;
+}
+
+.membership-content {
+    width: 100%;
+    min-width: 0;
+    padding: 25px;
+}
+
+.membership-cards {
+    width: 100%;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.membership-card {
+    min-width: 0;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1100px) {
+    .admin-main {
+        margin-left: 260px;
+        width: calc(100% - 260px);
+    }
+
+    .membership-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .admin-main {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .membership-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+

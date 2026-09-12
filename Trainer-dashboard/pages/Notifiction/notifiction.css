@@ -1,0 +1,468 @@
+
+/* =========================
+   NOTIFICATIONS PAGE
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0d0f10;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+.trainer-main {
+    min-height: 100vh;
+    margin-left: 250px;
+}
+
+.notifications-content {
+    padding: 100px 30px 40px;
+}
+
+
+/* =========================
+   PAGE HEADER
+========================= */
+
+.notifications-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.notifications-header h1 {
+    font-size: 28px;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.notifications-header h1 i {
+    color: #f5b900;
+    margin-right: 8px;
+}
+
+.notifications-header p {
+    color: #999999;
+    font-size: 14px;
+}
+
+.notification-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.notification-action-btn {
+    background: #f5b900;
+    color: #111315;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s ease;
+}
+
+.notification-action-btn:hover {
+    background: #ffd15c;
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   SUMMARY
+========================= */
+
+.notification-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.notification-summary-box {
+    background: #111315;
+    border: 1px solid #2d2f31;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-height: 105px;
+}
+
+.summary-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    background: rgba(245, 185, 0, 0.12);
+    border: 1px solid rgba(245, 185, 0, 0.25);
+    color: #f5b900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+}
+
+.notification-summary-box span {
+    display: block;
+    color: #888888;
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.notification-summary-box strong {
+    color: #ffffff;
+    font-size: 23px;
+}
+
+
+/* =========================
+   FILTER CARD
+========================= */
+
+.notification-filter-card {
+    width: 100%;
+    background: #111315;
+    border: 1px solid #2d2f31;
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 25px;
+}
+
+.notification-filter-heading {
+    margin-bottom: 22px;
+}
+
+.notification-filter-heading h2 {
+    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.notification-filter-heading h2 i {
+    color: #f5b900;
+    margin-right: 8px;
+}
+
+.notification-filter-heading p {
+    color: #888888;
+    font-size: 13px;
+}
+
+.notification-filters {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.notification-filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.notification-filter-group label {
+    color: #cccccc;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.notification-filter-group select {
+    width: 100%;
+    background: #0d0f10;
+    color: #ffffff;
+    border: 1px solid #333333;
+    border-radius: 7px;
+    padding: 12px;
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+}
+
+.notification-filter-group select:focus {
+    border-color: #f5b900;
+}
+
+
+/* =========================
+   NOTIFICATION LIST CARD
+========================= */
+
+.notifications-list-card {
+    width: 100%;
+    background: #111315;
+    border: 1px solid #2d2f31;
+    border-radius: 10px;
+    padding: 24px;
+}
+
+.notification-list-header {
+    margin-bottom: 20px;
+}
+
+.notification-list-header h2 {
+    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.notification-list-header h2 i {
+    color: #f5b900;
+    margin-right: 8px;
+}
+
+.notification-list-header p {
+    color: #888888;
+    font-size: 13px;
+}
+
+
+/* =========================
+   NOTIFICATION ITEM
+========================= */
+
+.notifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.notification-item {
+    width: 100%;
+    background: #0d0f10;
+    border: 1px solid #292b2d;
+    border-radius: 8px;
+    padding: 17px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: 0.25s ease;
+    cursor: pointer;
+}
+
+.notification-item:hover {
+    background: #151719;
+    border-color: #3a3c3e;
+}
+
+.notification-item.unread {
+    border-left: 3px solid #f5b900;
+    background: #121416;
+}
+
+
+/* =========================
+   NOTIFICATION ICON
+========================= */
+
+.notification-icon {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    border-radius: 8px;
+    background: rgba(245, 185, 0, 0.12);
+    border: 1px solid rgba(245, 185, 0, 0.25);
+    color: #f5b900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+}
+
+
+/* =========================
+   NOTIFICATION CONTENT
+========================= */
+
+.notification-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.notification-content h3 {
+    color: #ffffff;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.notification-content p {
+    color: #999999;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 7px;
+}
+
+.notification-time {
+    color: #666666;
+    font-size: 11px;
+}
+/* =========================
+   NOTIFICATION STATUS
+========================= */
+
+.notification-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.notification-unread-dot {
+    width: 8px;
+    height: 8px;
+    background: #f5b900;
+    border-radius: 50%;
+}
+
+.notification-read-label {
+    color: #666666;
+    font-size: 11px;
+}
+
+
+/* =========================
+   NOTIFICATION ACTIONS
+========================= */
+
+.notification-actions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.notification-action-icon {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #333333;
+    background: #191b1d;
+    color: #aaaaaa;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.25s ease;
+}
+
+.notification-action-icon:hover {
+    color: #f5b900;
+    border-color: #f5b900;
+    background: #222426;
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.notifications-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: #777777;
+}
+
+.notifications-empty i {
+    display: block;
+    font-size: 38px;
+    color: #f5b900;
+    margin-bottom: 15px;
+}
+
+.notifications-empty h3 {
+    color: #cccccc;
+    font-size: 17px;
+    margin-bottom: 7px;
+}
+
+.notifications-empty p {
+    color: #777777;
+    font-size: 13px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+
+    .notification-summary {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .trainer-main {
+        margin-left: 0;
+    }
+
+    .notifications-content {
+        padding: 90px 20px 30px;
+    }
+
+    .notifications-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .notification-header-actions {
+        width: 100%;
+    }
+
+    .notification-action-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .notification-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .notification-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .notification-item {
+        align-items: flex-start;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .notifications-content {
+        padding: 85px 15px 25px;
+    }
+
+    .notifications-header h1 {
+        font-size: 23px;
+    }
+
+    .notification-filter-card,
+    .notifications-list-card {
+        padding: 18px;
+    }
+
+    .notification-item {
+        flex-wrap: wrap;
+    }
+
+    .notification-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+}

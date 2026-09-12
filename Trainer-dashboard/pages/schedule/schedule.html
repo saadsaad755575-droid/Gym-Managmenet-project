@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trainer Schedule</title>
+
+
+    <!-- =========================
+         FONT AWESOME
+    ========================== -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- =========================
+         TRAINER SIDEBAR CSS
+    ========================== -->
+
+    <link rel="stylesheet"
+        href="../../../components/trainer.sidebar/trainer.sidebar.css">
+
+
+    <!-- =========================
+         TRAINER NAVBAR CSS
+    ========================== -->
+
+    <link rel="stylesheet"
+        href="../../../components/trainer-navbar/trainer-navbar.css">
+
+
+    <!-- =========================
+         TRAINER CARD CSS
+    ========================== -->
+
+    <link rel="stylesheet"
+        href="../../../components/trainer-card/trainer-card.css">
+
+
+    <!-- =========================
+         TRAINER MODAL CSS
+    ========================== -->
+
+    <link rel="stylesheet"
+        href="../../../components/trainer-modal/trainer-modal.css">
+
+
+    <!-- =========================
+         SCHEDULE CSS
+    ========================== -->
+
+    <link rel="stylesheet"
+        href="schedule.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         TRAINER SIDEBAR
+    ========================== -->
+
+    <div id="trainer-sidebar"></div>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="trainer-main">
+
+
+        <!-- =========================
+             TRAINER NAVBAR
+        ========================== -->
+
+        <div id="trainer-navbar"></div>
+
+
+        <!-- =========================
+             SCHEDULE CONTENT
+        ========================== -->
+
+        <section class="schedule-content">
+
+
+            <!-- =========================
+                 PAGE HEADER
+            ========================== -->
+
+            <div class="schedule-header">
+
+                <div>
+
+                    <h1>
+
+                        <i class="fa-solid fa-calendar-days"></i>
+
+                        Schedule
+
+                    </h1>
+
+                    <p>
+                        Manage your training sessions and customer appointments.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="schedule-primary-btn"
+                    id="openScheduleForm">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Add Schedule
+
+                </button>
+
+            </div>
+
+
+
+            <!-- =========================
+                 TRAINER CARDS
+            ========================== -->
+
+            <div id="schedule-cards"></div>
+
+
+
+            <!-- =========================
+                 SCHEDULE FILTER
+            ========================== -->
+
+            <div class="schedule-filter-card">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+
+                            <i class="fa-solid fa-filter"></i>
+
+                            Schedule Filter
+
+                        </h2>
+
+                        <p>
+                            Filter your training sessions by date and customer.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="schedule-filter-grid">
+
+
+                    <!-- Customer Filter -->
+
+                    <div class="schedule-filter-field">
+
+                        <label for="filterCustomer">
+                            Customer
+                        </label>
+
+                        <select id="filterCustomer">
+
+                            <option value="">
+                                All Customers
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Date Filter -->
+
+                    <div class="schedule-filter-field">
+
+                        <label for="filterDate">
+                            Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="filterDate">
+
+                    </div>
+
+
+
+                    <!-- Status Filter -->
+
+                    <div class="schedule-filter-field">
+
+                        <label for="filterStatus">
+                            Status
+                        </label>
+
+                        <select id="filterStatus">
+
+                            <option value="">
+                                All Status
+                            </option>
+
+                            <option value="Scheduled">
+                                Scheduled
+                            </option>
+
+                            <option value="Completed">
+                                Completed
+                            </option>
+
+                            <option value="Cancelled">
+                                Cancelled
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Clear Filters -->
+
+                    <div class="schedule-filter-action">
+
+                        <button
+                            type="button"
+                            id="clearScheduleFilters"
+                            class="schedule-secondary-btn">
+
+                            <i class="fa-solid fa-rotate-left"></i>
+
+                            Clear Filters
+
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 TRAINING SCHEDULE TABLE
+            ========================== -->
+
+            <div class="schedule-table-card">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+
+                            <i class="fa-solid fa-calendar-check"></i>
+
+                            Training Schedule
+
+                        </h2>
+
+                        <p>
+                            View and manage your scheduled training sessions.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="table-wrapper">
+
+                    <table class="schedule-table">
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Customer
+                                </th>
+
+                                <th>
+                                    Date
+                                </th>
+
+                                <th>
+                                    Start Time
+                                </th>
+
+                                <th>
+                                    End Time
+                                </th>
+
+                                <th>
+                                    Session Type
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Notes
+                                </th>
+
+                                <th>
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="scheduleTableBody">
+
+                            <!-- Schedule records will be added by JavaScript -->
+
+                        </tbody>
+
+
+                    </table>
+
+                </div>
+
+
+            </div>
+
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         REUSABLE TRAINER MODAL
+    ========================== -->
+
+    <div id="trainer-modal-container"></div>
+
+
+
+    <!-- =========================
+         TRAINER COMPONENT JS
+    ========================== -->
+
+    <script src="../../../components/trainer-navbar/trainer-navbar.js"></script>
+
+    <script src="../../../components/trainer.sidebar/trainer.sidebar.js"></script>
+    <script src="../../../components/trainer-modal/trainer-modl.js"></script>
+
+
+
+    <!-- =========================
+         SCHEDULE JS
+    ========================== -->
+
+    <script src="schedule.js"></script>
+
+
+</body>
+
+</html>

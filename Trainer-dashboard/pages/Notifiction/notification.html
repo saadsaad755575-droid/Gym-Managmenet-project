@@ -1,0 +1,321 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trainer Notifications</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Reusable Trainer Components -->
+    <link rel="stylesheet"
+        href="../../../components/trainer.sidebar/trainer.sidebar.css">
+
+    <link rel="stylesheet"
+        href="../../../components/trainer-navbar/trainer-navbar.css">
+
+    <link rel="stylesheet"
+        href="../../../components/trainer-modal/trainer-modal.css">
+
+    <!-- Page CSS -->
+    <link rel="stylesheet"
+        href="notifiction.css">
+
+</head>
+
+<body>
+
+    <!-- =========================
+         TRAINER SIDEBAR
+    ========================== -->
+
+    <div id="trainer-sidebar"></div>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="trainer-main">
+
+        <!-- Reusable Navbar -->
+        <div id="trainer-navbar"></div>
+
+
+        <section class="notifications-content">
+
+
+            <!-- =========================
+                 PAGE HEADER
+            ========================== -->
+
+            <div class="notifications-header">
+
+                <div>
+
+                    <h1>
+                        <i class="fa-solid fa-bell"></i>
+                        Notifications
+                    </h1>
+
+                    <p>
+                        Stay updated with your customers,
+                        schedules, plans, and trainer activities.
+                    </p>
+
+                </div>
+
+
+                <div class="notification-header-actions">
+
+                    <button
+                        type="button"
+                        class="notification-action-btn"
+                        id="markAllRead">
+
+                        <i class="fa-solid fa-check-double"></i>
+
+                        Mark All as Read
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 NOTIFICATION SUMMARY
+            ========================== -->
+
+            <div class="notification-summary">
+
+                <div class="notification-summary-box">
+
+                    <div class="summary-icon">
+                        <i class="fa-solid fa-bell"></i>
+                    </div>
+
+                    <div>
+
+                        <span>Total Notifications</span>
+
+                        <strong id="totalNotifications">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="notification-summary-box">
+
+                    <div class="summary-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+
+                    <div>
+
+                        <span>Unread</span>
+
+                        <strong id="unreadNotifications">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="notification-summary-box">
+
+                    <div class="summary-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+
+                    <div>
+
+                        <span>Read</span>
+
+                        <strong id="readNotifications">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 FILTERS
+            ========================== -->
+
+            <div class="notification-filter-card">
+
+                <div class="notification-filter-heading">
+
+                    <div>
+
+                        <h2>
+                            <i class="fa-solid fa-filter"></i>
+                            Notifications
+                        </h2>
+
+                        <p>
+                            View and manage your latest notifications.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="notification-filters">
+
+                    <div class="notification-filter-group">
+
+                        <label for="notificationFilter">
+                            Filter
+                        </label>
+
+                        <select id="notificationFilter">
+
+                            <option value="all">
+                                All Notifications
+                            </option>
+
+                            <option value="unread">
+                                Unread
+                            </option>
+
+                            <option value="read">
+                                Read
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="notification-filter-group">
+
+                        <label for="notificationType">
+                            Notification Type
+                        </label>
+
+                        <select id="notificationType">
+
+                            <option value="all">
+                                All Types
+                            </option>
+
+                            <option value="workout">
+                                Workout Plans
+                            </option>
+
+                            <option value="diet">
+                                Diet Plans
+                            </option>
+
+                            <option value="schedule">
+                                Schedule
+                            </option>
+
+                            <option value="attendance">
+                                Attendance
+                            </option>
+
+                            <option value="progress">
+                                Customer Progress
+                            </option>
+
+                            <option value="availability">
+                                Availability
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 NOTIFICATION LIST
+            ========================== -->
+
+            <div class="notifications-list-card">
+
+                <div class="notification-list-header">
+
+                    <div>
+
+                        <h2>
+                            <i class="fa-solid fa-list"></i>
+                            Recent Notifications
+                        </h2>
+
+                        <p>
+                            Automatically generated system notifications.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="notificationsList"
+                    class="notifications-list">
+
+                    <!-- Notifications will be loaded by JavaScript -->
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         REUSABLE TRAINER MODAL
+    ========================== -->
+
+    <div id="trainer-modal-container"></div>
+
+
+    <!-- =========================
+         REUSABLE COMPONENT JS
+    ========================== -->
+
+    <script src="../../../components/trainer-navbar/trainer-navbar.js"></script>
+
+    <script src="../../../components/trainer.sidebar/trainer.sidebar.js"></script>
+    <script src="../../../components/trainer-modal/trainer-modl.js"></script>
+
+
+
+    <!-- =========================
+         PAGE JS
+    ========================== -->
+
+    <script src="notification.js"></script>
+
+</body>
+
+</html>

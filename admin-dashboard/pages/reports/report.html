@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reports | Gym Management System</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Reusable Components -->
+    <link rel="stylesheet" href="../../components/sidebar/sidebar.css">
+    <link rel="stylesheet" href="../../components/navbar/navbar.css">
+    <link rel="stylesheet" href="../../components/card/card.css">
+
+    <!-- Reports CSS -->
+    <link rel="stylesheet" href="./report.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside id="sidebar"></aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Navbar -->
+        <header id="navbar"></header>
+
+
+        <section class="reports-page">
+
+            <!-- ================= HEADER ================= -->
+
+            <div class="page-header">
+
+                <div>
+                    <h1>Reports</h1>
+
+                    <p>
+                        View and analyze important gym management reports.
+                    </p>
+                </div>
+
+                <button class="generate-btn">
+                    <i class="fa-solid fa-file-export"></i>
+                    Generate Report
+                </button>
+
+            </div>
+
+
+            <!-- ================= REPORT CARDS ================= -->
+
+            <div class="report-cards">
+
+                <!-- Member Report -->
+
+                <div class="report-card">
+
+                    <div class="report-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <div class="report-content">
+
+                        <h3>Member Report</h3>
+
+                        <p>
+                            View member registration and membership details.
+                        </p>
+
+                    </div>
+
+                    <button class="report-btn">
+                        View Report
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+
+                <!-- Membership Report -->
+
+                <div class="report-card">
+
+                    <div class="report-icon">
+                        <i class="fa-solid fa-id-card"></i>
+                    </div>
+
+                    <div class="report-content">
+
+                        <h3>Membership Report</h3>
+
+                        <p>
+                            Check active, expired and upcoming memberships.
+                        </p>
+
+                    </div>
+
+                    <button class="report-btn">
+                        View Report
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+
+                <!-- Payment Report -->
+
+                <div class="report-card">
+
+                    <div class="report-icon">
+                        <i class="fa-solid fa-money-bill-wave"></i>
+                    </div>
+
+                    <div class="report-content">
+
+                        <h3>Payment Report</h3>
+
+                        <p>
+                            Review payments, pending dues and revenue.
+                        </p>
+
+                    </div>
+
+                    <button class="report-btn">
+                        View Report
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+
+                <!-- Attendance Report -->
+
+                <div class="report-card">
+
+                    <div class="report-icon">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+
+                    <div class="report-content">
+
+                        <h3>Attendance Report</h3>
+
+                        <p>
+                            Review member attendance and daily records.
+                        </p>
+
+                    </div>
+
+                    <button class="report-btn">
+                        View Report
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= REPORT SUMMARY ================= -->
+
+            <div class="report-summary">
+
+                <div class="summary-header">
+
+                    <div>
+                        <h2>Report Summary</h2>
+
+                        <p>
+                            Current month overview
+                        </p>
+                    </div>
+
+                    <i class="fa-solid fa-chart-column"></i>
+
+                </div>
+
+
+                <div class="summary-grid">
+
+                    <div class="summary-item">
+                        <span>Total Members</span>
+                        <strong>120</strong>
+                    </div>
+
+                    <div class="summary-item">
+                        <span>Active Memberships</span>
+                        <strong>96</strong>
+                    </div>
+
+                    <div class="summary-item">
+                        <span>Pending Payments</span>
+                        <strong>14</strong>
+                    </div>
+
+                    <div class="summary-item">
+                        <span>Attendance Rate</span>
+                        <strong>87%</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="./reports.js"></script>
+
+</body>
+
+</html>

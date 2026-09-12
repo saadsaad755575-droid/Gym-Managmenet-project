@@ -1,199 +1,965 @@
-*{
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body{
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
     background: #0d0f10;
     color: #ffffff;
-    font-family: Arial,  sans-serif;
+    font-family: Arial, sans-serif;
 }
-.admin-layout{
+
+
+/* =========================================================
+   MAIN ADMIN LAYOUT
+========================================================= */
+
+.admin-layout {
     width: 100%;
     min-height: 100vh;
+
     display: flex;
+
     background: #0d0f10;
 }
-#sidebar{
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+#sidebar {
     width: 250px;
     min-width: 250px;
     min-height: 100vh;
+
+    position: static !important;
+    flex-shrink: 0;
 }
-.admin-main{
+
+/* =========================================================
+   MAIN AREA
+========================================================= */
+
+.admin-main {
     flex: 1;
+
     min-width: 0;
     min-height: 100vh;
+
     display: flex;
     flex-direction: column;
 }
-#navbar{
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+#navbar {
     width: 100%;
     min-height: 70px;
-
 }
+
+
+/* =========================================================
+   DASHBOARD CONTENT
+========================================================= */
+
 .dashboard-content {
     width: 100%;
+
     padding: 25px;
 
     display: grid;
+
     grid-template-columns: minmax(0, 1fr) 260px;
-    gap: 20px;
+
+    gap: 16px;
+
     align-items: start;
 }
-#cards{
+
+
+/* =========================================================
+   DASHBOARD CARDS
+========================================================= */
+
+#cards {
     width: 100%;
+
+    min-width: 0;
+
+    grid-column: 1;
+    grid-row: 1;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 16px;
 }
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
 #table {
     width: 100%;
+
+    min-width: 0;
+
     grid-column: 1 / -1;
+
+    margin-top: 0;
 }
 
-@media (max-width:900px) {
-    #sidebar{
-        width: 220px;
-        min-width: 220px;
-    }
 
-    .dashboard-content{
-        padding: 20px;
-    }
-    
-}
-@media (max-width:700px)
-{
-    .admin-layout{
-        flex-direction: column;
-
-    }
-    #sidebar{
-        width: 100%;
-        min-width: 100%;
-        min-height: auto;
-    }
-    .admin-main{
-        width: 100%;
-
-    }
-    .dashboard-content{
-        padding: 15px;
-    }
-}
-/* =========================
+/* =========================================================
    QUICK ACTIONS
-========================= */
+========================================================= */
 
 .quick-actions {
     width: 260px;
     min-width: 260px;
-    padding: 16px;
+
+    padding: 14px;
 
     background: #111315;
-    border: 1px solid #333333;
+
+    border: 1px solid #292d31;
+
     border-radius: 12px;
 
     grid-column: 2;
     grid-row: 1;
 }
 
+
+/* =========================================================
+   QUICK ACTIONS HEADING
+========================================================= */
+
 .quick-actions h2 {
     margin: 0 0 14px;
 
     color: #f5b900;
+
     font-size: 18px;
+
     font-weight: 600;
 }
+
+
+/* =========================================================
+   QUICK ACTIONS CONTAINER
+========================================================= */
 
 .quick-actions-container {
     width: 100%;
 
     display: flex;
+
     flex-direction: column;
+
     gap: 8px;
 }
+
+
+/* =========================================================
+   QUICK ACTION BUTTON
+========================================================= */
 
 .quick-action-btn {
     width: 100%;
     height: 48px;
 
     display: flex;
+
     align-items: center;
+
     gap: 10px;
 
     padding: 5px 9px;
 
     background: #181a1c;
+
     color: #ffffff;
 
     border: 1px solid #333333;
+
     border-radius: 9px;
 
     cursor: pointer;
-    box-sizing: border-box;
 
     appearance: none;
+
     transition: 0.25s ease;
 }
 
-/* ICON */
+
+/* =========================================================
+   QUICK ACTION ICON
+========================================================= */
+
 .quick-action-icon {
     width: 36px;
     height: 36px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     flex-shrink: 0;
 
     background: #151515;
+
     color: #f5b900;
 
     border: 1px solid #f5b900;
+
     border-radius: 7px;
 }
+
 
 .quick-action-icon i {
     font-size: 15px;
 }
 
-/* TEXT */
+
+/* =========================================================
+   QUICK ACTION TEXT
+========================================================= */
+
 .quick-action-btn .button-text {
     flex: 1;
 
     color: #ffffff;
+
     font-size: 13px;
 
     text-align: left;
+
     white-space: nowrap;
 }
 
-/* ARROW */
+
+/* =========================================================
+   QUICK ACTION ARROW
+========================================================= */
+
 .quick-action-btn .button-arrow {
     color: #f5b900;
+
     font-size: 13px;
 
     display: flex;
+
     align-items: center;
 
     transition: 0.25s ease;
 }
 
-/* HOVER */
+
+/* =========================================================
+   QUICK ACTION HOVER
+========================================================= */
+
 .quick-action-btn:hover {
     background: #242016;
+
     border-color: #f5b900;
 }
+
 
 .quick-action-btn:hover .button-arrow {
     transform: translateX(4px);
 }
 
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* =========================================================
+   DASHBOARD STATISTICS
+========================================================= */
 
-@media (max-width: 900px) {
+.dashboard-statistics {
+    width: 100%;
+
+    min-width: 0;
+
+    grid-column: 1 / -1;
+
+    grid-row: 2;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+
+    margin-top: 0;
+
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   STATISTICS CARD
+========================================================= */
+
+.statistics-card {
+    width: 100%;
+
+    min-width: 0;
+
+    min-height: 250px;
+
+    background: #111315;
+
+    border: 1px solid #292d31;
+
+    border-radius: 12px;
+
+    padding: 18px;
+
+    box-sizing: border-box;
+
+    transition: 0.3s ease;
+}
+
+
+/* =========================================================
+   STATISTICS CARD HOVER
+========================================================= */
+
+.statistics-card:hover {
+    border-color: #f5b900;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   STATISTICS HEADER
+========================================================= */
+
+.statistics-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+
+.statistics-header h2 {
+    margin: 0 0 6px;
+
+    color: #ffffff;
+
+    font-size: 18px;
+}
+
+
+.statistics-header p {
+    margin: 0;
+
+    color: #888888;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   MEMBERSHIP / TRAINER CHART
+========================================================= */
+
+.membership-chart {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 25px;
+}
+
+
+/* =========================================================
+   DONUT CHART
+========================================================= */
+
+.donut-chart {
+    width: 145px;
+    height: 145px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   MEMBERSHIP DONUT
+========================================================= */
+
+.membership-donut {
+    background:
+        conic-gradient(
+            #4caf50 0deg 276deg,
+            #e74c3c 276deg 327deg,
+            #f5b900 327deg 360deg
+        );
+}
+
+
+/* =========================================================
+   TRAINER DONUT
+========================================================= */
+
+.trainer-donut {
+    background:
+        conic-gradient(
+            #4caf50 0deg 160deg,
+            #f5b900 160deg 260deg,
+            #e74c3c 260deg 360deg
+        );
+}
+
+
+/* =========================================================
+   DONUT CENTER
+========================================================= */
+
+.donut-chart::before {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    background: #111315;
+
+    border-radius: 50%;
+}
+
+
+.donut-center {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.donut-center span {
+    color: #888888;
+
+    font-size: 12px;
+
+    margin-bottom: 3px;
+}
+
+
+.donut-center strong {
+    color: #ffffff;
+
+    font-size: 23px;
+}
+
+
+/* =========================================================
+   CHART LEGEND
+========================================================= */
+
+.chart-legend {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+
+.legend-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+
+/* =========================================================
+   LEGEND DOT
+========================================================= */
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   MEMBERSHIP COLORS
+========================================================= */
+
+.legend-dot.active {
+    background: #4caf50;
+}
+
+
+.legend-dot.expired {
+    background: #e74c3c;
+}
+
+
+.legend-dot.pending {
+    background: #f5b900;
+}
+
+
+/* =========================================================
+   TRAINER COLORS
+========================================================= */
+
+.legend-dot.available {
+    background: #4caf50;
+}
+
+
+.legend-dot.limited {
+    background: #f5b900;
+}
+
+
+.legend-dot.busy {
+    background: #e74c3c;
+}
+
+
+/* =========================================================
+   LEGEND TEXT
+========================================================= */
+
+.legend-item div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.legend-item strong {
+    color: #ffffff;
+
+    font-size: 13px;
+}
+
+
+.legend-item small {
+    color: #888888;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   MONTHLY REVENUE
+========================================================= */
+
+.revenue-card {
+    min-height: 250px;
+}
+
+
+.revenue-chart {
+    position: relative;
+
+    height: 175px;
+
+    padding-top: 5px;
+}
+
+
+/* =========================================================
+   REVENUE VALUE
+========================================================= */
+
+.revenue-value {
+    color: #f5b900;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    margin-bottom: 12px;
+}
+
+
+/* =========================================================
+   CHART AREA
+========================================================= */
+
+.chart-area {
+    position: relative;
+
+    height: 100px;
+
+    margin: 0 8px;
+
+    border-bottom: 1px solid #303438;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 24px,
+            #292d31 25px
+        );
+}
+
+
+/* =========================================================
+   REVENUE LINE
+========================================================= */
+
+.chart-line {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    top: 55px;
+
+    height: 3px;
+
+    background: #f5b900;
+
+    transform: rotate(-3deg);
+
+    transform-origin: left center;
+
+    border-radius: 5px;
+}
+
+
+/* =========================================================
+   CHART POINTS
+========================================================= */
+
+.chart-point {
+    position: absolute;
+
+    width: 9px;
+    height: 9px;
+
+    background: #f5b900;
+
+    border: 2px solid #111315;
+
+    border-radius: 50%;
+
+    z-index: 2;
+}
+
+
+.point-1 {
+    left: 4%;
+    top: 70px;
+}
+
+
+.point-2 {
+    left: 22%;
+    top: 58px;
+}
+
+
+.point-3 {
+    left: 40%;
+    top: 64px;
+}
+
+
+.point-4 {
+    left: 58%;
+    top: 38px;
+}
+
+
+.point-5 {
+    left: 76%;
+    top: 48px;
+}
+
+
+.point-6 {
+    right: 3%;
+    top: 22px;
+}
+
+
+/* =========================================================
+   MONTH LABELS
+========================================================= */
+
+.chart-months {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin: 10px 5px 0;
+}
+
+
+.chart-months span {
+    color: #888888;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   BOTTOM THREE TABLES
+========================================================= */
+
+.dashboard-bottom {
+    width: 100%;
+
+    grid-column: 1 / -1;
+
+    display: grid;
+
+    grid-template-columns: 1.4fr 1fr 1fr;
+
+    gap: 16px;
+
+    margin-top: 0;
+
+    min-width: 0;
+
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   RECENT MEMBERS TABLE
+========================================================= */
+
+.dashboard-bottom #table {
+    width: 100%;
+
+    min-width: 0;
+
+    grid-column: auto;
+
+    margin: 0;
+}
+
+
+/* =========================================================
+   PENDING / ATTENDANCE TABLE CONTAINER
+========================================================= */
+
+.dashboard-bottom .dashboard-small-table {
+    width: 100%;
+
+    min-width: 0;
+
+    background: #111315;
+
+    border: 1px solid #333333;
+
+    border-radius: 12px;
+
+    padding: 0;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   SMALL TABLE HEADING
+========================================================= */
+
+.dashboard-bottom .dashboard-small-table h3 {
+    margin: 0;
+
+    padding: 20px 20px 5px;
+
+    color: #ffffff;
+
+    font-size: 17px;
+
+    font-weight: 600;
+}
+
+
+.dashboard-bottom .dashboard-small-table p {
+    margin: 0;
+
+    padding: 0 20px 20px;
+
+    color: #999999;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   SMALL TABLE WRAPPER
+========================================================= */
+
+.dashboard-bottom .dashboard-small-table .table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+/* =========================================================
+   SMALL TABLE
+========================================================= */
+
+.dashboard-bottom .dashboard-small-table table {
+    width: 100%;
+
+    min-width: 0;
+
+    border-collapse: collapse;
+
+    table-layout: auto;
+}
+
+
+/* =========================================================
+   SMALL TABLE HEADER
+========================================================= */
+
+.dashboard-bottom .dashboard-small-table th {
+    padding: 14px 20px;
+
+    background: #16181a;
+
+    color: #999999;
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+    text-align: left;
+
+    border-bottom: 1px solid #333333;
+}
+
+
+/* =========================================================
+   SMALL TABLE BODY
+========================================================= */
+
+.dashboard-bottom .dashboard-small-table td {
+    padding: 15px 20px;
+
+    color: #cccccc;
+
+    font-size: 12px;
+
+    border-bottom: 1px solid #292929;
+}
+
+
+/* =========================================================
+   SMALL TABLE ROW
+========================================================= */
+
+.dashboard-bottom .dashboard-small-table tbody tr {
+    transition: 0.2s ease;
+}
+
+
+.dashboard-bottom .dashboard-small-table tbody tr:hover {
+    background: #16181a;
+}
+
+
+.dashboard-bottom .dashboard-small-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.dashboard-bottom .table-status {
+    display: inline-block;
+
+    padding: 5px 9px;
+
+    border-radius: 5px;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   RECENT MEMBERS TABLE WIDTH FIX
+========================================================= */
+
+.dashboard-bottom #table .dashboard-table {
+    width: 100%;
+
+    min-width: 0;
+}
+
+
+.dashboard-bottom #table .dashboard-table table {
+    width: 100%;
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   LARGE SCREEN
+========================================================= */
+
+@media (max-width: 1200px) {
 
     .dashboard-content {
         grid-template-columns: minmax(0, 1fr) 240px;
@@ -203,26 +969,216 @@ body{
         width: 240px;
         min-width: 240px;
     }
+
+    #cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .dashboard-statistics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .dashboard-bottom {
+        grid-template-columns: 1.2fr 1fr 1fr;
+    }
 }
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    #sidebar {
+        width: 220px;
+
+        min-width: 220px;
+    }
+
+
+    .dashboard-content {
+        padding: 20px;
+
+        grid-template-columns: minmax(0, 1fr) 220px;
+    }
+
+
+    .quick-actions {
+        width: 220px;
+
+        min-width: 220px;
+    }
+
+
+    #cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+
+    .dashboard-statistics {
+        grid-template-columns: 1fr;
+    }
+
+
+    .dashboard-bottom {
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .dashboard-bottom #table {
+        grid-column: 1 / -1;
+    }
+}
+
+
+/* =========================================================
+   SMALL TABLET / MOBILE
+========================================================= */
 
 @media (max-width: 700px) {
 
-    .dashboard-content {
-        display: flex;
+    .admin-layout {
         flex-direction: column;
     }
 
+
+    #sidebar {
+        width: 100%;
+
+        min-width: 100%;
+
+        min-height: auto;
+    }
+
+
+    .admin-main {
+        width: 100%;
+    }
+
+
+    .dashboard-content {
+        padding: 15px;
+
+        display: flex;
+
+        flex-direction: column;
+    }
+
+
+    #cards {
+        width: 100%;
+
+        order: 1;
+
+        grid-template-columns: 1fr;
+    }
+
+
     .quick-actions {
         width: 100%;
+
         min-width: 100%;
+
         order: 2;
     }
 
-    #cards {
-        order: 1;
+
+    .dashboard-statistics {
+        width: 100%;
+
+        order: 3;
+
+        grid-template-columns: 1fr;
+
+        margin-top: 0;
     }
 
+
     #table {
-        order: 3;
+        width: 100%;
+
+        order: 4;
+    }
+
+
+    .dashboard-bottom {
+        width: 100%;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 16px;
+
+        order: 5;
+    }
+
+
+    .dashboard-bottom #table,
+    .dashboard-bottom .dashboard-small-table {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 450px) {
+
+    .dashboard-content {
+        padding: 10px;
+    }
+
+
+    .statistics-card {
+        padding: 15px;
+    }
+
+
+    .membership-chart {
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+
+    .donut-chart {
+        width: 130px;
+
+        height: 130px;
+    }
+
+
+    .donut-chart::before {
+        width: 90px;
+
+        height: 90px;
+    }
+
+
+    .chart-legend {
+        width: 100%;
+    }
+
+
+    .dashboard-bottom .dashboard-small-table h3 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+
+    .dashboard-bottom .dashboard-small-table p {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+
+    .dashboard-bottom .dashboard-small-table th,
+    .dashboard-bottom .dashboard-small-table td {
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }

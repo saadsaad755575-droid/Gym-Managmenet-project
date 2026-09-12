@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Membership Management</title>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <!-- Components CSS -->
+    <link rel="stylesheet" href="../../components/sidebar/sidebar.css" />
+
+    <link rel="stylesheet" href="../../components/navbar/navbar.css" />
+
+    <link rel="stylesheet" href="../../components/button/button.css" />
+
+    <link rel="stylesheet" href="../../components/table/table.css" />
+
+    <link rel="stylesheet" href="../../components/modal/modal.css" />
+
+    <!-- Members CSS -->
+    <link rel="stylesheet" href="membership.css" />
+  </head>
+  <body>
+    <div class="admin-layout">
+      <aside id="sidebar"></aside>
+
+      <main class="admin-main">
+        <!-- Navbar -->
+
+        <header id="navbar"></header>
+
+        <!-- =========================
+                 MEMBERSHIP CONTENT
+            ========================== -->
+
+        <section class="membership-content">
+          <!-- Page Heading -->
+
+          <div class="page-header">
+            <div>
+              <h1>Membership Management</h1>
+
+              <p>Manage membership plans, prices and services.</p>
+            </div>
+
+            <button
+              type="button"
+              class="add-membership-btn"
+              id="addMembershipBtn"
+            >
+              <i class="fa-solid fa-plus"></i>
+
+              Add Membership
+            </button>
+          </div>
+
+          <div class="membership-section">
+            <div class="section-header">
+              <div>
+                <h2>Membership Plans</h2>
+
+                <p>Available membership plans</p>
+              </div>
+            </div>
+
+            <div class="membership-cards">
+              <!-- Monthly -->
+
+              <div class="membership-card">
+                <div class="membership-icon">
+                  <i class="fa-solid fa-calendar-days"></i>
+                </div>
+
+                <h3>Monthly</h3>
+
+                <p class="membership-duration">1 Month</p>
+
+                <h2>Rs. 2,500</h2>
+
+                <ul>
+                  <li>
+                    <i class="fa-solid fa-check"></i>
+                    Gym Access
+                  </li>
+
+                  <li>
+                    <i class="fa-solid fa-check"></i>
+                    Basic Equipment
+                  </li>
+                </ul>
+
+                <button class="plan-btn">Manage Plan</button>
+              </div>
+
+              <!-- 3 Months -->
+
+              <div class="membership-card">
+                <div class="membership-icon">
+                  <i class="fa-solid fa-calendar"></i>
+                </div>
+
+                <h3>3 Months</h3>
+
+                <p class="membership-duration">3 Months</p>
+
+                <h2>Rs. 6,500</h2>
+
+                <ul>
+                  <li>
+                    <i class="fa-solid fa-check"></i>
+                    Gym Access
+                  </li>
+
+                  <li>
+                    <i class="fa-solid fa-check"></i>
+                    Trainer Support
+                  </li>
+                </ul>
+
+                <button class="plan-btn">Manage Plan</button>
+              </div>
+
+              <!-- 6 Months -->
+
+              <div class="membership-card">
+                <div class="membership-icon">
+                  <i class="fa-solid fa-calendar-check"></i>
+                </div>
+
+                <h3>6 Months</h3>
+
+                <p class="membership-duration">6 Months</p>
+
+                <h2>Rs. 11,000</h2>
+
+                <ul>
+                  <li>
+                    <i class="fa-solid fa-check"></i>
+                    Gym Access
+                  </li>
+
+                  <li>
+                    <i class="fa-solid fa-check"></i>
+                    Trainer Support
+                  </li>
+                </ul>
+
+                <button class="plan-btn">Manage Plan</button>
+              </div>
+
+              <!-- Yearly -->
+
+              <div class="membership-card">
+                <div class="membership-icon">
+                  <i class="fa-solid fa-star"></i>
+                </div>
+
+                <h3>Yearly</h3>
+
+                <p class="membership-duration">12 Months</p>
+
+                <h2>Rs. 20,000</h2>
+
+                <ul>
+                  <li>
+                    <i class="fa-solid fa-check"></i>
+                    Full Gym Access
+                  </li>
+
+                  <li>
+                    <i class="fa-solid fa-check"></i>
+                    Personal Trainer
+                  </li>
+                </ul>
+
+                <button class="plan-btn">Manage Plan</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- =========================
+                     PAYMENT STATUS
+                ========================== -->
+
+          <div class="payment-section">
+            <div class="section-header">
+              <div>
+                <h2>Payment Status</h2>
+
+                <p>Track membership payments</p>
+              </div>
+            </div>
+
+            <div class="payment-status-cards">
+              <div class="status-card paid">
+                <i class="fa-solid fa-circle-check"></i>
+
+                <div>
+                  <h3>Paid</h3>
+
+                  <p>Payments completed</p>
+                </div>
+              </div>
+
+              <div class="status-card pending">
+                <i class="fa-solid fa-clock"></i>
+
+                <div>
+                  <h3>Pending</h3>
+
+                  <p>Payments waiting</p>
+                </div>
+              </div>
+
+              <div class="status-card overdue">
+                <i class="fa-solid fa-circle-exclamation"></i>
+
+                <div>
+                  <h3>Overdue</h3>
+
+                  <p>Payments overdue</p>
+                </div>
+              </div>
+            </div>
+          </div>
+<!-- =========================
+     MEMBERSHIP RECORDS
+========================== -->
+
+<div class="membership-records-section">
+
+  <div class="section-header">
+    <div>
+      <h2>Membership Records</h2>
+      <p>Manage member memberships</p>
+    </div>
+  </div>
+
+  <div class="table-container">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>Member ID</th>
+          <th>Member Name</th>
+          <th>Plan</th>
+          <th>Duration</th>
+          <th>Price</th>
+          <th>Payment Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody id="membershipTableBody">
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+        </section>
+
+    <!-- Membership JavaScript -->
+
+    <script src="membership.js"></script>
+  </body>
+</html>

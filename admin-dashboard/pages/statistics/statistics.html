@@ -1,0 +1,429 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Statistics | Gym Management System</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Reusable Components -->
+    <link rel="stylesheet" href="../../components/sidebar/sidebar.css">
+    <link rel="stylesheet" href="../../components/navbar/navbar.css">
+    <link rel="stylesheet" href="../../components/card/card.css">
+
+    <!-- Statistics CSS -->
+    <link rel="stylesheet" href="statistics.css">
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside id="sidebar"></aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+        <!-- Reusable Navbar -->
+        <header id="navbar"></header>
+
+
+        <!-- ================= STATISTICS ================= -->
+
+        <section class="statistics-page">
+
+            <!-- Page Header -->
+
+            <div class="page-header">
+
+                <div>
+                    <h1>Statistics</h1>
+
+                    <p>
+                        Analyze your gym performance and business statistics.
+                    </p>
+                </div>
+
+                <div class="report-date">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    September 2026
+                </div>
+
+            </div>
+
+
+            <!-- ================= STATISTIC CARDS ================= -->
+
+            <div class="statistics-cards">
+
+                <!-- Total Members -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>Total Members</span>
+
+                        <h2>120</h2>
+
+                        <small>
+                            <i class="fa-solid fa-arrow-up"></i>
+                            12% from last month
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Active Memberships -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-id-card"></i>
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>Active Memberships</span>
+
+                        <h2>96</h2>
+
+                        <small>
+                            <i class="fa-solid fa-arrow-up"></i>
+                            8% from last month
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Monthly Revenue -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>Monthly Revenue</span>
+
+                        <h2>Rs. 245K</h2>
+
+                        <small>
+                            <i class="fa-solid fa-arrow-up"></i>
+                            15% from last month
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Attendance -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>Today's Attendance</span>
+
+                        <h2>78</h2>
+
+                        <small>
+                            <i class="fa-solid fa-arrow-up"></i>
+                            6% from yesterday
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CHART SECTION ================= -->
+
+            <div class="statistics-grid">
+
+
+                <!-- Member Growth -->
+
+                <div class="statistics-box member-growth">
+
+                    <div class="box-header">
+
+                        <div>
+                            <h2>Member Growth</h2>
+
+                            <p>
+                                New members registered over the year
+                            </p>
+                        </div>
+
+                        <i class="fa-solid fa-user-plus"></i>
+
+                    </div>
+
+
+                    <div class="chart">
+
+                        <div class="chart-bar">
+                            <span style="height: 35%;"></span>
+                            <label>Jan</label>
+                        </div>
+
+                        <div class="chart-bar">
+                            <span style="height: 45%;"></span>
+                            <label>Feb</label>
+                        </div>
+
+                        <div class="chart-bar">
+                            <span style="height: 52%;"></span>
+                            <label>Mar</label>
+                        </div>
+
+                        <div class="chart-bar">
+                            <span style="height: 60%;"></span>
+                            <label>Apr</label>
+                        </div>
+
+                        <div class="chart-bar">
+                            <span style="height: 48%;"></span>
+                            <label>May</label>
+                        </div>
+
+                        <div class="chart-bar">
+                            <span style="height: 70%;"></span>
+                            <label>Jun</label>
+                        </div>
+
+                        <div class="chart-bar">
+                            <span style="height: 78%;"></span>
+                            <label>Jul</label>
+                        </div>
+
+                        <div class="chart-bar">
+                            <span style="height: 88%;"></span>
+                            <label>Aug</label>
+                        </div>
+
+                        <div class="chart-bar">
+                            <span style="height: 95%;"></span>
+                            <label>Sep</label>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Membership Statistics -->
+
+                <div class="statistics-box membership-stats">
+
+                    <div class="box-header">
+
+                        <div>
+                            <h2>Membership Statistics</h2>
+
+                            <p>
+                                Current membership distribution
+                            </p>
+                        </div>
+
+                        <i class="fa-solid fa-chart-pie"></i>
+
+                    </div>
+
+
+                    <div class="membership-list">
+
+                        <div class="membership-item">
+
+                            <div class="membership-name">
+                                <span class="dot"></span>
+                                Premium
+                            </div>
+
+                            <strong>42%</strong>
+
+                        </div>
+
+
+                        <div class="membership-progress">
+                            <span style="width: 42%;"></span>
+                        </div>
+
+
+                        <div class="membership-item">
+
+                            <div class="membership-name">
+                                <span class="dot"></span>
+                                Standard
+                            </div>
+
+                            <strong>35%</strong>
+
+                        </div>
+
+
+                        <div class="membership-progress">
+                            <span style="width: 35%;"></span>
+                        </div>
+
+
+                        <div class="membership-item">
+
+                            <div class="membership-name">
+                                <span class="dot"></span>
+                                Basic
+                            </div>
+
+                            <strong>23%</strong>
+
+                        </div>
+
+
+                        <div class="membership-progress">
+                            <span style="width: 23%;"></span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= BOTTOM STATISTICS ================= -->
+
+            <div class="bottom-statistics">
+
+
+                <!-- Revenue -->
+
+                <div class="statistics-box">
+
+                    <div class="box-header">
+
+                        <div>
+                            <h2>Monthly Revenue</h2>
+
+                            <p>
+                                Revenue performance
+                            </p>
+                        </div>
+
+                        <i class="fa-solid fa-money-bill-trend-up"></i>
+
+                    </div>
+
+
+                    <div class="revenue-content">
+
+                        <h3>Rs. 245,000</h3>
+
+                        <span>
+                            <i class="fa-solid fa-arrow-up"></i>
+                            15.4% increase
+                        </span>
+
+                    </div>
+
+
+                    <div class="revenue-bars">
+
+                        <span style="height: 40%;"></span>
+                        <span style="height: 55%;"></span>
+                        <span style="height: 48%;"></span>
+                        <span style="height: 68%;"></span>
+                        <span style="height: 60%;"></span>
+                        <span style="height: 76%;"></span>
+                        <span style="height: 90%;"></span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Trainer Statistics -->
+
+                <div class="statistics-box">
+
+                    <div class="box-header">
+
+                        <div>
+                            <h2>Trainer Statistics</h2>
+
+                            <p>
+                                Current trainer availability
+                            </p>
+                        </div>
+
+                        <i class="fa-solid fa-person-chalkboard"></i>
+
+                    </div>
+
+
+                    <div class="trainer-stats">
+
+                        <div>
+                            <strong>8</strong>
+                            <span>Available</span>
+                        </div>
+
+                        <div>
+                            <strong>3</strong>
+                            <span>Limited Slots</span>
+                        </div>
+
+                        <div>
+                            <strong>4</strong>
+                            <span>Assigned / Busy</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="statistics.js"></script>
+
+</body>
+
+</html>
+
+
+

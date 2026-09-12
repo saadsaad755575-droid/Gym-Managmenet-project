@@ -1,0 +1,614 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trainer - Diet Plans</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Trainer Sidebar -->
+    <link rel="stylesheet"
+        href="../../../components/trainer.sidebar/trainer.sidebar.css">
+
+    <!-- Trainer Navbar -->
+    <link rel="stylesheet"
+        href="../../../components/trainer-navbar/trainer-navbar.css">
+
+    <!-- Trainer Modal -->
+    <link rel="stylesheet"
+        href="../../../components/trainer-modal/trainer-modal.css">
+
+    <!-- Diet Plans CSS -->
+    <link rel="stylesheet"
+        href="diet-plan.css">
+
+</head>
+
+
+<body>
+
+    <!-- =========================
+         TRAINER SIDEBAR
+    ========================== -->
+
+    <div id="trainer-sidebar"></div>
+
+
+    <!-- =========================
+         TRAINER MAIN
+    ========================== -->
+
+    <main class="trainer-main">
+
+
+        <!-- =========================
+             TRAINER NAVBAR
+        ========================== -->
+
+        <div id="trainer-navbar"></div>
+
+
+        <!-- =========================
+             DIET PLANS CONTENT
+        ========================== -->
+
+        <section class="diet-content">
+
+
+            <!-- Page Header -->
+
+            <div class="page-header">
+
+                <div>
+
+                    <h1>
+                        <i class="fa-solid fa-utensils"></i>
+                        Diet Plans
+                    </h1>
+
+                    <p>
+                        Create and manage diet plans for your assigned customers
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    id="openDietForm">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Create Diet Plan
+
+                </button>
+
+            </div>
+
+
+
+            <!-- =========================
+                 CREATE DIET PLAN
+            ========================== -->
+
+            <div
+                class="diet-form-card"
+                id="dietFormCard">
+
+
+                <div class="form-card-header">
+
+                    <div>
+
+                        <h2>
+                            <i class="fa-solid fa-clipboard-list"></i>
+                            Create Diet Plan
+                        </h2>
+
+                        <p>
+                            Assign a complete diet plan to your customer
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================
+                     BASIC INFORMATION
+                ========================== -->
+
+                <div class="form-section">
+
+                    <h3>
+                        <i class="fa-solid fa-user"></i>
+                        Customer & Diet Information
+                    </h3>
+
+
+                    <div class="form-grid">
+
+
+                        <!-- Customer -->
+
+                        <div class="form-group">
+
+                            <label for="customerSelect">
+                                Customer
+                            </label>
+
+                            <select id="customerSelect">
+
+                                <option value="">
+                                    Select Customer
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+
+                        <!-- Diet Plan -->
+
+                        <div class="form-group">
+
+                            <label for="dietPlanSelect">
+                                Diet Plan
+                            </label>
+
+                            <select id="dietPlanSelect">
+
+                                <option value="">
+                                    Select Diet Plan
+                                </option>
+
+                                <option value="Weight Loss Diet">
+                                    Weight Loss Diet
+                                </option>
+
+                                <option value="Muscle Gain Diet">
+                                    Muscle Gain Diet
+                                </option>
+
+                                <option value="Balanced Diet">
+                                    Balanced Diet
+                                </option>
+
+                                <option value="General Fitness Diet">
+                                    General Fitness Diet
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+
+                        <!-- Status -->
+
+                        <div class="form-group">
+
+                            <label for="dietStatus">
+                                Status
+                            </label>
+
+                            <select id="dietStatus">
+
+                                <option value="Active">
+                                    Active
+                                </option>
+
+                                <option value="Paused">
+                                    Paused
+                                </option>
+
+                                <option value="Completed">
+                                    Completed
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================
+                     MEALS
+                ========================== -->
+
+                <div class="form-section">
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h3>
+                                <i class="fa-solid fa-bowl-food"></i>
+                                Meals
+                            </h3>
+
+                            <p>
+                                Add meals for the selected diet plan
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="secondary-btn"
+                            id="openMealModal">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                            Add Meal
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- Meals Table -->
+
+                    <div class="table-wrapper">
+
+                        <table class="diet-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Meal Type
+                                    </th>
+
+                                    <th>
+                                        Food Item
+                                    </th>
+
+                                    <th>
+                                        Quantity
+                                    </th>
+
+                                    <th>
+                                        Meal Time
+                                    </th>
+
+                                    <th>
+                                        Instructions
+                                    </th>
+
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="mealTableBody">
+
+                                <tr>
+
+                                    <td
+                                        colspan="6"
+                                        class="empty-row">
+
+                                        No meals added yet.
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================
+                     WEEKLY SCHEDULE
+                ========================== -->
+
+                <div class="form-section">
+
+                    <h3>
+                        <i class="fa-solid fa-calendar-days"></i>
+                        Weekly Schedule
+                    </h3>
+
+
+                    <div class="days-container">
+
+
+                        <label class="day-option">
+
+                            <input
+                                type="checkbox"
+                                value="Monday"
+                                class="day-option">
+
+                            <span>Monday</span>
+
+                        </label>
+
+
+                        <label class="day-option">
+
+                            <input
+                                type="checkbox"
+                                value="Tuesday"
+                                class="day-option">
+
+                            <span>Tuesday</span>
+
+                        </label>
+
+
+                        <label class="day-option">
+
+                            <input
+                                type="checkbox"
+                                value="Wednesday"
+                                class="day-option">
+
+                            <span>Wednesday</span>
+
+                        </label>
+
+
+                        <label class="day-option">
+
+                            <input
+                                type="checkbox"
+                                value="Thursday"
+                                class="day-option">
+
+                            <span>Thursday</span>
+
+                        </label>
+
+
+                        <label class="day-option">
+
+                            <input
+                                type="checkbox"
+                                value="Friday"
+                                class="day-option">
+
+                            <span>Friday</span>
+
+                        </label>
+
+
+                        <label class="day-option">
+
+                            <input
+                                type="checkbox"
+                                value="Saturday"
+                                class="day-option">
+
+                            <span>Saturday</span>
+
+                        </label>
+
+
+                        <label class="day-option">
+
+                            <input
+                                type="checkbox"
+                                value="Sunday"
+                                class="day-option">
+
+                            <span>Sunday</span>
+
+                        </label>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================
+                     DAILY INSTRUCTIONS
+                ========================== -->
+
+                <div class="form-section">
+
+                    <h3>
+                        <i class="fa-solid fa-note-sticky"></i>
+                        Daily Instructions
+                    </h3>
+
+
+                    <textarea
+                        id="dailyInstructions"
+                        rows="5"
+                        placeholder="Write daily diet instructions, water intake, restrictions, etc."></textarea>
+
+                </div>
+
+
+
+                <!-- =========================
+                     FORM ACTIONS
+                ========================== -->
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        id="cancelDietForm">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="primary-btn"
+                        id="saveDietPlan">
+
+                        <i class="fa-solid fa-floppy-disk"></i>
+
+                        Save Diet Plan
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================
+                 SAVED DIET PLANS
+            ========================== -->
+
+            <div class="saved-plans-section">
+
+
+                <div class="section-title">
+
+                    <div>
+
+                        <h2>
+                            <i class="fa-solid fa-list-check"></i>
+                            Saved Diet Plans
+                        </h2>
+
+                        <p>
+                            View and manage your customers' diet plans
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="table-wrapper">
+
+                    <table class="diet-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Customer
+                                </th>
+
+                                <th>
+                                    Diet Plan
+                                </th>
+
+                                <th>
+                                    Meals
+                                </th>
+
+                                <th>
+                                    Schedule
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="dietPlansTableBody">
+
+                            <tr>
+
+                                <td
+                                    colspan="6"
+                                    class="empty-row">
+
+                                    No diet plans created yet.
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================
+         REUSABLE TRAINER MODAL
+         LOADED DYNAMICALLY
+    ========================== -->
+
+    <div id="trainer-modal-container"></div>
+
+
+
+    <!-- =========================
+         COMPONENT JS
+    ========================== -->
+
+    <script src="../../../components/trainer.navbar/trainer.navbar.js"></script>
+
+    <script src="../../../components/trainer-sidebar/trainer-sidebar.js"></script>
+    <script src="../../../components/trainer-modal/trainer-modl.js"></script>
+    <script src="../../../components/Notification/notification.js"></script>
+
+
+    <!-- =========================
+         DIET PLANS JS
+    ========================== -->
+
+    <script src="diet-plan.js"></script>
+
+
+</body>
+
+</html>

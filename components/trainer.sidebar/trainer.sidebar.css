@@ -1,0 +1,345 @@
+
+
+/* =========================================
+   TRAINER SIDEBAR
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #111315;
+    color: #ffffff;
+}
+
+
+/* =========================================
+   SIDEBAR MAIN
+========================================= */
+
+.trainer-sidebar {
+    width: 260px;
+    height: 100vh;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background: #151719;
+
+    border-right: 1px solid #333333;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: auto;
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.sidebar-logo {
+    height: 85px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 20px;
+
+    border-bottom: 1px solid #333333;
+}
+
+
+/* Logo Icon */
+
+.logo-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f5b900;
+
+    color: #111315;
+
+    border-radius: 10px;
+
+    font-size: 22px;
+
+    margin-right: 12px;
+}
+
+
+/* Logo Text */
+
+.logo-text h2 {
+    font-size: 22px;
+    color: #ffffff;
+
+    letter-spacing: 1px;
+}
+
+.logo-text span {
+    display: block;
+
+    font-size: 10px;
+
+    color: #f5b900;
+
+    letter-spacing: 2px;
+
+    margin-top: 2px;
+}
+
+
+/* =========================================
+   TRAINER PROFILE
+========================================= */
+
+.trainer-profile {
+    display: flex;
+    align-items: center;
+
+    padding: 20px;
+
+    border-bottom: 1px solid #333333;
+}
+
+
+/* Avatar */
+
+.trainer-avatar {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    background: #242628;
+
+    border: 1px solid #f5b900;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #f5b900;
+
+    font-size: 18px;
+
+    margin-right: 12px;
+}
+
+
+/* Trainer Details */
+
+.trainer-details h3 {
+    font-size: 15px;
+
+    color: #ffffff;
+
+    margin-bottom: 4px;
+}
+
+.trainer-details p {
+    font-size: 12px;
+
+    color: #999999;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.trainer-navigation {
+    flex: 1;
+
+    padding: 15px 12px;
+}
+
+.trainer-navigation ul {
+    list-style: none;
+}
+
+
+/* Navigation Item */
+
+.trainer-navigation li {
+    margin-bottom: 5px;
+}
+
+
+/* Navigation Link */
+
+.trainer-navigation li a {
+    display: flex;
+    align-items: center;
+
+    text-decoration: none;
+
+    color: #b8b8b8;
+
+    padding: 12px 14px;
+
+    border-radius: 7px;
+
+    transition: 0.3s ease;
+}
+
+
+/* Icons */
+
+.trainer-navigation li a i {
+    width: 22px;
+
+    font-size: 16px;
+
+    margin-right: 12px;
+
+    text-align: center;
+}
+
+
+/* Text */
+
+.trainer-navigation li a span {
+    font-size: 14px;
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.trainer-navigation li a:hover {
+    background: #222426;
+
+    color: #f5b900;
+
+    transform: translateX(3px);
+}
+
+
+/* =========================================
+   ACTIVE MENU
+========================================= */
+
+.trainer-navigation li.active a {
+    background: #f5b900;
+
+    color: #111315;
+
+    font-weight: 600;
+}
+
+
+/* Active Icon */
+
+.trainer-navigation li.active a i {
+    color: #111315;
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+.sidebar-logout {
+    padding: 15px 12px;
+
+    border-top: 1px solid #333333;
+}
+
+
+.sidebar-logout a {
+    display: flex;
+    align-items: center;
+
+    text-decoration: none;
+
+    color: #b8b8b8;
+
+    padding: 12px 14px;
+
+    border-radius: 7px;
+
+    transition: 0.3s ease;
+}
+
+
+.sidebar-logout a i {
+    width: 22px;
+
+    margin-right: 12px;
+
+    font-size: 16px;
+}
+
+
+.sidebar-logout a span {
+    font-size: 14px;
+}
+
+
+/* Logout Hover */
+
+.sidebar-logout a:hover {
+    background: #222426;
+
+    color: #f5b900;
+}
+
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+.trainer-sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.trainer-sidebar::-webkit-scrollbar-track {
+    background: #151719;
+}
+
+.trainer-sidebar::-webkit-scrollbar-thumb {
+    background: #444444;
+
+    border-radius: 10px;
+}
+
+.trainer-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #f5b900;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .trainer-sidebar {
+        width: 220px;
+    }
+
+    .logo-text h2 {
+        font-size: 19px;
+    }
+
+    .trainer-navigation li a {
+        padding: 11px 10px;
+    }
+
+    .trainer-navigation li a span {
+        font-size: 13px;
+    }
+}

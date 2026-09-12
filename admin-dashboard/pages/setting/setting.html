@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Settings | Gym Management System</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Reusable Components CSS -->
+    <link rel="stylesheet" href="../../components/sidebar/sidebar.css">
+    <link rel="stylesheet" href="../../components/navbar/navbar.css">
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="setting.css">
+</head>
+
+<body>
+
+    <!-- Reusable Sidebar -->
+    <aside id="sidebar"></aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Reusable Navbar -->
+        <header id="navbar"></header>
+
+        <!-- Settings Page -->
+        <section class="settings-page">
+
+            <!-- Page Header -->
+            <div class="page-header">
+                <div>
+                    <h1>Settings</h1>
+                    <p>Manage your account and system preferences</p>
+                </div>
+            </div>
+
+
+            <!-- Settings Layout -->
+            <div class="settings-layout">
+
+                <!-- Settings Navigation -->
+                <div class="settings-menu">
+
+                    <div class="settings-menu-title">
+                        <i class="fa-solid fa-sliders"></i>
+                        <span>Settings</span>
+                    </div>
+
+                    <a href="#profile" class="settings-menu-item active">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Profile Settings</span>
+                    </a>
+
+                    <a href="#security" class="settings-menu-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Security</span>
+                    </a>
+
+                    <a href="#notifications" class="settings-menu-item">
+                        <i class="fa-solid fa-bell"></i>
+                        <span>Notifications</span>
+                    </a>
+
+                    <a href="#preferences" class="settings-menu-item">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>System Preferences</span>
+                    </a>
+
+                </div>
+
+
+                <!-- Settings Content -->
+                <div class="settings-content">
+
+
+                    <!-- Profile Settings -->
+                    <div class="settings-card" id="profile">
+
+                        <div class="settings-card-header">
+                            <div>
+                                <h2>Profile Settings</h2>
+                                <p>Update your administrator account information</p>
+                            </div>
+
+                            <div class="settings-icon">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                        </div>
+
+
+                        <div class="profile-section">
+
+                            <div class="profile-avatar">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+
+                            <div class="profile-info">
+                                <h3>Admin</h3>
+                                <p>System Administrator</p>
+
+                                <button class="change-photo-btn">
+                                    <i class="fa-solid fa-camera"></i>
+                                    Change Photo
+                                </button>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label for="adminName">Full Name</label>
+
+                                <div class="input-box">
+                                    <i class="fa-solid fa-user"></i>
+                                    <input
+                                        type="text"
+                                        id="adminName"
+                                        value="Admin"
+                                    >
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="adminEmail">Email Address</label>
+
+                                <div class="input-box">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <input
+                                        type="email"
+                                        id="adminEmail"
+                                        value="admin@gym.com"
+                                    >
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="adminPhone">Phone Number</label>
+
+                                <div class="input-box">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <input
+                                        type="tel"
+                                        id="adminPhone"
+                                        value="+92 300 1234567"
+                                    >
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="adminRole">Role</label>
+
+                                <div class="input-box">
+                                    <i class="fa-solid fa-id-badge"></i>
+                                    <input
+                                        type="text"
+                                        id="adminRole"
+                                        value="Administrator"
+                                        readonly
+                                    >
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Security -->
+                    <div class="settings-card" id="security">
+
+                        <div class="settings-card-header">
+
+                            <div>
+                                <h2>Security</h2>
+                                <p>Manage your account password and security</p>
+                            </div>
+
+                            <div class="settings-icon">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <div class="form-group full-width">
+                                <label for="currentPassword">
+                                    Current Password
+                                </label>
+
+                                <div class="input-box">
+                                    <i class="fa-solid fa-lock"></i>
+
+                                    <input
+                                        type="password"
+                                        id="currentPassword"
+                                        placeholder="Enter current password"
+                                    >
+
+                                    <i class="fa-solid fa-eye password-eye"></i>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="newPassword">
+                                    New Password
+                                </label>
+
+                                <div class="input-box">
+                                    <i class="fa-solid fa-key"></i>
+
+                                    <input
+                                        type="password"
+                                        id="newPassword"
+                                        placeholder="Enter new password"
+                                    >
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="confirmPassword">
+                                    Confirm Password
+                                </label>
+
+                                <div class="input-box">
+                                    <i class="fa-solid fa-key"></i>
+
+                                    <input
+                                        type="password"
+                                        id="confirmPassword"
+                                        placeholder="Confirm new password"
+                                    >
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Notifications -->
+                    <div class="settings-card" id="notifications">
+
+                        <div class="settings-card-header">
+
+                            <div>
+                                <h2>Notifications</h2>
+                                <p>Control how you receive system notifications</p>
+                            </div>
+
+                            <div class="settings-icon">
+                                <i class="fa-solid fa-bell"></i>
+                            </div>
+
+                        </div>
+
+
+                        <div class="notification-list">
+
+                            <div class="notification-item">
+
+                                <div class="notification-info">
+                                    <div class="notification-icon">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </div>
+
+                                    <div>
+                                        <h3>Email Notifications</h3>
+                                        <p>Receive important updates through email</p>
+                                    </div>
+                                </div>
+
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+
+                            </div>
+
+
+                            <div class="notification-item">
+
+                                <div class="notification-info">
+                                    <div class="notification-icon">
+                                        <i class="fa-solid fa-credit-card"></i>
+                                    </div>
+
+                                    <div>
+                                        <h3>Payment Alerts</h3>
+                                        <p>Get notified about pending and received payments</p>
+                                    </div>
+                                </div>
+
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+
+                            </div>
+
+
+                            <div class="notification-item">
+
+                                <div class="notification-info">
+                                    <div class="notification-icon">
+                                        <i class="fa-solid fa-user-check"></i>
+                                    </div>
+
+                                    <div>
+                                        <h3>Membership Alerts</h3>
+                                        <p>Receive alerts about membership expiry</p>
+                                    </div>
+                                </div>
+
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- System Preferences -->
+                    <div class="settings-card" id="preferences">
+
+                        <div class="settings-card-header">
+
+                            <div>
+                                <h2>System Preferences</h2>
+                                <p>Configure general system settings</p>
+                            </div>
+
+                            <div class="settings-icon">
+                                <i class="fa-solid fa-gear"></i>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label for="language">Language</label>
+
+                                <div class="select-box">
+                                    <i class="fa-solid fa-language"></i>
+
+                                    <select id="language">
+                                        <option>English</option>
+                                        <option>Urdu</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="timezone">Time Zone</label>
+
+                                <div class="select-box">
+                                    <i class="fa-solid fa-clock"></i>
+
+                                    <select id="timezone">
+                                        <option>
+                                            Pakistan Standard Time (PKT)
+                                        </option>
+
+                                        <option>
+                                            Gulf Standard Time (GST)
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="dateFormat">Date Format</label>
+
+                                <div class="select-box">
+                                    <i class="fa-solid fa-calendar"></i>
+
+                                    <select id="dateFormat">
+                                        <option>DD MMM YYYY</option>
+                                        <option>MM/DD/YYYY</option>
+                                        <option>YYYY-MM-DD</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="theme">Theme</label>
+
+                                <div class="select-box">
+                                    <i class="fa-solid fa-palette"></i>
+
+                                    <select id="theme">
+                                        <option>Dark</option>
+                                        <option>Light</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Save Button -->
+                    <div class="settings-actions">
+
+                        <button class="cancel-btn">
+                            Cancel
+                        </button>
+
+                        <button class="save-btn">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            Save Changes
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Component JS -->
+    <script src="../../components/sidebar/sidebar.js"></script>
+    <script src="../../components/navbar/navbar.js"></script>
+
+    <!-- Page JS -->
+    <script src="setting.js"></script>
+
+</body>
+</html>

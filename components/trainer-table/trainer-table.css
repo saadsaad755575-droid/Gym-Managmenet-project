@@ -1,0 +1,225 @@
+
+/* =========================
+   TRAINER TABLE
+========================= */
+
+.trainer-table-container {
+    width: 100%;
+    background: #151719;
+    border: 1px solid #333333;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   TABLE HEADER
+========================= */
+
+.trainer-table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.trainer-table-header h2 {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+.trainer-table-header p {
+    font-size: 12px;
+    color: #888888;
+}
+
+
+/* =========================
+   VIEW ALL BUTTON
+========================= */
+
+.view-all-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    border: 1px solid #f5b900;
+    background: transparent;
+    color: #f5b900;
+
+    padding: 9px 15px;
+    border-radius: 7px;
+
+    font-size: 12px;
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.view-all-btn:hover {
+    background: #f5b900;
+    color: #111315;
+}
+
+
+/* =========================
+   TABLE WRAPPER
+========================= */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.trainer-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 850px;
+}
+
+
+/* =========================
+   TABLE HEAD
+========================= */
+
+.trainer-table-container th {
+    text-align: left;
+
+    padding: 13px;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    color: #888888;
+
+    border-bottom: 1px solid #333333;
+}
+
+
+/* =========================
+   TABLE BODY
+========================= */
+
+.trainer-table-container td {
+    padding: 15px 13px;
+
+    font-size: 13px;
+
+    color: #cccccc;
+
+    border-bottom: 1px solid #292b2d;
+}
+
+
+/* =========================
+   CUSTOMER NAME
+========================= */
+
+.trainer-table-container td strong {
+    display: block;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    margin-bottom: 4px;
+}
+
+.trainer-table-container td small {
+    display: block;
+
+    color: #777777;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   TABLE ROW HOVER
+========================= */
+
+.trainer-table-container tbody tr {
+    transition: 0.3s ease;
+}
+
+.trainer-table-container tbody tr:hover {
+    background: #1b1d1f;
+}
+
+
+/* =========================
+   ACTIVE STATUS
+========================= */
+
+.status-active {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    background: rgba(245, 185, 0, 0.12);
+
+    color: #f5b900;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.table-action {
+    width: 32px;
+    height: 32px;
+
+    border: 1px solid #333333;
+    border-radius: 6px;
+
+    background: #242628;
+
+    color: #aaaaaa;
+
+    cursor: pointer;
+
+    margin-right: 5px;
+
+    transition: 0.3s ease;
+}
+
+.table-action:hover {
+    border-color: #f5b900;
+    color: #f5b900;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+
+    .trainer-table-container {
+        padding: 15px;
+    }
+
+    .trainer-table-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .view-all-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+}

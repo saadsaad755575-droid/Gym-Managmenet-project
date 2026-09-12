@@ -1,0 +1,309 @@
+
+
+/* =========================================
+   TRAINER NAVBAR
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #111315;
+    color: #ffffff;
+}
+
+
+/* =========================================
+   NAVBAR MAIN
+========================================= */
+
+.trainer-navbar {
+    width: calc(100% - 260px);
+    height: 75px;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    background: #151719;
+
+    border-bottom: 1px solid #333333;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 25px;
+
+    z-index: 1000;
+}
+
+
+/* =========================================
+   LEFT SECTION
+========================================= */
+
+.navbar-left h2 {
+    font-size: 21px;
+
+    color: #ffffff;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   RIGHT SECTION
+========================================= */
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+
+    gap: 22px;
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.navbar-search {
+    width: 220px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+
+    background: #222426;
+
+    border: 1px solid #333333;
+
+    border-radius: 7px;
+
+    padding: 0 12px;
+}
+
+
+.navbar-search i {
+    color: #888888;
+
+    font-size: 14px;
+
+    margin-right: 9px;
+}
+
+
+.navbar-search input {
+    width: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-size: 13px;
+}
+
+
+.navbar-search input::placeholder {
+    color: #777777;
+}
+
+
+/* Search Focus */
+
+.navbar-search:focus-within {
+    border-color: #f5b900;
+}
+
+
+/* =========================================
+   NOTIFICATION
+========================================= */
+
+.navbar-notification {
+    position: relative;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    color: #b8b8b8;
+
+    transition: 0.3s ease;
+}
+
+
+.navbar-notification:hover {
+    background: #222426;
+
+    color: #f5b900;
+}
+
+
+.navbar-notification i {
+    font-size: 18px;
+}
+
+
+/* Notification Badge */
+
+.notification-badge {
+    position: absolute;
+
+    top: 3px;
+    right: 2px;
+
+    min-width: 17px;
+    height: 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f5b900;
+
+    color: #111315;
+
+    border-radius: 50%;
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================
+   TRAINER PROFILE
+========================================= */
+
+.navbar-profile {
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+
+    padding: 5px 8px;
+
+    border-radius: 7px;
+
+    transition: 0.3s ease;
+}
+
+
+.navbar-profile:hover {
+    background: #222426;
+}
+
+
+/* Profile Icon */
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #242628;
+
+    border: 1px solid #f5b900;
+
+    border-radius: 50%;
+
+    color: #f5b900;
+
+    font-size: 16px;
+
+    margin-right: 10px;
+}
+
+
+/* Profile Information */
+
+.profile-info h4 {
+    font-size: 13px;
+
+    color: #ffffff;
+
+    margin-bottom: 3px;
+}
+
+
+.profile-info span {
+    font-size: 11px;
+
+    color: #888888;
+}
+
+
+/* Profile Arrow */
+
+.profile-arrow {
+    color: #888888;
+
+    font-size: 11px;
+
+    margin-left: 12px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .trainer-navbar {
+        width: calc(100% - 220px);
+    }
+
+    .navbar-search {
+        width: 180px;
+    }
+
+    .navbar-right {
+        gap: 12px;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .trainer-navbar {
+        width: 100%;
+
+        padding: 0 15px;
+    }
+
+    .navbar-left h2 {
+        font-size: 18px;
+    }
+
+    .navbar-search {
+        display: none;
+    }
+
+    .profile-info {
+        display: none;
+    }
+
+    .profile-arrow {
+        display: none;
+    }
+}

@@ -1,107 +1,339 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard</title>
-<!----font Awesome-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<link rel="stylesheet" href="../components/Button/button.css">
-<link rel="stylesheet" href="../components/sidebar/sidebar.css">
-<link rel="stylesheet" href="../components/navbar/navbar.css">
-<link rel="stylesheet" href="../components/card/card.css">
-<link rel="stylesheet" href="../components/modal/modal.css">
-<link rel="stylesheet" href="../components/table/table.css">
-<link rel="stylesheet" href="admin.css">
-
-</head>
-<body>
+    <!----font Awesome-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../components/Button/button.css" />
+    <link rel="stylesheet" href="../components/sidebar/sidebar.css" />
+    <link rel="stylesheet" href="../components/navbar/navbar.css" />
+    <link rel="stylesheet" href="../components/card/card.css" />
+    <link rel="stylesheet" href="../components/modal/modal.css" />
+    <link rel="stylesheet" href="../components/table/table.css" />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
     <div class="admin-layout">
-        <aside id="sidebar"></aside>
-        <main class="admin-main">
-            <header id="navbar"></header>
-            <section class="dashboard-content">
-                <div id="cards"></div>
+      <aside id="sidebar"></aside>
+      <main class="admin-main">
+        <header id="navbar"></header>
+        <section class="dashboard-content">
+          <div id="cards"></div>
 
+          <!-- Quick Actions -->
+          <section class="quick-actions">
+            <h2>Quick Actions</h2>
 
-                <!-- Quick Actions -->
-<section class="quick-actions">
+            <div class="quick-actions-container">
+              <!-- Add Member -->
+              <button class="quick-action-btn" id="addNewMemberBtn">
+                <span class="quick-action-icon">
+                  <i class="fa-solid fa-user-plus"></i>
+                </span>
 
-    <h2>Quick Actions</h2>
+                <span class="button-text"> Add New Member </span>
 
-    <div class="quick-actions-container">
+                <span class="button-arrow">
+                  <i class="fa-solid fa-chevron-right"></i>
+                </span>
+              </button>
 
-        <!-- Add Member -->
-        <button class="quick-action-btn">
-            <span class="quick-action-icon">
-                <i class="fa-solid fa-user-plus"></i>
-            </span>
+              <!-- Add Trainer -->
+              <button class="quick-action-btn" id="addNewTrainerBtn">
+                <span class="quick-action-icon">
+                  <i class="fa-solid fa-dumbbell"></i>
+                </span>
 
-            <span class="button-text">
-                Add New Member
-            </span>
+                <span class="button-text"> Add New Trainer </span>
 
-            <span class="button-arrow">
-                <i class="fa-solid fa-chevron-right"></i>
-            </span>
-        </button>
+                <span class="button-arrow">
+                  <i class="fa-solid fa-chevron-right"></i>
+                </span>
+              </button>
 
+              <!-- New Membership -->
+              <button class="quick-action-btn" id="newMembershipBtn">
+                <span class="quick-action-icon">
+                  <i class="fa-solid fa-id-card"></i>
+                </span>
 
-        <!-- Add Trainer -->
-        <button class="quick-action-btn">
-            <span class="quick-action-icon">
-                <i class="fa-solid fa-dumbbell"></i>
-            </span>
+                <span class="button-text"> New Membership </span>
 
-            <span class="button-text">
-                Add New Trainer
-            </span>
+                <span class="button-arrow">
+                  <i class="fa-solid fa-chevron-right"></i>
+                </span>.
+              </button>
 
-            <span class="button-arrow">
-                <i class="fa-solid fa-chevron-right"></i>
-            </span>
-        </button>
+              <!-- Mark Attendance -->
+              <button class="quick-action-btn" id="markAttendanceBtn">
+                <span class="quick-action-icon">
+                  <i class="fa-solid fa-calendar-check"></i>
+                </span>
 
+                <span class="button-text"> Mark Attendance </span>
 
-        <!-- New Membership -->
-        <button class="quick-action-btn">
-            <span class="quick-action-icon">
-                <i class="fa-solid fa-id-card"></i>
-            </span>
+                <span class="button-arrow">
+                  <i class="fa-solid fa-chevron-right"></i>
+                </span>
+              </button>
+            </div>
+          </section>
+          <!--- Statistics Section-->
 
-            <span class="button-text">
-                New Membership
-            </span>
+          <section class="dashboard-statistics">
+            <!-- =========================
+         MEMBERSHIP OVERVIEW
+    ========================== -->
 
-            <span class="button-arrow">
-                <i class="fa-solid fa-chevron-right"></i>
-            </span>
-        </button>
+            <div class="statistics-card">
+              <div class="statistics-header">
+                <div>
+                  <h2>Membership Overview</h2>
+                  <p>Current membership status</p>
+                </div>
+              </div>
 
+              <div class="membership-chart">
+                <div class="donut-chart membership-donut">
+                  <div class="donut-center">
+                    <span>Total</span>
+                    <strong>320</strong>
+                  </div>
+                </div>
 
-        <!-- Mark Attendance -->
-        <button class="quick-action-btn">
-            <span class="quick-action-icon">
-                <i class="fa-solid fa-calendar-check"></i>
-            </span>
+                <div class="chart-legend">
+                  <div class="legend-item">
+                    <span class="legend-dot active"></span>
 
-            <span class="button-text">
-                Mark Attendance
-            </span>
+                    <div>
+                      <strong>245</strong>
+                      <small>Active Membership</small>
+                    </div>
+                  </div>
 
-            <span class="button-arrow">
-                <i class="fa-solid fa-chevron-right"></i>
-            </span>
-        </button>
+                  <div class="legend-item">
+                    <span class="legend-dot expired"></span>
 
-    </div>
+                    <div>
+                      <strong>45</strong>
+                      <small>Expired Membership</small>
+                    </div>
+                  </div>
 
-</section>
-                <div id="table"></div>
-            </section>
-        </main>
+                  <div class="legend-item">
+                    <span class="legend-dot pending"></span>
+
+                    <div>
+                      <strong>30</strong>
+                      <small>Pending Membership</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- =========================
+         MONTHLY REVENUE
+    ========================== -->
+
+            <div class="statistics-card revenue-card">
+              <div class="statistics-header">
+                <div>
+                  <h2>Monthly Revenue Overview</h2>
+                  <p>Revenue performance by month</p>
+                </div>
+              </div>
+
+              <div class="revenue-chart">
+                <div class="revenue-value">Rs. 85,600</div>
+
+                <div class="chart-area">
+                  <div class="chart-line"></div>
+
+                  <div class="chart-point point-1"></div>
+                  <div class="chart-point point-2"></div>
+                  <div class="chart-point point-3"></div>
+                  <div class="chart-point point-4"></div>
+                  <div class="chart-point point-5"></div>
+                  <div class="chart-point point-6"></div>
+                </div>
+
+                <div class="chart-months">
+                  <span>Jan</span>
+                  <span>Feb</span>
+                  <span>Mar</span>
+                  <span>Apr</span>
+                  <span>May</span>
+                  <span>Jun</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- =========================
+         TRAINER STATUS OVERVIEW
+    ========================== -->
+
+            <div class="statistics-card">
+              <div class="statistics-header">
+                <div>
+                  <h2>Trainer Status Overview</h2>
+                  <p>Current trainer availability</p>
+                </div>
+              </div>
+
+              <div class="membership-chart">
+                <div class="donut-chart trainer-donut">
+                  <div class="donut-center">
+                    <span>Total</span>
+                    <strong>18</strong>
+                  </div>
+                </div>
+
+                <div class="chart-legend">
+                  <div class="legend-item">
+                    <span class="legend-dot available"></span>
+
+                    <div>
+                      <strong>8</strong>
+                      <small>Available</small>
+                    </div>
+                  </div>
+
+                  <div class="legend-item">
+                    <span class="legend-dot limited"></span>
+
+                    <div>
+                      <strong>5</strong>
+                      <small>Limited Slot</small>
+                    </div>
+                  </div>
+
+                  <div class="legend-item">
+                    <span class="legend-dot busy"></span>
+
+                    <div>
+                      <strong>5</strong>
+                      <small>Assigned / Busy</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div class="dashboard-bottom">
+            <div id="table"></div>
+
+            <div class="dashboard-small-table">
+              <h3>Pending Payments</h3>
+              <p>Payments awaiting confirmation</p>
+
+              <div class="table-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Member</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td>Ahmed Khan</td>
+                      <td>Rs. 5,000</td>
+                      <td>
+                        <span class="table-status pending"> Pending </span>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Husain</td>
+                      <td>Rs. 3,500</td>
+                      <td>
+                        <span class="table-status pending"> Pending </span>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Talha</td>
+                      <td>Rs. 4,000</td>
+                      <td>
+                        <span class="table-status pending"> Pending </span>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Saad</td>
+                      <td>Rs. 5,500</td>
+                      <td>
+                        <span class="table-status pending"> Pending </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="dashboard-small-table">
+              <h3>Today's Attendance</h3>
+              <p>Members attendance today</p>
+
+              <div class="table-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Member</th>
+                      <th>Check In</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td>Ahmed Khan</td>
+                      <td>08:15 AM</td>
+                      <td>
+                        <span class="table-status active"> Present </span>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Husain</td>
+                      <td>09:00 AM</td>
+                      <td>
+                        <span class="table-status active"> Present </span>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Talha</td>
+                      <td>09:30 AM</td>
+                      <td>
+                        <span class="table-status active"> Present </span>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Saad</td>
+                      <td>--</td>
+                      <td>
+                        <span class="table-status expired"> Absent </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
     <script src="admin.js"></script>
-    
-</body>
+  </body>
 </html>

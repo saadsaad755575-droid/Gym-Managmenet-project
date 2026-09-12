@@ -1,0 +1,483 @@
+
+
+/* =========================
+   ATTENDANCE PAGE
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0d0f10;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+}
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.trainer-main {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    min-height: 100vh;
+    background: #0d0f10;
+}
+
+.attendance-content {
+    width: 100%;
+    padding: 30px;
+    padding-top: 100px;
+    position: relative;
+    z-index: 1;
+}
+
+
+/* =========================
+   PAGE HEADER
+========================= */
+
+.attendance-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.attendance-header h1 {
+    font-size: 28px;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.attendance-header h1 i {
+    color: #f5b900;
+    margin-right: 8px;
+}
+
+.attendance-header p {
+    color: #999999;
+    font-size: 14px;
+}
+
+
+/* =========================
+   PRIMARY BUTTON
+========================= */
+
+.attendance-primary-btn {
+    border: none;
+    background: #f5b900;
+    color: #111315;
+    padding: 12px 20px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.attendance-primary-btn i {
+    margin-right: 7px;
+}
+
+.attendance-primary-btn:hover {
+    background: #ffd15c;
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   FORM CARD
+========================= */
+
+.attendance-form-card {
+    display: none;
+    width: 100%;
+    background: #111315;
+    border: 1px solid #292c2f;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   FORM HEADER
+========================= */
+
+.form-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.form-card-header h2 {
+    font-size: 20px;
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+
+.form-card-header p {
+    font-size: 13px;
+    color: #888888;
+}
+
+.form-close-btn {
+    width: 36px;
+    height: 36px;
+    border: 1px solid #333333;
+    background: #191b1d;
+    color: #aaaaaa;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+.form-close-btn:hover {
+    color: #ffffff;
+    border-color: #f5b900;
+}
+
+
+/* =========================
+   FORM GRID
+========================= */
+
+.attendance-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+
+/* =========================
+   FORM GROUP
+========================= */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    color: #dddddd;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    background: #0d0f10;
+    color: #ffffff;
+    border: 1px solid #333333;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #f5b900;
+}
+
+.form-group select {
+    cursor: pointer;
+}
+
+.form-group select option {
+    background: #111315;
+    color: #ffffff;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+
+/* =========================
+   FORM BUTTONS
+========================= */
+
+.attendance-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #292c2f;
+}
+
+.attendance-cancel-btn,
+.attendance-save-btn {
+    border: none;
+    padding: 11px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.attendance-cancel-btn {
+    background: #24272a;
+    color: #cccccc;
+}
+
+.attendance-cancel-btn:hover {
+    background: #333638;
+    color: #ffffff;
+}
+
+.attendance-save-btn {
+    background: #f5b900;
+    color: #111315;
+}
+
+.attendance-save-btn:hover {
+    background: #ffd15c;
+}
+
+.attendance-save-btn i {
+    margin-right: 7px;
+}
+
+
+/* =========================
+   TABLE CARD
+========================= */
+
+.attendance-table-card {
+    width: 100%;
+    background: #111315;
+    border: 1px solid #292c2f;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+/* =========================
+   TABLE HEADER
+========================= */
+
+.table-card-header {
+    padding: 22px 25px;
+    border-bottom: 1px solid #292c2f;
+}
+
+.table-card-header h2 {
+    font-size: 19px;
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+
+.table-card-header p {
+    color: #888888;
+    font-size: 13px;
+}
+
+
+/* =========================
+   TABLE WRAPPER
+========================= */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+/* =========================
+   ATTENDANCE TABLE
+========================= */
+
+.attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+
+.attendance-table th {
+    background: #191b1d;
+    color: #f5b900;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: left;
+    padding: 15px 18px;
+    border-bottom: 1px solid #333333;
+    white-space: nowrap;
+}
+
+.attendance-table td {
+    color: #cccccc;
+    font-size: 13px;
+    padding: 15px 18px;
+    border-bottom: 1px solid #24272a;
+    vertical-align: middle;
+}
+
+.attendance-table tbody tr {
+    transition: 0.2s ease;
+}
+
+.attendance-table tbody tr:hover {
+    background: #17191b;
+}
+
+.attendance-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.attendance-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.attendance-status.present {
+    background: rgba(40, 167, 69, 0.15);
+    color: #5fd17b;
+}
+
+.attendance-status.absent {
+    background: rgba(220, 53, 69, 0.15);
+    color: #ff6b78;
+}
+
+.attendance-status.late {
+    background: rgba(245, 185, 0, 0.15);
+    color: #f5b900;
+}
+
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.attendance-action-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #333333;
+    background: #191b1d;
+    color: #aaaaaa;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: 0.3s ease;
+}
+
+.attendance-action-btn:hover {
+    color: #f5b900;
+    border-color: #f5b900;
+}
+
+.attendance-action-btn.delete:hover {
+    color: #ff6b78;
+    border-color: #ff6b78;
+}
+
+
+/* =========================
+   EMPTY TABLE
+========================= */
+
+.empty-attendance {
+    text-align: center;
+    padding: 45px 20px !important;
+    color: #777777 !important;
+}
+
+.empty-attendance i {
+    display: block;
+    font-size: 35px;
+    color: #444444;
+    margin-bottom: 12px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .trainer-main {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .attendance-content {
+        padding: 20px;
+    }
+
+    .attendance-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .attendance-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full-width {
+        grid-column: auto;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .attendance-content {
+        padding: 15px;
+    }
+
+    .attendance-header h1 {
+        font-size: 23px;
+    }
+
+    .attendance-primary-btn {
+        width: 100%;
+    }
+
+    .attendance-form-card {
+        padding: 18px;
+    }
+
+    .attendance-form-actions {
+        flex-direction: column;
+    }
+
+    .attendance-cancel-btn,
+    .attendance-save-btn {
+        width: 100%;
+    }
+}

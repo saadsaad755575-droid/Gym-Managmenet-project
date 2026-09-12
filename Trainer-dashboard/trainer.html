@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trainer Dashboard</title>
+
+
+    <!-- =========================
+         FONT AWESOME
+    ========================== -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- =========================
+         TRAINER DASHBOARD CSS
+    ========================== -->
+
+    <link rel="stylesheet" href="trainer.css">
+
+
+    <!-- =========================
+         TRAINER COMPONENTS CSS
+    ========================== -->
+
+    <!-- Trainer Navbar -->
+    <link rel="stylesheet"
+        href="../../components/trainer-navbar/trainer-navbar.css">
+
+    <!-- Trainer Sidebar -->
+    <link rel="stylesheet"
+        href="../../components/trainer.sidebar/trainer.sidebar.css">
+
+    <!-- Trainer Card -->
+    <link rel="stylesheet"
+        href="../../components/trainer-card/trainer-card.css">
+
+    <link rel="stylesheet"
+    href="../../components/trainer-table/trainer-table.css">
+
+    <!-- Trainer Modal -->
+    <link rel="stylesheet"
+        href="../../components/trainer-modal/trainer-modal.css">
+<link rel="stylesheet" href="../../components/trainer-profile/trainer-profile.css">
+
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         TRAINER SIDEBAR
+    ========================== -->
+
+    <div id="trainer-sidebar"></div>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="trainer-main">
+
+
+        <!-- =========================
+             TRAINER NAVBAR
+        ========================== -->
+
+        <div id="trainer-navbar"></div>
+
+
+        <!-- =========================
+             DASHBOARD CONTENT
+        ========================== -->
+
+        <div class="trainer-content">
+
+
+            <!-- =========================
+                 TRAINER PROFILE
+            ========================== -->
+
+            <div id="trainer-profile"></div>
+
+
+            <!-- =========================
+                 TRAINER CARDS
+            ========================== -->
+
+            <div id="trainer-cards"></div>
+
+
+
+            <!-- =========================
+                 TRAINER TABLE
+            ========================== -->
+
+            <div id="trainer-table"></div>
+
+
+            <!-- =========================
+                 TODAY'S PLANS
+            ========================== -->
+
+            <section class="trainer-plans">
+               <!--------------------
+               workout plan
+               ---------------------->
+               <div class="plan-card">
+                    <div class="plan-header">
+                         <h2>
+                              <i class="fa-solid fa-dumbbell"></i>
+                              Today workout plan
+                         </h2>
+                         <p> workout suhedule for today sessions </p>
+                    </div>
+                    <!-- Workout 1-->
+                     <div class="plan-item">
+                         <div> 
+                              <strong> Ahmed Khan</strong>
+                              <span> Strength Training</span>
+                         </div>
+                              <span> 09:00 AM</span>
+                         </div>
+                         <!-- Workout 2-->
+                          <din class="plan-item">
+                              <div> 
+                                   <strong> Ali Raza </strong>
+                                   <span> Muscle Gain</span>
+
+                              </div>
+                              <span> 11:00 AM</span>
+                          </din>
+
+                                              <!-- Workout 3-->
+                          <din class="plan-item">
+                              <div> 
+                                   <strong> Usman Ahmed </strong>
+                                   <span> Full Body Workout</span>
+
+                              </div>
+                              <span> 04:00 AM</span>
+                          </din>
+                                                   <!-- Workout 4-->
+                          <din class="plan-item">
+                              <div> 
+                                   <strong> Hamza Ali</strong>
+                                   <span> Cardio Training</span>
+
+                              </div>
+                              <span> 06:00 AM</span>
+                          </din>
+               </div>
+               <!-----------------
+               Diet Plan
+               ------------------->
+               <div class="plan-card">
+                    <div class="plan-header">
+                         <h2>
+                              <i class="fa-solid fa-utensils"></i>
+                              Today Diet plan
+                         </h2>
+                         <p> Diet Plans assigned to your members</p>
+                    </div>
+                    <!--- Diet 1--->
+                    <div class="plan-item">
+                         <div> 
+                              <strong> Ahmed Khan</strong>
+                              <span> High Protein Diet</span>
+                         </div>
+                         <span>Active</span>
+                    </div>
+                    <!-- Diet 2-->
+                     <div class="plan-item">
+                         <div> 
+                              <strong> Ali Raza</strong>
+                              <span> Muscle Gain Diet</span>
+                         </div>
+                         <span>Active</span>
+                    </div>
+
+                    <!--- Diet 3---->
+                    <div class="plan-item">
+                         <div> 
+                              <strong> Usman Ahmed</strong>
+                              <span> Balanced Diet </span>
+                         </div>
+                         <span>Active</span>
+                    </div>
+                    <!-- Diet 4-->
+                     <div class="plan-item">
+                         <div> 
+                              <strong> Hamza Ali</strong>
+                              <span> Weight Management</span>
+                         </div>
+                         <span>Active</span>
+                    </div>
+               </div>
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         TRAINER MODAL
+    ========================== -->
+
+    <div id="trainer-modal"></div>
+
+
+    <!-- =========================
+         COMPONENT JAVASCRIPT
+    ========================== -->
+
+    <!-- Trainer Navbar JS -->
+    <script src="../../components/trainer-navbar/trainer-navbar.js"></script>
+
+
+    <!-- Trainer Sidebar JS
+         Agar trainer.sidebar.js file maujood hai
+         to ye line use karna -->
+    <script src="../../components/trainer.sidebar/trainer.sidebar.js"></script>
+
+
+    <!-- Trainer Card JS -->
+    <script src="../components/trainer-card/trainer-card.js"></script>
+
+
+    <!-- Trainer Table JS -->
+    <script src="../../components/trainer-table/trainer-table.js"></script>
+
+
+    <!-- Trainer Modal JS -->
+    <script src="../../components/trainer-modal/trainer-modl.js"></script>
+
+  <script src="../../components/trainer-profile/trainer-profile.js"></script>
+    
+
+
+    <!-- =========================
+         MAIN TRAINER JAVASCRIPT
+    ========================== -->
+
+    <script src="trainer.js"></script>
+
+
+</body>
+
+</html>

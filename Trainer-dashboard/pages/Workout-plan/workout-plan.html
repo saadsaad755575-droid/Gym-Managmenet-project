@@ -1,0 +1,630 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Workout Plans</title>
+
+    <!-- =========================
+         FONT AWESOME
+    ========================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- =========================
+         TRAINER SIDEBAR CSS
+    ========================== -->
+
+    <link
+        rel="stylesheet"
+        href="../../../components/trainer.sidebar/trainer.sidebar.css"
+    >
+
+
+    <!-- =========================
+         TRAINER NAVBAR CSS
+    ========================== -->
+
+    <link
+        rel="stylesheet"
+        href="../../../components/trainer-navbar/trainer-navbar.css"
+    >
+
+
+    <!-- =========================
+         WORKOUT PLANS CSS
+    ========================== -->
+
+    <link
+        rel="stylesheet"
+        href="workout-plan.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         TRAINER SIDEBAR
+    ========================== -->
+
+    <div id="trainer-sidebar"></div>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="trainer-main">
+
+
+        <!-- =========================
+             TRAINER NAVBAR
+        ========================== -->
+
+        <div id="trainer-navbar"></div>
+
+
+        <div class="workout-content">
+
+
+            <!-- =========================
+                 PAGE HEADER
+            ========================== -->
+
+            <div class="page-header">
+
+                <div>
+
+                    <h1>Workout Plans</h1>
+
+                    <p>
+                        Create and manage workout plans for your customers.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    id="openWorkoutForm"
+                >
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Create Workout Plan
+
+                </button>
+
+            </div>
+
+
+            <!-- =========================
+                 CREATE WORKOUT PLAN
+            ========================== -->
+
+            <section
+                class="workout-form-card"
+                id="workoutFormCard"
+            >
+
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>Create Workout Plan</h2>
+
+                        <p>
+                            Create a complete workout plan for your customer.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     BASIC INFORMATION
+                ========================== -->
+
+                <div class="form-grid">
+
+
+                    <!-- CUSTOMER -->
+
+                    <div class="form-group">
+
+                        <label for="customerSelect">
+                            Customer
+                        </label>
+
+                        <select id="customerSelect">
+
+                            <option value="">
+                                Select Customer
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- PLAN NAME -->
+
+                    <div class="form-group">
+
+                        <label for="planName">
+                            Workout Plan Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="planName"
+                            placeholder="e.g. Beginner Strength Plan"
+                        >
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <div class="form-group">
+
+                        <label for="planStatus">
+                            Status
+                        </label>
+
+                        <select id="planStatus">
+
+                            <option value="Active">
+                                Active
+                            </option>
+
+                            <option value="Paused">
+                                Paused
+                            </option>
+
+                            <option value="Completed">
+                                Completed
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     WORKOUT DAYS
+                ========================== -->
+
+                <div class="form-group workout-days-group">
+
+                    <label>
+                        Workout Days
+                    </label>
+
+
+                    <div class="days-container">
+
+
+                        <label class="day-option">
+
+                            <input
+                                type="checkbox"
+                                value="Monday"
+                            >
+
+                            <span>Monday</span>
+
+                        </label>
+
+
+                        <label class="day-option">
+
+                            <input
+                                type="checkbox"
+                                value="Tuesday"
+                            >
+
+                            <span>Tuesday</span>
+
+                        </label>
+
+
+                        <label class="day-option">
+
+                            <input
+                                type="checkbox"
+                                value="Wednesday"
+                            >
+
+                            <span>Wednesday</span>
+
+                        </label>
+
+
+                        <label class="day-option">
+
+                            <input
+                                type="checkbox"
+                                value="Thursday"
+                            >
+
+                            <span>Thursday</span>
+
+                        </label>
+
+
+                        <label class="day-option">
+
+                            <input
+                                type="checkbox"
+                                value="Friday"
+                            >
+
+                            <span>Friday</span>
+
+                        </label>
+
+
+                        <label class="day-option">
+
+                            <input
+                                type="checkbox"
+                                value="Saturday"
+                            >
+
+                            <span>Saturday</span>
+
+                        </label>
+
+
+                        <label class="day-option">
+
+                            <input
+                                type="checkbox"
+                                value="Sunday"
+                            >
+
+                            <span>Sunday</span>
+
+                        </label>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     EXERCISES SECTION
+                ========================== -->
+
+                <div class="exercise-section">
+
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h3>Exercises</h3>
+
+                            <p>
+                                Add multiple exercises to this workout plan.
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="primary-btn"
+                            id="openExerciseList"
+                        >
+
+                            <i class="fa-solid fa-plus"></i>
+
+                            Add Exercise
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- =========================
+                         EXERCISE TABLE
+                    ========================== -->
+
+                    <div class="table-wrapper">
+
+                        <table class="exercise-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Exercise</th>
+
+                                    <th>Sets</th>
+
+                                    <th>Reps</th>
+
+                                    <th>Workout Time</th>
+
+                                    <th>Rest Time</th>
+
+                                    <th>Action</th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="exerciseTableBody">
+
+                                <tr class="empty-exercise-row">
+
+                                    <td colspan="6">
+                                        No exercises added yet.
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     DAILY ROUTINE
+                ========================== -->
+
+                <div class="form-group routine-group">
+
+                    <label for="dailyRoutine">
+                        Daily Routine / Instructions
+                    </label>
+
+
+                    <textarea
+                        id="dailyRoutine"
+                        rows="6"
+                        placeholder="Example:
+Monday: Chest + Triceps
+Tuesday: Back + Biceps
+Wednesday: Rest
+Thursday: Legs
+Friday: Shoulders + Core"
+                    ></textarea>
+
+                </div>
+
+
+                <!-- =========================
+                     FORM ACTIONS
+                ========================== -->
+
+                <div class="form-actions">
+
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        id="cancelWorkoutForm"
+                    >
+
+                        Cancel
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="primary-btn"
+                        id="saveWorkoutPlan"
+                    >
+
+                        <i class="fa-solid fa-floppy-disk"></i>
+
+                        Save Workout Plan
+
+                    </button>
+
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =========================
+                 SAVED WORKOUT PLANS
+            ========================== -->
+
+            <section class="plans-card">
+
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>Workout Plans</h2>
+
+                        <p>
+                            Manage workout plans created for your customers.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     PLANS TABLE
+                ========================== -->
+
+                <div class="table-wrapper">
+
+                    <table class="plans-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Customer</th>
+
+                                <th>Workout Plan</th>
+
+                                <th>Exercises</th>
+
+                                <th>Schedule</th>
+
+                                <th>Status</th>
+
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="workoutPlansTableBody">
+
+                            <tr class="empty-plans-row">
+
+                                <td colspan="6">
+                                    No workout plans found.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+    <!-- =========================
+         EXERCISE SELECTOR POPUP
+    ========================== -->
+
+    <div
+        class="exercise-popup-overlay"
+        id="exercisePopup"
+    >
+
+
+        <div class="exercise-popup">
+
+
+            <!-- POPUP HEADER -->
+
+            <div class="popup-header">
+
+                <div>
+
+                    <h3>Select Exercise</h3>
+
+                    <p>
+                        Choose an exercise to add to the workout plan.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="popup-close"
+                    id="closeExerciseList"
+                >
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="exercise-search">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="exerciseSearch"
+                    placeholder="Search exercise..."
+                >
+
+            </div>
+
+
+            <!-- EXERCISE LIST -->
+
+            <div
+                class="exercise-list"
+                id="exerciseList"
+            >
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================
+         TRAINER NAVBAR JS
+    ========================== -->
+
+    <script src="../../../components/trainer-navbar/trainer-navbar.js"></script>
+
+
+    <!-- =========================
+         TRAINER SIDEBAR JS
+    ========================== -->
+
+    <script src="../../../components/trainer.sidebar/trainer.sidebar.js"></script>
+    <script src="../../../components/Notification/notification.js"></script>
+
+    <!-- =========================
+         WORKOUT PLANS JS
+    ========================== -->
+
+    <script src="workout-plan.js"></script>
+
+
+</body>
+
+</html>

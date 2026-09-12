@@ -1,0 +1,363 @@
+
+Saad Saad
+3:24 PM (2 minutes ago)
+to me
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trainer Availability</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Trainer Components CSS -->
+    <link rel="stylesheet"
+        href="../../../components/trainer.sidebar/trainer.sidebar.css">
+
+    <link rel="stylesheet"
+        href="../../../components/trainer-navbar/trainer-navbar.css">
+
+    <link rel="stylesheet"
+        href="../../../components/trainer-card/trainer-card.css">
+
+    <link rel="stylesheet"
+        href="../../../components/trainer-modal/trainer-modal.css">
+
+    <!-- Availability CSS -->
+    <link rel="stylesheet"
+        href="availability.css">
+
+</head>
+
+<body>
+
+    <!-- =========================
+         TRAINER SIDEBAR
+    ========================== -->
+
+    <div id="trainer-sidebar"></div>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="trainer-main">
+
+        <!-- Trainer Navbar -->
+        <div id="trainer-navbar"></div>
+
+
+        <!-- =========================
+             AVAILABILITY CONTENT
+        ========================== -->
+
+        <section class="availability-content">
+
+
+            <!-- =========================
+                 PAGE HEADER
+            ========================== -->
+
+            <div class="availability-header">
+
+                <div>
+
+                    <h1>
+                        <i class="fa-solid fa-calendar-check"></i>
+                        Trainer Availability
+                    </h1>
+
+                    <p>
+                        Manage your working hours, available slots,
+                        and daily availability.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="availability-primary-btn"
+                    id="openAvailabilityForm">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Set Availability
+
+                </button>
+
+            </div>
+
+
+
+            <!-- =========================
+                 OVERVIEW CARDS
+            ========================== -->
+
+            <div id="availability-cards"></div>
+
+
+
+            <!-- =========================
+                 CURRENT STATUS
+            ========================== -->
+
+            <div class="availability-status-card">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            <i class="fa-solid fa-user-clock"></i>
+                            Current Availability
+                        </h2>
+
+                        <p>
+                            Your current trainer availability status.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="current-status-content">
+
+
+                    <div class="current-status-box">
+
+                        <span class="status-label">
+                            Current Status
+                        </span>
+
+                        <span
+                            id="currentAvailabilityStatus"
+                            class="availability-status status-available">
+
+                            Available
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="current-status-box">
+
+                        <span class="status-label">
+                            Today's Hours
+                        </span>
+
+                        <strong id="todayWorkingHours">
+                            05:00 PM - 10:00 PM
+                        </strong>
+
+                    </div>
+
+
+                    <div class="current-status-box">
+
+                        <span class="status-label">
+                            Available Slots
+                        </span>
+
+                        <strong id="todayAvailableSlots">
+                            3
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 WEEKLY AVAILABILITY
+            ========================== -->
+
+            <div class="weekly-availability-card">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            <i class="fa-solid fa-calendar-week"></i>
+                            Weekly Availability
+                        </h2>
+
+                        <p>
+                            Manage your weekly working schedule
+                            and trainer slots.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table class="availability-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Day</th>
+
+                                <th>Working Hours</th>
+
+                                <th>Status</th>
+
+                                <th>Maximum Slots</th>
+
+                                <th>Booked Slots</th>
+
+                                <th>Available Slots</th>
+
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="availabilityTableBody">
+
+                            <!-- Availability records will be added by JavaScript -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 AVAILABILITY INFORMATION
+            ========================== -->
+
+            <div class="availability-info-card">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            <i class="fa-solid fa-circle-info"></i>
+                            Availability Information
+                        </h2>
+
+                        <p>
+                            Understand your current slot availability.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="availability-info-grid">
+
+
+                    <div class="info-item">
+
+                        <span class="availability-status status-available">
+                            Available
+                        </span>
+
+                        <p>
+                            Trainer has enough slots available.
+                        </p>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <span class="availability-status status-limited">
+                            Limited Slots
+                        </span>
+
+                        <p>
+                            Only a few training slots are remaining.
+                        </p>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <span class="availability-status status-busy">
+                            Busy
+                        </span>
+
+                        <p>
+                            All available training slots are booked.
+                        </p>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <span class="availability-status status-unavailable">
+                            Unavailable
+                        </span>
+
+                        <p>
+                            Trainer is not available for sessions.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================
+         REUSABLE TRAINER MODAL
+    ========================== -->
+
+    <div id="trainer-modal-container"></div>
+
+
+
+    <!-- =========================
+         COMPONENT JS
+    ========================== -->
+
+    <script src="../../../components/trainer-navbar/trainer-navbar.js"></script>
+
+    <script src="../../../components/trainer.sidebar/trainer.sidebar.js"></script>
+    <script src="../../../components/trainer-modal/trainer-modl.js"></script>
+    <script src="../../../components/Notification/notification.js"></script>
+
+    <!-- Availability JS -->
+    <script src="availability.js"></script>
+
+</body>
+
+</html>

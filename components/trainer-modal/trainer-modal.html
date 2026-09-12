@@ -1,0 +1,200 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trainer Modal</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Trainer Modal CSS -->
+    <link rel="stylesheet" href="trainer-modal.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         TRAINER MODAL
+    ========================== -->
+
+    <div class="trainer-modal-overlay" id="trainerModal">
+
+        <div class="trainer-modal">
+
+            <!-- Modal Header -->
+            <div class="trainer-modal-header">
+
+                <div>
+                    <h2 id="trainerModalTitle">
+                        Member Details
+                    </h2>
+
+                    <p>
+                        View and manage member information
+                    </p>
+                </div>
+
+                <button class="trainer-modal-close" id="trainerModalClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <!-- Modal Body -->
+            <div class="trainer-modal-body">
+
+                <!-- Member Information -->
+                <div class="trainer-modal-section">
+
+                    <h3>
+                        <i class="fa-solid fa-user"></i>
+                        Member Information
+                    </h3>
+
+                    <div class="trainer-modal-grid">
+
+                        <div class="trainer-modal-field">
+                            <label>Member Name</label>
+                            <p id="memberName">Ahmed Khan</p>
+                        </div>
+
+                        <div class="trainer-modal-field">
+                            <label>Member ID</label>
+                            <p id="memberId">MEM-001</p>
+                        </div>
+
+                        <div class="trainer-modal-field">
+                            <label>Goal</label>
+                            <p id="memberGoal">Weight Loss</p>
+                        </div>
+
+                        <div class="trainer-modal-field">
+                            <label>Status</label>
+                            <span class="modal-status">
+                                Active
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Workout Information -->
+                <div class="trainer-modal-section">
+
+                    <h3>
+                        <i class="fa-solid fa-dumbbell"></i>
+                        Workout Information
+                    </h3>
+
+                    <div class="trainer-modal-grid">
+
+                        <div class="trainer-modal-field">
+                            <label>Workout Plan</label>
+                            <p id="workoutPlan">Fat Burn</p>
+                        </div>
+
+                        <div class="trainer-modal-field">
+                            <label>Workout Days</label>
+                            <p id="workoutDays">Monday - Friday</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Progress Information -->
+                <div class="trainer-modal-section">
+
+                    <h3>
+                        <i class="fa-solid fa-chart-line"></i>
+                        Progress
+                    </h3>
+
+                    <div class="trainer-progress">
+
+                        <div class="progress-info">
+                            <span>Member Progress</span>
+                            <span id="progressValue">70%</span>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 70%;"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="trainer-progress">
+
+                        <div class="progress-info">
+                            <span>Attendance</span>
+                            <span id="attendanceValue">85%</span>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%;"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Trainer Notes -->
+                <div class="trainer-modal-section">
+
+                    <h3>
+                        <i class="fa-solid fa-note-sticky"></i>
+                        Trainer Notes
+                    </h3>
+
+                    <textarea
+                        id="trainerNotes"
+                        placeholder="Add notes about this member..."></textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- Modal Footer -->
+            <div class="trainer-modal-footer">
+
+                <button
+                    type="button"
+                    class="trainer-modal-btn cancel-btn"
+                    id="trainerModalCancel">
+                    Cancel
+                </button>
+
+                <button
+                    type="button"
+                    class="trainer-modal-btn save-btn"
+                    id="trainerModalSave">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Save Changes
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Trainer Modal JS -->
+    
+
+</body>
+
+</html>

@@ -1,0 +1,502 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Customer Progress</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Trainer Components CSS -->
+    <link rel="stylesheet" href="../../../components/trainer.sidebar/trainer.sidebar.css">
+    <link rel="stylesheet" href="../../../components/trainer-navbar/trainer-navbar.css">
+
+    <!-- Trainer Modal -->
+    <link rel="stylesheet" href="../../../components/trainer-modal/trainer-modal.css">
+
+    <!-- Customer Progress CSS -->
+    <link rel="stylesheet" href="customer-progress.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         TRAINER SIDEBAR
+    ========================== -->
+
+    <div id="trainer-sidebar"></div>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="trainer-main">
+
+        <!-- Trainer Navbar -->
+        <div id="trainer-navbar"></div>
+
+
+        <!-- =========================
+             CUSTOMER PROGRESS CONTENT
+        ========================== -->
+
+        <section class="progress-content">
+
+            <!-- Page Header -->
+
+            <div class="progress-header">
+
+                <div>
+
+                    <h1>
+                        <i class="fa-solid fa-chart-line"></i>
+                        Customer Progress
+                    </h1>
+
+                    <p>
+                        Track and manage the progress of your assigned customers.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="progress-primary-btn"
+                    id="openProgressForm">
+
+                    <i class="fa-solid fa-plus"></i>
+                    Add Progress
+
+                </button>
+
+            </div>
+
+
+            <!-- =========================
+                 CUSTOMER SELECT
+            ========================== -->
+
+            <div class="customer-select-card">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            <i class="fa-solid fa-user"></i>
+                            Select Customer
+                        </h2>
+
+                        <p>
+                            Select a customer to view their progress.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="customer-select-wrapper">
+
+                    <label for="customerSelect">
+                        Customer
+                    </label>
+
+                    <select id="customerSelect">
+
+                        <option value="">
+                            Select Customer
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 CUSTOMER GOAL
+            ========================== -->
+
+            <div class="goal-card">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            <i class="fa-solid fa-bullseye"></i>
+                            Customer Goal
+                        </h2>
+
+                        <p>
+                            Set and manage the customer's fitness goal.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="goal-grid">
+
+                    <div class="info-box">
+
+                        <span>Goal Type</span>
+
+                        <strong id="goalType">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <span>Starting Weight</span>
+
+                        <strong id="startingWeight">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <span>Target Weight</span>
+
+                        <strong id="targetWeight">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <span>Goal Status</span>
+
+                        <strong id="goalStatus">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="goal-details">
+
+                    <span>
+                        Goal Details
+                    </span>
+
+                    <p id="goalDetails">
+                        Select a customer to view their goal.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 PROGRESS OVERVIEW
+            ========================== -->
+
+            <div class="progress-overview">
+
+                <div class="overview-card">
+
+                    <div class="overview-icon">
+                        <i class="fa-solid fa-weight-scale"></i>
+                    </div>
+
+                    <div>
+
+                        <span>Starting Weight</span>
+
+                        <h3 id="overviewStartingWeight">
+                            —
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="overview-card">
+
+                    <div class="overview-icon">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+
+                    <div>
+
+                        <span>Current Weight</span>
+
+                        <h3 id="currentWeight">
+                            —
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="overview-card">
+
+                    <div class="overview-icon">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+
+                    <div>
+
+                        <span>Target Weight</span>
+
+                        <h3 id="overviewTargetWeight">
+                            —
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="overview-card">
+
+                    <div class="overview-icon">
+                        <i class="fa-solid fa-chart-simple"></i>
+                    </div>
+
+                    <div>
+
+                        <span>Overall Progress</span>
+
+                        <h3 id="overallProgress">
+                            —
+                        </h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 PROGRESS CHART
+            ========================== -->
+
+            <div class="progress-chart-card">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            <i class="fa-solid fa-chart-line"></i>
+                            Progress History
+                        </h2>
+
+                        <p>
+                            Track customer progress over time.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-chart">
+
+                    <canvas id="progressChart"></canvas>
+
+                    <div
+                        class="chart-empty"
+                        id="chartEmpty">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                        <p>
+                            Select a customer to view progress history.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 MEASUREMENTS
+            ========================== -->
+
+            <div class="measurements-card">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            <i class="fa-solid fa-ruler-combined"></i>
+                            Body Measurements
+                        </h2>
+
+                        <p>
+                            Compare starting and current measurements.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="measurements-table-wrapper">
+
+                    <table class="measurements-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Measurement</th>
+                                <th>Starting</th>
+                                <th>Current</th>
+                                <th>Change</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="measurementsTableBody">
+
+                            <tr>
+                                <td>Weight</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+
+                            <tr>
+                                <td>Chest</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+
+                            <tr>
+                                <td>Waist</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+
+                            <tr>
+                                <td>Arms</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 PROGRESS RECORDS
+            ========================== -->
+
+            <div class="progress-records-card">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                            Progress Records
+                        </h2>
+
+                        <p>
+                            View the complete progress history of your customers.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table class="progress-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Weight</th>
+                                <th>Goal</th>
+                                <th>Progress</th>
+                                <th>Notes</th>
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="progressTableBody">
+
+                            <!-- Progress records will be added by JavaScript -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         REUSABLE TRAINER MODAL
+    ========================== -->
+
+    <div id="trainer-modal-container"></div>
+
+
+    <!-- =========================
+         SCRIPTS
+    ========================== -->
+
+    <script src="../../../components/trainer-navbar/trainer-navbar.js"></script>
+    <script src="../../../components/trainer.sidebar/trainer.sidebar.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Customer Progress JS -->
+    <script src="customer-progress.js"></script>
+
+</body>
+
+</html>

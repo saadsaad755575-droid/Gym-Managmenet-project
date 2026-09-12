@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trainer Attendance</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Trainer Components CSS -->
+    <link rel="stylesheet" href="../../../components/trainer.sidebar/trainer.sidebar.css">
+    <link rel="stylesheet" href="../../../components/trainer-navbar/trainer-navbar.css">
+
+    <!-- Trainer Modal -->
+    <link rel="stylesheet" href="../../../components/trainer-modal/trainer-modal.css">
+
+    <!-- Attendance CSS -->
+    <link rel="stylesheet" href="attendance.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         TRAINER SIDEBAR
+    ========================== -->
+
+    <div id="trainer-sidebar"></div>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="trainer-main">
+
+        <!-- Trainer Navbar -->
+        <div id="trainer-navbar"></div>
+
+
+        <!-- =========================
+             ATTENDANCE CONTENT
+        ========================== -->
+
+        <section class="attendance-content">
+
+            <!-- Page Header -->
+
+            <div class="attendance-header">
+
+                <div>
+                    <h1>
+                        <i class="fa-solid fa-calendar-check"></i>
+                        Attendance
+                    </h1>
+
+                    <p>
+                        Mark and manage attendance of your assigned customers.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    class="attendance-primary-btn"
+                    id="openAttendanceForm">
+
+                    <i class="fa-solid fa-plus"></i>
+                    Mark Attendance
+
+                </button>
+
+            </div>
+
+
+            <!-- =========================
+                 ATTENDANCE FORM
+            ========================== -->
+
+            <div class="attendance-form-card" id="attendanceFormCard">
+
+                <div class="form-card-header">
+
+                    <div>
+                        <h2>Mark Customer Attendance</h2>
+
+                        <p>
+                            Record today's attendance details.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="form-close-btn"
+                        id="closeAttendanceForm">
+
+                        <i class="fa-solid fa-xmark"></i>
+
+                    </button>
+
+                </div>
+
+
+                <form id="attendanceForm">
+
+                    <div class="attendance-form-grid">
+
+
+                        <!-- Customer -->
+
+                        <div class="form-group">
+
+                            <label for="customerSelect">
+                                Select Customer
+                            </label>
+
+                            <select id="customerSelect" required>
+
+                                <option value="">
+                                    Select Customer
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Date -->
+
+                        <div class="form-group">
+
+                            <label for="attendanceDate">
+                                Attendance Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="attendanceDate"
+                                required>
+
+                        </div>
+
+
+                        <!-- Status -->
+
+                        <div class="form-group">
+
+                            <label for="attendanceStatus">
+                                Attendance Status
+                            </label>
+
+                            <select id="attendanceStatus" required>
+
+                                <option value="">
+                                    Select Status
+                                </option>
+
+                                <option value="Present">
+                                    Present
+                                </option>
+
+                                <option value="Absent">
+                                    Absent
+                                </option>
+
+                                <option value="Late">
+                                    Late
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Check In -->
+
+                        <div class="form-group">
+
+                            <label for="checkInTime">
+                                Check-in Time
+                            </label>
+
+                            <input
+                                type="time"
+                                id="checkInTime">
+
+                        </div>
+
+
+                        <!-- Check Out -->
+
+                        <div class="form-group">
+
+                            <label for="checkOutTime">
+                                Check-out Time
+                            </label>
+
+                            <input
+                                type="time"
+                                id="checkOutTime">
+
+                        </div>
+
+
+                        <!-- Trainer Notes -->
+
+                        <div class="form-group full-width">
+
+                            <label for="attendanceNotes">
+                                Trainer Notes
+                            </label>
+
+                            <textarea
+                                id="attendanceNotes"
+                                rows="4"
+                                placeholder="Add attendance notes..."></textarea>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Form Buttons -->
+
+                    <div class="attendance-form-actions">
+
+                        <button
+                            type="button"
+                            class="attendance-cancel-btn"
+                            id="cancelAttendance">
+
+                            Cancel
+
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="attendance-save-btn"
+                            id="saveAttendance">
+
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            Save Attendance
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- =========================
+                 ATTENDANCE TABLE
+            ========================== -->
+
+            <div class="attendance-table-card">
+
+                <div class="table-card-header">
+
+                    <div>
+                        <h2>Attendance Records</h2>
+
+                        <p>
+                            View attendance history of your customers.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table class="attendance-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Customer</th>
+
+                                <th>Date</th>
+
+                                <th>Check-in</th>
+
+                                <th>Check-out</th>
+
+                                <th>Status</th>
+
+                                <th>Notes</th>
+
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="attendanceTableBody">
+
+                            <!-- Attendance records will be added by JavaScript -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         REUSABLE TRAINER MODAL
+    ========================== -->
+
+    <div id="trainer-modal-container"></div>
+
+
+    <!-- =========================
+         COMPONENT JS
+    ========================== -->
+
+    <script src="../../../components/trainer-navbar/trainer-navbar.js"></script>
+
+    <script src="../../../components/trainer.sidebar/trainer.sidebar.js"></script>
+
+
+    <!-- Attendance JS -->
+
+    <script src="attendance.js"></script>
+
+</body>
+
+</html>

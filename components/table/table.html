@@ -1,384 +1,230 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Dashboard Table</title>
 
     <!-- Font Awesome -->
     <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
 
     <!-- Table CSS -->
-    <link rel="stylesheet" href="table.css">
+    <link rel="stylesheet" href="table.css" />
+  </head>
 
-</head>
-
-
-<body>
-
-
+  <body>
     <!-- =========================
          DASHBOARD TABLE
     ========================== -->
 
     <div class="dashboard-table">
+      <!-- Table Header -->
 
+      <div class="table-header">
+        <div>
+          <h3>Recent Members</h3>
 
-        <!-- Table Header -->
-
-        <div class="table-header">
-
-            <div>
-
-                <h3>Recent Members</h3>
-
-                <p>Latest registered members</p>
-
-            </div>
-
-
-            <button class="table-view-btn">
-                View All
-            </button>
-
+          <p>Latest registered members</p>
         </div>
 
+        <button class="table-view-btn">View All</button>
+      </div>
 
-        <!-- Table Wrapper -->
+      <!-- Table Wrapper -->
 
-        <div class="table-wrapper">
+      <div class="table-wrapper">
+        <table>
+          <!-- Table Head -->
 
-            <table>
+          <thead>
+            <tr>
+              <th>ID</th>
 
+              <th>Member</th>
 
-                <!-- Table Head -->
+              <th>Plan</th>
 
-                <thead>
+              <th>Status</th>
 
-                    <tr>
+              <th>Join Date</th>
 
-                        <th>ID</th>
+              <th>Action</th>
+            </tr>
+          </thead>
 
-                        <th>Member</th>
+          <!-- Table Body -->
 
-                        <th>Plan</th>
+          <tbody>
+            <!-- Member 1 -->
 
-                        <th>Status</th>
+            <tr>
+              <td>#001</td>
 
-                        <th>Join Date</th>
+              <td>
+                <div class="member-info">
+                  <div class="member-avatar">
+                    <i class="fa-solid fa-user"></i>
+                  </div>
 
-                        <th>Action</th>
+                  <span>Ahmed Khan</span>
+                </div>
+              </td>
 
-                    </tr>
+              <td>Premium</td>
 
-                </thead>
+              <td>
+                <span class="table-status active"> Active </span>
+              </td>
 
+              <td>01 Sep 2026</td>
 
-                <!-- Table Body -->
+              <td>
+                <div class="table-actions">
+                  <button title="View">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
 
-                <tbody>
+                  <button title="Edit">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
 
+                  <button title="Delete">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
 
-                    <!-- Member 1 -->
+            <!-- Member 2 -->
 
-                    <tr>
+            <tr>
+              <td>#002</td>
 
-                        <td>#001</td>
+              <td>
+                <div class="member-info">
+                  <div class="member-avatar">
+                    <i class="fa-solid fa-user"></i>
+                  </div>
 
+                  <span>Husain</span>
+                </div>
+              </td>
 
-                        <td>
+              <td>Standard</td>
 
-                            <div class="member-info">
+              <td>
+                <span class="table-status active"> Active </span>
+              </td>
 
-                                <div class="member-avatar">
+              <td>30 Aug 2026</td>
 
-                                    <i class="fa-solid fa-user"></i>
+              <td>
+                <div class="table-actions">
+                  <button title="View">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
 
-                                </div>
+                  <button title="Edit">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
 
-                                <span>Ahmed Khan</span>
-
-                            </div>
-
-                        </td>
-
-
-                        <td>Premium</td>
-
-
-                        <td>
-
-                            <span class="table-status active">
-                                Active
-                            </span>
-
-                        </td>
-
-
-                        <td>01 Sep 2026</td>
-
-
-                        <td>
-
-                            <div class="table-actions">
-
-                                <button title="View">
-
-                                    <i class="fa-solid fa-eye"></i>
-
-                                </button>
-
-
-                                <button title="Edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-
-                                <button title="Delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </div>
-
-                        </td>
-
-                    </tr>
-
-
-                    <!-- Member 2 -->
-
-                    <tr>
-
-                        <td>#002</td>
-
-
-                        <td>
-
-                            <div class="member-info">
-
-                                <div class="member-avatar">
-
-                                    <i class="fa-solid fa-user"></i>
-
-                                </div>
-
-                                <span>Husain</span>
-
-                            </div>
-
-                        </td>
-
-
-                        <td>Standard</td>
-
-
-                        <td>
-
-                            <span class="table-status active">
-                                Active
-                            </span>
-
-                        </td>
-
-
-                        <td>30 Aug 2026</td>
-
-
-                        <td>
-
-                            <div class="table-actions">
-
-                                <button title="View">
-
-                                    <i class="fa-solid fa-eye"></i>
-
-                                </button>
-
-
-                                <button title="Edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-
-                                <button title="Delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </div>
-
-                        </td>
-
-                    </tr>
-
-
-                    <!-- Member 3 -->
-
-                    <tr>
-
-                        <td>#003</td>
-
-
-                        <td>
-
-                            <div class="member-info">
-
-                                <div class="member-avatar">
-
-                                    <i class="fa-solid fa-user"></i>
-
-                                </div>
-
-                                <span>Talha</span>
-
-                            </div>
-
-                        </td>
-
-
-                        <td>Basic</td>
-
-
-                        <td>
-
-                            <span class="table-status pending">
-                                Pending
-                            </span>
-
-                        </td>
-
-
-                        <td>29 Aug 2026</td>
-
-
-                        <td>
-
-                            <div class="table-actions">
-
-                                <button title="View">
-
-                                    <i class="fa-solid fa-eye"></i>
-
-                                </button>
-
-
-                                <button title="Edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-
-                                <button title="Delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </div>
-
-                        </td>
-
-                    </tr>
-
-
-                    <!-- Member 4 -->
-
-                    <tr>
-
-                        <td>#004</td>
-
-
-                        <td>
-
-                            <div class="member-info">
-
-                                <div class="member-avatar">
-
-                                    <i class="fa-solid fa-user"></i>
-
-                                </div>
-
-                                <span>Saad</span>
-
-                            </div>
-
-                        </td>
-
-
-                        <td>Premium</td>
-
-
-                        <td>
-
-                            <span class="table-status expired">
-                                Expired
-                            </span>
-
-                        </td>
-
-
-                        <td>25 Aug 2026</td>
-
-
-                        <td>
-
-                            <div class="table-actions">
-
-                                <button title="View">
-
-                                    <i class="fa-solid fa-eye"></i>
-
-                                </button>
-
-
-                                <button title="Edit">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </button>
-
-
-                                <button title="Delete">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </button>
-
-                            </div>
-
-                        </td>
-
-                    </tr>
-
-
-                </tbody>
-
-            </table>
-
-        </div>
-
+                  <button title="Delete">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Member 3 -->
+
+            <tr>
+              <td>#003</td>
+
+              <td>
+                <div class="member-info">
+                  <div class="member-avatar">
+                    <i class="fa-solid fa-user"></i>
+                  </div>
+
+                  <span>Talha</span>
+                </div>
+              </td>
+
+              <td>Basic</td>
+
+              <td>
+                <span class="table-status pending"> Pending </span>
+              </td>
+
+              <td>29 Aug 2026</td>
+
+              <td>
+                <div class="table-actions">
+                  <button title="View">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+
+                  <button title="Edit">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+
+                  <button title="Delete">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Member 4 -->
+
+            <tr>
+              <td>#004</td>
+
+              <td>
+                <div class="member-info">
+                  <div class="member-avatar">
+                    <i class="fa-solid fa-user"></i>
+                  </div>
+
+                  <span>Saad</span>
+                </div>
+              </td>
+
+              <td>Premium</td>
+
+              <td>
+                <span class="table-status expired"> Expired </span>
+              </td>
+
+              <td>25 Aug 2026</td>
+
+              <td>
+                <div class="table-actions">
+                  <button title="View">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+
+                  <button title="Edit">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+
+                  <button title="Delete">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-
 
     <!-- Table JavaScript -->
     <script src="table.js"></script>
-
-
-</body>
-
+  </body>
 </html>
