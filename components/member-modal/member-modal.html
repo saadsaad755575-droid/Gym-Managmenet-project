@@ -1,0 +1,255 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Member Modal</title>
+
+
+    <!-- ========================================
+         FONT AWESOME
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- ========================================
+         MEMBER MODAL CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="member-modal.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- ========================================
+         MEMBER MODAL OVERLAY
+    ========================================= -->
+
+    <div
+        class="member-modal-overlay"
+        id="memberModal"
+    >
+
+        <!-- ========================================
+             MEMBER MODAL
+        ========================================= -->
+
+        <div class="member-modal">
+
+
+            <!-- ====================================
+                 MODAL HEADER
+            ==================================== -->
+
+            <div class="member-modal-header">
+
+                <div class="member-modal-title">
+
+                    <div class="member-modal-icon">
+                        <i class="fa-solid fa-dumbbell"></i>
+                    </div>
+
+                    <div>
+
+                        <h2 id="memberModalTitle">
+                            Member Details
+                        </h2>
+
+                        <p>
+                            View your information
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CLOSE BUTTON -->
+
+                <button
+                    type="button"
+                    class="member-modal-close"
+                    id="memberModalClose"
+                    aria-label="Close Modal"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <!-- ====================================
+                 MODAL BODY
+            ==================================== -->
+
+            <div class="member-modal-body">
+
+
+                <!-- ====================================
+                     MEMBER PROFILE
+                ==================================== -->
+
+                <div class="member-modal-profile">
+
+                    <div class="member-modal-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+
+                    <div class="member-modal-profile-info">
+
+                        <h3 id="modalMemberName">
+                            Member Name
+                        </h3>
+
+                        <span id="modalMemberId">
+                            Member ID
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ====================================
+                     MEMBER DETAILS
+                ==================================== -->
+
+                <div class="member-modal-details">
+
+
+                    <!-- TRAINER -->
+
+                    <div class="member-detail-item">
+
+                        <span>
+                            <i class="fa-solid fa-user-tie"></i>
+                            Trainer
+                        </span>
+
+                        <strong id="modalTrainerName">
+                            Not Assigned
+                        </strong>
+
+                    </div>
+
+
+                    <!-- FITNESS GOAL -->
+
+                    <div class="member-detail-item">
+
+                        <span>
+                            <i class="fa-solid fa-bullseye"></i>
+                            Fitness Goal
+                        </span>
+
+                        <strong id="modalFitnessGoal">
+                            Not Set
+                        </strong>
+
+                    </div>
+
+
+                    <!-- MEMBERSHIP -->
+
+                    <div class="member-detail-item">
+
+                        <span>
+                            <i class="fa-solid fa-id-card"></i>
+                            Membership
+                        </span>
+
+                        <strong id="modalMembership">
+                            Not Available
+                        </strong>
+
+                    </div>
+
+
+                    <!-- ATTENDANCE -->
+
+                    <div class="member-detail-item">
+
+                        <span>
+                            <i class="fa-solid fa-calendar-check"></i>
+                            Attendance
+                        </span>
+
+                        <strong id="modalAttendance">
+                            0%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ====================================
+                 MODAL FOOTER
+            ==================================== -->
+
+            <div class="member-modal-footer">
+
+
+                <!-- CANCEL / CLOSE -->
+
+                <button
+                    type="button"
+                    class="member-modal-button secondary"
+                    id="memberModalCancel"
+                >
+                    Close
+                </button>
+
+
+                <!-- DONE -->
+
+                <button
+                    type="button"
+                    class="member-modal-button primary"
+                    id="memberModalSave"
+                >
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Done
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================
+         MEMBER MODAL JAVASCRIPT
+    ========================================= -->
+
+    <script src="member-modal.js"></script>
+
+</body>
+
+</html>
+```

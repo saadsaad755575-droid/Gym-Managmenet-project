@@ -1,0 +1,440 @@
+/* ========================================
+   MEMBER SIDEBAR
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   BODY
+======================================== */
+
+body {
+    background: #0d0f10;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+}
+
+
+/* ========================================
+   MEMBER SIDEBAR
+======================================== */
+
+.member-sidebar {
+    width: 250px;
+    height: 100vh;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #111315;
+    border-right: 1px solid rgba(245, 185, 0, 0.18);
+
+    padding: 20px 14px;
+
+    overflow-y: auto;
+
+    z-index: 1000;
+}
+
+
+/* ========================================
+   SIDEBAR HEADER
+======================================== */
+
+.member-sidebar-header {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 8px 8px 22px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+/* ========================================
+   LOGO
+======================================== */
+
+.member-logo {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f5b900;
+    color: #111315;
+
+    border-radius: 12px;
+
+    font-size: 21px;
+}
+
+
+/* ========================================
+   BRAND
+======================================== */
+
+.member-brand {
+    display: flex;
+    flex-direction: column;
+}
+
+.member-brand h2 {
+    font-size: 20px;
+    font-weight: 800;
+
+    color: #f5b900;
+
+    letter-spacing: 1px;
+}
+
+.member-brand span {
+    margin-top: 2px;
+
+    font-size: 9px;
+    font-weight: 600;
+
+    color: #8f9397;
+
+    letter-spacing: 1.2px;
+}
+
+
+/* ========================================
+   MEMBER PROFILE
+======================================== */
+
+.member-sidebar-profile {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 20px 8px;
+}
+
+
+/* ========================================
+   PROFILE IMAGE
+======================================== */
+
+.member-profile-image {
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #1c1f21;
+    border: 1px solid rgba(245, 185, 0, 0.35);
+
+    color: #f5b900;
+
+    font-size: 18px;
+}
+
+
+/* ========================================
+   PROFILE INFORMATION
+======================================== */
+
+.member-profile-info {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.member-profile-info h3 {
+    max-width: 145px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    color: #ffffff;
+}
+
+.member-profile-info span {
+    margin-top: 4px;
+
+    font-size: 11px;
+
+    color: #85898d;
+}
+
+
+/* ========================================
+   SIDEBAR MENU
+======================================== */
+
+.member-sidebar-menu {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+
+    flex: 1;
+}
+
+
+/* ========================================
+   MENU ITEM
+======================================== */
+
+.member-menu-item {
+    min-height: 45px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 0 13px;
+
+    color: #a8abad;
+
+    text-decoration: none;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+/* ========================================
+   MENU ICON
+======================================== */
+
+.member-menu-item i {
+    width: 20px;
+
+    text-align: center;
+
+    font-size: 16px;
+
+    color: #85898d;
+
+    transition: color 0.25s ease;
+}
+
+
+/* ========================================
+   HOVER
+======================================== */
+
+.member-menu-item:hover {
+    background: rgba(245, 185, 0, 0.09);
+
+    color: #ffffff;
+
+    transform: translateX(3px);
+}
+
+.member-menu-item:hover i {
+    color: #f5b900;
+}
+
+
+/* ========================================
+   ACTIVE MENU
+======================================== */
+
+.member-menu-item.active {
+    background: #f5b900;
+
+    color: #111315;
+
+    box-shadow: 0 5px 18px rgba(245, 185, 0, 0.16);
+}
+
+.member-menu-item.active i {
+    color: #111315;
+}
+
+
+/* ========================================
+   SIDEBAR FOOTER
+======================================== */
+
+.member-sidebar-footer {
+    padding-top: 14px;
+
+    margin-top: 12px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+/* ========================================
+   LOGOUT
+======================================== */
+
+.logout-item {
+    color: #a8abad;
+}
+
+.logout-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+
+    color: #ffffff;
+}
+
+.logout-item:hover i {
+    color: #f5b900;
+}
+
+
+/* ========================================
+   SCROLLBAR
+======================================== */
+
+.member-sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.member-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.member-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(245, 185, 0, 0.35);
+
+    border-radius: 10px;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 1200px) {
+
+    .member-sidebar {
+        width: 230px;
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .member-sidebar {
+        width: 220px;
+    }
+
+    .member-menu-item {
+        font-size: 12px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .member-sidebar {
+        width: 75px;
+
+        padding: 18px 10px;
+    }
+
+
+    .member-brand,
+    .member-profile-info,
+    .member-menu-item span {
+        display: none;
+    }
+
+
+    .member-sidebar-header {
+        justify-content: center;
+
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+
+    .member-sidebar-profile {
+        justify-content: center;
+
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+
+    .member-menu-item {
+        justify-content: center;
+
+        padding: 0;
+    }
+
+
+    .member-menu-item i {
+        font-size: 18px;
+    }
+
+
+    .member-sidebar-footer {
+        padding-top: 10px;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .member-sidebar {
+        width: 65px;
+
+        padding: 15px 8px;
+    }
+
+
+    .member-logo {
+        width: 40px;
+        height: 40px;
+
+        font-size: 18px;
+    }
+
+
+    .member-profile-image {
+        width: 40px;
+        height: 40px;
+
+        font-size: 16px;
+    }
+
+
+    .member-menu-item {
+        min-height: 43px;
+    }
+
+}

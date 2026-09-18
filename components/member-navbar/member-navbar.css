@@ -1,0 +1,472 @@
+/* ========================================
+   RESET
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   BODY
+======================================== */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0d0f10;
+}
+
+
+/* ========================================
+   MEMBER NAVBAR
+======================================== */
+
+.member-navbar {
+    width: calc(100% - 250px);
+    height: 80px;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    background: #111315;
+
+    border-bottom: 1px solid rgba(245, 185, 0, 0.25);
+
+    z-index: 900;
+}
+
+
+/* ========================================
+   LEFT SIDE
+======================================== */
+
+.member-navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+
+/* ========================================
+   MOBILE MENU BUTTON
+======================================== */
+
+.member-menu-toggle {
+    width: 42px;
+    height: 42px;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(245, 185, 0, 0.35);
+    border-radius: 8px;
+
+    background: #191c1f;
+    color: #f5b900;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.member-menu-toggle:hover {
+    background: #f5b900;
+    color: #111315;
+}
+
+
+/* ========================================
+   NAVBAR TITLE
+======================================== */
+
+.member-navbar-title h1 {
+    color: #ffffff;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    margin-bottom: 4px;
+}
+
+.member-navbar-title p {
+    color: #8f9499;
+
+    font-size: 13px;
+}
+
+
+/* ========================================
+   RIGHT SIDE
+======================================== */
+
+.member-navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+/* ========================================
+   SEARCH
+======================================== */
+
+.member-navbar-search {
+    width: 230px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 0 14px;
+
+    background: #191c1f;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 8px;
+
+    transition: 0.3s ease;
+}
+
+.member-navbar-search:focus-within {
+    border-color: rgba(245, 185, 0, 0.55);
+}
+
+.member-navbar-search i {
+    color: #777d82;
+    font-size: 14px;
+}
+
+.member-navbar-search input {
+    width: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-size: 14px;
+}
+
+.member-navbar-search input::placeholder {
+    color: #777d82;
+}
+
+
+/* ========================================
+   NAVBAR ICON BUTTON
+======================================== */
+
+.member-navbar-icon {
+    width: 42px;
+    height: 42px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+
+    background: #191c1f;
+
+    color: #d6d9dc;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.member-navbar-icon:hover {
+    color: #f5b900;
+    border-color: rgba(245, 185, 0, 0.45);
+}
+
+
+/* ========================================
+   NOTIFICATION BADGE
+======================================== */
+
+.member-notification-badge {
+    position: absolute;
+
+    top: -5px;
+    right: -5px;
+
+    min-width: 18px;
+    height: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 4px;
+
+    border-radius: 50%;
+
+    background: #f5b900;
+    color: #111315;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    border: 2px solid #111315;
+}
+
+
+/* ========================================
+   MEMBER PROFILE
+======================================== */
+
+.member-navbar-profile {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 5px 8px 5px 5px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.member-navbar-profile:hover {
+    background: #191c1f;
+}
+
+
+/* ========================================
+   MEMBER AVATAR
+======================================== */
+
+.member-navbar-avatar {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(245, 185, 0, 0.12);
+
+    border: 1px solid rgba(245, 185, 0, 0.35);
+
+    color: #f5b900;
+
+    font-size: 17px;
+}
+
+
+/* ========================================
+   MEMBER USER INFO
+======================================== */
+
+.member-navbar-user {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.member-navbar-user strong {
+    max-width: 130px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.member-navbar-user span {
+    color: #7f858a;
+
+    font-size: 11px;
+}
+
+
+/* ========================================
+   PROFILE ARROW
+======================================== */
+
+.member-profile-arrow {
+    margin-left: 3px;
+
+    color: #777d82;
+
+    font-size: 11px;
+
+    transition: 0.3s ease;
+}
+
+.member-navbar-profile:hover .member-profile-arrow {
+    color: #f5b900;
+}
+
+
+/* ========================================
+   SCROLLBAR
+======================================== */
+
+.member-navbar-search input::-webkit-scrollbar {
+    width: 5px;
+}
+
+.member-navbar-search input::-webkit-scrollbar-thumb {
+    background: #f5b900;
+    border-radius: 10px;
+}
+
+
+/* ========================================
+   RESPONSIVE - 1200px
+======================================== */
+
+@media (max-width: 1200px) {
+
+    .member-navbar {
+        padding: 0 22px;
+    }
+
+    .member-navbar-search {
+        width: 190px;
+    }
+
+}
+
+
+/* ========================================
+   RESPONSIVE - 900px
+======================================== */
+
+@media (max-width: 900px) {
+
+    .member-navbar {
+        width: 100%;
+    }
+
+    .member-menu-toggle {
+        display: flex;
+    }
+
+    .member-navbar-search {
+        width: 180px;
+    }
+
+}
+
+
+/* ========================================
+   RESPONSIVE - 700px
+======================================== */
+
+@media (max-width: 700px) {
+
+    .member-navbar {
+        height: 70px;
+
+        padding: 0 15px;
+    }
+
+    .member-navbar-title h1 {
+        font-size: 18px;
+    }
+
+    .member-navbar-title p {
+        display: none;
+    }
+
+    .member-navbar-right {
+        gap: 10px;
+    }
+
+    .member-navbar-search {
+        width: 42px;
+
+        padding: 0;
+
+        justify-content: center;
+    }
+
+    .member-navbar-search input {
+        display: none;
+    }
+
+    .member-navbar-search i {
+        font-size: 15px;
+    }
+
+    .member-navbar-user {
+        display: none;
+    }
+
+    .member-profile-arrow {
+        display: none;
+    }
+
+}
+
+
+/* ========================================
+   RESPONSIVE - 450px
+======================================== */
+
+@media (max-width: 450px) {
+
+    .member-navbar {
+        padding: 0 10px;
+    }
+
+    .member-navbar-left {
+        gap: 10px;
+    }
+
+    .member-navbar-title h1 {
+        font-size: 16px;
+    }
+
+    .member-menu-toggle,
+    .member-navbar-icon,
+    .member-navbar-search {
+        width: 38px;
+        height: 38px;
+    }
+
+    .member-navbar-right {
+        gap: 7px;
+    }
+
+    .member-navbar-avatar {
+        width: 38px;
+        height: 38px;
+    }
+
+}

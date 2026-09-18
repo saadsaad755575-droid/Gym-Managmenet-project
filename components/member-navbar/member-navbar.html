@@ -1,0 +1,166 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Member Navbar</title>
+
+
+    <!-- ========================================
+         FONT AWESOME
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- ========================================
+         MEMBER NAVBAR CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="member-navbar.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================================
+         MEMBER NAVBAR
+    ========================================= -->
+
+    <header class="member-navbar">
+
+
+        <!-- ====================================
+             LEFT SIDE
+        ===================================== -->
+
+        <div class="member-navbar-left">
+
+            <!-- MOBILE MENU BUTTON -->
+
+            <button
+                type="button" class="member-menu-toggle"
+                id="memberMenuToggle"aria-label="Open Menu">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <!-- PAGE TITLE -->
+
+            <div class="member-navbar-title">
+
+                <h1>Member Dashboard</h1>
+
+                <p>Welcome back!</p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ====================================
+             RIGHT SIDE
+        ===================================== -->
+
+        <div class="member-navbar-right">
+
+
+            <!-- SEARCH -->
+
+            <div class="member-navbar-search">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text" id="memberSearch"
+                    placeholder="Search..."autocomplete="off">
+
+            </div>
+
+
+
+            <!-- NOTIFICATION -->
+
+            <button
+                type="button"class="member-navbar-icon"
+                id="memberNotificationBtn"aria-label="Notifications">
+
+                <i class="fa-solid fa-bell fa-shake"></i>
+
+                <span
+                    class="member-notification-badge"
+                    id="memberNotificationBadge">
+                    3
+                </span>
+
+            </button>
+
+
+
+            <!-- MEMBER PROFILE -->
+
+            <div
+                class="member-navbar-profile"
+                id="memberNavbarProfile">
+
+                <div class="member-navbar-avatar">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+
+                <div class="member-navbar-user">
+
+                    <strong id="navbarMemberName">
+                        Member Name
+                    </strong>
+
+                    <span>
+                        Member
+                    </span>
+
+                </div>
+
+
+                <i class="fa-solid fa-chevron-down member-profile-arrow"></i>
+
+            </div>
+
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ========================================
+         MEMBER NAVBAR JAVASCRIPT
+    ========================================= -->
+
+    <script src="member-navbar.js"></script>
+
+
+</body>
+
+</html>

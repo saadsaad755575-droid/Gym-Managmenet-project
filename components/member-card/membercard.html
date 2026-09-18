@@ -1,0 +1,229 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Member Cards</title>
+
+    <!-- ========================================
+         FONT AWESOME
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- ========================================
+         MEMBER CARD CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="member-card.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- ========================================
+         MEMBER CARDS
+    ========================================= -->
+
+    <section class="member-cards">
+
+        <!-- ====================================
+             MEMBERSHIP STATUS
+        ===================================== -->
+
+        <div class="member-card membership-card">
+
+            <div class="member-card-icon">
+                <i class="fa-solid fa-id-card fa-beat"></i>
+            </div>
+
+            <div class="member-card-content">
+
+                <span class="member-card-label">
+                    Membership Status
+                </span>
+
+                <h2 id="membershipStatus">
+                    Active
+                </h2>
+
+                <small id="membershipType">
+                    Premium Membership
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- ====================================
+             MEMBERSHIP EXPIRY
+        ===================================== -->
+
+        <div class="member-card expiry-card">
+
+            <div class="member-card-icon">
+                <i class="fa-solid fa-calendar-days fa-fade"></i>
+            </div>
+
+            <div class="member-card-content">
+
+                <span class="member-card-label">
+                    Membership Expiry
+                </span>
+
+                <h2 id="membershipExpiry">
+                    30 Days
+                </h2>
+
+                <small>
+                    Remaining
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- ====================================
+             ASSIGNED TRAINER
+        ===================================== -->
+
+        <div class="member-card trainer-card">
+
+            <div class="member-card-icon">
+                <i class="fa-solid fa-user-tie fa-beat"></i>
+            </div>
+
+            <div class="member-card-content">
+
+                <span class="member-card-label">
+                    Assigned Trainer
+                </span>
+
+                <h2 id="assignedTrainer">
+                    Ahmed Khan
+                </h2>
+
+                <small id="trainerSpecialization">
+                    Fitness Trainer
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- ====================================
+             ATTENDANCE
+        ===================================== -->
+
+        <div class="member-card attendance-card">
+
+            <div class="member-card-icon">
+                <i class="fa-solid fa-calendar-check fa-beat"></i>
+            </div>
+
+            <div class="member-card-content">
+
+                <span class="member-card-label">
+                    Attendance
+                </span>
+
+                <h2 id="attendancePercentage">
+                    85%
+                </h2>
+
+                <small>
+                    This Month
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- ====================================
+             FEES
+        ===================================== -->
+
+        <div class="member-card fees-card">
+
+            <div class="member-card-icon">
+                <i class="fa-solid fa-money-bill-wave"></i>
+            </div>
+
+            <div class="member-card-content">
+
+                <span class="member-card-label">
+                    Fees Status
+                </span>
+
+                <h2 id="feesStatus">
+                    Paid
+                </h2>
+
+                <small id="feesAmount">
+                    Rs. 5,000
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- ====================================
+             PROGRESS
+        ===================================== -->
+
+        <div class="member-card progress-card">
+
+            <div class="member-card-icon">
+                <i class="fa-solid fa-chart-line fa-fade"></i>
+            </div>
+
+            <div class="member-card-content">
+
+                <span class="member-card-label">
+                    My Progress
+                </span>
+
+                <h2 id="progressStatus">
+                    72%
+                </h2>
+
+                <small>
+                    Goal Progress
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================
+         MEMBER CARD JAVASCRIPT
+    ========================================= -->
+
+    <script src="member-card.js"></script>
+
+</body>
+
+</html>

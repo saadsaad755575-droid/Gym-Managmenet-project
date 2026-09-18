@@ -1,0 +1,222 @@
+
+
+/* ========================================
+   MEMBER CARD CSS
+======================================== */
+
+/* ========================================
+   RESET
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   BODY
+======================================== */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0d0f10;
+}
+
+
+/* ========================================
+   MEMBER CARDS CONTAINER
+======================================== */
+
+.member-cards {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+/* ========================================
+   MEMBER CARD
+======================================== */
+
+.member-card {
+    min-height: 145px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 22px;
+
+    background: #111315;
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    border-radius: 12px;
+
+    transition: 0.3s ease;
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   CARD HOVER
+======================================== */
+
+.member-card:hover {
+    transform: translateY(-3px);
+
+    border-color: rgba(245, 185, 0, 0.45);
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ========================================
+   CARD ICON
+======================================== */
+
+.member-card-icon {
+    width: 58px;
+    height: 58px;
+
+    min-width: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: rgba(245, 185, 0, 0.10);
+
+    border: 1px solid rgba(245, 185, 0, 0.25);
+
+    color: #f5b900;
+
+    font-size: 23px;
+}
+
+
+/* ========================================
+   CARD CONTENT
+======================================== */
+
+.member-card-content {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+/* ========================================
+   CARD LABEL
+======================================== */
+
+.member-card-label {
+    color: #8b9196;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* ========================================
+   CARD VALUE
+======================================== */
+
+.member-card-content h2 {
+    color: #ffffff;
+
+    font-size: 21px;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* ========================================
+   CARD SMALL TEXT
+======================================== */
+
+.member-card-content small {
+    color: #777d82;
+
+    font-size: 12px;
+}
+
+
+/* ========================================
+   MEMBERSHIP CARD
+======================================== */
+
+.membership-card .member-card-icon {
+    color: #f5b900;
+}
+
+
+/* ========================================
+   EXPIRY CARD
+======================================== */
+
+.expiry-card .member-card-icon {
+    color: #f5b900;
+}
+
+
+/* ========================================
+   TRAINER CARD
+======================================== */
+
+.trainer-card .member-card-icon {
+    color: #f5b900;
+}
+
+
+/* ========================================
+   ATTENDANCE CARD
+======================================== */
+
+.attendance-card .member-card-icon {
+    color: #f5b900;
+}
+
+
+/* ========================================
+   FEES CARD
+======================================== */
+
+.fees-card .member-card-icon {
+    color: #f5b900;
+}
+
+
+/* ========================================
+   PROGRESS CARD
+======================================== */
+
+.progress-card .member-card-icon {
+    color: #f5b900;
+}
+
+
+/* ========================================
+   RESPONS
