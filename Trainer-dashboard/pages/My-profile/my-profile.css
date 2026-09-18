@@ -1,0 +1,446 @@
+/* =========================
+   MY PROFILE CSS
+========================= */
+
+
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0d0f10;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.trainer-main {
+    margin-left: 250px;
+    min-height: 100vh;
+}
+
+.trainer-content {
+    padding: 30px;
+}
+
+
+/* =========================
+   PAGE HEADER
+========================= */
+
+.profile-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.profile-page-header h1 {
+    font-size: 28px;
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-page-header h1 i {
+    color: #f5b900;
+}
+
+.profile-page-header p {
+    margin-top: 7px;
+    color: #777b7e;
+    font-size: 14px;
+}
+
+
+/* =========================
+   PROFILE CARD
+========================= */
+
+.my-profile-card {
+    background: #111315;
+
+    border: 1px solid #25282a;
+
+    border-radius: 14px;
+
+    padding: 30px;
+
+    max-width: 1100px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================
+   PROFILE HEADER
+========================= */
+
+.profile-header {
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    padding-bottom: 25px;
+
+    border-bottom: 1px solid #25282a;
+}
+
+.profile-avatar {
+    width: 85px;
+    height: 85px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #1b1d1f;
+
+    border: 2px solid #f5b900;
+
+    color: #f5b900;
+
+    font-size: 34px;
+}
+
+.profile-title h2 {
+    font-size: 24px;
+
+    color: #ffffff;
+
+    margin-bottom: 6px;
+}
+
+.profile-title p {
+    color: #f5b900;
+
+    font-size: 15px;
+
+    margin-bottom: 6px;
+}
+
+.profile-title span {
+    color: #777b7e;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   MESSAGE / ERROR
+========================= */
+
+.profile-message {
+    min-height: 20px;
+
+    margin: 18px 0 5px;
+
+    font-size: 13px;
+
+    color: #f5b900;
+}
+
+
+/* =========================
+   PROFILE FORM
+========================= */
+
+.profile-form {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 22px;
+
+    margin-top: 20px;
+}
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+
+/* =========================
+   LABEL
+========================= */
+
+.form-group label {
+    color: #d8d8d8;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.form-group label i {
+    color: #f5b900;
+
+    width: 16px;
+}
+
+
+/* =========================
+   INPUT + SELECT
+========================= */
+
+.form-group input,
+.form-group select {
+    width: 100%;
+
+    height: 45px;
+
+    padding: 0 14px;
+
+    background: #0d0f10;
+
+    border: 1px solid #2b2e30;
+
+    border-radius: 8px;
+
+    color: #ffffff;
+
+    outline: none;
+
+    font-size: 13px;
+
+    transition: 0.3s;
+}
+
+.form-group input::placeholder {
+    color: #666a6d;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #f5b900;
+
+    box-shadow:
+        0 0 0 2px rgba(245, 185, 0, 0.08);
+}
+
+.form-group select {
+    cursor: pointer;
+}
+
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.profile-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 30px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #25282a;
+}
+
+.profile-btn {
+    min-width: 140px;
+
+    height: 43px;
+
+    padding: 0 18px;
+
+    border-radius: 8px;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    transition: 0.3s;
+}
+
+
+/* =========================
+   EDIT BUTTON
+========================= */
+
+.edit-btn {
+    background: #25282a;
+
+    color: #ffffff;
+
+    border: 1px solid #3a3d3f;
+}
+
+.edit-btn:hover {
+    border-color: #f5b900;
+
+    color: #f5b900;
+}
+
+
+/* =========================
+   SAVE BUTTON
+========================= */
+
+.save-btn {
+    background: #f5b900;
+
+    color: #111315;
+}
+
+.save-btn:hover {
+    background: #ffd15c;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   DELETE BUTTON
+========================= */
+
+.delete-btn {
+    background: transparent;
+
+    color: #e6e6e6;
+
+    border: 1px solid #3a3d3f;
+}
+
+.delete-btn:hover {
+    border-color: #d9534f;
+
+    color: #d9534f;
+}
+
+
+/* =========================
+   DISABLED INPUTS
+========================= */
+
+.form-group input:disabled,
+.form-group select:disabled {
+    opacity: 0.65;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .trainer-main {
+        margin-left: 0;
+    }
+
+    .profile-form {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full-width {
+        grid-column: auto;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .trainer-content {
+        padding: 20px;
+    }
+
+    .my-profile-card {
+        padding: 20px;
+    }
+
+    .profile-header {
+        align-items: flex-start;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+    }
+
+    .profile-btn {
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .trainer-content {
+        padding: 15px;
+    }
+
+    .profile-page-header h1 {
+        font-size: 23px;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        align-items: center;
+
+        text-align: center;
+    }
+
+    .profile-avatar {
+        width: 75px;
+        height: 75px;
+
+        font-size: 28px;
+    }
+
+    .my-profile-card {
+        padding: 16px;
+    }
+
+}

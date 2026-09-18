@@ -1,0 +1,452 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile</title>
+
+
+    <!-- =========================
+         FONT AWESOME
+    ========================== -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- =========================
+         TRAINER NAVBAR CSS
+    ========================== -->
+
+    <link rel="stylesheet"
+        href="/components/trainer-navbar/trainer-navbar.css">
+
+
+    <!-- =========================
+         TRAINER SIDEBAR CSS
+    ========================== -->
+
+    <link rel="stylesheet"
+        href="/components/trainer.sidebar/trainer.sidebar.css">
+
+
+    <!-- =========================
+         MY PROFILE CSS
+    ========================== -->
+
+    <link rel="stylesheet"
+        href="my-profile.css">
+
+
+    <!-- =========================
+         EXISTING ANIMATION CSS
+    ========================== -->
+
+    <link rel="stylesheet"
+        href="/components/animations/animtion.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         REUSABLE TRAINER SIDEBAR
+    ========================== -->
+
+    <div id="trainer-sidebar"></div>
+
+
+
+    <!-- =========================
+         MAIN TRAINER AREA
+    ========================== -->
+
+    <main class="trainer-main">
+
+
+        <!-- =========================
+             REUSABLE TRAINER NAVBAR
+        ========================== -->
+
+        <div id="trainer-navbar"></div>
+
+
+
+        <!-- =========================
+             PAGE CONTENT
+        ========================== -->
+
+        <div class="trainer-content">
+
+
+            <!-- =========================
+                 PAGE HEADER
+            ========================== -->
+
+            <section class="profile-page-header">
+
+                <div>
+
+                    <h1>
+
+                        <i class="fa-solid fa-user"></i>
+
+                        My Profile
+
+                    </h1>
+
+                    <p>
+                        View and manage your trainer profile.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 PROFILE CARD
+            ========================== -->
+
+            <section class="my-profile-card">
+
+
+                <!-- =========================
+                     PROFILE HEADER
+                ========================== -->
+
+                <div class="profile-header">
+
+
+                    <div class="profile-avatar">
+
+                        <i class="fa-solid fa-user-tie"></i>
+
+                    </div>
+
+
+                    <div class="profile-title">
+
+                        <h2 id="profileName">
+                            Ahmed Khan
+                        </h2>
+
+                        <p id="profileType">
+                            Senior Fitness Trainer
+                        </p>
+
+                        <span id="profileId">
+                            Trainer ID: TRN-001
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================
+                     MESSAGE
+                     ERROR / SUCCESS
+                ========================== -->
+
+                <p
+                    id="profileMessage"
+                    class="profile-message">
+                </p>
+
+
+
+                <!-- =========================
+                     PROFILE FORM
+                ========================== -->
+
+                <div class="profile-form">
+
+
+                    <!-- NAME -->
+
+                    <div class="form-group">
+
+                        <label for="trainerName">
+
+                            <i class="fa-solid fa-user"></i>
+
+                            Full Name
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="trainerName"
+                            disabled>
+
+                    </div>
+
+
+
+                    <!-- TRAINER TYPE -->
+
+                    <div class="form-group">
+
+                        <label for="trainerType">
+
+                            <i class="fa-solid fa-id-badge"></i>
+
+                            Trainer Type
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="trainerType"
+                            disabled>
+
+                    </div>
+
+
+
+                    <!-- QUALIFICATION -->
+
+                    <div class="form-group">
+
+                        <label for="trainerQualification">
+
+                            <i class="fa-solid fa-graduation-cap"></i>
+
+                            Qualification
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="trainerQualification"
+                            disabled>
+
+                    </div>
+
+
+
+                    <!-- EXPERIENCE -->
+
+                    <div class="form-group">
+
+                        <label for="trainerExperience">
+
+                            <i class="fa-solid fa-briefcase"></i>
+
+                            Experience
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="trainerExperience"
+                            disabled>
+
+                    </div>
+
+
+
+                    <!-- TIMING -->
+
+                    <div class="form-group">
+
+                        <label for="trainerTiming">
+
+                            <i class="fa-solid fa-clock"></i>
+
+                            Working Hours
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="trainerTiming"
+                            disabled>
+
+                    </div>
+
+
+
+                    <!-- STATUS -->
+
+                    <div class="form-group">
+
+                        <label for="trainerStatus">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            Status
+
+                        </label>
+
+                        <select
+                            id="trainerStatus"
+                            disabled>
+
+                            <option value="">
+                                Select Status
+                            </option>
+
+                            <option value="Available">
+                                Available
+                            </option>
+
+                            <option value="Limited Slot">
+                                Limited Slot
+                            </option>
+
+                            <option value="Assigned / Busy">
+                                Assigned / Busy
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- SKILLS -->
+
+                    <div class="form-group full-width">
+
+                        <label for="trainerSkills">
+
+                            <i class="fa-solid fa-star"></i>
+
+                            Skills
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="trainerSkills"
+                            disabled>
+
+                    </div>
+
+
+
+                    <!-- SERVICES -->
+
+                    <div class="form-group full-width">
+
+                        <label for="trainerServices">
+
+                            <i class="fa-solid fa-list-check"></i>
+
+                            Services
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="trainerServices"
+                            disabled>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =========================
+                     ACTION BUTTONS
+                ========================== -->
+
+                <div class="profile-actions">
+
+
+                    <!-- EDIT -->
+
+                    <button
+                        type="button"
+                        id="editProfile"
+                        class="profile-btn edit-btn">
+
+                        <i class="fa-solid fa-pen"></i>
+
+                        Edit Profile
+
+                    </button>
+
+
+
+                    <!-- SAVE -->
+
+                    <button
+                        type="button"
+                        id="saveProfile"
+                        class="profile-btn save-btn">
+
+                        <i class="fa-solid fa-floppy-disk"></i>
+
+                        Save Changes
+
+                    </button>
+
+
+
+                    <!-- DELETE -->
+
+                    <button
+                        type="button"
+                        id="deleteProfile"
+                        class="profile-btn delete-btn">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                        Delete Profile
+
+                    </button>
+
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         TRAINER NAVBAR JS
+    ========================== -->
+
+    <script src="/components/trainer-navbar/trainer-navbar.js"></script>
+
+
+    <!-- =========================
+         TRAINER SIDEBAR JS
+    ========================== -->
+
+    <script src="/components/trainer.sidebar/trainer.sidebar.js"></script>
+
+
+    <!-- =========================
+         MY PROFILE JS
+    ========================== -->
+
+    <script src="my-profile.js"></script>
+
+
+</body>
+
+</html>

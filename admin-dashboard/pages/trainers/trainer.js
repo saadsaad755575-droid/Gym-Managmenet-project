@@ -85,8 +85,6 @@ async function loadComponents() {
 
             if (sidebarElement) {
 
-                // Fix logo/profile image paths
-
                 sidebarElement
                     .querySelectorAll("img")
                     .forEach(function (img) {
@@ -166,8 +164,6 @@ async function loadComponents() {
 
 
             if (navbarElement) {
-
-                // Fix admin profile image path
 
                 const profileImage =
                     navbarElement.querySelector("img");
@@ -386,8 +382,6 @@ function getSavedTrainers() {
     });
 
 
-    // Save initial #001 #002 #003
-
     saveTrainers(
         trainers
     );
@@ -497,7 +491,6 @@ function createTrainerRow(trainer) {
             ${trainer.id}
         </td>
 
-
         <td>
 
             <div class="trainer-info">
@@ -507,7 +500,6 @@ function createTrainerRow(trainer) {
                     <i class="fa-solid fa-user"></i>
 
                 </div>
-
 
                 <div>
 
@@ -525,31 +517,25 @@ function createTrainerRow(trainer) {
 
         </td>
 
-
         <td>
             ${trainer.qualification}
         </td>
-
 
         <td>
             ${trainer.experience}
         </td>
 
-
         <td>
             ${trainer.skills}
         </td>
-
 
         <td>
             ${trainer.services}
         </td>
 
-
         <td>
             ${trainer.timing}
         </td>
-
 
         <td>
 
@@ -560,7 +546,6 @@ function createTrainerRow(trainer) {
             </span>
 
         </td>
-
 
         <td>
 
@@ -943,10 +928,6 @@ function setupEditButtons() {
                 trainers[trainerIndex];
 
 
-            // =========================
-            // TRAINER NAME
-            // =========================
-
             const trainerName =
                 prompt(
                     "Enter Trainer Name:",
@@ -960,10 +941,6 @@ function setupEditButtons() {
 
             }
 
-
-            // =========================
-            // TRAINER TYPE
-            // =========================
 
             const trainerType =
                 prompt(
@@ -979,10 +956,6 @@ function setupEditButtons() {
             }
 
 
-            // =========================
-            // QUALIFICATION
-            // =========================
-
             const qualification =
                 prompt(
                     "Enter Qualification:",
@@ -996,10 +969,6 @@ function setupEditButtons() {
 
             }
 
-
-            // =========================
-            // EXPERIENCE
-            // =========================
 
             const experience =
                 prompt(
@@ -1015,10 +984,6 @@ function setupEditButtons() {
             }
 
 
-            // =========================
-            // SKILLS
-            // =========================
-
             const skills =
                 prompt(
                     "Enter Skills:",
@@ -1032,10 +997,6 @@ function setupEditButtons() {
 
             }
 
-
-            // =========================
-            // SERVICES
-            // =========================
 
             const services =
                 prompt(
@@ -1051,10 +1012,6 @@ function setupEditButtons() {
             }
 
 
-            // =========================
-            // AVAILABLE TIMING
-            // =========================
-
             const timing =
                 prompt(
                     "Enter Available Timing:",
@@ -1068,10 +1025,6 @@ function setupEditButtons() {
 
             }
 
-
-            // =========================
-            // STATUS
-            // =========================
 
             const status =
                 prompt(
@@ -1109,10 +1062,6 @@ function setupEditButtons() {
             }
 
 
-            // =========================
-            // UPDATE TRAINER
-            // =========================
-
             trainers[trainerIndex] = {
 
                 id:
@@ -1147,18 +1096,10 @@ function setupEditButtons() {
             };
 
 
-            // =========================
-            // SAVE
-            // =========================
-
             saveTrainers(
                 trainers
             );
 
-
-            // =========================
-            // REFRESH TABLE
-            // =========================
 
             renderTrainers(
                 trainers
@@ -1166,10 +1107,133 @@ function setupEditButtons() {
 
 
             alert(
-                trainer.name+"has been deleted"
+                trainer.name +
+                " has been updated successfully!"
             );
+
         }
     );
+
+}
+
+
+// ========================================
+// DELETE TRAINER
+// ========================================
+
+function setupDeleteButtons() {
+
+    const tableBody =
+        document.getElementById(
+            "trainerTableBody"
+        );
+
+
+    if (!tableBody) {
+
+        return;
+
+    }
+
+
+    tableBody.addEventListener(
+        "click",
+        function (event) {
+
+            const button =
+                event.target.closest(
+                    ".delete-btn"
+                );
+
+
+            if (!button) {
+
+                return;
+
+            }
+
+
+            const row =
+                button.closest("tr");
+
+
+            if (!row) {
+
+                return;
+
+            }
+
+
+            const trainerId =
+                row.dataset.trainerId;
+
+
+            const trainers =
+                getSavedTrainers();
+
+
+            const trainerIndex =
+                trainers.findIndex(
+                    function (item) {
+
+                        return (
+                            item.id === trainerId
+                        );
+
+                    }
+                );
+
+
+            if (trainerIndex === -1) {
+
+                return;
+
+            }
+
+
+            const trainer =
+                trainers[trainerIndex];
+
+
+            const confirmDelete =
+                confirm(
+                    "Are you sure you want to delete " +
+                    trainer.name +
+                    "?"
+                );
+
+
+            if (!confirmDelete) {
+
+                return;
+
+            }
+
+
+            trainers.splice(
+                trainerIndex,
+                1
+            );
+
+
+            saveTrainers(
+                trainers
+            );
+
+
+            renderTrainers(
+                trainers
+            );
+
+
+            alert(
+                trainer.name +
+                " has been deleted successfully!"
+            );
+
+        }
+    );
+
 }
 
 
@@ -1196,17 +1260,9 @@ function setupAddTrainerButton() {
         "click",
         function () {
 
-            // =========================
-            // GET SAVED TRAINERS
-            // =========================
-
             const trainers =
                 getSavedTrainers();
 
-
-            // =========================
-            // TRAINER NAME
-            // =========================
 
             const trainerName =
                 prompt(
@@ -1221,10 +1277,6 @@ function setupAddTrainerButton() {
             }
 
 
-            // =========================
-            // TRAINER TYPE
-            // =========================
-
             const trainerType =
                 prompt(
                     "Enter Trainer Type:"
@@ -1237,10 +1289,6 @@ function setupAddTrainerButton() {
 
             }
 
-
-            // =========================
-            // QUALIFICATION
-            // =========================
 
             const qualification =
                 prompt(
@@ -1255,10 +1303,6 @@ function setupAddTrainerButton() {
             }
 
 
-            // =========================
-            // EXPERIENCE
-            // =========================
-
             const experience =
                 prompt(
                     "Enter Experience:"
@@ -1271,10 +1315,6 @@ function setupAddTrainerButton() {
 
             }
 
-
-            // =========================
-            // SKILLS
-            // =========================
 
             const skills =
                 prompt(
@@ -1289,10 +1329,6 @@ function setupAddTrainerButton() {
             }
 
 
-            // =========================
-            // SERVICES
-            // =========================
-
             const services =
                 prompt(
                     "Enter Services:"
@@ -1306,10 +1342,6 @@ function setupAddTrainerButton() {
             }
 
 
-            // =========================
-            // AVAILABLE TIMING
-            // =========================
-
             const timing =
                 prompt(
                     "Enter Available Timing:"
@@ -1322,10 +1354,6 @@ function setupAddTrainerButton() {
 
             }
 
-
-            // =========================
-            // STATUS
-            // =========================
 
             const status =
                 prompt(
@@ -1367,19 +1395,11 @@ function setupAddTrainerButton() {
                     .trim();
 
 
-            // =========================
-            // GENERATE ID
-            // =========================
-
             const trainerId =
                 getNextTrainerId(
                     trainers
                 );
 
-
-            // =========================
-            // CREATE TRAINER OBJECT
-            // =========================
 
             const newTrainer = {
 
@@ -1413,36 +1433,20 @@ function setupAddTrainerButton() {
             };
 
 
-            // =========================
-            // ADD TO ARRAY
-            // =========================
-
             trainers.push(
                 newTrainer
             );
 
-
-            // =========================
-            // SAVE TO LOCAL STORAGE
-            // =========================
 
             saveTrainers(
                 trainers
             );
 
 
-            // =========================
-            // DISPLAY
-            // =========================
-
             renderTrainers(
                 trainers
             );
 
-
-            // =========================
-            // SUCCESS MESSAGE
-            // =========================
 
             alert(
                 trainerName +
@@ -1461,16 +1465,8 @@ function setupAddTrainerButton() {
 
 async function startTrainerPage() {
 
-    // =========================
-    // LOAD COMPONENTS
-    // =========================
-
     await loadComponents();
 
-
-    // =========================
-    // LOAD TRAINERS
-    // =========================
 
     const trainers =
         getSavedTrainers();
@@ -1480,10 +1476,6 @@ async function startTrainerPage() {
         trainers
     );
 
-
-    // =========================
-    // SEARCH
-    // =========================
 
     const searchInput =
         document.getElementById(
@@ -1501,10 +1493,6 @@ async function startTrainerPage() {
     }
 
 
-    // =========================
-    // STATUS FILTER
-    // =========================
-
     const statusFilter =
         document.getElementById(
             "statusFilter"
@@ -1520,10 +1508,6 @@ async function startTrainerPage() {
 
     }
 
-
-    // =========================
-    // BUTTONS
-    // =========================
 
     setupViewButtons();
 
@@ -1541,5 +1525,3 @@ async function startTrainerPage() {
 // ========================================
 
 startTrainerPage();
-
-

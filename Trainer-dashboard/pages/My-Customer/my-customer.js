@@ -16,8 +16,11 @@ const MEMBER_STORAGE_KEY = "gymMembers";
    CURRENT TRAINER
 ========================= */
 
-// Testing ke liye
-const CURRENT_TRAINER = "Ahmed Khan";
+function getCurrentTrainer(){
+    const savedTrainer=
+    localStorage.getItem("currentTrainer");
+    return savedTrainer || "Ahmed Khan"
+}
 
 
 /* =========================
@@ -175,22 +178,25 @@ function loadMyCustomers() {
         getSavedMembers();
 
 
-    const myCustomers =
-        allMembers.filter(
-            function (member) {
+      
 
-                return (
-                    String(member.trainer || "")
-                        .trim()
-                        .toLowerCase()
-                    ===
-                    CURRENT_TRAINER
-                        .trim()
-                        .toLowerCase()
-                );
+const CURRENT_TRAINER = getCurrentTrainer();
 
-            }
+const myCustomers = allMembers.filter(function (member) {
+
+        String(member.trainer || "").trim().toLowerCase()
+        ===
+        CURRENT_TRAINER.trim().toLowerCase()
+        return(
+            assignedTrainer === "ahmed Khan" ||
+            assignedTrainer === "usman ahmed"
         );
+
+});
+
+
+
+
 
 
     tableBody.innerHTML = "";

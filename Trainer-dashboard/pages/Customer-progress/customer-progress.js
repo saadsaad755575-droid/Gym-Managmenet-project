@@ -38,7 +38,7 @@ function loadComponent(elementId, filePath) {
 
 loadComponent(
     "trainer-sidebar",
-    "../../../components/trainer-sidebar/trainer-sidebar.html"
+    "../../../components/trainer.sidebar/trainer.sidebar.html"
 );
 
 loadComponent(

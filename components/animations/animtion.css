@@ -1,0 +1,487 @@
+/* =========================================
+   GYM MANAGEMENT SYSTEM
+   COMMON ANIMATIONS
+========================================= */
+
+
+/* =========================================
+   KEYFRAMES
+========================================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes slideRight {
+    from {
+        opacity: 0;
+        transform: translateX(-25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes slideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================
+   TRAINER SIDEBAR
+========================================= */
+
+.trainer-sidebar {
+    animation: slideRight 0.6s ease both;
+}
+
+
+.sidebar-logo {
+    animation: fadeDown 0.6s ease both;
+}
+
+
+.trainer-profile {
+    animation: fadeUp 0.6s ease 0.1s both;
+}
+
+
+.trainer-navigation {
+    animation: fadeUp 0.6s ease 0.2s both;
+}
+
+
+.trainer-navigation li {
+    transition: transform 0.2s ease;
+}
+
+
+.trainer-navigation li:hover {
+    transform: translateX(4px);
+}
+
+
+.sidebar-logout {
+    animation: fadeUp 0.6s ease 0.3s both;
+}
+
+
+/* =========================================
+   TRAINER NAVBAR
+========================================= */
+
+.trainer-navbar {
+    animation: fadeDown 0.6s ease both;
+}
+
+
+.navbar-left {
+    animation: slideRight 0.5s ease both;
+}
+
+
+.navbar-right {
+    animation: slideLeft 0.5s ease both;
+}
+
+
+.navbar-search {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.navbar-search:focus-within {
+    transform: translateY(-2px);
+}
+
+
+.navbar-notification {
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+
+.navbar-notification:hover {
+    transform: scale(1.08);
+}
+
+
+.notification-badge {
+    animation: scaleIn 0.4s ease both;
+}
+
+
+.navbar-profile {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.navbar-profile:hover {
+    transform: translateY(-2px);
+}
+
+
+.profile-icon {
+    transition: transform 0.25s ease;
+}
+
+
+.navbar-profile:hover .profile-icon {
+    transform: scale(1.08);
+}
+
+
+.profile-arrow {
+    transition: transform 0.25s ease;
+}
+
+
+.navbar-profile:hover .profile-arrow {
+    transform: rotate(180deg);
+}
+
+
+/* =========================================
+   TRAINER CARDS
+========================================= */
+
+.trainer-cards {
+    animation: fadeIn 0.5s ease both;
+}
+
+
+.trainer-card {
+    animation: fadeUp 0.6s ease both;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* Card stagger effect */
+
+.trainer-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+
+.trainer-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+
+.trainer-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+
+.trainer-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+
+.trainer-card:hover {
+    transform: translateY(-5px);
+}
+
+
+.card-icon {
+    transition:
+        transform 0.25s ease;
+}
+
+
+.trainer-card:hover .card-icon {
+    transform: scale(1.1) rotate(3deg);
+}
+
+
+/* =========================================
+   TRAINER TABLE
+========================================= */
+
+.trainer-table-container {
+    animation: fadeUp 0.7s ease both;
+}
+
+
+.trainer-table-header {
+    animation: fadeDown 0.5s ease both;
+}
+
+
+.trainer-table-wrapper {
+    animation: fadeUp 0.6s ease 0.15s both;
+}
+
+
+.trainer-table {
+    animation: fadeIn 0.5s ease both;
+}
+
+
+/* =========================================
+   TABLE ROWS
+========================================= */
+
+.trainer-table tbody tr {
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease;
+}
+
+
+.trainer-table tbody tr:hover {
+    transform: translateX(3px);
+}
+
+
+/* =========================================
+   CUSTOMER INFO
+========================================= */
+
+.customer-avatar {
+    transition:
+        transform 0.25s ease;
+}
+
+
+.customer-info:hover .customer-avatar {
+    transform: scale(1.08);
+}
+
+
+/* =========================================
+   PROGRESS BAR
+========================================= */
+
+.progress-bar {
+    overflow: hidden;
+}
+
+
+.progress-bar span {
+    display: block;
+
+    transform-origin: left;
+
+    animation: progressFill 1s ease both;
+}
+
+
+@keyframes progressFill {
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.status {
+    animation: scaleIn 0.4s ease both;
+}
+
+
+/* =========================================
+   VIEW ALL BUTTON
+========================================= */
+
+.view-all-btn {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.view-all-btn:hover {
+    transform: translateY(-2px);
+}
+
+
+.view-all-btn i {
+    transition: transform 0.2s ease;
+}
+
+
+.view-all-btn:hover i {
+    transform: translateX(4px);
+}
+
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
+
+.action-btn {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.action-btn:hover {
+    transform: scale(1.1);
+}
+
+
+.action-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* =========================================
+   FONT AWESOME ICONS
+========================================= */
+
+.trainer-sidebar i,
+.trainer-navbar i,
+.trainer-card i,
+.trainer-table i {
+    transition: transform 0.25s ease;
+}
+
+
+/* Sidebar icons */
+
+.trainer-navigation a:hover i {
+    transform: scale(1.1);
+}
+
+
+/* Navbar icons */
+
+.navbar-search:hover i {
+    transform: scale(1.08);
+}
+
+
+.navbar-notification:hover i {
+    transform: rotate(10deg) scale(1.08);
+}
+
+
+/* =========================================
+   BUTTON GENERAL
+========================================= */
+
+button {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+button:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+input,
+select,
+textarea {
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+input:focus,
+select:focus,
+textarea:focus {
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+
+        scroll-behavior: auto !important;
+    }
+}
