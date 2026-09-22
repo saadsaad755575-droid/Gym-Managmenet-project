@@ -1,0 +1,430 @@
+/* ========================================
+   MEMBER TABLE CSS
+======================================== */
+
+/* ========================================
+   RESET
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   BODY
+======================================== */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0d0f10;
+}
+
+
+/* ========================================
+   TABLE SECTION
+======================================== */
+
+.member-table-section {
+    width: 100%;
+
+    background: #111315;
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   TABLE HEADER
+======================================== */
+
+.member-table-header {
+    min-height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 22px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+
+/* ========================================
+   TABLE HEADING
+======================================== */
+
+.member-table-heading h2 {
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    margin-bottom: 5px;
+}
+
+.member-table-heading p {
+    color: #777d82;
+
+    font-size: 12px;
+}
+
+
+/* ========================================
+   VIEW ALL BUTTON
+======================================== */
+
+.member-table-view-all {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 9px 13px;
+
+    background: transparent;
+
+    border: 1px solid rgba(245, 185, 0, 0.35);
+
+    border-radius: 7px;
+
+    color: #f5b900;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.member-table-view-all:hover {
+    background: #f5b900;
+
+    color: #111315;
+
+    border-color: #f5b900;
+}
+
+.member-table-view-all i {
+    font-size: 11px;
+}
+
+
+/* ========================================
+   TABLE WRAPPER
+======================================== */
+
+.member-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+/* ========================================
+   TABLE
+======================================== */
+
+.member-table {
+    width: 100%;
+
+    min-width: 700px;
+
+    border-collapse: collapse;
+}
+
+
+/* ========================================
+   TABLE HEAD
+======================================== */
+
+.member-table thead {
+    background: #191c1f;
+}
+
+.member-table th {
+    padding: 15px 20px;
+
+    color: #858b90;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-align: left;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    white-space: nowrap;
+}
+
+
+/* ========================================
+   TABLE BODY
+======================================== */
+
+.member-table tbody tr {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+    transition: 0.3s ease;
+}
+
+.member-table tbody tr:hover {
+    background: rgba(245, 185, 0, 0.035);
+}
+
+
+/* ========================================
+   TABLE CELLS
+======================================== */
+
+.member-table td {
+    padding: 16px 20px;
+
+    color: #d5d8da;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+}
+
+
+/* ========================================
+   ACTIVITY
+======================================== */
+
+.member-activity {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* ========================================
+   ACTIVITY ICON
+======================================== */
+
+.member-activity-icon {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: rgba(245, 185, 0, 0.10);
+
+    color: #f5b900;
+
+    font-size: 13px;
+}
+
+.member-activity span {
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* ========================================
+   STATUS
+======================================== */
+
+.member-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 65px;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* ========================================
+   PRESENT STATUS
+======================================== */
+
+.member-status.present {
+    background: rgba(245, 185, 0, 0.12);
+
+    color: #f5b900;
+}
+
+
+/* ========================================
+   ACTIVE STATUS
+======================================== */
+
+.member-status.active {
+    background: rgba(245, 185, 0, 0.12);
+
+    color: #f5b900;
+}
+
+
+/* ========================================
+   ACTION BUTTON
+======================================== */
+
+.member-table-action {
+    width: 34px;
+    height: 34px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 7px;
+
+    background: transparent;
+
+    color: #8b9196;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.member-table-action:hover {
+    color: #f5b900;
+
+    border-color: rgba(245, 185, 0, 0.4);
+
+    background: rgba(245, 185, 0, 0.08);
+}
+
+
+/* ========================================
+   EMPTY STATE
+======================================== */
+
+.member-table-empty {
+    min-height: 220px;
+
+    display: none;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    text-align: center;
+}
+
+.member-table-empty i {
+    margin-bottom: 12px;
+
+    color: #f5b900;
+
+    font-size: 30px;
+}
+
+.member-table-empty h3 {
+    margin-bottom: 6px;
+
+    color: #ffffff;
+
+    font-size: 16px;
+}
+
+.member-table-empty p {
+    color: #777d82;
+
+    font-size: 12px;
+}
+
+
+/* ========================================
+   SCROLLBAR
+======================================== */
+
+.member-table-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.member-table-wrapper::-webkit-scrollbar-track {
+    background: #111315;
+}
+
+.member-table-wrapper::-webkit-scrollbar-thumb {
+    background: #f5b900;
+
+    border-radius: 10px;
+}
+
+
+/* ========================================
+   RESPONSIVE - 700px
+======================================== */
+
+@media (max-width: 700px) {
+
+    .member-table-header {
+        padding: 16px;
+    }
+
+    .member-table-heading h2 {
+        font-size: 16px;
+    }
+
+    .member-table-heading p {
+        font-size: 11px;
+    }
+
+    .member-table-view-all {
+        padding: 8px 10px;
+    }
+
+}
+
+
+/* ========================================
+   RESPONSIVE - 450px
+======================================== */
+
+@media (max-width: 450px) {
+
+    .member-table-header {
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+    .member-table-view-all span {
+        display: none;
+    }
+
+    .member-table-view-all {
+        width: 34px;
+        height: 34px;
+
+        padding: 0;
+
+        justify-content: center;
+    }
+
+}

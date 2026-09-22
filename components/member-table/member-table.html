@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Member Table</title>
+
+    <!-- ========================================
+         FONT AWESOME
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- ========================================
+         MEMBER TABLE CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="membeer-table.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- ========================================
+         MEMBER TABLE SECTION
+    ========================================= -->
+
+    <section class="member-table-section">
+
+        <!-- ====================================
+             TABLE HEADER
+        ===================================== -->
+
+        <div class="member-table-header">
+
+            <div class="member-table-heading">
+
+                <h2>
+                    Recent Activity
+                </h2>
+
+                <p>
+                    Your latest gym activities and records
+                </p>
+
+            </div>
+
+
+            <!-- VIEW ALL BUTTON -->
+
+            <button
+                type="button"
+                class="member-table-view-all"
+                id="memberViewAll"
+            >
+
+                <span>
+                    View All
+                </span>
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- ====================================
+             TABLE WRAPPER
+        ===================================== -->
+
+        <div class="member-table-wrapper">
+
+            <table class="member-table">
+
+                <!-- =================================
+                     TABLE HEAD
+                ================================== -->
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Activity
+                        </th>
+
+                        <th>
+                            Trainer
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <!-- =================================
+                     TABLE BODY
+                ================================== -->
+
+                <tbody id="memberTableBody">
+
+                    <!-- =================================
+                         SAMPLE ROW
+                    ================================== -->
+
+                    <tr>
+
+                        <td>
+                            18 Sep 2026
+                        </td>
+
+                        <td>
+
+                            <div class="member-activity">
+
+                                <div class="member-activity-icon">
+                                    <i class="fa-solid fa-calendar-check"></i>
+                                </div>
+
+                                <span>
+                                    Attendance
+                                </span>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            Ahmed Khan
+                        </td>
+
+                        <td>
+
+                            <span class="member-status present">
+                                Present
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <button
+                                type="button"
+                                class="member-table-action"
+                                title="View"
+                            >
+
+                                <i class="fa-solid fa-eye"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- =================================
+                         SAMPLE ROW
+                    ================================== -->
+
+                    <tr>
+
+                        <td>
+                            17 Sep 2026
+                        </td>
+
+                        <td>
+
+                            <div class="member-activity">
+
+                                <div class="member-activity-icon">
+                                    <i class="fa-solid fa-dumbbell"></i>
+                                </div>
+
+                                <span>
+                                    Workout Plan
+                                </span>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            Ahmed Khan
+                        </td>
+
+                        <td>
+
+                            <span class="member-status active">
+                                Active
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <button
+                                type="button"
+                                class="member-table-action"
+                                title="View"
+                            >
+
+                                <i class="fa-solid fa-eye"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- =================================
+                         SAMPLE ROW
+                    ================================== -->
+
+                    <tr>
+
+                        <td>
+                            16 Sep 2026
+                        </td>
+
+                        <td>
+
+                            <div class="member-activity">
+
+                                <div class="member-activity-icon">
+                                    <i class="fa-solid fa-apple-whole"></i>
+                                </div>
+
+                                <span>
+                                    Diet Plan
+                                </span>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            Ahmed Khan
+                        </td>
+
+                        <td>
+
+                            <span class="member-status active">
+                                Active
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <button
+                                type="button"
+                                class="member-table-action"
+                                title="View"
+                            >
+
+                                <i class="fa-solid fa-eye"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+
+            <!-- =================================
+                 EMPTY STATE
+            ================================== -->
+
+            <div
+                class="member-table-empty"
+                id="memberTableEmpty"
+            >
+
+                <i class="fa-solid fa-inbox"></i>
+
+                <h3>
+                    No Activity Found
+                </h3>
+
+                <p>
+                    Your recent activities will appear here.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================
+         MEMBER TABLE JAVASCRIPT
+    ========================================= -->
+
+    <script src="member-table.js"></script>
+
+</body>
+
+</html>

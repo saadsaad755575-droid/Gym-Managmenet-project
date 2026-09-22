@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Member Dashboard</title>
+
+    <!-- =========================
+         FONT AWESOME
+    ========================== -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <!-- =========================
+         MEMBER DASHBOARD CSS
+    ========================== -->
+
+    <link rel="stylesheet" href="member.css" />
+
+    <!-- =========================
+         REUSABLE MEMBER COMPONENTS
+    ========================== -->
+
+    <link
+      rel="stylesheet"
+      href="../components/member-sidebar/member-sidebar.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../../components/member-navbar/member-navbar.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../../components/member-card/member-card.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../../components/member-table/member-table.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../../components/member-modal/member-modal.css"
+    />
+
+    <link rel="stylesheet" href="/components/animations/animtion.css" />
+  </head>
+
+  <body>
+    <!-- =========================
+         MEMBER SIDEBAR
+    ========================== -->
+
+    <div id="member-sidebar"></div>
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="member-main">
+      <!-- =========================
+             MEMBER NAVBAR
+        ========================== -->
+
+      <div id="member-navbar"></div>
+
+      <!-- =========================
+             DASHBOARD CONTENT
+        ========================== -->
+
+      <div class="member-content">
+        <!-- =========================
+                 WELCOME BANNER
+            ========================== -->
+
+        <section class="member-welcome">
+          <div class="welcome-content">
+            <h1>
+              Hello
+              <span id="memberWelcomeName"> Member </span>
+              👋
+            </h1>
+
+            <p>Stay consistent, stay strong!</p>
+
+            <span class="welcome-quote">
+              Small steps every day lead to big results.
+            </span>
+          </div>
+
+          <div class="welcome-member">
+            <div class="member-avatar">
+              <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="member-info">
+              <h2 id="memberName">Member Name</h2>
+
+              <p id="memberType">Customer</p>
+
+              <span id="memberId"> Member ID: - </span>
+            </div>
+
+            <div class="assigned-trainer">
+              <span> Assigned Trainer </span>
+
+              <strong id="assignedTrainerName"> - </strong>
+
+              <small id="assignedTrainerType"> Fitness Trainer </small>
+            </div>
+
+            <button type="button" class="banner-btn">
+              View Profile
+
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </section>
+
+        <!-- =========================
+                 SUMMARY CARDS
+            ========================== -->
+
+        <section class="member-summary">
+          <!-- MEMBERSHIP -->
+
+          <div class="member-summary-card">
+            <div class="summary-icon">
+              <i class="fa-solid fa-crown"></i>
+            </div>
+
+            <div class="summary-content">
+              <span> Membership Plan </span>
+
+              <h3 id="membershipPlan">Monthly Plan</h3>
+
+              <span class="active-badge" id="membershipStatus"> Active </span>
+
+              <small id="membershipValidTill"> Valid Till: - </small>
+            </div>
+
+            <i class="fa-solid fa-arrow-right summary-arrow"></i>
+          </div>
+
+          <!-- WORKOUT -->
+
+          <div class="member-summary-card">
+            <div class="summary-icon">
+              <i class="fa-solid fa-dumbbell"></i>
+            </div>
+
+            <div class="summary-content">
+              <span> Today's Workout </span>
+
+              <h3 id="todayWorkout">Upper Body</h3>
+
+              <button type="button" class="summary-btn">
+                View Plan
+
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- DIET -->
+
+          <div class="member-summary-card">
+            <div class="summary-icon">
+              <i class="fa-solid fa-utensils"></i>
+            </div>
+
+            <div class="summary-content">
+              <span> Today's Diet </span>
+
+              <h3 id="todayDiet">Diet Plan</h3>
+
+              <button type="button" class="summary-btn">
+                View Diet
+
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- ATTENDANCE -->
+
+          <div class="member-summary-card">
+            <div class="summary-icon">
+              <i class="fa-solid fa-calendar-check"></i>
+            </div>
+
+            <div class="summary-content">
+              <span> Attendance </span>
+
+              <h3 id="attendanceCount">0 / 0</h3>
+
+              <small> This Month </small>
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================
+                 QUICK ACCESS
+            ========================== -->
+
+        <section class="member-section">
+          <div class="section-header">
+            <div>
+              <h2>
+                <i class="fa-solid fa-bolt"></i>
+                Quick Access
+              </h2>
+
+              <p>Everything you need for your fitness journey</p>
+            </div>
+
+            <button type="button" class="view-all-btn">
+              View All
+
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+
+          <div class="quick-access-grid">
+            <!-- MY TRAINER -->
+
+            <div class="quick-access-card">
+              <div class="quick-icon">
+                <i class="fa-solid fa-user-tie"></i>
+              </div>
+
+              <h3>My Trainer</h3>
+
+              <p>View your assigned trainer and connect with them.</p>
+
+              <i class="fa-solid fa-arrow-right quick-arrow"></i>
+            </div>
+
+            <!-- PROGRESS -->
+
+            <div class="quick-access-card">
+              <div class="quick-icon">
+                <i class="fa-solid fa-chart-line"></i>
+              </div>
+
+              <h3>Progress Tracking</h3>
+
+              <p>Track your fitness progress and achievements.</p>
+
+              <i class="fa-solid fa-arrow-right quick-arrow"></i>
+            </div>
+
+            <!-- FIND TRAINER -->
+
+            <div class="quick-access-card">
+              <div class="quick-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+
+              <h3>Find My Trainer</h3>
+
+              <p>Explore trainers available at the gym.</p>
+
+              <i class="fa-solid fa-arrow-right quick-arrow"></i>
+            </div>
+
+            <!-- TRAINER RECOMMENDATION -->
+
+            <div class="quick-access-card">
+              <div class="quick-icon">
+                <i class="fa-solid fa-star"></i>
+              </div>
+
+              <h3>Trainer Recommendation</h3>
+
+              <p>Get trainer suggestions based on your goals.</p>
+
+              <i class="fa-solid fa-arrow-right quick-arrow"></i>
+            </div>
+
+            <!-- PAYMENT -->
+
+            <div class="quick-access-card">
+              <div class="quick-icon">
+                <i class="fa-solid fa-credit-card"></i>
+              </div>
+
+              <h3>Payment History</h3>
+
+              <p>View your payments and invoices.</p>
+
+              <i class="fa-solid fa-arrow-right quick-arrow"></i>
+            </div>
+
+            <!-- DIET -->
+
+            <div class="quick-access-card">
+              <div class="quick-icon">
+                <i class="fa-solid fa-utensils"></i>
+              </div>
+
+              <h3>My Diet Plan</h3>
+
+              <p>Check your customized diet plan.</p>
+
+              <i class="fa-solid fa-arrow-right quick-arrow"></i>
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================
+                 LOWER DASHBOARD
+            ========================== -->
+
+        <section class="member-dashboard-grid">
+          <!-- =========================
+                     UPCOMING SCHEDULE
+                ========================== -->
+
+          <div class="dashboard-panel">
+            <div class="panel-header">
+              <div>
+                <h2>
+                  <i class="fa-solid fa-calendar-days"></i>
+                  Upcoming Schedule
+                </h2>
+
+                <p>Your upcoming workout sessions</p>
+              </div>
+
+              <span> Next 5 Days </span>
+            </div>
+
+            <div class="schedule-list" id="upcomingSchedule">
+              <div class="schedule-item">
+                <div class="schedule-date">
+                  <strong> 16 </strong>
+
+                  <span> Sep </span>
+                </div>
+
+                <div class="schedule-info">
+                  <strong> Upper Body Workout </strong>
+
+                  <span> 06:00 PM - 07:00 PM </span>
+                </div>
+
+                <span class="schedule-status today"> Today </span>
+
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+
+              <div class="schedule-item">
+                <div class="schedule-date">
+                  <strong> 17 </strong>
+
+                  <span> Sep </span>
+                </div>
+
+                <div class="schedule-info">
+                  <strong> Rest Day </strong>
+
+                  <span> - </span>
+                </div>
+
+                <span class="schedule-status rest"> Rest </span>
+
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+
+              <div class="schedule-item">
+                <div class="schedule-date">
+                  <strong> 18 </strong>
+
+                  <span> Sep </span>
+                </div>
+
+                <div class="schedule-info">
+                  <strong> Lower Body Workout </strong>
+
+                  <span> 06:00 PM - 07:00 PM </span>
+                </div>
+
+                <span class="schedule-status planned"> Planned </span>
+
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+
+              <div class="schedule-item">
+                <div class="schedule-date">
+                  <strong> 19 </strong>
+
+                  <span> Sep </span>
+                </div>
+
+                <div class="schedule-info">
+                  <strong> Cardio & Core </strong>
+
+                  <span> 06:00 PM - 07:00 PM </span>
+                </div>
+
+                <span class="schedule-status planned"> Planned </span>
+
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- =========================
+                     RECENT ACTIVITY
+                ========================== -->
+
+          <div class="dashboard-panel">
+            <div class="panel-header">
+              <div>
+                <h2>
+                  <i class="fa-solid fa-clock-rotate-left"></i>
+                  Recent Activity
+                </h2>
+
+                <p>Your latest activities</p>
+              </div>
+
+              <button type="button" class="view-all-btn">
+                View All
+
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+
+            <div class="activity-list" id="recentActivity">
+              <div class="activity-item">
+                <div class="activity-icon">
+                  <i class="fa-solid fa-dumbbell"></i>
+                </div>
+
+                <div class="activity-info">
+                  <strong> Workout completed </strong>
+
+                  <span> Upper Body </span>
+                </div>
+
+                <small> Today </small>
+              </div>
+
+              <div class="activity-item">
+                <div class="activity-icon">
+                  <i class="fa-solid fa-utensils"></i>
+                </div>
+
+                <div class="activity-info">
+                  <strong> Diet plan viewed </strong>
+
+                  <span> Diet Plan </span>
+                </div>
+
+                <small> Today </small>
+              </div>
+
+              <div class="activity-item">
+                <div class="activity-icon">
+                  <i class="fa-solid fa-credit-card"></i>
+                </div>
+
+                <div class="activity-info">
+                  <strong> Payment received </strong>
+
+                  <span> Monthly Plan </span>
+                </div>
+                <small> Recent</small>
+              </div>
+              <div class="activity-item">
+                <div class="activity-icon">
+                  <i class="fa fa-solid fa fa-calendar-check"></i>
+                </div>
+                <div class="activity-info">
+                  <strong> Attendance marked</strong>
+                  <span> Gym check-in</span>
+                </div>
+                <small>Recent</small>
+              </div>
+              <div class="activity-item">
+                <div class="activity-icon">
+                  <i class="fa-solid fa-massage"></i>
+                </div>
+                <div class="activity-info">
+                  <strong>Trainer massage</strong>
+                  <span>check your workout routine</span>
+                </div>
+                <small> Recent </small>
+              </div>
+            </div>
+          </div>
+
+          <!-- =========================
+     FITNESS GOALS
+========================= -->
+
+          <div class="dashboard-goals">
+            <div class="goals-image-overlay">
+              <span> FITNESS </span>
+
+              <h2>
+                Your Goals
+                <br />
+                Our Priority
+              </h2>
+
+              <div class="goal-list">
+                <div>
+                  <i class="fa-solid fa-heart-pulse"></i>
+                  Better Health
+                </div>
+
+                <div>
+                  <i class="fa-solid fa-bolt"></i>
+                  More Energy
+                </div>
+
+                <div>
+                  <i class="fa-solid fa-dumbbell"></i>
+                  Stronger You
+                </div>
+
+                <div>
+                  <i class="fa-solid fa-face-smile"></i>
+                  Happier Life
+                </div>
+              </div>
+
+              <button type="button" class="goal-btn">
+                Keep Going
+
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- =========================
+     END LOWER DASHBOARD
+========================= -->
+        </section>
+      </div>
+    </main>
+
+    <!-- =========================
+     MEMBER MODAL
+========================= -->
+
+    <div id="member-modal"></div>
+
+    <!-- =========================
+     MEMBER COMPONENT JS
+========================= -->
+
+    <script src="../../components/member-navbar/member-navbar.js"></script>
+
+    <script src="../../components/member-sidebar/member-sidebar.js"></script>
+
+    <script src="../../components/member-card/member-card.js"></script>
+
+    <script src="../../components/member-table/member-table.js"></script>
+
+    <script src="../../components/member-modal/member-modal.js"></script>
+
+    <!-- =========================
+     MEMBER DASHBOARD JS
+========================= -->
+
+    <script src="member.js"></script>
+  </body>
+</html>
