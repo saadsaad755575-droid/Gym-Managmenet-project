@@ -66,9 +66,11 @@ function setMemberLogout(){
                     return;
                 }
 // Remove member Login data
-localStorage.removeItem("loggedInMember");
+         localStorage.removeItem("loggedInMember");
+
+
 // Redirect to login
-window.location.href="../../Login/login.html";
+     window.location.href="../../Login/login.html";
             }
             );
         }
@@ -79,7 +81,7 @@ window.location.href="../../Login/login.html";
 function initializeMemberSidebar(){
     loadMemberSidebarProfile();
     setActiveMemberMenu();
-    setupMemberLogout();
+    setMemberLogout();
 
 }
 //================================

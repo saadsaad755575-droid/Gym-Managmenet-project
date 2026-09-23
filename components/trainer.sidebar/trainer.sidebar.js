@@ -1,17 +1,15 @@
-
 /* =========================
-   TRAINER SIDEBAR JS
+   MEMBER SIDEBAR JS
 ========================= */
 
-function initTrainerSidebar() {
+function initializeMemberSidebar() {
 
     /* =========================
        NAVIGATION ITEMS
     ========================= */
 
     const navItems = document.querySelectorAll(
-        ".trainer-navigation ul li"
-    );
+        ".member-navigation ul li");
 
     navItems.forEach(item => {
 
@@ -21,14 +19,12 @@ function initTrainerSidebar() {
 
         link.addEventListener("click", function (event) {
 
-            // Dashboard ke actual link ko normally open hone dein
             const href = this.getAttribute("href");
 
             if (href === "#") {
                 event.preventDefault();
             }
 
-            // Active item change
             navItems.forEach(navItem => {
                 navItem.classList.remove("active");
             });
@@ -53,12 +49,11 @@ function initTrainerSidebar() {
             event.preventDefault();
 
             const confirmLogout = confirm(
-                "Are you sure you want to logout?"
-            );
+                "Are you sure you want to logout?");
 
             if (confirmLogout) {
 
-                window.location.href = "../../login/login.html";
+                window.location.href = "../login/login.html";
 
             }
 
@@ -67,13 +62,3 @@ function initTrainerSidebar() {
     }
 
 }
-
-
-/* =========================
-   INITIALIZE
-========================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    initTrainerSidebar()
-);
