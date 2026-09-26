@@ -118,12 +118,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         return trainers.find(trainer =>
             String(trainer.name || "")
-                .trim()
-                .toLowerCase()
-            ===
-            loggedInTrainer
-                .trim()
-                .toLowerCase()
+                .trim().toLowerCase() ===
+         loggedInTrainer
+                .trim().toLowerCase()
         );
 
     }
@@ -135,8 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function loadProfile() {
 
-        const trainer =
-            getCurrentTrainer();
+        const trainer = getCurrentTrainer();
 
 
         if (!trainer) {
@@ -161,8 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
             trainer.type || "-";
 
         profileId.textContent =
-            "Trainer ID: " +
-            (trainer.id || "-");
+            "Trainer ID: " +(trainer.id || "-");
 
 
         /* =========================
@@ -209,26 +204,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function setEditMode(enabled) {
 
-        trainerName.disabled =
-            !enabled;
+        trainerName.disabled = !enabled;
 
-        trainerQualification.disabled =
-            !enabled;
+        trainerQualification.disabled = !enabled;
 
-        trainerExperience.disabled =
-            !enabled;
+        trainerExperience.disabled = !enabled;
 
-        trainerTiming.disabled =
-            !enabled;
+        trainerTiming.disabled = !enabled;
 
-        trainerStatus.disabled =
-            !enabled;
+        trainerStatus.disabled = !enabled;
 
-        trainerSkills.disabled =
-            !enabled;
+        trainerSkills.disabled = !enabled;
 
-        trainerServices.disabled =
-            !enabled;
+        trainerServices.disabled =!enabled;
 
 
         trainerType.disabled = true;
@@ -262,19 +250,15 @@ document.addEventListener("DOMContentLoaded", () => {
         "click",
         () => {
 
-            const trainers =
-                getTrainers();
+            const trainers = getTrainers();
 
 
             const trainerIndex =
                 trainers.findIndex(trainer =>
                     String(trainer.name || "")
-                        .trim()
-                        .toLowerCase()
-                    ===
+                        .trim().toLowerCase()===
                     loggedInTrainer
-                        .trim()
-                        .toLowerCase()
+                        .trim().toLowerCase()
                 );
 
 
@@ -476,12 +460,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const updatedTrainers =
                 trainers.filter(trainer =>
                     String(trainer.name || "")
-                        .trim()
-                        .toLowerCase()
-                    !==
+                        .trim().toLowerCase()!==
                     loggedInTrainer
-                        .trim()
-                        .toLowerCase()
+                        .trim().toLowerCase()
                 );
 
 
@@ -542,13 +523,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                 if (
-                    elementId ===
-                    "trainer-sidebar"
+                    elementId === "trainer-sidebar"
                 ) {
 
                     if (
-                        typeof initTrainerSidebar ===
-                        "function"
+                        typeof initTrainerSidebar === "function"
                     ) {
 
                         initTrainerSidebar();
@@ -559,8 +538,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                 if (
-                    elementId ===
-                    "trainer-navbar"
+                    elementId === "trainer-navbar"
                 ) {
 
                     if (

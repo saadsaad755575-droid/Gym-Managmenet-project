@@ -29,6 +29,7 @@ body {
     margin-left: 250px;
     min-height: 100vh;
     background: #080d11;
+    padding-top: 100px;
 }
 
 .member-content {
@@ -48,14 +49,14 @@ body {
     border-radius: 15px;
     margin-bottom: 18px;
 
-    background:
+    /*background:
         linear-gradient(
             90deg,
             rgba(0, 0, 0, 0.82),
             rgba(0, 0, 0, 0.38),
             rgba(0, 0, 0, 0.72)
         ),
-        url("../../assets/images/gym-banner.jpg");
+        url("../../assets/images/gym-banner.jpg");*/
 
     background-size: cover;
     background-position: center;

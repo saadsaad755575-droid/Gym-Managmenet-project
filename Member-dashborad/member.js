@@ -87,24 +87,27 @@ document.addEventListener(
                 {
                     initializeMemberSidebar();
                 }
-        /*==========================
-        INITIALIZE NAVBAR
-        ============================*/
-        if(containerId === "member-navbar" && 
-            typeof
-            initMemberNavbar === "function")
-            {
-                intitMemberNavbar();
-            }
+        
+/*==========================
+INITIALIZE NAVBAR
+============================*/
+
+if(
+    containerId === "member-navbar" &&
+    typeof initMemberNavbar === "function"
+)
+{
+    initMemberNavbar();
+}
 
             /*==================================
             INITIALIZE CARD
             ==================================*/
             if(containerId === "member-cards" &&
                 typeof
-                intitMemberCard === "function")
+                initMemberCard === "function")
                 {
-                    intitMemberCard();
+                    initMemberCard();
                 }
 
                 /*==============================
@@ -112,10 +115,10 @@ document.addEventListener(
                 ================================*/
                 if(containerId === "member-table" &&
                     typeof
-                    intitMemberTable ==="function"
+                    initMemberTable ==="function"
                 )
                 {
-                    intitMemberTable();
+                    initMemberTable();
                 }
 
 
@@ -124,7 +127,7 @@ document.addEventListener(
                 ==============================*/
                 if(containerId === "member-modal" &&
                     typeof
-                    intitMemberModal === "function"
+                    initMemberModal === "function"
                 ){
                     initMemberModal();
                 }

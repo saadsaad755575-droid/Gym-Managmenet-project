@@ -1,0 +1,845 @@
+
+/* ========================================
+   RESET
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   BODY
+======================================== */
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #0d0f10;
+
+    color: #ffffff;
+
+    min-height: 100vh;
+
+}
+
+
+/* ========================================
+   MAIN MEMBER AREA
+======================================== */
+
+.member-main {
+
+    margin-left: 250px;
+
+    min-height: 100vh;
+    padding-top: 100px;
+
+}
+
+
+/* ========================================
+   MEMBER CONTENT
+======================================== */
+
+.member-content {
+
+    padding: 30px;
+
+}
+
+
+/* ========================================
+   PROFILE HEADER
+======================================== */
+
+.profile-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+
+}
+
+
+.profile-label {
+
+    display: inline-block;
+
+    color: #f5b900;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+}
+
+
+.profile-header h1 {
+
+    margin-top: 6px;
+
+    font-size: 32px;
+
+    color: #ffffff;
+
+}
+
+
+.profile-header p {
+
+    margin-top: 8px;
+
+    color: #8e9295;
+
+    font-size: 14px;
+
+}
+
+
+.profile-header-icon {
+
+    width: 60px;
+
+    height: 60px;
+
+    border-radius: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #17191b;
+
+    border: 1px solid #292d30;
+
+    color: #f5b900;
+
+    font-size: 25px;
+
+}
+
+
+/* ========================================
+   MAIN PROFILE CARD
+======================================== */
+
+.profile-main-card {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+    background: #111315;
+
+    border: 1px solid #292d30;
+
+    border-radius: 18px;
+
+    transition: 0.3s ease;
+
+}
+
+
+.profile-main-card:hover {
+
+    border-color:
+        rgba(245, 185, 0, 0.45);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* ========================================
+   PROFILE AVATAR
+======================================== */
+
+.profile-avatar {
+
+    width: 85px;
+
+    height: 85px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #f5b900;
+
+    color: #0d0f10;
+
+    font-size: 32px;
+
+}
+
+
+.profile-main-info {
+
+    flex: 1;
+
+}
+
+
+.member-badge {
+
+    display: inline-block;
+
+    padding: 5px 11px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(245, 185, 0, 0.12);
+
+    border:
+        1px solid rgba(245, 185, 0, 0.18);
+
+    color: #f5b900;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+}
+
+
+.profile-main-info h2 {
+
+    margin-top: 8px;
+
+    color: #ffffff;
+
+    font-size: 25px;
+
+}
+
+
+.profile-main-info p {
+
+    margin-top: 5px;
+
+    color: #a0a3a5;
+
+    font-size: 14px;
+
+}
+
+
+.profile-main-info span:last-child {
+
+    display: block;
+
+    margin-top: 6px;
+
+    color: #707477;
+
+    font-size: 12px;
+
+}
+
+
+/* ========================================
+   STATUS
+======================================== */
+
+.profile-status {
+
+    min-width: 160px;
+
+    text-align: right;
+
+}
+
+
+.profile-status span {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #777b7e;
+
+    font-size: 12px;
+
+}
+
+
+.profile-status strong {
+
+    color: #f5b900;
+
+    font-size: 17px;
+
+}
+
+
+/* ========================================
+   PROFILE GRID
+======================================== */
+
+.profile-grid {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+
+}
+
+
+/* ========================================
+   PROFILE CARD
+======================================== */
+
+.profile-card {
+
+    background: #111315;
+
+    border: 1px solid #292d30;
+
+    border-radius: 18px;
+
+    padding: 23px;
+
+    transition: 0.3s ease;
+
+}
+
+
+.profile-card:hover {
+
+    border-color:
+        rgba(245, 185, 0, 0.35);
+
+    transform:
+        translateY(-3px);
+
+}
+
+
+/* ========================================
+   CARD TITLE
+======================================== */
+
+.card-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.title-icon {
+
+    width: 46px;
+
+    height: 46px;
+
+    flex-shrink: 0;
+
+    border-radius: 13px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(245, 185, 0, 0.10);
+
+    border:
+        1px solid rgba(245, 185, 0, 0.15);
+
+    color: #f5b900;
+
+    font-size: 18px;
+
+}
+
+
+.card-title h2 {
+
+    color: #ffffff;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+}
+
+
+.card-title p {
+
+    margin-top: 4px;
+
+    color: #73777a;
+
+    font-size: 12px;
+
+}
+
+
+/* ========================================
+   INFO LIST
+======================================== */
+
+.info-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.info-row {
+
+    min-height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 13px 0;
+
+    border-bottom:
+        1px solid #242729;
+
+}
+
+
+.info-row:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.info-row span {
+
+    display: flex;
+
+    align-items: center;
+
+    color: #929699;
+
+    font-size: 13px;
+
+}
+
+
+.info-row span i {
+
+    width: 25px;
+
+    margin-right: 5px;
+
+    color: #f5b900;
+
+}
+
+
+.info-row strong {
+
+    color: #eeeeee;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    text-align: right;
+
+}
+
+
+/* ========================================
+   TRAINER
+======================================== */
+
+.trainer-profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 16px;
+
+    background: #17191b;
+
+    border: 1px solid #24282a;
+
+    border-radius: 14px;
+
+}
+
+
+.trainer-avatar {
+
+    width: 58px;
+
+    height: 58px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #f5b900;
+
+    color: #0d0f10;
+
+    font-size: 21px;
+
+}
+
+
+.trainer-profile h3 {
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+}
+
+
+.trainer-profile p {
+
+    margin-top: 5px;
+
+    color: #85898c;
+
+    font-size: 12px;
+
+}
+
+
+.trainer-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 17px;
+
+    color: #8d9194;
+
+    font-size: 12px;
+
+}
+
+
+.trainer-status i {
+
+    color: #f5b900;
+
+    font-size: 8px;
+
+}
+
+
+/* ========================================
+   ACTIVE STATUS
+======================================== */
+
+.status-active {
+
+    color: #f5b900 !important;
+
+}
+
+
+/* ========================================
+   NOTE
+======================================== */
+
+.profile-note {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 13px;
+
+    margin-top: 20px;
+
+    padding: 18px 20px;
+
+    background:
+        rgba(245, 185, 0, 0.05);
+
+    border:
+        1px solid rgba(245, 185, 0, 0.18);
+
+    border-radius: 14px;
+
+}
+
+
+.profile-note > i {
+
+    margin-top: 2px;
+
+    color: #f5b900;
+
+    font-size: 16px;
+
+}
+
+
+.profile-note strong {
+
+    color: #eeeeee;
+
+    font-size: 14px;
+
+}
+
+
+.profile-note p {
+
+    margin-top: 5px;
+
+    color: #85898c;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 1200px) {
+
+    .member-content {
+
+        padding: 25px;
+
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .profile-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .profile-main-card {
+
+        flex-wrap: wrap;
+
+        align-items: flex-start;
+
+    }
+
+    .profile-status {
+
+        width: 100%;
+
+        padding-top: 5px;
+
+        text-align: left;
+
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .member-main {
+
+        margin-left: 0;
+
+    }
+
+    .member-content {
+
+        padding: 20px;
+
+    }
+
+    .profile-header h1 {
+
+        font-size: 27px;
+
+    }
+
+    .profile-main-card {
+
+        padding: 20px;
+
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .member-content {
+
+        padding: 15px;
+
+    }
+
+    .profile-header-icon {
+
+        display: none;
+
+    }
+
+    .profile-header h1 {
+
+        font-size: 24px;
+
+    }
+
+    .profile-main-card {
+
+        gap: 15px;
+
+        padding: 17px;
+
+    }
+
+    .profile-avatar {
+
+        width: 65px;
+
+        height: 65px;
+
+        font-size: 25px;
+
+    }
+
+    .profile-main-info h2 {
+
+        font-size: 20px;
+
+    }
+
+    .profile-card {
+
+        padding: 17px;
+
+    }
+
+    .info-row {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 6px;
+
+    }
+
+    .info-row strong {
+
+        text-align: left;
+
+    }
+
+    .profile-note {
+
+        padding: 15px;
+
+    }
+
+}
+
+
+/* ========================================
+   SCROLLBAR
+======================================== */
+
+::-webkit-scrollbar {
+
+    width: 7px;
+
+}
+
+
+::-webkit-scrollbar-track {
+
+    background: #0d0f10;
+
+}
+
+
+::-webkit-scrollbar-thumb {
+
+    background: #383a3c;
+
+    border-radius: 10px;
+
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+
+    background: #f5b900;
+
+}

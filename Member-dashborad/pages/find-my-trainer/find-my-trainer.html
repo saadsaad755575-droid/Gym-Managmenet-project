@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Find My Trainer</title>
+
+    <!-- ========================================
+         FONT AWESOME
+    ========================================= -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <!-- ========================================
+         FIND MY TRAINER CSS
+    ========================================= -->
+
+    <link rel="stylesheet" href="find-my-trainer.css" />
+    <link rel="stylesheet" href="../../../components/member-navbar/member-navbar.css">
+    <link rel="stylesheet" href="../../../components/member-sidebar/member-sidebar.css">
+  </head>
+
+  <body>
+    <!-- ========================================
+         MEMBER SIDEBAR
+    ========================================= -->
+
+    <aside id="member-sidebar"></aside>
+
+    <!-- ========================================
+         MAIN AREA
+    ========================================= -->
+
+    <div class="member-main">
+      <!-- ====================================
+             MEMBER NAVBAR
+        ==================================== -->
+
+      <header id="member-navbar"></header>
+
+      <!-- ====================================
+             FIND MY TRAINER CONTENT
+        ==================================== -->
+
+      <main class="find-trainer-container">
+        <!-- =================================
+                 PAGE HEADER
+            ================================== -->
+
+        <section class="find-trainer-header">
+          <div class="header-content">
+            <span class="header-icon">
+              <i class="fa-solid fa-user-group fa-beat"></i>
+            </span>
+
+            <div>
+              <h1>Find My Trainer</h1>
+
+              <p>Find a trainer according to your fitness needs</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================
+                 SEARCH / FILTER AREA
+            ================================== -->
+
+        <section class="trainer-filter-section">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+              type="text"
+              id="trainerSearchInput"
+              placeholder="Search trainer..."
+            />
+          </div>
+
+          <div class="filter-box">
+            <i class="fa-solid fa-filter"></i>
+
+            <select id="trainerSpecializationFilter">
+              <option value="all">All Specializations</option>
+            </select>
+          </div>
+
+          <div class="filter-box">
+            <i class="fa-solid fa-circle-check"></i>
+
+            <select id="trainerAvailabilityFilter">
+              <option value="all">All Trainers</option>
+
+              <option value="available">Available</option>
+
+              <option value="unavailable">Unavailable</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- =================================
+                 RESULT INFORMATION
+            ================================== -->
+
+        <section class="trainer-result-info">
+          <div>
+            <i class="fa-solid fa-users"></i>
+
+            <span id="trainerResultCount"> 0 Trainers Found </span>
+          </div>
+        </section>
+
+        <!-- =================================
+                 TRAINER CARDS
+            ================================== -->
+
+        <section class="trainer-cards" id="trainerCards">
+          <!--
+                    Trainer cards will be loaded here
+                    from existing Trainer Profile data.
+                -->
+        </section>
+
+        <!-- =================================
+                 NO TRAINER MESSAGE
+            ================================== -->
+
+        <section
+          class="no-trainer-message"
+          id="noTrainerMessage"
+          style="display: none"
+        >
+          <i class="fa-solid fa-user-slash fa-beat"></i>
+
+          <h2>No Trainer Found</h2>
+
+          <p>No trainer matches your search or filter.</p>
+        </section>
+      </main>
+    </div>
+
+    <!-- ========================================
+         TRAINER PROFILE MODAL
+    ========================================= -->
+
+    <div class="trainer-profile-modal" id="trainerProfileModal">
+      <div class="trainer-profile-modal-content">
+        <!-- =================================
+                 MODAL HEADER
+            ================================== -->
+
+        <div class="trainer-modal-header">
+          <div>
+            <i class="fa-solid fa-user-tie fa-beat"></i>
+
+            <h2>Trainer Profile</h2>
+          </div>
+
+          <button
+            type="button"
+            id="closeTrainerProfile"
+            class="close-trainer-modal"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- =================================
+                 TRAINER PROFILE INFORMATION
+            ================================== -->
+
+        <div class="trainer-profile-body">
+          <!-- Trainer Avatar -->
+
+          <div class="trainer-avatar">
+            <i class="fa-solid fa-user-tie fa-bounce"></i>
+          </div>
+
+          <!-- Trainer Name -->
+
+          <h2 id="profileTrainerName">Trainer Name</h2>
+
+          <!-- Trainer Specialization -->
+
+          <p class="profile-specialization" id="profileTrainerSpecialization">
+            Specialization
+          </p>
+
+          <!-- Trainer Details -->
+
+          <div class="trainer-profile-details">
+            <div class="profile-detail">
+              <i class="fa-solid fa-id-card"></i>
+
+              <div>
+                <span>Trainer ID</span>
+
+                <strong id="profileTrainerId"> - </strong>
+              </div>
+            </div>
+
+            <div class="profile-detail">
+              <i class="fa-solid fa-briefcase"></i>
+
+              <div>
+                <span>Experience</span>
+
+                <strong id="profileTrainerExperience"> - </strong>
+              </div>
+            </div>
+
+            <div class="profile-detail">
+              <i class="fa-solid fa-dumbbell"></i>
+
+              <div>
+                <span>Skills & Services</span>
+
+                <strong id="profileTrainerSkill"> - </strong>
+              </div>
+            </div>
+
+            <div class="profile-detail">
+              <i class="fa-solid fa-circle-check"></i>
+
+              <div>
+                <span>Availability</span>
+
+                <strong id="profileTrainerAvailability"> - </strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- =================================
+                     SELECT TRAINER BUTTON
+                ================================== -->
+
+          <button
+            type="button"
+            id="selectTrainerBtn"
+            class="select-trainer-btn"
+          >
+            <i class="fa-solid fa-user-check fa-beat"></i>
+
+            Select This Trainer
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================
+         FIND MY TRAINER JS
+    ========================================= -->
+
+    <script src="find-my-trainer.js"></script>
+  </body>
+</html>

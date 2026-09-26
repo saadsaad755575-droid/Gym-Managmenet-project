@@ -1,0 +1,622 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Member Profile</title>
+
+
+    <!-- ========================================
+         FONT AWESOME
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- ========================================
+         MEMBER PROFILE CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="my-profile.css"
+    >
+
+
+    <!-- ========================================
+         MEMBER SIDEBAR CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="../../../components/member-sidebar/member-sidebar.css"
+    >
+
+
+    <!-- ========================================
+         MEMBER NAVBAR CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="../../../components/member-navbar/member-navbar.css"
+    >
+
+
+    <!-- ========================================
+         MEMBER CARD CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="../../../components/member-card/member-card.css"
+    >
+
+
+    <!-- ========================================
+         ANIMATION CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="../../../components/animations/animtion.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================================
+         MEMBER SIDEBAR
+    ========================================= -->
+
+    <div id="member-sidebar"></div>
+
+
+    <!-- ========================================
+         MAIN
+    ========================================= -->
+
+    <main class="member-main">
+
+
+        <!-- ========================================
+             MEMBER NAVBAR
+        ========================================= -->
+
+        <div id="member-navbar"></div>
+
+
+        <!-- ========================================
+             PROFILE CONTENT
+        ======================================== -->
+
+        <div class="member-content">
+
+
+            <!-- ====================================
+                 PAGE HEADER
+            ==================================== -->
+
+            <div class="profile-header">
+
+                <div>
+
+                    <span class="profile-label">
+                        MEMBER PROFILE
+                    </span>
+
+                    <h1>
+                        My Profile
+                    </h1>
+
+                    <p>
+                        View your personal, membership and fitness information.
+                    </p>
+
+                </div>
+
+
+                <div class="profile-header-icon">
+
+                    <i class="fa-solid fa-user fa-fade"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ====================================
+                 MAIN PROFILE CARD
+            ==================================== -->
+
+            <div class="profile-main-card">
+
+
+                <div class="profile-avatar">
+
+                    <i class="fa-solid fa-user fa-beat"></i>
+
+                </div>
+
+
+                <div class="profile-main-info">
+
+                    <span class="member-badge">
+                        MEMBER
+                    </span>
+
+                    <h2 id="profileMemberName">
+                        Member Name
+                    </h2>
+
+                    <p id="profileMemberType">
+                        Customer
+                    </p>
+
+                    <span id="profileMemberId">
+                        Member ID: -
+                    </span>
+
+                </div>
+
+
+                <div class="profile-status">
+
+                    <span>
+                        Membership Status
+                    </span>
+
+                    <strong id="profileMembershipStatus">
+                        Active
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ====================================
+                 PROFILE GRID
+            ==================================== -->
+
+            <div class="profile-grid">
+
+
+                <!-- ==================================
+                     PERSONAL INFORMATION
+                ================================== -->
+
+                <div class="profile-card">
+
+                    <div class="card-title">
+
+                        <div class="title-icon">
+
+                            <i class="fa-solid fa-user fa-fade"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Personal Information
+                            </h2>
+
+                            <p>
+                                Your basic account information
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-list">
+
+
+                        <div class="info-row">
+
+                            <span>
+                                <i class="fa-solid fa-user fa-fade"></i>
+                                Full Name
+                            </span>
+
+                            <strong id="profileFullName">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>
+                                <i class="fa-solid fa-id-card fa-beat"></i>
+                                Member ID
+                            </span>
+
+                            <strong id="profileId">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>
+                                <i class="fa-solid fa-phone fa-shake"></i>
+                                Phone
+                            </span>
+
+                            <strong id="profilePhone">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>
+                                <i class="fa-solid fa-envelope fa-fade"></i>
+                                Email
+                            </span>
+
+                            <strong id="profileEmail">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==================================
+                     ASSIGNED TRAINER
+                ================================== -->
+
+                <div class="profile-card">
+
+                    <div class="card-title">
+
+                        <div class="title-icon">
+
+                            <i class="fa-solid fa-user-tie fa-beat"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Assigned Trainer
+                            </h2>
+
+                            <p>
+                                Your current fitness trainer
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="trainer-profile">
+
+                        <div class="trainer-avatar">
+
+                            <i class="fa-solid fa-user-tie fa-beat"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h3 id="profileTrainerName">
+                                No Trainer Assigned
+                            </h3>
+
+                            <p id="profileTrainerType">
+                                Fitness Trainer
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="trainer-status">
+
+                        <i class="fa-solid fa-circle"></i>
+
+                        <span>
+                            Trainer Assignment
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==================================
+                     MEMBERSHIP INFORMATION
+                ================================== -->
+
+                <div class="profile-card">
+
+                    <div class="card-title">
+
+                        <div class="title-icon">
+
+                            <i class="fa-solid fa-crown fa-beat"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Membership
+                            </h2>
+
+                            <p>
+                                Your membership details
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-list">
+
+
+                        <div class="info-row">
+
+                            <span>
+                                <i class="fa-solid fa-crown fa-beat"></i>
+                                Plan
+                            </span>
+
+                            <strong id="profileMembershipPlan">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>
+                                <i class="fa-solid fa-circle-check fa-beat"></i>
+                                Status
+                            </span>
+
+                            <strong
+                                id="profileStatus"
+                                class="status-active"
+                            >
+                                Active
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>
+                                <i class="fa-solid fa-calendar fa-fade"></i>
+                                Start Date
+                            </span>
+
+                            <strong id="profileStartDate">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>
+                                <i class="fa-solid fa-calendar-xmark fa-shake"></i>
+                                Valid Till
+                            </span>
+
+                            <strong id="profileValidTill">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==================================
+                     FITNESS INFORMATION
+                ================================== -->
+
+                <div class="profile-card">
+
+                    <div class="card-title">
+
+                        <div class="title-icon">
+
+                            <i class="fa-solid fa-heart-pulse fa-beat"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Fitness Information
+                            </h2>
+
+                            <p>
+                                Your fitness related information
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-list">
+
+
+                        <div class="info-row">
+
+                            <span>
+                                <i class="fa-solid fa-bullseye fa-beat"></i>
+                                Fitness Goal
+                            </span>
+
+                            <strong id="profileGoal">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>
+                                <i class="fa-solid fa-weight-scale fa-bounce"></i>
+                                Weight
+                            </span>
+
+                            <strong id="profileWeight">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>
+                                <i class="fa-solid fa-ruler fa-fade"></i>
+                                Height
+                            </span>
+
+                            <strong id="profileHeight">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>
+                                <i class="fa-solid fa-calendar-days fa-fade"></i>
+                                Joining Date
+                            </span>
+
+                            <strong id="profileJoiningDate">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ====================================
+                 PROFILE NOTE
+            ==================================== -->
+
+            <div class="profile-note">
+
+                <i class="fa-solid fa-circle-info fa-fade"></i>
+
+                <div>
+
+                    <strong>
+                        Profile Information
+                    </strong>
+
+                    <p>
+                        Your profile information is connected
+                        with the gym membership data stored by
+                        the system.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ========================================
+         MEMBER NAVBAR JS
+    ========================================= -->
+
+    <script
+        src="../../../components/member-navbar/member-navbar.js"
+    ></script>
+
+
+    <!-- ========================================
+         MEMBER SIDEBAR JS
+    ========================================= -->
+
+    <script
+        src="../../../components/member-sidebar/member-sidebar.js"
+    ></script>
+
+
+    <!-- ========================================
+         MEMBER CARD JS
+    ========================================= -->
+
+    <script
+        src="../../../components/member-card/member-card.js"
+    ></script>
+
+
+    <!-- ========================================
+         PROFILE JS
+    ========================================= -->
+
+    <script
+        src="my-profile.js"
+    ></script>
+
+
+</body>
+
+</html>
