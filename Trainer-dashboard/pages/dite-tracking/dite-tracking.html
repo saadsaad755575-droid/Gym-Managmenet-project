@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Diet Tracking | Trainer Dashboard</title>
+
+
+    <!-- =========================================
+         FONT AWESOME
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- =========================================
+         DIET TRACKING CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="dite-tracking.css"
+    >
+
+
+    <!-- =========================================
+         ANIMATIONS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="/components/animations/animtion.css"
+    >
+    <link rel="stylesheet" href="../../../components/trainer.sidebar/trainer.sidebar.css">
+    <link rel="stylesheet" href="../../../components/trainer-navbar/trainer-navbar.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         TRAINER SIDEBAR
+    ========================================== -->
+
+    <div id="trainer-sidebar"></div>
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="diet-tracking-main">
+
+
+        <!-- =====================================
+             TRAINER NAVBAR
+        ====================================== -->
+
+        <div id="trainer-navbar"></div>
+
+
+        <!-- =====================================
+             PAGE CONTENT
+        ====================================== -->
+
+        <section class="diet-tracking-content">
+
+
+            <!-- =================================
+                 PAGE HEADER
+            ================================== -->
+
+            <div class="page-header">
+
+                <div class="page-title">
+
+                    <h1>
+                        <i class="fa-solid fa-chart-simple"></i>
+                        Diet Tracking
+                    </h1>
+
+                    <p>
+                        Monitor your members' diet progress and meal completion.
+                    </p>
+
+                </div>
+
+
+                <div class="tracking-date">
+
+                    <i class="fa-regular fa-calendar"></i>
+
+                    <span id="currentDate">
+                        --
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 SUMMARY CARDS
+            ================================== -->
+
+            <div class="tracking-cards">
+
+
+                <!-- Total Meals -->
+
+                <div class="tracking-card">
+
+                    <div class="tracking-card-icon">
+
+                        <i class="fa-solid fa-utensils"></i>
+
+                    </div>
+
+                    <div class="tracking-card-info">
+
+                        <span>
+                            Total Meals
+                        </span>
+
+                        <h2 id="totalMeals">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Followed -->
+
+                <div class="tracking-card">
+
+                    <div class="tracking-card-icon">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                    </div>
+
+                    <div class="tracking-card-info">
+
+                        <span>
+                            Followed
+                        </span>
+
+                        <h2 id="followedMeals">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Not Followed -->
+
+                <div class="tracking-card">
+
+                    <div class="tracking-card-icon">
+
+                        <i class="fa-solid fa-circle-xmark"></i>
+
+                    </div>
+
+                    <div class="tracking-card-info">
+
+                        <span>
+                            Not Followed
+                        </span>
+
+                        <h2 id="notFollowedMeals">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Pending -->
+
+                <div class="tracking-card">
+
+                    <div class="tracking-card-icon">
+
+                        <i class="fa-solid fa-clock"></i>
+
+                    </div>
+
+                    <div class="tracking-card-info">
+
+                        <span>
+                            Pending
+                        </span>
+
+                        <h2 id="pendingMeals">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 FILTER SECTION
+            ================================== -->
+
+            <div class="tracking-filters">
+
+
+                <!-- Search -->
+
+                <div class="filter-group search-group">
+
+                    <label for="memberSearch">
+                        Search Member
+                    </label>
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="text"
+                            id="memberSearch"
+                            placeholder="Search member..."
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Status -->
+
+                <div class="filter-group">
+
+                    <label for="statusFilter">
+                        Status
+                    </label>
+
+                    <select id="statusFilter">
+
+                        <option value="all">
+                            All Status
+                        </option>
+
+                        <option value="Pending">
+                            Pending
+                        </option>
+
+                        <option value="Followed">
+                            Followed
+                        </option>
+
+                        <option value="Not Followed">
+                            Not Followed
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Date -->
+
+                <div class="filter-group">
+
+                    <label for="trackingDate">
+                        Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="trackingDate"
+                    >
+
+                </div>
+
+
+                <!-- Reset -->
+
+                <div class="filter-group filter-button-group">
+
+                    <button
+                        type="button"
+                        id="resetFilters"
+                        class="reset-btn"
+                    >
+
+                        <i class="fa-solid fa-rotate-left"></i>
+
+                        Reset
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 DIET TRACKING TABLE
+            ================================== -->
+
+            <div class="tracking-table-card">
+
+
+                <!-- Table Header -->
+
+                <div class="table-header">
+
+                    <div>
+
+                        <h2>
+                            Diet Tracking History
+                        </h2>
+
+                        <p>
+                            View member meal submissions and their diet status.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Table Wrapper -->
+
+                <div class="table-wrapper">
+
+                    <table class="diet-tracking-table">
+
+
+                        <!-- Table Head -->
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    #
+                                </th>
+
+                                <th>
+                                    Member
+                                </th>
+
+                                <th>
+                                    Meal
+                                </th>
+
+                                <th>
+                                    Food
+                                </th>
+
+                                <th>
+                                    Date
+                                </th>
+
+                                <th>
+                                    Time
+                                </th>
+
+                                <th>
+                                    Submission
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <!-- Table Body -->
+
+                        <tbody id="dietTrackingTableBody">
+
+                            <!--
+                                Data will be loaded here
+                                through JavaScript.
+                            -->
+
+                            <tr class="empty-row">
+
+                                <td
+                                    colspan="9"
+                                >
+
+                                    <div class="empty-state">
+
+                                        <i class="fa-solid fa-chart-simple"></i>
+
+                                        <h3>
+                                            No Diet Tracking Records
+                                        </h3>
+
+                                        <p>
+                                            Member diet submissions will appear here.
+                                        </p>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================================
+         TRACKING DETAILS MODAL
+    ========================================== -->
+
+    <div
+        id="trackingDetailsModal"
+        class="tracking-modal"
+    >
+
+        <div class="tracking-modal-content">
+
+
+            <!-- Modal Header -->
+
+            <div class="tracking-modal-header">
+
+                <div>
+
+                    <h2>
+                        Diet Tracking Details
+                    </h2>
+
+                    <p>
+                        Member meal submission details
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="closeTrackingModal"
+                    class="modal-close-btn"
+                >
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+
+            <!-- Modal Body -->
+
+            <div class="tracking-modal-body">
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Member
+                    </span>
+
+                    <strong id="detailMember">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Meal
+                    </span>
+
+                    <strong id="detailMeal">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Food
+                    </span>
+
+                    <strong id="detailFood">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Date
+                    </span>
+
+                    <strong id="detailDate">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Submission Time
+                    </span>
+
+                    <strong id="detailTime">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Status
+                    </span>
+
+                    <strong id="detailStatus">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <!-- Member Feedback -->
+
+                <div class="feedback-section">
+
+                    <h3>
+                        Member Feedback
+                    </h3>
+
+                    <p id="detailFeedback">
+                        No feedback submitted.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- Modal Footer -->
+
+            <div class="tracking-modal-footer">
+
+
+                <button
+                    type="button"
+                    id="markFollowedBtn"
+                    class="status-btn followed-btn"
+                >
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Mark Followed
+
+                </button>
+
+
+                <button
+                    type="button"
+                    id="markNotFollowedBtn"
+                    class="status-btn not-followed-btn"
+                >
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                    Mark Not Followed
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         TRAINER SIDEBAR JS
+    ========================================== -->
+
+    <script src="../../../components/trainer.sidebar/trainer.sidebar.js"></script>
+
+
+    <!-- =========================================
+         DIET TRACKING JS
+    ========================================== -->
+
+    <script src="dite-tracking.js"></script>
+
+
+</body>
+
+</html> 

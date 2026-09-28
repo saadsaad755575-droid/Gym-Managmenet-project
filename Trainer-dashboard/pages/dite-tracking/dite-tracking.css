@@ -1,0 +1,957 @@
+
+
+/* =========================================
+   DIET TRACKING PAGE
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #111315;
+    color: #ffffff;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.diet-tracking-main {
+    margin-left: 260px;
+    min-height: 100vh;
+    background: #111315;
+}
+
+
+/* =========================================
+   PAGE CONTENT
+========================================= */
+
+.diet-tracking-content {
+    padding: 110px 30px 30px;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+
+    gap: 20px;
+}
+
+.page-title h1 {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 28px;
+    color: #ffffff;
+}
+
+.page-title h1 i {
+    color: #f5b900;
+}
+
+.page-title p {
+    margin-top: 7px;
+
+    color: #999999;
+
+    font-size: 14px;
+}
+
+.tracking-date {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 10px 15px;
+
+    background: #151719;
+
+    border: 1px solid #333333;
+
+    border-radius: 7px;
+
+    color: #b8b8b8;
+
+    font-size: 14px;
+}
+
+.tracking-date i {
+    color: #f5b900;
+}
+
+
+/* =========================================
+   SUMMARY CARDS
+========================================= */
+
+.tracking-cards {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 25px;
+}
+
+.tracking-card {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 20px;
+
+    background: #151719;
+
+    border: 1px solid #333333;
+
+    border-radius: 10px;
+
+    transition: 0.3s ease;
+}
+
+.tracking-card:hover {
+    transform: translateY(-3px);
+
+    border-color: #f5b900;
+}
+
+.tracking-card-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: #242628;
+
+    border: 1px solid #444444;
+
+    border-radius: 9px;
+
+    color: #f5b900;
+
+    font-size: 20px;
+}
+
+.tracking-card-info span {
+    display: block;
+
+    color: #999999;
+
+    font-size: 12px;
+
+    margin-bottom: 5px;
+}
+
+.tracking-card-info h2 {
+    font-size: 24px;
+
+    color: #ffffff;
+}
+
+
+/* =========================================
+   FILTER SECTION
+========================================= */
+
+.tracking-filters {
+    display: grid;
+
+    grid-template-columns: 2fr 1fr 1fr auto;
+
+    align-items: end;
+
+    gap: 15px;
+
+    padding: 20px;
+
+    margin-bottom: 25px;
+
+    background: #151719;
+
+    border: 1px solid #333333;
+
+    border-radius: 10px;
+}
+
+.filter-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.filter-group label {
+    font-size: 12px;
+
+    color: #999999;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-box i {
+    position: absolute;
+
+    left: 13px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #777777;
+
+    font-size: 14px;
+}
+
+.search-box input,
+.filter-group select,
+.filter-group input {
+    width: 100%;
+
+    height: 42px;
+
+    padding: 0 13px;
+
+    background: #111315;
+
+    border: 1px solid #333333;
+
+    border-radius: 7px;
+
+    outline: none;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    transition: 0.3s ease;
+}
+
+.search-box input {
+    padding-left: 38px;
+}
+
+.search-box input:focus,
+.filter-group select:focus,
+.filter-group input:focus {
+    border-color: #f5b900;
+}
+
+.filter-group select option {
+    background: #151719;
+
+    color: #ffffff;
+}
+
+
+/* =========================================
+   RESET BUTTON
+========================================= */
+
+.filter-button-group {
+    justify-content: flex-end;
+}
+
+.reset-btn {
+    height: 42px;
+
+    padding: 0 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    background: transparent;
+
+    border: 1px solid #444444;
+
+    border-radius: 7px;
+
+    color: #b8b8b8;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    transition: 0.3s ease;
+}
+
+.reset-btn:hover {
+    background: #222426;
+
+    border-color: #f5b900;
+
+    color: #f5b900;
+}
+
+
+/* =========================================
+   TRACKING TABLE CARD
+========================================= */
+
+.tracking-table-card {
+    background: #151719;
+
+    border: 1px solid #333333;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   TABLE HEADER
+========================================= */
+
+.table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 20px 22px;
+
+    border-bottom: 1px solid #333333;
+}
+
+.table-header h2 {
+    font-size: 18px;
+
+    color: #ffffff;
+}
+
+.table-header p {
+    margin-top: 5px;
+
+    color: #888888;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   TABLE WRAPPER
+========================================= */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.diet-tracking-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 1050px;
+}
+
+.diet-tracking-table thead {
+    background: #111315;
+}
+
+.diet-tracking-table th {
+    padding: 15px 14px;
+
+    text-align: left;
+
+    color: #f5b900;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    border-bottom: 1px solid #333333;
+}
+
+.diet-tracking-table td {
+    padding: 15px 14px;
+
+    color: #b8b8b8;
+
+    font-size: 13px;
+
+    border-bottom: 1px solid #292b2d;
+
+    white-space: nowrap;
+}
+
+.diet-tracking-table tbody tr {
+    transition: 0.2s ease;
+}
+
+.diet-tracking-table tbody tr:hover {
+    background: #1b1d1f;
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.empty-row td {
+    padding: 0 !important;
+
+    border-bottom: none !important;
+}
+
+.empty-state {
+    min-height: 280px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 40px 20px;
+
+    text-align: center;
+}
+
+.empty-state i {
+    font-size: 42px;
+
+    color: #f5b900;
+
+    margin-bottom: 15px;
+}
+
+.empty-state h3 {
+    font-size: 17px;
+
+    color: #ffffff;
+
+    margin-bottom: 7px;
+}
+
+.empty-state p {
+    color: #777777;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   STATUS BADGES
+========================================= */
+
+.status-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+.status-pending {
+    background: #2b2618;
+
+    color: #f5b900;
+}
+
+.status-followed {
+    background: #17261d;
+
+    color: #55c879;
+}
+
+.status-not-followed {
+    background: #2a1b1b;
+
+    color: #ff6b6b;
+}
+
+
+/* =========================================
+   SUBMISSION BADGE
+========================================= */
+
+.submission-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: #b8b8b8;
+
+    font-size: 12px;
+}
+
+.submission-badge i {
+    color: #f5b900;
+}
+
+
+/* =========================================
+   ACTION BUTTON
+========================================= */
+
+.view-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    padding: 7px 11px;
+
+    background: transparent;
+
+    border: 1px solid #444444;
+
+    border-radius: 6px;
+
+    color: #b8b8b8;
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+    transition: 0.3s ease;
+}
+
+.view-btn:hover {
+    border-color: #f5b900;
+
+    color: #f5b900;
+
+    background: #222426;
+}
+
+
+/* =========================================
+   TRACKING MODAL
+========================================= */
+
+.tracking-modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.tracking-modal.show {
+    display: flex;
+}
+
+.tracking-modal-content {
+    width: 100%;
+
+    max-width: 650px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: #151719;
+
+    border: 1px solid #444444;
+
+    border-radius: 12px;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+
+/* =========================================
+   MODAL HEADER
+========================================= */
+
+.tracking-modal-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 20px;
+
+    border-bottom: 1px solid #333333;
+}
+
+.tracking-modal-header h2 {
+    color: #ffffff;
+
+    font-size: 19px;
+}
+
+.tracking-modal-header p {
+    margin-top: 5px;
+
+    color: #888888;
+
+    font-size: 12px;
+}
+
+.modal-close-btn {
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: transparent;
+
+    border: 1px solid #444444;
+
+    border-radius: 7px;
+
+    color: #b8b8b8;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.modal-close-btn:hover {
+    border-color: #f5b900;
+
+    color: #f5b900;
+}
+
+
+/* =========================================
+   MODAL BODY
+========================================= */
+
+.tracking-modal-body {
+    padding: 20px;
+}
+
+.detail-item {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 13px 0;
+
+    border-bottom: 1px solid #292b2d;
+}
+
+.detail-item span {
+    color: #888888;
+
+    font-size: 12px;
+}
+
+.detail-item strong {
+    color: #ffffff;
+
+    font-size: 13px;
+
+    text-align: right;
+}
+
+
+/* =========================================
+   FEEDBACK
+========================================= */
+
+.feedback-section {
+    margin-top: 20px;
+
+    padding: 15px;
+
+    background: #111315;
+
+    border: 1px solid #333333;
+
+    border-radius: 8px;
+}
+
+.feedback-section h3 {
+    margin-bottom: 8px;
+
+    color: #f5b900;
+
+    font-size: 13px;
+}
+
+.feedback-section p {
+    color: #b8b8b8;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   MODAL FOOTER
+========================================= */
+
+.tracking-modal-footer {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding: 18px 20px;
+
+    border-top: 1px solid #333333;
+}
+
+.status-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 10px 15px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    transition: 0.3s ease;
+}
+
+.followed-btn {
+    background: transparent;
+
+    border: 1px solid #55c879;
+
+    color: #55c879;
+}
+
+.followed-btn:hover {
+    background: #17261d;
+}
+
+.not-followed-btn {
+    background: transparent;
+
+    border: 1px solid #ff6b6b;
+
+    color: #ff6b6b;
+}
+
+.not-followed-btn:hover {
+    background: #2a1b1b;
+}
+
+
+/* =========================================
+   MODAL SCROLLBAR
+========================================= */
+
+.tracking-modal-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.tracking-modal-content::-webkit-scrollbar-track {
+    background: #151719;
+}
+
+.tracking-modal-content::-webkit-scrollbar-thumb {
+    background: #444444;
+
+    border-radius: 10px;
+}
+
+.tracking-modal-content::-webkit-scrollbar-thumb:hover {
+    background: #f5b900;
+}
+
+
+/* =========================================
+   RESPONSIVE - 1200px
+========================================= */
+
+@media (max-width: 1200px) {
+
+    .tracking-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tracking-filters {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+/* =========================================
+   RESPONSIVE - 900px
+========================================= */
+
+@media (max-width: 900px) {
+
+    .diet-tracking-main {
+        margin-left: 220px;
+    }
+
+    .diet-tracking-content {
+        padding: 105px 20px 25px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .tracking-date {
+        align-self: flex-start;
+    }
+
+}
+
+
+/* =========================================
+   RESPONSIVE - 700px
+========================================= */
+
+@media (max-width: 700px) {
+
+    .diet-tracking-main {
+        margin-left: 0;
+    }
+
+    .diet-tracking-content {
+        padding: 95px 15px 20px;
+    }
+
+    .tracking-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .tracking-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-button-group {
+        align-items: stretch;
+    }
+
+    .reset-btn {
+        width: 100%;
+    }
+
+    .page-title h1 {
+        font-size: 23px;
+    }
+
+}
+
+
+/* =========================================
+   RESPONSIVE - 450px
+========================================= */
+
+@media (max-width: 450px) {
+
+    .diet-tracking-content {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .tracking-card {
+        padding: 16px;
+    }
+
+    .tracking-card-icon {
+        width: 42px;
+        height: 42px;
+
+        font-size: 17px;
+    }
+
+    .tracking-card-info h2 {
+        font-size: 21px;
+    }
+
+    .table-header {
+        padding: 16px;
+    }
+
+    .tracking-modal {
+        padding: 10px;
+    }
+
+    .tracking-modal-footer {
+        flex-direction: column;
+    }
+
+    .status-btn {
+        width: 100%;
+    }
+
+} 

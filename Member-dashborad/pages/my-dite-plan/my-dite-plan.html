@@ -1,0 +1,712 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Diet Plan | Member Dashboard</title>
+
+
+    <!-- =================================================
+         FONT AWESOME
+    ================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- =================================================
+         MEMBER ANIMATION CSS
+    ================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="../../../components/animations/animtion.css"
+    >
+
+
+    <!-- =================================================
+         MY DIET CSS
+    ================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="my-dite-plan.css"
+    >
+    <link rel="stylesheet" href="../../../components/member-sidebar/member-sidebar.css">
+    <link rel="stylesheet" href="../../../components/member-navbar/member-navbar.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =================================================
+         REUSABLE MEMBER SIDEBAR
+    ================================================== -->
+
+    <div id="member-sidebar"></div>
+
+
+
+    <!-- =================================================
+         REUSABLE MEMBER NAVBAR
+    ================================================== -->
+
+    <div id="member-navbar"></div>
+
+
+
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================== -->
+
+    <main class="my-diet-main">
+
+
+        <!-- =================================================
+             PAGE HEADER
+        ================================================== -->
+
+        <section class="diet-page-header">
+
+            <div>
+
+                <span class="page-label">
+
+                    <i class="fa-solid fa-utensils fa-beat"></i>
+
+                    NUTRITION
+
+                </span>
+
+
+                <h1>
+                    My Diet Plan
+                </h1>
+
+
+                <p>
+                    Follow your personalized diet plan and
+                    keep track of your daily meals.
+                </p>
+
+            </div>
+
+
+            <div class="diet-header-icon">
+
+                <i class="fa-solid fa-bowl-food"></i>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             EMPTY DIET PLAN
+        ================================================== -->
+
+        <section
+            id="noDietPlan"
+            class="empty-diet-state"
+        >
+
+            <div class="empty-icon">
+
+                <i class="fa-solid fa-plate-wheat"></i>
+
+            </div>
+
+
+            <h2>
+                No Diet Plan Assigned
+            </h2>
+
+
+            <p>
+                Your trainer has not assigned a diet plan yet.
+                Please check again later.
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             DIET PLAN CONTENT
+        ================================================== -->
+
+        <section
+            id="dietPlanContent"
+            class="diet-plan-content"
+        >
+
+
+            <!-- =================================================
+                 DIET PLAN OVERVIEW
+            ================================================== -->
+
+            <div class="diet-overview-card">
+
+                <div class="diet-overview-left">
+
+                    <div class="plan-icon">
+
+                        <i class="fa-solid fa-apple-whole"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="small-label">
+                            CURRENT DIET PLAN
+                        </span>
+
+
+                        <h2 id="dietPlanName">
+                            Diet Plan
+                        </h2>
+
+
+                        <p id="dietPlanTrainer">
+
+                            <i class="fa-solid fa-user-tie"></i>
+
+                            Trainer: —
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="diet-status">
+
+                    <span id="dietPlanStatus">
+                        Active
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 DIET INFORMATION
+            ================================================== -->
+
+            <div class="diet-info-grid">
+
+
+                <!-- SCHEDULE -->
+
+                <div class="diet-info-card">
+
+                    <div class="info-icon">
+
+                        <i class="fa-solid fa-calendar-days"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            SCHEDULE
+                        </span>
+
+
+                        <strong id="dietSchedule">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TOTAL MEALS -->
+
+                <div class="diet-info-card">
+
+                    <div class="info-icon">
+
+                        <i class="fa-solid fa-bowl-food"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            TOTAL MEALS
+                        </span>
+
+
+                        <strong id="totalMeals">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- COMPLETED -->
+
+                <div class="diet-info-card">
+
+                    <div class="info-icon">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            COMPLETED TODAY
+                        </span>
+
+
+                        <strong id="completedMeals">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- REMAINING -->
+
+                <div class="diet-info-card">
+
+                    <div class="info-icon">
+
+                        <i class="fa-solid fa-clock"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            REMAINING
+                        </span>
+
+
+                        <strong id="remainingMeals">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TRAINER INSTRUCTIONS
+            ================================================== -->
+
+            <div class="diet-instructions-card">
+
+                <div class="section-heading">
+
+                    <div class="section-heading-icon">
+
+                        <i class="fa-solid fa-note-sticky"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Trainer Instructions
+                        </h3>
+
+
+                        <p>
+                            Important instructions from your trainer
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="dietInstructions"
+                    class="instructions-content"
+                >
+
+                    Follow the instructions provided by your trainer.
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 DAILY MEALS
+            ================================================== -->
+
+            <section class="meals-section">
+
+
+                <div class="section-title-row">
+
+                    <div>
+
+                        <span class="page-label">
+
+                            <i class="fa-solid fa-utensils"></i>
+
+                            DAILY MEALS
+
+                        </span>
+
+
+                        <h2>
+                            Today's Meal Plan
+                        </h2>
+
+                    </div>
+
+
+                    <div class="meal-date">
+
+                        <i class="fa-solid fa-calendar-day"></i>
+
+                        <span id="currentMealDate">
+                            —
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- MEALS WILL LOAD HERE -->
+
+                <div
+                    id="mealsContainer"
+                    class="meals-container"
+                ></div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 WEEKLY SCHEDULE
+            ================================================== -->
+
+            <section class="weekly-schedule-section">
+
+
+                <div class="section-title-row">
+
+                    <div>
+
+                        <span class="page-label">
+
+                            <i class="fa-solid fa-calendar-week"></i>
+
+                            WEEKLY SCHEDULE
+
+                        </span>
+
+
+                        <h2>
+                            Diet Schedule
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SCHEDULE WILL LOAD HERE -->
+
+                <div
+                    id="weeklySchedule"
+                    class="weekly-schedule"
+                ></div>
+
+
+            </section>
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =================================================
+         MEAL COMPLETION MODAL
+    ================================================== -->
+
+    <div
+        id="mealModal"
+        class="diet-modal"
+    >
+
+        <div class="diet-modal-content">
+
+
+            <!-- MODAL HEADER -->
+
+            <div class="diet-modal-header">
+
+                <div>
+
+                    <span class="modal-label">
+                        MEAL CHECK-IN
+                    </span>
+
+
+                    <h2 id="modalMealName">
+                        Meal
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="closeMealModal"
+                    class="close-modal-btn"
+                >
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 MEAL DETAILS
+            ================================================== -->
+
+            <div class="modal-meal-details">
+
+
+                <!-- FOOD -->
+
+                <div class="modal-detail-item">
+
+                    <i class="fa-solid fa-bowl-food"></i>
+
+
+                    <div>
+
+                        <span>
+                            FOOD
+                        </span>
+
+
+                        <strong id="modalMealFood">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- QUANTITY -->
+
+                <div class="modal-detail-item">
+
+                    <i class="fa-solid fa-weight-scale"></i>
+
+
+                    <div>
+
+                        <span>
+                            QUANTITY
+                        </span>
+
+
+                        <strong id="modalMealQuantity">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- MEAL TIME -->
+
+                <div class="modal-detail-item">
+
+                    <i class="fa-solid fa-clock"></i>
+
+
+                    <div>
+
+                        <span>
+                            MEAL TIME
+                        </span>
+
+
+                        <strong id="modalMealTime">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 MEAL INSTRUCTIONS
+            ================================================== -->
+
+            <div class="modal-instructions">
+
+                <div class="modal-instructions-title">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    <span>
+                        Meal Instructions
+                    </span>
+
+                </div>
+
+
+                <p id="modalMealInstructions">
+                    —
+                </p>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FEEDBACK
+            ================================================== -->
+
+            <div class="feedback-group">
+
+                <label for="mealFeedback">
+
+                    <i class="fa-solid fa-comment"></i>
+
+                    Feedback / Note
+
+                </label>
+
+
+                <textarea
+                    id="mealFeedback"
+                    rows="4"
+                    placeholder="Write a short note about this meal..."
+                ></textarea>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 MODAL ACTIONS
+            ================================================== -->
+
+            <div class="diet-modal-actions">
+
+
+                <button
+                    type="button"
+                    id="cancelMealBtn"
+                    class="secondary-btn"
+                >
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="button"
+                    id="submitMealBtn"
+                    class="primary-btn"
+                >
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Mark Meal Completed
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         REUSABLE MEMBER SIDEBAR JS
+    ================================================== -->
+
+    <script src="../../../components/member-sidebar/member-sidebar.js"></script>
+
+
+
+    <!-- =================================================
+         REUSABLE MEMBER NAVBAR JS
+    ================================================== -->
+
+    <script src="../../../components/member-navbar/member-navbar.js"></script>
+
+
+
+    <!-- =================================================
+         MY DIET JS
+    ================================================== -->
+
+    <script src="my-dite-plan.js"></script>
+
+
+</body>
+
+</html>

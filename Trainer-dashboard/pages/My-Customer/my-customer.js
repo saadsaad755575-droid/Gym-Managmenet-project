@@ -1,5 +1,3 @@
-
-
 /* =========================
    MY CUSTOMERS JS
 ========================= */
@@ -16,10 +14,13 @@ const MEMBER_STORAGE_KEY = "gymMembers";
    CURRENT TRAINER
 ========================= */
 
-function getCurrentTrainer(){
-    const savedTrainer=
-    localStorage.getItem("currentTrainer");
-    return savedTrainer || "Ahmed Khan"
+function getCurrentTrainer() {
+
+    const savedTrainer =
+        localStorage.getItem("loggedInTrainer");
+
+    return savedTrainer || "Ahmed Khan";
+
 }
 
 
@@ -143,10 +144,13 @@ function loadMyCustomers() {
         );
 
     if (!tableContainer) {
+
         console.error(
             "Trainer table container not found."
         );
+
         return;
+
     }
 
 
@@ -174,30 +178,59 @@ function loadMyCustomers() {
     }
 
 
+    /* =========================
+       GET ALL MEMBERS
+    ========================= */
+
     const allMembers =
         getSavedMembers();
 
 
-      
+    /* =========================
+       GET CURRENT TRAINER
+    ========================= */
 
-const CURRENT_TRAINER = getCurrentTrainer();
-
-const myCustomers = allMembers.filter(function (member) {
-
-        String(member.trainer || "").trim().toLowerCase()
-        ===
-        CURRENT_TRAINER.trim().toLowerCase()
-        return(
-            assignedTrainer === "ahmed Khan" ||
-            assignedTrainer === "usman ahmed"
-        );
-
-});
+    const CURRENT_TRAINER =
+        getCurrentTrainer();
 
 
+    /* =========================
+       FILTER ASSIGNED CUSTOMERS
+    ========================= */
+
+    const myCustomers =
+        allMembers.filter(function (member) {
+
+            const assignedTrainer =
+                String(
+                    member.trainer ||
+                    member.assignedTrainer ||
+                    member.trainerName ||
+                    ""
+                )
+                .trim()
+                .toLowerCase();
 
 
+            const currentTrainer =
+                String(
+                    CURRENT_TRAINER
+                )
+                .trim()
+                .toLowerCase();
 
+
+            return (
+                assignedTrainer ===
+                currentTrainer
+            );
+
+        });
+
+
+    /* =========================
+       CLEAR TABLE
+    ========================= */
 
     tableBody.innerHTML = "";
 
@@ -259,12 +292,28 @@ const myCustomers = allMembers.filter(function (member) {
                 document.createElement("tr");
 
 
+            const memberId =
+                member.id ||
+                member.memberId ||
+                member.customerId ||
+                "";
+
+
             row.dataset.memberId =
-                member.id;
+                memberId;
+
+
+            const memberName =
+                member.name ||
+                member.fullName ||
+                member.memberName ||
+                member.customerName ||
+                "Unknown Customer";
 
 
             const status =
-                member.status || "Active";
+                member.status ||
+                "Active";
 
 
             const statusClass =
@@ -278,11 +327,11 @@ const myCustomers = allMembers.filter(function (member) {
                 <td>
 
                     <strong>
-                        ${escapeHTML(member.name)}
+                        ${escapeHTML(memberName)}
                     </strong>
 
                     <small>
-                        ${escapeHTML(member.id)}
+                        ${escapeHTML(memberId)}
                     </small>
 
                 </td>
@@ -290,7 +339,9 @@ const myCustomers = allMembers.filter(function (member) {
 
                 <td>
                     ${escapeHTML(
-                        member.goal || "Not Set"
+                        member.goal ||
+                        member.fitnessGoal ||
+                        "Not Set"
                     )}
                 </td>
 
@@ -350,6 +401,10 @@ const myCustomers = allMembers.filter(function (member) {
         }
     );
 
+
+    /* =========================
+       UPDATE COUNT
+    ========================= */
 
     updateCustomerCount(
         myCustomers.length
@@ -537,7 +592,16 @@ function setupCustomerView() {
                 members.find(
                     function (item) {
 
-                        return item.id === memberId;
+                        const itemId =
+                            item.id ||
+                            item.memberId ||
+                            item.customerId ||
+                            "";
+
+                        return (
+                            String(itemId) ===
+                            String(memberId)
+                        );
 
                     }
                 );
@@ -559,28 +623,37 @@ function setupCustomerView() {
                 "Customer Profile\n\n" +
 
                 "Member ID: " +
-                member.id +
+                (member.id ||
+                member.memberId ||
+                member.customerId ||
+                "") +
 
                 "\nName: " +
-                member.name +
+                (member.name ||
+                member.fullName ||
+                member.memberName ||
+                "") +
 
                 "\nPhone: " +
-                member.phone +
+                (member.phone || "") +
 
                 "\nEmail: " +
-                member.email +
+                (member.email || "") +
 
                 "\nMembership: " +
-                member.membership +
+                (member.membership || "") +
 
                 "\nTrainer: " +
-                member.trainer +
+                (member.trainer ||
+                member.assignedTrainer ||
+                member.trainerName ||
+                "") +
 
                 "\nPayment: " +
-                member.payment +
+                (member.payment || "") +
 
                 "\nJoin Date: " +
-                member.joinDate +
+                (member.joinDate || "") +
 
                 "\nStatus: " +
                 (member.status || "Active")

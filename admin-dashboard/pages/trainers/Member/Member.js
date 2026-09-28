@@ -1067,146 +1067,130 @@ function setupMemberActions() {
 
 // ========================================
 // ADD MEMBER
-// ========================================
-
+// =========================
 function setupAddMemberButton() {
 
-    const addMemberBtn =
-        document.getElementById(
-            "addMemberBtn"
-        );
+    const addMemberBtn = document.getElementById("addMemberBtn");
 
-    if (!addMemberBtn) {
-        return;
-    }
+    if (!addMemberBtn) return;
 
+    addMemberBtn.addEventListener("click", function () {
 
-    addMemberBtn.addEventListener(
-        "click",
-        function () {
+        const memberName = prompt("Enter Member Name:");
+
+        if (!memberName) return;
 
 
-            const memberName =
-                prompt(
-                    "Enter Member Name:"
-                );
+        const phone = prompt("Enter Phone Number:");
 
-            if (!memberName) {
-                return;
-            }
+        if (!phone) return;
 
 
-            const phone =
-                prompt(
-                    "Enter Phone Number:"
-                );
+        const email = prompt("Enter Email:");
 
-            if (!phone) {
-                return;
-            }
+        if (!email) return;
 
 
-            const email =
-                prompt(
-                    "Enter Email:"
-                );
+        const tableBody =
+            document.getElementById("memberTableBody");
 
-            if (!email) {
-                return;
-            }
+        if (!tableBody) return;
 
 
-            const tableBody =
-                document.getElementById(
-                    "memberTableBody"
-                );
+        /* =========================
+           GENERATE MEMBER ID
+        ========================= */
 
-            if (!tableBody) {
-                return;
-            }
+        const memberId = getNextMemberId();
 
 
-            const memberId =
-                getNextMemberId();
+        /* =========================
+           JOIN DATE
+        ========================= */
 
-
-            const joinDate =
-                new Date().toLocaleDateString(
-                    "en-GB",
-                    {
-                        day: "2-digit",
-                        month: "short",
-                        year: "numeric"
-                    }
-                );
-
-
-            const newMember = {
-
-                id:
-                    memberId,
-
-                name:
-                    memberName.trim(),
-
-                phone:
-                    phone.trim(),
-
-                email:
-                    email.trim(),
-
-                membership:
-                    "Basic",
-
-                trainer:
-                    "Not Assigned",
-
-                payment:
-                    "Pending",
-
-                joinDate:
-                    joinDate,
-
-                status:
-                    "Active"
-            };
-
-
-            const savedMembers =
-                getSavedMembers();
-
-
-            savedMembers.push(
-                newMember
+        const joinDate =
+            new Date().toLocaleDateString(
+                "en-GB",
+                {
+                    day: "2-digit", month: "short",
+                    year: "numeric"
+                }
             );
 
 
-            saveMembers(
-                savedMembers
+        /* =========================
+           CREATE MEMBER
+           NO PASSWORD HERE
+        ========================= */
+
+        const newMember = {
+
+            id: memberId,
+
+            name: memberName.trim(),
+
+            phone: phone.trim(),
+
+            email: email.trim(),
+
+            membership: "Basic",
+
+            trainer: "Not Assigned",
+
+            payment: "Pending",
+
+            joinDate: joinDate,
+
+            status: "Active"
+
+        };
+
+
+        /* =========================
+           SAVE MEMBER
+        ========================= */
+
+        const savedMembers = getSavedMembers();
+
+        savedMembers.push(newMember);
+
+        saveMembers(savedMembers);
+
+
+        /* =========================
+           SHOW IN TABLE
+        ========================= */
+
+        const newRow =
+            createMemberRow(newMember);
+
+        tableBody.appendChild(newRow);
+
+
+        /* =========================
+           SUCCESS MESSAGE
+        ========================= */
+
+        const message =
+            document.getElementById(
+                "memberFormMessage"
             );
 
+        if (message) {
 
-            const newRow =
-                createMemberRow(
-                    newMember
-                );
-
-
-            tableBody.appendChild(
-                newRow
-            );
-
-
-            alert(
+            message.textContent =
                 memberName +
-                " has been added successfully!"
-            );
+                " has been added successfully. Member ID: " + memberId;
 
-
-            filterMembers();
+            message.className ="success-message";
 
         }
-    );
+
+
+        filterMembers();
+
+    });
+
 }
 
 

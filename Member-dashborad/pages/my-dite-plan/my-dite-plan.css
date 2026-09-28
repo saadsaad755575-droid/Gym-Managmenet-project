@@ -1,0 +1,1570 @@
+
+/* =========================================================
+   MY DIET PLAN - MEMBER DASHBOARD
+========================================================= */
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root {
+
+    --bg-color: #0d0f10;
+    --panel-color: #151719;
+    --panel-light: #1b1e21;
+
+    --gold: #f5b900;
+    --gold-light: #ffd75a;
+
+    --text-white: #ffffff;
+    --text-light: #d7d7d7;
+    --text-muted: #8f9398;
+
+    --border: rgba(255, 255, 255, 0.08);
+
+    --success: #28c76f;
+    --danger: #ea5455;
+    --warning: #ff9f43;
+
+    --sidebar-width: 250px;
+
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+
+    margin: 0;
+
+    padding: 0;
+
+    background: var(--bg-color);
+
+    color: var(--text-white);
+
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.my-diet-main {
+
+    margin-left: var(--sidebar-width);
+
+    min-height: 100vh;
+
+    padding: 110px 35px 40px;
+
+    box-sizing: border-box;
+
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.diet-page-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: var(--panel-color);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    padding: 28px 30px;
+
+    margin-bottom: 25px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+
+}
+
+
+.page-label {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--gold);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.diet-page-header h1 {
+
+    margin: 8px 0;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+}
+
+
+.diet-page-header p {
+
+    margin: 0;
+
+    color: var(--text-muted);
+
+    font-size: 14px;
+
+}
+
+
+.diet-header-icon {
+
+    width: 70px;
+
+    height: 70px;
+
+    border-radius: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(245, 185, 0, 0.12);
+
+    color: var(--gold);
+
+    font-size: 30px;
+
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-diet-state {
+
+    background: var(--panel-color);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    padding: 60px 25px;
+
+    text-align: center;
+
+}
+
+
+.empty-icon {
+
+    width: 80px;
+
+    height: 80px;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(245, 185, 0, 0.1);
+
+    color: var(--gold);
+
+    font-size: 32px;
+
+}
+
+
+.empty-diet-state h2 {
+
+    margin: 0 0 10px;
+
+    font-size: 22px;
+
+}
+
+
+.empty-diet-state p {
+
+    margin: 0;
+
+    color: var(--text-muted);
+
+    font-size: 14px;
+
+}
+
+
+/* =========================================================
+   DIET PLAN CONTENT
+========================================================= */
+
+.diet-plan-content {
+
+    display: none;
+
+}
+
+
+/* =========================================================
+   PLAN OVERVIEW
+========================================================= */
+
+.diet-overview-card {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    background: var(--panel-color);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.diet-overview-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+}
+
+
+.plan-icon {
+
+    width: 62px;
+
+    height: 62px;
+
+    flex-shrink: 0;
+
+    border-radius: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(245, 185, 0, 0.12);
+
+    color: var(--gold);
+
+    font-size: 26px;
+
+}
+
+
+.small-label {
+
+    display: block;
+
+    color: var(--text-muted);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+
+}
+
+
+.diet-overview-card h2 {
+
+    margin: 5px 0;
+
+    font-size: 22px;
+
+}
+
+
+.diet-overview-card p {
+
+    margin: 0;
+
+    color: var(--text-muted);
+
+    font-size: 13px;
+
+}
+
+
+.diet-overview-card p i {
+
+    color: var(--gold);
+
+    margin-right: 5px;
+
+}
+
+
+.diet-status span {
+
+    display: inline-block;
+
+    padding: 8px 16px;
+
+    border-radius: 30px;
+
+    background: rgba(40, 199, 111, 0.12);
+
+    color: var(--success);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================================
+   INFO GRID
+========================================================= */
+
+.diet-info-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.diet-info-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    background: var(--panel-color);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    padding: 20px;
+
+}
+
+
+.info-icon {
+
+    width: 45px;
+
+    height: 45px;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(245, 185, 0, 0.1);
+
+    color: var(--gold);
+
+}
+
+
+.diet-info-card span {
+
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+
+}
+
+
+.diet-info-card strong {
+
+    font-size: 17px;
+
+    color: var(--text-white);
+
+}
+
+
+/* =========================================================
+   INSTRUCTIONS
+========================================================= */
+
+.diet-instructions-card {
+
+    background: var(--panel-color);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    padding: 24px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.section-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.section-heading-icon {
+
+    width: 45px;
+
+    height: 45px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(245, 185, 0, 0.1);
+
+    color: var(--gold);
+
+}
+
+
+.section-heading h3 {
+
+    margin: 0 0 4px;
+
+    font-size: 17px;
+
+}
+
+
+.section-heading p {
+
+    margin: 0;
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+
+}
+
+
+.instructions-content {
+
+    padding: 16px;
+
+    border-radius: 12px;
+
+    background: var(--panel-light);
+
+    border-left: 3px solid var(--gold);
+
+    color: var(--text-light);
+
+    line-height: 1.7;
+
+    font-size: 14px;
+
+}
+
+
+/* =========================================================
+   MEALS SECTION
+========================================================= */
+
+.meals-section {
+
+    margin-bottom: 30px;
+
+}
+
+
+.section-title-row {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.section-title-row h2 {
+
+    margin: 7px 0 0;
+
+    font-size: 22px;
+
+}
+
+
+.meal-date {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 9px 14px;
+
+    border-radius: 10px;
+
+    background: var(--panel-color);
+
+    border: 1px solid var(--border);
+
+    color: var(--text-light);
+
+    font-size: 12px;
+
+}
+
+
+.meal-date i {
+
+    color: var(--gold);
+
+}
+
+
+/* =========================================================
+   MEALS CONTAINER
+========================================================= */
+
+.meals-container {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+
+}
+
+
+/* =========================================================
+   MEAL CARD
+========================================================= */
+
+.meal-card {
+
+    background: var(--panel-color);
+
+    border: 1px solid var(--border);
+
+    border-radius: 17px;
+
+    padding: 20px;
+
+    transition: 0.25s ease;
+
+}
+
+
+.meal-card:hover {
+
+    transform: translateY(-3px);
+
+    border-color: rgba(245, 185, 0, 0.35);
+
+}
+
+
+.meal-card-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.meal-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.meal-icon {
+
+    width: 44px;
+
+    height: 44px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(245, 185, 0, 0.1);
+
+    color: var(--gold);
+
+    font-size: 18px;
+
+}
+
+
+.meal-title h3 {
+
+    margin: 0 0 4px;
+
+    font-size: 17px;
+
+}
+
+
+.meal-title span {
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+
+}
+
+
+.meal-completed {
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    background: rgba(40, 199, 111, 0.12);
+
+    color: var(--success);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+}
+
+
+.meal-pending {
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    background: rgba(255, 159, 67, 0.12);
+
+    color: var(--warning);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================================
+   MEAL INFORMATION
+========================================================= */
+
+.meal-info {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 10px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.meal-info-item {
+
+    padding: 11px;
+
+    border-radius: 10px;
+
+    background: var(--panel-light);
+
+}
+
+
+.meal-info-item span {
+
+    display: block;
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.meal-info-item strong {
+
+    color: var(--text-light);
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================================
+   MEAL INSTRUCTIONS
+========================================================= */
+
+.meal-instructions {
+
+    padding: 12px;
+
+    margin-bottom: 16px;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+}
+
+
+.meal-instructions i {
+
+    color: var(--gold);
+
+    margin-right: 5px;
+
+}
+
+
+/* =========================================================
+   MEAL ACTION BUTTON
+========================================================= */
+
+.complete-meal-btn {
+
+    width: 100%;
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 12px;
+
+    background: var(--gold);
+
+    color: #111;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+}
+
+
+.complete-meal-btn:hover {
+
+    background: var(--gold-light);
+
+    transform: translateY(-1px);
+
+}
+
+
+.complete-meal-btn.completed {
+
+    background: rgba(40, 199, 111, 0.12);
+
+    color: var(--success);
+
+    cursor: default;
+
+}
+
+
+/* =========================================================
+   WEEKLY SCHEDULE
+========================================================= */
+
+.weekly-schedule-section {
+
+    margin-bottom: 30px;
+
+}
+
+
+.weekly-schedule {
+
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+
+    gap: 10px;
+
+}
+
+
+.schedule-day {
+
+    background: var(--panel-color);
+
+    border: 1px solid var(--border);
+
+    border-radius: 13px;
+
+    padding: 15px 10px;
+
+    text-align: center;
+
+}
+
+
+.schedule-day.active {
+
+    border-color: var(--gold);
+
+    background: rgba(245, 185, 0, 0.08);
+
+}
+
+
+.schedule-day h4 {
+
+    margin: 0 0 8px;
+
+    font-size: 12px;
+
+    color: var(--text-light);
+
+}
+
+
+.schedule-day p {
+
+    margin: 0;
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+
+    line-height: 1.4;
+
+}
+
+
+.schedule-day.active h4 {
+
+    color: var(--gold);
+
+}
+
+
+/* =========================================================
+   DIET MODAL
+========================================================= */
+
+.diet-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.75);
+
+}
+
+
+.diet-modal.show {
+
+    display: flex;
+
+}
+
+
+.diet-modal-content {
+
+    width: 100%;
+
+    max-width: 520px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: var(--panel-color);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    box-sizing: border-box;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+
+}
+
+
+/* =========================================================
+   MODAL HEADER
+========================================================= */
+
+.diet-modal-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid var(--border);
+
+    margin-bottom: 20px;
+
+}
+
+
+.modal-label {
+
+    color: var(--gold);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+
+}
+
+
+.diet-modal-header h2 {
+
+    margin: 5px 0 0;
+
+    font-size: 22px;
+
+}
+
+
+.close-modal-btn {
+
+    width: 36px;
+
+    height: 36px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: var(--text-light);
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+}
+
+
+.close-modal-btn:hover {
+
+    background: rgba(234, 84, 85, 0.15);
+
+    color: var(--danger);
+
+}
+
+
+/* =========================================================
+   MODAL MEAL DETAILS
+========================================================= */
+
+.modal-meal-details {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.modal-detail-item {
+
+    padding: 13px;
+
+    border-radius: 11px;
+
+    background: var(--panel-light);
+
+}
+
+
+.modal-detail-item > i {
+
+    color: var(--gold);
+
+    margin-bottom: 8px;
+
+}
+
+
+.modal-detail-item span {
+
+    display: block;
+
+    color: var(--text-muted);
+
+    font-size: 9px;
+
+    margin-bottom: 4px;
+
+}
+
+
+.modal-detail-item strong {
+
+    display: block;
+
+    color: var(--text-light);
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================================
+   MODAL INSTRUCTIONS
+========================================================= */
+
+.modal-instructions {
+
+    padding: 14px;
+
+    margin-bottom: 20px;
+
+    border-radius: 11px;
+
+    background: rgba(245, 185, 0, 0.06);
+
+    border-left: 3px solid var(--gold);
+
+}
+
+
+.modal-instructions-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: var(--gold);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    margin-bottom: 7px;
+
+}
+
+
+.modal-instructions p {
+
+    margin: 0;
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================================
+   FEEDBACK
+========================================================= */
+
+.feedback-group {
+
+    margin-bottom: 20px;
+
+}
+
+
+.feedback-group label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--text-light);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+
+.feedback-group label i {
+
+    color: var(--gold);
+
+    margin-right: 5px;
+
+}
+
+
+.feedback-group textarea {
+
+    width: 100%;
+
+    min-height: 100px;
+
+    padding: 12px;
+
+    box-sizing: border-box;
+
+    resize: vertical;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: var(--panel-light);
+
+    color: var(--text-white);
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+}
+
+
+.feedback-group textarea:focus {
+
+    border-color: var(--gold);
+
+}
+
+
+.feedback-group textarea::placeholder {
+
+    color: #686c70;
+
+}
+
+
+/* =========================================================
+   MODAL BUTTONS
+========================================================= */
+
+.diet-modal-actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+}
+
+
+.secondary-btn,
+.primary-btn {
+
+    border: none;
+
+    border-radius: 9px;
+
+    padding: 11px 17px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+}
+
+
+.secondary-btn {
+
+    background: rgba(255, 255, 255, 0.07);
+
+    color: var(--text-light);
+
+}
+
+
+.secondary-btn:hover {
+
+    background: rgba(255, 255, 255, 0.12);
+
+}
+
+
+.primary-btn {
+
+    background: var(--gold);
+
+    color: #111;
+
+}
+
+
+.primary-btn:hover {
+
+    background: var(--gold-light);
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 1200px
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .diet-info-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+
+    .weekly-schedule {
+
+        grid-template-columns: repeat(4, 1fr);
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 900px
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .my-diet-main {
+
+        margin-left: 0;
+
+        padding: 100px 20px 30px;
+
+    }
+
+
+    .diet-page-header {
+
+        padding: 22px;
+
+    }
+
+
+    .meals-container {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .weekly-schedule {
+
+        grid-template-columns: repeat(3, 1fr);
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 700px
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .diet-page-header {
+
+        align-items: flex-start;
+
+    }
+
+
+    .diet-header-icon {
+
+        width: 55px;
+
+        height: 55px;
+
+        font-size: 23px;
+
+    }
+
+
+    .diet-page-header h1 {
+
+        font-size: 25px;
+
+    }
+
+
+    .diet-overview-card {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+
+    .diet-info-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .weekly-schedule {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+
+    .section-title-row {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+
+    .meal-date {
+
+        align-self: flex-start;
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 450px
+========================================================= */
+
+@media (max-width: 450px) {
+
+    .my-diet-main {
+
+        padding: 95px 12px 25px;
+
+    }
+
+
+    .diet-page-header {
+
+        padding: 18px;
+
+    }
+
+
+    .diet-page-header h1 {
+
+        font-size: 22px;
+
+    }
+
+
+    .diet-page-header p {
+
+        font-size: 12px;
+
+        line-height: 1.5;
+
+    }
+
+
+    .diet-overview-card {
+
+        padding: 18px;
+
+    }
+
+
+    .diet-overview-left {
+
+        align-items: flex-start;
+
+    }
+
+
+    .meal-card {
+
+        padding: 16px;
+
+    }
+
+
+    .meal-info {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .modal-meal-details {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .diet-modal-content {
+
+        padding: 18px;
+
+    }
+
+
+    .diet-modal-actions {
+
+        flex-direction: column;
+
+    }
+
+
+    .secondary-btn,
+    .primary-btn {
+
+        width: 100%;
+
+    }
+
+}

@@ -193,112 +193,75 @@ document.addEventListener("DOMContentLoaded", () => {
        LOAD CUSTOMERS
     ===================================================== */
 
-    function loadCustomers() {
+function loadCustomers() {
 
-        const possibleKeys = [
+    const storedData =
+        localStorage.getItem("gymMembers");
 
-            "assignedCustomers",
-            "myCustomers",
-            "members",
-            "gymMembers",
-            "memberData"
+    let customers = [];
 
-        ];
+    if (storedData) {
 
+        try {
 
-        let customers = [];
+            const parsedData =JSON.parse(storedData);
 
-
-        for (const key of possibleKeys) {
-
-            const storedData =
-                localStorage.getItem(key);
-
-
-            if (!storedData) {
-                continue;
+            if (Array.isArray(parsedData)) {
+                customers = parsedData;
             }
 
+        } catch (error) {
 
-            try {
-
-                const parsedData =
-                    JSON.parse(storedData);
-
-
-                if (Array.isArray(parsedData)) {
-
-                    customers = parsedData;
-
-
-                    if (customers.length > 0) {
-                        break;
-                    }
-
-                }
-
-            } catch (error) {
-
-                console.error(
-                    `Error reading ${key}:`,
-                    error
-                );
-
-            }
+            console.error(
+                "Error reading gymMembers:",error
+            );
 
         }
-
-
-        if (!customerSelect) {
-            return;
-        }
-
-
-        customerSelect.innerHTML = `
-
-            <option value="">
-                Select Customer
-            </option>
-
-        `;
-
-
-        customers.forEach(customer => {
-
-            const name =
-
-                customer.name ||
-                customer.fullName ||
-                customer.memberName ||
-                customer.customerName ||
-                "Unknown Customer";
-
-
-            const id =
-
-                customer.id ||
-                customer.memberId ||
-                customer.customerId ||
-                name;
-
-
-            const option =
-                document.createElement("option");
-
-
-            option.value = id;
-
-            option.textContent = name;
-
-
-            customerSelect.appendChild(option);
-
-        });
-
     }
 
 
-    loadCustomers();
+    if (!customerSelect) {
+        return;
+    }
+
+
+    customerSelect.innerHTML = `
+        <option value="">
+            Select Customer
+        </option>
+    `;
+
+
+    customers.forEach(customer => {
+
+        const name =
+            customer.name ||customer.fullName ||
+            customer.memberName ||customer.customerName ||
+            "Unknown Customer";
+
+
+        const id =
+            customer.id ||customer.memberId ||
+            customer.customerId ||name;
+
+
+        const option =
+            document.createElement("option");
+
+
+        option.value = id;
+
+        option.textContent = name;
+
+
+        customerSelect.appendChild(option);
+
+    });
+
+}
+
+
+loadCustomers();
 
 
     /* =====================================================
@@ -309,8 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         openMealModal.addEventListener("click", () => {
 
-            const modal =
-                document.getElementById("trainerModal");
+            const modal = document.getElementById("trainerModal");
 
 
             if (!modal) {
@@ -339,8 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function prepareMealModal() {
 
-        const modal =
-            document.getElementById("trainerModal");
+        const modal = document.getElementById("trainerModal");
 
 
         if (!modal) {
@@ -369,8 +330,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (headerDescription) {
 
-            headerDescription.textContent =
-                "Add meal information to the diet plan";
+            headerDescription.textContent = "Add meal information to the diet plan";
 
         }
 
@@ -387,8 +347,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (sections.length >= 1) {
 
-            const firstSection =
-                sections[0];
+            const firstSection = sections[0];
 
 
             const heading =
@@ -400,52 +359,40 @@ document.addEventListener("DOMContentLoaded", () => {
                 heading.innerHTML = `
 
                     <i class="fa-solid fa-bowl-food"></i>
-                    Meal Information
-
-                `;
+                    Meal Information `;
 
             }
 
 
             const fields =
-                firstSection.querySelectorAll(
-                    ".trainer-modal-field"
-                );
+                firstSection.querySelectorAll(".trainer-modal-field");
 
 
             if (fields.length >= 4) {
 
                 createInputField(
-                    fields[0],
-                    "Meal Type",
-                    "mealTypeInput",
-                    "select"
+                    fields[0], "Meal Type",
+                    "mealTypeInput", "select"
                 );
 
 
                 createInputField(
                     fields[1],
-                    "Food Item",
-                    "foodItemInput",
-                    "text",
-                    "e.g. Grilled Chicken"
+                    "Food Item", "foodItemInput",
+                    "text","e.g. Grilled Chicken"
                 );
 
 
                 createInputField(
-                    fields[2],
-                    "Quantity",
-                    "foodQuantityInput",
-                    "text",
+                    fields[2],"Quantity",
+                    "foodQuantityInput", "text",
                     "e.g. 150g"
                 );
 
 
                 createInputField(
-                    fields[3],
-                    "Meal Time",
-                    "mealTimeInput",
-                    "time"
+                    fields[3],"Meal Time",
+                    "mealTimeInput","time"
                 );
 
             }
@@ -459,8 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (sections.length >= 2) {
 
-            const secondSection =
-                sections[1];
+            const secondSection =sections[1];
 
 
             const heading =
@@ -472,9 +418,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 heading.innerHTML = `
 
                     <i class="fa-solid fa-note-sticky"></i>
-                    Meal Instructions
-
-                `;
+                    Meal Instructions `;
 
             }
 
@@ -491,8 +435,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     <div
                         class="trainer-modal-field"
-                        style="grid-column: 1 / -1;"
-                    >
+                        style="grid-column: 1 / -1; >
 
                         <label for="mealInstructionsInput">
                             Instructions
@@ -504,9 +447,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             rows="4"
                         ></textarea>
 
-                    </div>
-
-                `;
+                    </div>`;
 
             }
 
@@ -519,8 +460,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         for (
             let i = 2;
-            i < sections.length;
-            i++
+            i < sections.length; i++
         ) {
 
             sections[i].style.display = "none";
@@ -558,9 +498,7 @@ document.addEventListener("DOMContentLoaded", () => {
             saveButton.innerHTML = `
 
                 <i class="fa-solid fa-plus"></i>
-                Add Meal
-
-            `;
+                Add Meal `;
 
         }
 
@@ -572,10 +510,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ===================================================== */
 
     function createInputField(
-        field,
-        labelText,
-        inputId,
-        type = "text",
+        field,labelText,
+        inputId, type = "text",
         placeholder = ""
     ) {
 
@@ -614,9 +550,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         Dinner
                     </option>
 
-                </select>
-
-            `;
+                </select> `;
 
             return;
         }
@@ -631,10 +565,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <input
                 type="${type}"
                 id="${inputId}"
-                placeholder="${placeholder}"
-            >
-
-        `;
+                placeholder="${placeholder}"> `;
 
     }
 
@@ -748,10 +679,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (
 
-            !mealType ||
-            !foodItem ||
-            !quantity ||
-            !mealTime ||
+            !mealType ||!foodItem ||
+            !quantity || !mealTime ||
             !instructions
 
         ) {
@@ -767,10 +696,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (
 
-            !mealType.value ||
-            !foodItem.value.trim() ||
-            !quantity.value.trim() ||
-            !mealTime.value
+            !mealType.value || !foodItem.value.trim() ||
+            !quantity.value.trim() ||!mealTime.value
 
         ) {
 
@@ -799,8 +726,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             time: mealTime.value,
 
-            instructions:
-                instructions.value.trim()
+            instructions: instructions.value.trim()
 
         };
 
@@ -843,16 +769,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     <td
                         colspan="6"
-                        class="empty-row"
-                    >
+                        class="empty-row" >
 
                         No meals added yet.
 
                     </td>
 
-                </tr>
-
-            `;
+                </tr> `;
 
             return;
 
@@ -898,16 +821,13 @@ document.addEventListener("DOMContentLoaded", () => {
                         type="button"
                         class="table-action delete-action"
                         data-meal-id="${meal.id}"
-                        title="Delete Meal"
-                    >
+                        title="Delete Meal" >
 
                         <i class="fa-solid fa-trash"></i>
 
                     </button>
 
-                </td>
-
-            `;
+                </td> `;
 
 
             mealTableBody.appendChild(row);
@@ -939,16 +859,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                 const mealId =
-                    Number(
-                        button.dataset.mealId
-                    );
+                    Number( button.dataset.mealId );
 
 
                 meals =
                     meals.filter(
-                        meal =>
-                            meal.id !== mealId
-                    );
+                        meal => meal.id !== mealId );
 
 
                 renderMeals();
@@ -1039,9 +955,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         if (input.checked) {
 
-                            selectedDays.push(
-                                input.value
-                            );
+                            selectedDays.push( input.value );
 
                         }
 
@@ -1121,18 +1035,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         customerId,
 
-                        customer:
-                            customerName,
+                        customer: customerName,
 
-                        dietPlan,
+                        dietPlan,meals: [...meals],
 
-                        meals: [...meals],
+                        schedule: selectedDays,
 
-                        schedule:
-                            selectedDays,
-
-                        instructions:
-                            dailyInstructions.value.trim(),
+                        instructions: dailyInstructions.value.trim(),
 
                         status
 
@@ -1149,8 +1058,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ========================================= */
 
                 localStorage.setItem(
-                    dietPlansStorageKey,
-                    JSON.stringify(dietPlans)
+                    dietPlansStorageKey, JSON.stringify(dietPlans)
                 );
                 /*============================
                 CREATE NOTIFICATION
@@ -1158,8 +1066,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 createNotification(
                     "diet",
                     editingPlanId
-                    ?"Diet Plan Updated"
-                    : "New Diet Plan",
+                    ?"Diet Plan Updated" : "New Diet Plan",
                     editingPlanId
                     ?`${customerName}'s diet
                     plan has been updated.`
@@ -1185,12 +1092,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 resetDietForm();
 
 
-                dietFormCard.style.display =
-                    "none";
+                dietFormCard.style.display ="none";
 
 
-                openDietForm.style.display =
-                    "inline-flex";
+                openDietForm.style.display ="inline-flex";
 
 
                 alert(
@@ -1216,9 +1121,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const dietPlans =
             JSON.parse(
-                localStorage.getItem(
-                    dietPlansStorageKey
-                )
+                localStorage.getItem( dietPlansStorageKey)
             ) || [];
 
 
@@ -1230,16 +1133,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     <td
                         colspan="6"
-                        class="empty-row"
-                    >
+                        class="empty-row">
 
                         No diet plans created yet.
 
                     </td>
 
-                </tr>
-
-            `;
+                </tr> `;
 
             return;
 
@@ -1251,23 +1151,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         dietPlans.forEach(plan => {
 
-            const row =
-                document.createElement("tr");
+            const row = document.createElement("tr");
 
 
             const schedule =
-                plan.schedule &&
-                plan.schedule.length
+                plan.schedule && plan.schedule.length
 
-                    ? plan.schedule.join(", ")
-
-                    : "-";
+                    ? plan.schedule.join(", ") : "-";
 
 
             const mealCount =
                 Array.isArray(plan.meals)
-                    ? plan.meals.length
-                    : 0;
+                    ? plan.meals.length: 0;
 
 
             row.innerHTML = `
@@ -1297,8 +1192,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span
                         class="status-badge ${getStatusClass(
                             plan.status
-                        )}"
-                    >
+                        )}" >
 
                         ${escapeHTML(
                             plan.status
@@ -1316,8 +1210,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             type="button"
                             class="table-action view-action"
                             data-view-id="${plan.id}"
-                            title="View"
-                        >
+                            title="View"  >
 
                             <i class="fa-solid fa-eye"></i>
 
@@ -1328,8 +1221,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             type="button"
                             class="table-action edit-action"
                             data-edit-id="${plan.id}"
-                            title="Edit"
-                        >
+                            title="Edit" >
 
                             <i class="fa-solid fa-pen"></i>
 
@@ -1340,8 +1232,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             type="button"
                             class="table-action delete-action"
                             data-delete-id="${plan.id}"
-                            title="Delete"
-                        >
+                            title="Delete"  >
 
                             <i class="fa-solid fa-trash"></i>
 
@@ -1349,9 +1240,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     </div>
 
-                </td>
-
-            `;
+                </td> `;
 
 
             dietPlansTableBody.appendChild(row);
@@ -1374,8 +1263,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const button =
                     event.target.closest(
                         "[data-view-id]"
-                    );
-
+   );
 
                 if (!button) {
                     return;
@@ -1486,9 +1374,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 heading.innerHTML = `
 
                     <i class="fa-solid fa-user"></i>
-                    Customer Information
-
-                `;
+                    Customer Information `;
 
             }
 
@@ -1511,9 +1397,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         ${escapeHTML(
                             plan.customer
                         )}
-                    </p>
-
-                `;
+                    </p> `;
 
             }
 

@@ -1,0 +1,342 @@
+
+/* ========================================
+   MY WORKOUT PLANS CSS
+======================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #0d0f10;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+
+/* ========================================
+   MAIN
+======================================== */
+
+.member-main {
+    margin-left: 250px;
+    min-height: 100vh;
+    padding-top: 100px;
+}
+
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.workout-content {
+    padding: 30px;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-label {
+    color: #f5b900;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.page-header h1 {
+    margin-top: 8px;
+    font-size: 30px;
+}
+
+.page-header p {
+    margin-top: 8px;
+    color: #92979b;
+}
+
+
+/* ========================================
+   PLANS
+======================================== */
+
+.workout-plans {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(320px, 1fr)
+    );
+
+    gap: 22px;
+}
+
+
+/* ========================================
+   PLAN CARD
+======================================== */
+
+.workout-plan-card {
+    background: #111315;
+    border: 1px solid #242729;
+    border-radius: 14px;
+    padding: 22px;
+    transition: 0.3s ease;
+}
+
+.workout-plan-card:hover {
+    transform: translateY(-3px);
+    border-color: #f5b900;
+}
+
+
+/* ========================================
+   CARD TOP
+======================================== */
+
+.plan-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.plan-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(245, 185, 0, 0.12);
+    color: #f5b900;
+
+    border-radius: 12px;
+    font-size: 20px;
+}
+
+.plan-title {
+    flex: 1;
+}
+
+.plan-title h2 {
+    font-size: 19px;
+    margin-bottom: 5px;
+}
+
+.plan-title span {
+    color: #888e92;
+    font-size: 13px;
+}
+
+
+/* ========================================
+   STATUS
+======================================== */
+
+.plan-status {
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.status-active {
+    color: #f5b900;
+    background: rgba(245, 185, 0, 0.12);
+}
+
+.status-paused {
+    color: #aaa;
+    background: rgba(170, 170, 170, 0.1);
+}
+
+.status-completed {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+
+/* ========================================
+   PLAN INFO
+======================================== */
+
+.plan-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+
+    margin-top: 22px;
+}
+
+.info-box {
+    background: #0d0f10;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.info-box span {
+    display: block;
+    color: #777d81;
+    font-size: 11px;
+    margin-bottom: 5px;
+}
+
+.info-box strong {
+    font-size: 13px;
+}
+
+
+/* ========================================
+   ROUTINE
+======================================== */
+
+.plan-routine {
+    margin-top: 18px;
+    padding: 14px;
+
+    background: #0d0f10;
+    border-left: 3px solid #f5b900;
+
+    border-radius: 8px;
+}
+
+.plan-routine span {
+    display: block;
+    color: #777d81;
+    font-size: 11px;
+    margin-bottom: 6px;
+}
+
+.plan-routine p {
+    color: #d7d9da;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* ========================================
+   EXERCISES
+======================================== */
+
+.exercise-section {
+    margin-top: 20px;
+}
+
+.exercise-section h3 {
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.exercise-list {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.exercise-item {
+    background: #0d0f10;
+    border: 1px solid #202326;
+    border-radius: 9px;
+    padding: 12px;
+}
+
+.exercise-name {
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.exercise-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.exercise-detail {
+    color: #999fa3;
+    font-size: 11px;
+}
+
+.exercise-detail strong {
+    color: #f5b900;
+}
+
+
+/* ========================================
+   EMPTY
+======================================== */
+
+.empty-workout {
+    display: none;
+
+    text-align: center;
+    padding: 70px 20px;
+
+    background: #111315;
+    border: 1px solid #242729;
+    border-radius: 14px;
+}
+
+.empty-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(245, 185, 0, 0.1);
+    color: #f5b900;
+
+    font-size: 25px;
+}
+
+.empty-workout h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.empty-workout p {
+    color: #858b8f;
+    font-size: 13px;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 900px) {
+
+    .member-main {
+        margin-left: 0;
+    }
+
+    .workout-content {
+        padding: 20px;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .plan-top {
+        flex-wrap: wrap;
+    }
+
+    .plan-info {
+        grid-template-columns: 1fr;
+    }
+
+}
