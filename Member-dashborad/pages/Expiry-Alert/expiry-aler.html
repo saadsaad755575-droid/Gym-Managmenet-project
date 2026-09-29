@@ -1,0 +1,539 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Membership Expiry Alert</title>
+
+
+  <!-- =====================================================
+       FONT AWESOME
+  ====================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+
+  <!-- =====================================================
+       MEMBER SIDEBAR CSS
+  ====================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="../../../components/member-sidebar/member-sidebar.css"
+  >
+
+
+  <!-- =====================================================
+       MEMBER NAVBAR CSS
+  ====================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="../../../components/member-navbar/member-navbar.css"
+  >
+
+
+  <!-- =====================================================
+       PAGE CSS
+  ====================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="expiry-alert.css"
+  >
+
+</head>
+
+
+<body>
+
+
+  <!-- =====================================================mx
+       MEMBER SIDEBAR
+  ====================================================== -->
+
+  <aside id="member-sidebar"></aside>
+
+
+  <!-- =====================================================
+       MAIN CONTENT
+  ====================================================== -->
+
+  <main class="member-main">
+
+
+    <!-- ===================================================
+         MEMBER NAVBAR
+    ==================================================== -->
+
+    <header id="member-navbar"></header>
+
+
+    <!-- ===================================================
+         PAGE CONTENT
+    ==================================================== -->
+
+    <section class="membership-expiry-page">
+
+
+      <!-- =================================================
+           PAGE HEADER
+      ================================================== -->
+
+      <div class="page-header">
+
+        <div>
+
+          <p class="page-label">
+            MEMBERSHIP
+          </p>
+
+          <h1>
+            Membership Expiry Alert
+          </h1>
+
+          <p>
+            Check your membership status and expiry information.
+          </p>
+
+        </div>
+
+
+        <div class="header-icon">
+
+          <i class="fa-solid fa-bell fa-beat"></i>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =================================================
+           MEMBERSHIP SUMMARY CARDS
+      ================================================== -->
+
+      <div class="membership-summary">
+
+
+        <!-- STATUS CARD -->
+
+        <div class="expiry-card">
+
+          <div class="card-icon">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+          </div>
+
+          <div class="card-content">
+
+            <span>
+              Membership Status
+            </span>
+
+            <h2 id="membershipStatus">
+              Loading...
+            </h2>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- PLAN CARD -->
+
+        <div class="expiry-card">
+
+          <div class="card-icon">
+
+            <i class="fa-solid fa-id-card"></i>
+
+          </div>
+
+          <div class="card-content">
+
+            <span>
+              Membership Plan
+            </span>
+
+            <h2 id="membershipPlan">
+              Loading...
+            </h2>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- EXPIRY DATE CARD -->
+
+        <div class="expiry-card">
+
+          <div class="card-icon">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+          </div>
+
+          <div class="card-content">
+
+            <span>
+              Expiry Date
+            </span>
+
+            <h2 id="membershipExpiryDate">
+              Loading...
+            </h2>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- DAYS REMAINING CARD -->
+
+        <div class="expiry-card">
+
+          <div class="card-icon">
+
+            <i class="fa-solid fa-hourglass-half"></i>
+
+          </div>
+
+          <div class="card-content">
+
+            <span>
+              Days Remaining
+            </span>
+
+            <h2 id="membershipDaysRemaining">
+              Loading...
+            </h2>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =================================================
+           MAIN ALERT BOX
+      ================================================== -->
+
+      <div
+        class="membership-alert"
+        id="membershipAlert"
+      >
+
+        <div class="alert-icon">
+
+          <i
+            class="fa-solid fa-bell fa-beat"
+            id="membershipAlertIcon"
+          ></i>
+
+        </div>
+
+
+        <div class="alert-content">
+
+          <h2 id="membershipAlertTitle">
+            Checking Membership...
+          </h2>
+
+          <p id="membershipAlertMessage">
+            Please wait while we check your membership details.
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =================================================
+           MEMBERSHIP DETAILS
+      ================================================== -->
+
+      <div class="membership-details">
+
+
+        <!-- =================================================
+             DETAILS HEADER
+        ================================================== -->
+
+        <div class="section-heading">
+
+          <div>
+
+            <p class="page-label">
+              MEMBERSHIP DETAILS
+            </p>
+
+            <h2>
+              Your Membership Information
+            </h2>
+
+          </div>
+
+          <i class="fa-solid fa-file-contract"></i>
+
+        </div>
+
+
+
+        <!-- =================================================
+             DETAILS GRID
+        ================================================== -->
+
+        <div class="details-grid">
+
+
+          <!-- MEMBER ID -->
+
+          <div class="detail-item">
+
+            <span>
+              <i class="fa-solid fa-user"></i>
+              Member ID
+            </span>
+
+            <strong id="membershipMemberId">
+              Loading...
+            </strong>
+
+          </div>
+
+
+
+          <!-- MEMBER NAME -->
+
+          <div class="detail-item">
+
+            <span>
+              <i class="fa-solid fa-user-circle"></i>
+              Member Name
+            </span>
+
+            <strong id="membershipMemberName">
+              Loading...
+            </strong>
+
+          </div>
+
+
+
+          <!-- PLAN -->
+
+          <div class="detail-item">
+
+            <span>
+              <i class="fa-solid fa-layer-group"></i>
+              Plan
+            </span>
+
+            <strong id="membershipPlanDetails">
+              Loading...
+            </strong>
+
+          </div>
+
+
+
+          <!-- DURATION -->
+
+          <div class="detail-item">
+
+            <span>
+              <i class="fa-solid fa-clock"></i>
+              Duration
+            </span>
+
+            <strong id="membershipDuration">
+              Loading...
+            </strong>
+
+          </div>
+
+
+
+          <!-- START DATE -->
+
+          <div class="detail-item">
+
+            <span>
+              <i class="fa-solid fa-calendar-plus"></i>
+              Start Date
+            </span>
+
+            <strong id="membershipStartDate">
+              Loading...
+            </strong>
+
+          </div>
+
+
+
+          <!-- EXPIRY DATE -->
+
+          <div class="detail-item">
+
+            <span>
+              <i class="fa-solid fa-calendar-xmark"></i>
+              Expiry Date
+            </span>
+
+            <strong id="membershipExpiryDetails">
+              Loading...
+            </strong>
+
+          </div>
+
+
+
+          <!-- PRICE -->
+
+          <div class="detail-item">
+
+            <span>
+              <i class="fa-solid fa-money-bill-wave"></i>
+              Membership Fee
+            </span>
+
+            <strong id="membershipPrice">
+              Loading...
+            </strong>
+
+          </div>
+
+
+
+          <!-- PAYMENT STATUS -->
+
+          <div class="detail-item">
+
+            <span>
+              <i class="fa-solid fa-credit-card"></i>
+              Payment Status
+            </span>
+
+            <strong id="membershipPaymentStatus">
+              Loading...
+            </strong>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =================================================
+           RENEWAL INFORMATION
+      ================================================== -->
+
+      <div class="renewal-box">
+
+
+        <div class="renewal-icon">
+
+          <i class="fa-solid fa-rotate"></i>
+
+        </div>
+
+
+        <div class="renewal-content">
+
+          <h2>
+            Membership Renewal
+          </h2>
+
+          <p id="renewalMessage">
+
+            If your membership is close to expiry or has already expired,
+            please contact the gym administration for renewal.
+
+          </p>
+
+        </div>
+
+
+        <div class="renewal-status">
+
+          <span id="renewalStatus">
+            Active
+          </span>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =================================================
+           NO MEMBERSHIP MESSAGE
+      ================================================== -->
+
+      <div
+        class="no-membership"
+        id="noMembership"
+        style="display: none;"
+      >
+
+        <div class="no-membership-icon">
+
+          <i class="fa-solid fa-circle-exclamation"></i>
+
+        </div>
+
+
+        <h2>
+          No Membership Found
+        </h2>
+
+
+        <p>
+          No active membership record was found for your account.
+          Please contact the gym administration.
+        </p>
+
+      </div>
+
+
+    </section>
+
+  </main>
+
+
+
+  <!-- =====================================================
+       MEMBER EXPIRY JS
+  ====================================================== -->
+
+  <script
+    src="expiry-alert.js"
+  ></script>
+
+
+</body>
+
+</html>

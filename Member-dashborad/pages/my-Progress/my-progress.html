@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Progress</title>
+
+
+    <!-- =========================
+         FONT AWESOME
+    ========================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- =========================
+         MEMBER COMPONENT CSS
+    ========================== -->
+
+    <link
+        rel="stylesheet"
+        href="../../../components/member-sidebar/member-sidebar.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../../components/member-navbar/member-navbar.css"
+    >
+
+
+    <!-- =========================
+         MY PROGRESS CSS
+         Later we will create this
+    ========================== -->
+
+    <link
+        rel="stylesheet"
+        href="my-progress.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         MEMBER SIDEBAR
+    ========================== -->
+
+    <div id="member-sidebar"></div>
+
+
+    <!-- =========================
+         MAIN AREA
+    ========================== -->
+
+    <main class="member-main">
+
+
+        <!-- =========================
+             MEMBER NAVBAR
+        ========================== -->
+
+        <div id="member-navbar"></div>
+
+
+        <!-- =========================
+             PAGE CONTENT
+        ========================== -->
+
+        <section class="my-progress-page">
+
+
+            <!-- =========================
+                 PAGE HEADER
+            ========================== -->
+
+            <div class="page-header">
+
+                <div>
+
+                    <span class="page-subtitle">
+                        FITNESS JOURNEY
+                    </span>
+
+                    <h1>
+                        My Progress
+                    </h1>
+
+                    <p>
+                        Track your fitness progress,
+                        measurements and goals.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 PROGRESS OVERVIEW
+            ========================== -->
+
+            <div class="progress-overview">
+
+
+                <!-- STARTING WEIGHT -->
+
+                <div class="progress-card">
+
+                    <div class="progress-card-icon">
+
+                        <i class="fa-solid fa-weight-scale"></i>
+
+                    </div>
+
+                    <div class="progress-card-content">
+
+                        <span>
+                            Starting Weight
+                        </span>
+
+                        <h2 id="memberStartingWeight">
+                            —
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CURRENT WEIGHT -->
+
+                <div class="progress-card">
+
+                    <div class="progress-card-icon">
+
+                        <i class="fa-solid fa-person"></i>
+
+                    </div>
+
+                    <div class="progress-card-content">
+
+                        <span>
+                            Current Weight
+                        </span>
+
+                        <h2 id="memberCurrentWeight">
+                            —
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TARGET WEIGHT -->
+
+                <div class="progress-card">
+
+                    <div class="progress-card-icon">
+
+                        <i class="fa-solid fa-bullseye"></i>
+
+                    </div>
+
+                    <div class="progress-card-content">
+
+                        <span>
+                            Target Weight
+                        </span>
+
+                        <h2 id="memberTargetWeight">
+                            —
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- OVERALL PROGRESS -->
+
+                <div class="progress-card">
+
+                    <div class="progress-card-icon">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                    </div>
+
+                    <div class="progress-card-content">
+
+                        <span>
+                            Overall Progress
+                        </span>
+
+                        <h2 id="memberOverallProgress">
+                            —
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =========================
+                 GOAL INFORMATION
+            ========================== -->
+
+            <div class="progress-section goal-section">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            FITNESS GOAL
+                        </span>
+
+                        <h2>
+                            My Goal
+                        </h2>
+
+                    </div>
+
+                    <i class="fa-solid fa-bullseye section-icon"></i>
+
+                </div>
+
+
+                <div class="goal-grid">
+
+
+                    <!-- GOAL TYPE -->
+
+                    <div class="goal-item">
+
+                        <span>
+                            Goal Type
+                        </span>
+
+                        <strong id="memberGoalType">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <!-- GOAL STATUS -->
+
+                    <div class="goal-item">
+
+                        <span>
+                            Goal Status
+                        </span>
+
+                        <strong
+                            id="memberGoalStatus"
+                            class="progress-status"
+                        >
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <!-- GOAL DETAILS -->
+
+                    <div class="goal-item goal-details">
+
+                        <span>
+                            Goal Details
+                        </span>
+
+                        <p id="memberGoalDetails">
+                            Select progress data to view
+                            your goal details.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 PROGRESS CHART
+            ========================== -->
+
+            <div class="progress-section chart-section">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            WEIGHT TRACKING
+                        </span>
+
+                        <h2>
+                            Progress Chart
+                        </h2>
+
+                    </div>
+
+                    <i class="fa-solid fa-chart-line section-icon"></i>
+
+                </div>
+
+
+                <div class="chart-container">
+
+                    <canvas id="memberProgressChart"></canvas>
+
+
+                    <div
+                        id="memberChartEmpty"
+                        class="chart-empty"
+                    >
+
+                        <i class="fa-solid fa-chart-simple"></i>
+
+                        <p>
+                            No progress data available yet.
+                        </p>
+
+                        <span>
+                            Your trainer will add progress
+                            records here.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 MEASUREMENTS
+            ========================== -->
+
+            <div class="progress-section measurements-section">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            BODY MEASUREMENTS
+                        </span>
+
+                        <h2>
+                            Measurements
+                        </h2>
+
+                    </div>
+
+                    <i class="fa-solid fa-ruler-combined section-icon"></i>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Measurement
+                                </th>
+
+                                <th>
+                                    Starting
+                                </th>
+
+                                <th>
+                                    Current
+                                </th>
+
+                                <th>
+                                    Change
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="memberMeasurementsBody">
+
+                            <tr>
+
+                                <td>
+                                    Weight
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Chest
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Waist
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Arms
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+                                <td>
+                                    —
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 PROGRESS HISTORY
+            ========================== -->
+
+            <div class="progress-section history-section">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            PROGRESS HISTORY
+                        </span>
+
+                        <h2>
+                            My Progress Records
+                        </h2>
+
+                    </div>
+
+                    <i class="fa-solid fa-clock-rotate-left section-icon"></i>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Date
+                                </th>
+
+                                <th>
+                                    Weight
+                                </th>
+
+                                <th>
+                                    Goal
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Trainer Notes
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="memberProgressTableBody">
+
+                            <tr>
+
+                                <td
+                                    colspan="5"
+                                    class="progress-empty"
+                                >
+
+                                    <i class="fa-solid fa-chart-line"></i>
+
+                                    <span>
+                                        No progress records found.
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 TRAINER NOTES
+            ========================== -->
+
+            <div class="progress-section trainer-notes-section">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            TRAINER FEEDBACK
+                        </span>
+
+                        <h2>
+                            Latest Trainer Notes
+                        </h2>
+
+                    </div>
+
+                    <i class="fa-solid fa-note-sticky section-icon"></i>
+
+                </div>
+
+
+                <div
+                    id="memberTrainerNotes"
+                    class="trainer-notes-box"
+                >
+
+                    <div class="notes-icon">
+
+                        <i class="fa-solid fa-comment-dots"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            No trainer notes yet
+                        </h3>
+
+                        <p>
+                            Your trainer's latest progress
+                            feedback will appear here.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         CHART JS
+    ========================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js"
+    ></script>
+
+
+    <!-- =========================
+         MEMBER COMPONENT JS
+    ========================== -->
+
+    <script
+        src="../../../components/member-sidebar/member-sidebar.js"
+    ></script>
+
+    <script
+        src="../../../components/member-navbar/member-navbar.js"
+    ></script>
+
+
+    <!-- =========================
+         MY PROGRESS JS
+         Later we will create this
+    ========================== -->
+
+    <script
+        src="my-progress.js"
+    ></script>
+
+
+</body>
+
+</html>

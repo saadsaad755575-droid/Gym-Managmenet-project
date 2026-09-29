@@ -150,8 +150,7 @@ function loadMemberProfile() {
 
     catch (error) {
 
-        console.error("Invalid member data:",
-            error
+        console.error("Invalid member data:", error
         );
 
         return;
@@ -176,10 +175,51 @@ function loadMemberProfile() {
 
     }
 
-    const member = members[0];
+    const loggedInMemberId =
+    localStorage.getItem("loggedInMemberId");
 
 
-    renderMemberProfile(member);
+if (!loggedInMemberId) {
+
+    console.warn("No logged-in member ID found.");
+
+    return;
+
+}
+
+
+const member = members.find(
+    function (item) {
+
+        const memberId =
+            item.id ||item.memberId || item.customerId ||
+            item.memberID ||"";
+
+        return (
+            String(memberId).trim().toLowerCase()===
+            String(loggedInMemberId).trim().toLowerCase()
+        );
+
+    }
+);
+
+
+if (!member) {
+
+    console.warn(
+        "Logged-in member was not found in gymMembers."
+    );
+
+    return;
+
+}
+
+
+renderMemberProfile(member);
+
+
+
+
 
 }
 
@@ -232,13 +272,11 @@ function renderMemberProfile(member) {
 
 
     const status =
-        member.membershipStatus || member.status ||
-        "Active";
+        member.membershipStatus || member.status || "Active";
 
 
     const startDate =
-        member.startDate || member.membershipStartDate ||
-        "-";
+        member.startDate || member.membershipStartDate || "-";
 
 
     const validTill =
@@ -247,8 +285,7 @@ function renderMemberProfile(member) {
 
 
     const goal =
-        member.fitnessGoal ||member.goal ||
-        "-";
+        member.fitnessGoal ||member.goal ||"-";
 
 
     const weight =
@@ -260,8 +297,7 @@ function renderMemberProfile(member) {
 
 
     const joiningDate =
-        member.joiningDate || member.joinDate ||
-        "-";
+        member.joiningDate || member.joinDate ||"-";
 
 
     /* ====================================

@@ -1,0 +1,314 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Member Notifications</title>
+
+
+    <!-- =========================
+         FONT AWESOME
+    ========================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- =========================
+         MEMBER COMPONENT CSS
+    ========================== -->
+
+    <link
+        rel="stylesheet"
+        href="../../../components/member-sidebar/member-sidebar.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../../components/member-navbar/member-navbar.css"
+
+    >
+
+
+    <!-- =========================
+         PAGE CSS
+    ========================== -->
+
+    <link
+        rel="stylesheet"
+        href="notification.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         MEMBER SIDEBAR
+    ========================== -->
+
+    <aside id="member-sidebar"></aside>
+
+
+    <!-- =========================
+         MEMBER NAVBAR
+    ========================== -->
+
+    <header id="member-navbar"></header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="member-notifications-page">
+
+
+        <!-- =========================
+             PAGE HEADER
+        ========================== -->
+
+        <section class="notifications-header">
+
+            <div>
+
+                <span class="page-label">
+                    MEMBER PANEL
+                </span>
+
+                <h1>
+                    <i class="fa-solid fa-bell fa-beat"></i>
+                    Notifications
+                </h1>
+
+                <p>
+                    Stay updated with notifications from your trainer.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="markAllRead"
+                class="mark-all-btn"
+            >
+
+                <i class="fa-solid fa-check-double"></i>
+
+                Mark All as Read
+
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             SUMMARY CARDS
+        ========================== -->
+
+        <section class="notification-summary">
+
+
+            <!-- TOTAL -->
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Notifications
+                    </span>
+
+                    <strong id="totalNotifications">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- UNREAD -->
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Unread
+                    </span>
+
+                    <strong id="unreadNotifications">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- READ -->
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+
+                    <i class="fa-solid fa-envelope-open"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Read
+                    </span>
+
+                    <strong id="readNotifications">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =========================
+             FILTER BAR
+        ========================== -->
+
+        <section class="notification-toolbar">
+
+
+            <div class="toolbar-title">
+
+                <i class="fa-solid fa-list"></i>
+
+                <span>
+                    My Notifications
+                </span>
+
+            </div>
+
+
+            <div class="notification-filters">
+
+
+                <select id="notificationFilter">
+
+                    <option value="all">
+                        All Notifications
+                    </option>
+
+                    <option value="unread">
+                        Unread
+                    </option>
+
+                    <option value="read">
+                        Read
+                    </option>
+
+                </select>
+
+
+                <select id="notificationType">
+
+                    <option value="all">
+                        All Types
+                    </option>
+
+                    <option value="workout">
+                        Workout
+                    </option>
+
+                    <option value="diet">
+                        Diet
+                    </option>
+
+                    <option value="availability">
+                        Availability
+                    </option>
+
+                    <option value="message">
+                        Message
+                    </option>
+
+                    <option value="general">
+                        General
+                    </option>
+
+                </select>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             NOTIFICATIONS LIST
+        ========================== -->
+
+        <section
+            id="notificationsList"
+            class="notifications-list"
+        >
+
+            <div class="notifications-loading">
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                <p>
+                    Loading notifications...
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         PAGE JS
+    ========================== -->
+
+
+
+    <script
+        src="notification.js"
+    ></script>
+
+
+</body>
+
+</html>

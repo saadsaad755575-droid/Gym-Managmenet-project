@@ -1,1004 +1,1957 @@
-
-
 // ========================================
 // PAYMENT MANAGEMENT
 // ========================================
 
 const PAYMENT_STORAGE_KEY = "gymPayments";
+const MEMBER_STORAGE_KEY = "gymMembers";
+const MEMBERSHIP_STORAGE_KEY = "gymMemberships";
+
+let editingPaymentId = null;
+
 
 // ========================================
 // LOCAL STORAGE
 // ========================================
 
 function getPayments() {
-  return JSON.parse(localStorage.getItem(PAYMENT_STORAGE_KEY)) || [];
+    try {
+        return JSON.parse(
+            localStorage.getItem(PAYMENT_STORAGE_KEY)
+        ) || [];
+    } catch (error) {
+        return [];
+    }
 }
 
+
 function savePayments(payments) {
-  localStorage.setItem(
-    PAYMENT_STORAGE_KEY,
-    JSON.stringify(payments)
-  );
+    localStorage.setItem(
+        PAYMENT_STORAGE_KEY,
+        JSON.stringify(payments)
+    );
 }
+
+
+function getMembers() {
+    try {
+        return JSON.parse(
+            localStorage.getItem(MEMBER_STORAGE_KEY)
+        ) || [];
+    } catch (error) {
+        return [];
+    }
+}
+
+
+function getMemberships() {
+    try {
+        return JSON.parse(
+            localStorage.getItem(MEMBERSHIP_STORAGE_KEY)
+        ) || [];
+    } catch (error) {
+        return [];
+    }
+}
+
 
 // ========================================
 // COMPONENT LOADER
 // ========================================
 
 function loadCSS(href, id) {
-  if (id && document.getElementById(id)) return;
 
-  const link = document.createElement("link");
-  link.rel = "stylesheet";
-  link.href = href;
+    if (id && document.getElementById(id)) {
+        return;
+    }
 
-  if (id) {
-    link.id = id;
-  }
+    const link = document.createElement("link");
 
-  document.head.appendChild(link);
+    link.rel = "stylesheet";
+    link.href = href;
+
+    if (id) {
+        link.id = id;
+    }
+
+    document.head.appendChild(link);
 }
+
 
 async function loadComponents() {
-  try {
-    // Font Awesome
-    loadCSS(
-      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css",
-      "fontAwesomeCSS"
-    );
 
-    // =========================
-    // SIDEBAR
-    // =========================
+    try {
 
-    const sidebarResponse = await fetch(
-      "/components/sidebar/sidebar.html"
-    );
+        loadCSS(
+            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css",
+            "fontAwesomeCSS"
+        );
 
-    const sidebarHTML = await sidebarResponse.text();
 
-    const sidebarDoc = new DOMParser().parseFromString(
-      sidebarHTML,
-      "text/html"
-    );
+        // =========================
+        // SIDEBAR
+        // =========================
 
-    const sidebarElement =
-      sidebarDoc.querySelector(".sidebar");
+        const sidebarResponse =
+            await fetch("/components/sidebar/sidebar.html");
 
-    if (sidebarElement) {
-      // Fix images
-      sidebarElement
-        .querySelectorAll("img")
-        .forEach((img) => {
-          const src = img.getAttribute("src");
+        if (!sidebarResponse.ok) {
+            throw new Error("Sidebar could not be loaded.");
+        }
 
-          if (src && src.startsWith("../../assets/")) {
-            img.src = "/" + src.replace("../../", "");
-          }
-        });
+        const sidebarHTML =
+            await sidebarResponse.text();
 
-      // Fix sidebar links
-      sidebarElement
-        .querySelectorAll("a[href]")
-        .forEach((link) => {
-          const href = link.getAttribute("href");
+        const sidebarDoc =
+            new DOMParser().parseFromString(
+                sidebarHTML,"text/html"
+            );
 
-          if (
-            href &&
-            href.startsWith("../../admin-dashboard/")
-          ) {
-            link.href =
-              "/" + href.replace("../../", "");
-          }
-        });
+        const sidebarElement =
+            sidebarDoc.querySelector(".sidebar");
 
-      document.getElementById("sidebar").innerHTML = "";
-      document
-        .getElementById("sidebar")
-        .appendChild(sidebarElement);
 
-      loadCSS(
-        "/components/sidebar/sidebar.css",
-        "sidebarCSS"
-      );
+        if (sidebarElement) {
+
+            sidebarElement
+                .querySelectorAll("img")
+                .forEach((img) => {
+
+                    const src =
+                        img.getAttribute("src");
+
+                    if (
+                        src &&
+                        src.startsWith("../../assets/")
+                    ) {
+                        img.src =
+                            "/" + src.replace("../../", "");
+                    }
+                });
+
+
+            sidebarElement
+                .querySelectorAll("a[href]")
+                .forEach((link) => {
+
+                    const href =
+                        link.getAttribute("href");
+
+                    if (
+                        href &&
+                        href.startsWith("../../admin-dashboard/")
+                    ) {
+                        link.href =
+                            "/" + href.replace("../../", "");
+                    }
+                });
+
+
+            const sidebar =
+                document.getElementById("sidebar");
+
+            if (sidebar) {
+
+                sidebar.innerHTML = "";
+
+                sidebar.appendChild(
+                    sidebarElement
+                );
+            }
+
+
+            loadCSS(
+                "/components/sidebar/sidebar.css",
+                "sidebarCSS"
+            );
+        }
+
+
+        // =========================
+        // NAVBAR
+        // =========================
+
+        const navbarResponse =
+            await fetch("/components/navbar/navbar.html");
+
+        if (!navbarResponse.ok) {
+            throw new Error("Navbar could not be loaded.");
+        }
+
+        const navbarHTML =
+            await navbarResponse.text();
+
+        const navbarDoc =
+            new DOMParser().parseFromString(
+                navbarHTML,
+                "text/html"
+            );
+
+        const navbarElement =
+            navbarDoc.querySelector(".navbar");
+
+
+        if (navbarElement) {
+
+            navbarElement
+                .querySelectorAll("img")
+                .forEach((img) => {
+
+                    const src =
+                        img.getAttribute("src");
+
+                    if (
+                        src &&
+                        src.startsWith("../../assets/")
+                    ) {
+                        img.src =  "/" + src.replace("../../", "");
+                    }
+                });
+
+
+            const navbar =
+                document.getElementById("navbar");
+
+            if (navbar) {
+
+                navbar.innerHTML = "";
+
+                navbar.appendChild(
+                    navbarElement
+                );
+            }
+
+
+            loadCSS(
+                "/components/navbar/navbar.css",
+                "navbarCSS"
+            );
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Component loading error:",  error
+        );
+
+        showPageMessage(
+            "Sidebar or navbar could not be loaded.","error"
+        );
     }
-
-    // =========================
-    // NAVBAR
-    // =========================
-
-    const navbarResponse = await fetch(
-      "/components/navbar/navbar.html"
-    );
-
-    const navbarHTML = await navbarResponse.text();
-
-    const navbarDoc = new DOMParser().parseFromString(
-      navbarHTML,
-      "text/html"
-    );
-
-    const navbarElement =
-      navbarDoc.querySelector(".navbar");
-
-    if (navbarElement) {
-      navbarElement
-        .querySelectorAll("img")
-        .forEach((img) => {
-          const src = img.getAttribute("src");
-
-          if (src && src.startsWith("../../assets/")) {
-            img.src = "/" + src.replace("../../", "");
-          }
-        });
-
-      document.getElementById("navbar").innerHTML = "";
-      document
-        .getElementById("navbar")
-        .appendChild(navbarElement);
-
-      loadCSS(
-        "/components/navbar/navbar.css",
-        "navbarCSS"
-      );
-    }
-  } catch (error) {
-    console.error(
-      "Error loading components:",
-      error
-    );
-  }
 }
+
+
+// ========================================
+// PAGE MESSAGE
+// ========================================
+
+function showPageMessage(message, type = "success") {
+
+    const messageElement =
+        document.getElementById("paymentMessage");
+
+    if (!messageElement) {
+        return;
+    }
+
+    messageElement.textContent = message;
+
+    messageElement.className = "payment-message " + type;
+}
+
+
+function clearPageMessage() {
+
+    const messageElement =
+        document.getElementById("paymentMessage");
+
+    if (!messageElement) {
+        return;
+    }
+
+    messageElement.textContent = "";
+    messageElement.className = "payment-message";
+}
+
+
+// ========================================
+// FORM MESSAGE
+// ========================================
+
+function showFormMessage(message, type = "error") {
+
+    const messageElement =
+        document.getElementById(
+            "paymentFormMessage"
+        );
+
+    if (!messageElement) {
+        return;
+    }
+
+    messageElement.textContent = message;
+
+    messageElement.className ="payment-form-message " + type;
+}
+
+
+function clearFormMessage() {
+
+    const messageElement =
+        document.getElementById(
+            "paymentFormMessage"
+        );
+
+    if (!messageElement) {
+        return;
+    }
+
+    messageElement.textContent = "";
+
+    messageElement.className ="payment-form-message";
+}
+
+
+// ========================================
+// GET MEMBER ID
+// ========================================
+
+function getMemberId(member) {
+
+    return (
+        member.id ||  member.memberId ||
+        member.customerId ||""
+    );
+}
+
+
+// ========================================
+// GET MEMBER NAME
+// ========================================
+
+function getMemberName(member) {
+
+    return (
+        member.name ||member.memberName ||
+        member.fullName ||"Unknown Member"
+    );
+}
+
 
 // ========================================
 // PAYMENT ID
 // ========================================
 
 function getNextPaymentId() {
-  const payments = getPayments();
 
-  let maxId = 1;
+    const payments = getPayments();
 
-  payments.forEach((payment) => {
-    const number = parseInt(
-      payment.id.replace("#P", "")
+    let maxId = 0;
+
+    payments.forEach((payment) => {
+
+        const paymentId =
+            String(payment.id || "");
+
+        const match =
+            paymentId.match(/^#P(\d+)$/i);
+
+        if (match) {
+
+            const number =
+                Number(match[1]);
+
+            if (number > maxId) {
+                maxId = number;
+            }
+        }
+    });
+
+
+    return (
+        "#P" +
+        String(maxId + 1).padStart(3, "0")
     );
-
-    if (!isNaN(number) && number >= maxId) {
-      maxId = number + 1;
-    }
-  });
-
-  return "#P" + String(maxId).padStart(3, "0");
 }
+
 
 // ========================================
 // ESCAPE HTML
 // ========================================
 
 function escapeHTML(value) {
-  return String(value)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
+
 
 // ========================================
 // STATUS TEXT
 // ========================================
 
 function getStatusText(status) {
-  if (status === "paid") return "Paid";
-  if (status === "pending") return "Pending";
-  if (status === "overdue") return "Overdue";
 
-  return status;
+    const cleanStatus =
+        String(status || "").toLowerCase();
+
+    if (cleanStatus === "paid") {
+        return "Paid";
+    }
+
+    if (cleanStatus === "pending") {
+        return "Pending";
+    }
+
+    if (cleanStatus === "overdue") {
+        return "Overdue";
+    }
+
+    return status || "-";
 }
+
 
 // ========================================
 // FORMAT DATE
 // ========================================
 
 function formatDate(dateString) {
-  if (!dateString) return "-";
 
-  const date = new Date(dateString);
+    if (!dateString) {
+        return "-";
+    }
 
-  if (isNaN(date.getTime())) {
-    return dateString;
-  }
+    const date =
+        new Date(dateString);
 
-  return date.toLocaleDateString("en-GB", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric"
-  });
+    if (isNaN(date.getTime())) {
+        return dateString;
+    }
+
+    return date.toLocaleDateString(
+        "en-GB",
+        {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        }
+    );
 }
+
+
+// ========================================
+// LOAD MEMBERS
+// ========================================
+
+function loadMembersIntoSelect() {
+
+    const memberSelect =
+        document.getElementById(
+            "paymentMember"
+        );
+
+    if (!memberSelect) {
+        return;
+    }
+
+
+    memberSelect.innerHTML =
+        `<option value="">
+            Select existing member
+        </option>`;
+
+
+    const members = getMembers();
+
+
+    if (!members.length) {
+
+        memberSelect.innerHTML =
+            `<option value="">
+                No members found
+            </option>`;
+
+        return;
+    }
+
+
+    members.forEach((member) => {
+
+        const memberId =
+            getMemberId(member);
+
+        const memberName =
+            getMemberName(member);
+
+
+        if (!memberId) {
+            return;
+        }
+
+
+        const option =
+            document.createElement("option");
+
+        option.value = memberId;
+
+        option.textContent =
+            `${memberName} (${memberId})`;
+
+        memberSelect.appendChild(option);
+    });
+}
+
+
+// ========================================
+// LOAD MEMBERSHIP FOR MEMBER
+// ========================================
+
+function loadMembershipsForMember(memberId) {
+
+    const membershipSelect =
+        document.getElementById(
+            "paymentMembership"
+        );
+
+    const amountInput =
+        document.getElementById(
+            "paymentAmount"
+        );
+
+
+    if (!membershipSelect) {
+        return;
+    }
+
+
+    membershipSelect.innerHTML =
+        `<option value="">
+            Select membership
+        </option>`;
+
+
+    if (amountInput) {
+        amountInput.value = "";
+    }
+
+
+    if (!memberId) {
+        return;
+    }
+
+
+    const memberships =   getMemberships();
+
+
+    const memberMemberships =
+        memberships.filter((membership) => {
+
+            return String(
+                membership.memberId || ""
+            ).trim().toLowerCase()  ===
+            String(memberId)
+                .trim()
+                .toLowerCase();
+        });
+
+
+    if (!memberMemberships.length) {
+
+        membershipSelect.innerHTML =
+            `<option value="">
+                No membership found for this member
+            </option>`;
+
+        return;
+    }
+
+
+    memberMemberships.forEach(
+        (membership, index) => {
+
+            const option =
+                document.createElement("option");
+
+            option.value =
+                String(
+                    memberships.indexOf(membership)
+                );
+
+            const plan =
+                membership.plan ||
+                membership.membershipPlan ||"Membership";
+
+            const duration =
+                membership.duration
+                    ? ` - ${membership.duration}`   : "";
+
+            const price =
+                membership.price != null
+                    ? ` - Rs. ${Number(
+                        membership.price
+                    ).toLocaleString()}`  : "";
+
+            option.textContent =
+                `${plan}${duration}${price}`;
+
+            membershipSelect.appendChild(
+                option
+            );
+        }
+    );
+}
+
+
+// ========================================
+// MEMBERSHIP CHANGE
+// ========================================
+
+function handleMembershipChange() {
+
+    const membershipSelect =
+        document.getElementById(
+            "paymentMembership"
+        );
+
+    const amountInput =
+        document.getElementById(
+            "paymentAmount"
+        );
+
+
+    if (
+        !membershipSelect ||
+        !amountInput
+    ) {
+        return;
+    }
+
+
+    const selectedIndex = membershipSelect.value;
+
+
+    if (selectedIndex === "") {
+        amountInput.value = "";
+        return;
+    }
+
+
+    const memberships = getMemberships();
+
+
+    const membership =
+        memberships[
+            Number(selectedIndex)
+        ];
+
+
+    if (!membership) {
+        amountInput.value = "";
+        return;
+    }
+
+
+    if (
+        membership.price !== undefined &&
+        membership.price !== null
+    ) {
+
+        amountInput.value = membership.price;
+    }
+}
+
 
 // ========================================
 // CREATE PAYMENT ROW
 // ========================================
 
 function createPaymentRow(payment) {
-  const row = document.createElement("tr");
 
-  row.dataset.paymentId = payment.id;
+    const row =
+        document.createElement("tr");
 
-  row.innerHTML = `
-    <td>${escapeHTML(payment.id)}</td>
+    row.dataset.paymentId =
+        payment.id;
 
-    <td>
-      <div class="member-info">
-        <div class="member-avatar">
-          <i class="fa-solid fa-user"></i>
-        </div>
 
-        <span>
-          ${escapeHTML(payment.memberName)}
-        </span>
-      </div>
-    </td>
+    row.innerHTML = `
+        <td>
+            ${escapeHTML(payment.id)}
+        </td>
 
-    <td>
-      ${escapeHTML(payment.membership)}
-    </td>
+        <td>
+            <div class="member-info">
 
-    <td>
-      Rs. ${Number(payment.amount).toLocaleString()}
-    </td>
+                <div class="member-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
 
-    <td>
-      ${formatDate(payment.paymentDate)}
-    </td>
+                <span>
+                    ${escapeHTML(payment.memberName)}
+                </span>
 
-    <td>
-      ${formatDate(payment.dueDate)}
-    </td>
+            </div>
+        </td>
 
-    <td>
-      <span class="payment-status ${escapeHTML(payment.status)}">
-        ${getStatusText(payment.status)}
-      </span>
-    </td>
+        <td>
+            ${escapeHTML(payment.membership)}
+        </td>
 
-    <td>
-      <div class="table-actions">
+        <td>
+            Rs. ${Number(
+                payment.amount || 0
+            ).toLocaleString()}
+        </td>
 
-        <button
-          class="action-btn view-payment"
-          title="View"
-        >
-          <i class="fa-solid fa-eye"></i>
-        </button>
+        <td>
+            ${formatDate(payment.paymentDate)}
+        </td>
 
-        <button
-          class="action-btn edit-payment"
-          title="Edit"
-        >
-          <i class="fa-solid fa-pen"></i>
-        </button>
+        <td>
+            ${formatDate(payment.dueDate)}
+        </td>
 
-        <button
-          class="action-btn delete-payment"
-          title="Delete"
-        >
-          <i class="fa-solid fa-trash"></i>
-        </button>
+        <td>
+            <span class="payment-status ${escapeHTML(
+                payment.status
+            )}">
+                ${getStatusText(payment.status)}
+            </span>
+        </td>
 
-      </div>
-    </td>
-  `;
+        <td>
 
-  return row;
+            <div class="table-actions">
+
+                <button
+                    class="action-btn view-payment"
+                    title="View">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+
+                <button
+                    class="action-btn edit-payment"
+                    title="Edit">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+
+                <button
+                    class="action-btn delete-payment"
+                    title="Delete" >
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+
+            </div>
+
+        </td>`;
+
+
+    return row;
 }
 
+
 // ========================================
-// LOAD SAVED PAYMENTS
+// RENDER PAYMENTS
 // ========================================
 
-function loadSavedPayments() {
-  const payments = getPayments();
+function renderPayments() {
 
-  const tableBody =
-    document.getElementById("paymentTableBody");
+    const tableBody =
+        document.getElementById(
+            "paymentTableBody"
+        );
 
-  if (!tableBody) return;
+    if (!tableBody) {
+        return;
+    }
 
-  payments.forEach((payment) => {
-    tableBody.appendChild(
-      createPaymentRow(payment)
-    );
-  });
+
+    tableBody.innerHTML = "";
+
+
+    const payments =
+        getPayments();
+
+
+    payments.forEach((payment) => {
+
+        tableBody.appendChild(
+            createPaymentRow(payment)
+        );
+    });
+
+
+    updateEmptyMessage();
+
+    filterPayments();
 }
 
+
 // ========================================
-// UPDATE SUMMARY CARDS
+// EMPTY MESSAGE
+// ========================================
+
+function updateEmptyMessage() {
+
+    const emptyMessage =
+        document.getElementById(
+            "emptyPaymentMessage"
+        );
+
+    const tableBody =
+        document.getElementById(
+            "paymentTableBody"
+        );
+
+
+    if (
+        !emptyMessage ||
+        !tableBody
+    ) {
+        return;
+    }
+
+
+    const visibleRows =
+        [...tableBody.querySelectorAll("tr")]
+            .filter(
+                (row) => row.style.display !== "none"
+            );
+
+
+    emptyMessage.style.display =
+        visibleRows.length === 0 ? "block" : "none";
+}
+
+
+// ========================================
+// UPDATE SUMMARY
 // ========================================
 
 function updatePaymentSummary() {
-  const payments = getPayments();
 
-  let totalPaid = 0;
-  let totalPending = 0;
-  let totalOverdue = 0;
+    const payments =
+        getPayments();
 
-  payments.forEach((payment) => {
-    const amount = Number(payment.amount) || 0;
 
-    if (payment.status === "paid") {
-      totalPaid += amount;
-    }
+    let totalPaid = 0;
+    let totalPending = 0;
+    let totalOverdue = 0;
 
-    if (payment.status === "pending") {
-      totalPending += amount;
-    }
 
-    if (payment.status === "overdue") {
-      totalOverdue += amount;
-    }
-  });
+    payments.forEach((payment) => {
 
-  const totalRevenue = totalPaid;
+        const amount =Number(payment.amount) || 0;
 
-  document.getElementById("totalPaid").textContent =
-    `Rs. ${totalPaid.toLocaleString()}`;
+        const status =
+            String(
+                payment.status || ""
+            ).toLowerCase();
 
-  document.getElementById("totalPending").textContent =
-    `Rs. ${totalPending.toLocaleString()}`;
 
-  document.getElementById("totalOverdue").textContent =
-    `Rs. ${totalOverdue.toLocaleString()}`;
+        if (status === "paid") {
+            totalPaid += amount;
+        }
 
-  document.getElementById("totalRevenue").textContent =
-    `Rs. ${totalRevenue.toLocaleString()}`;
+        if (status === "pending") {
+            totalPending += amount;
+        }
+
+        if (status === "overdue") {
+            totalOverdue += amount;
+        }
+    });
+
+
+    const totalRevenue =totalPaid;
+
+
+    document.getElementById("totalPaid"
+    ).textContent = `Rs. ${totalPaid.toLocaleString()}`;
+
+
+    document.getElementById( "totalPending"
+    ).textContent =  `Rs. ${totalPending.toLocaleString()}`;
+
+
+    document.getElementById("totalOverdue"
+    ).textContent =  `Rs. ${totalOverdue.toLocaleString()}`;
+
+
+    document.getElementById("totalRevenue"
+    ).textContent =`Rs. ${totalRevenue.toLocaleString()}`;
 }
+
 
 // ========================================
 // SEARCH + FILTER
 // ========================================
 
 function filterPayments() {
-  const searchInput =
-    document.getElementById("paymentSearch");
 
-  const statusFilter =
-    document.getElementById(
-      "paymentStatusFilter"
-    );
+    const searchInput =document.getElementById(
+            "paymentSearch"
+        );
 
-  const tableBody =
-    document.getElementById(
-      "paymentTableBody"
-    );
+    const statusFilter =
+        document.getElementById(
+            "paymentStatusFilter"
+        );
 
-  if (!searchInput || !statusFilter || !tableBody) {
-    return;
-  }
+    const tableBody =
+        document.getElementById(
+            "paymentTableBody"
+        );
 
-  const searchText =
-    searchInput.value
-      .toLowerCase()
-      .trim();
 
-  const selectedStatus =
-    statusFilter.value;
+    if (
+        !searchInput ||  !statusFilter ||
+        !tableBody
+    ) {
+        return;
+    }
 
-  const rows =
-    tableBody.querySelectorAll("tr");
 
-  rows.forEach((row) => {
-    const rowText =
-      row.innerText.toLowerCase();
+    const searchText =
+        searchInput.value.toLowerCase().trim();
 
-    const statusElement =
-      row.querySelector(".payment-status");
 
-    const rowStatus =
-      statusElement
-        ? [...statusElement.classList]
-            .find((className) =>
-              ["paid", "pending", "overdue"]
-                .includes(className)
-            )
-        : "";
+    const selectedStatus =statusFilter.value;
 
-    const matchesSearch =
-      rowText.includes(searchText);
 
-    const matchesStatus =
-      selectedStatus === "all" ||
-      rowStatus === selectedStatus;
+    const rows = tableBody.querySelectorAll("tr");
 
-    row.style.display =
-      matchesSearch && matchesStatus
-        ? ""
-        : "none";
-  });
+
+    rows.forEach((row) => {
+
+        const rowText =row.innerText.toLowerCase();
+
+
+        const statusElement =
+            row.querySelector(".payment-status"
+            );
+
+
+        const rowStatus =statusElement
+                ? [...statusElement.classList]
+                    .find((className) =>
+                        [
+                            "paid","pending","overdue"
+                        ].includes(className)) : "";
+
+
+        const matchesSearch =
+            rowText.includes( searchText
+            );
+
+
+        const matchesStatus =
+            selectedStatus === "all" ||
+            rowStatus === selectedStatus;
+
+
+        row.style.display = matchesSearch &&
+            matchesStatus   ? "" : "none";
+    });
+
+
+    updateEmptyMessage();
 }
 
-// ========================================
-// OPEN PAYMENT MODAL
+
+
+//==================================
+// OPEN MODAL
 // ========================================
 
 function openPaymentModal() {
-  const modal =
+
+    const modal = document.getElementById(
+            "paymentModal"
+        );
+
+
+    if (!modal) {
+        return;
+    }
+
+
+    editingPaymentId = null;
+
+
     document.getElementById(
-      "paymentModal"
-    );
+        "paymentModalTitle"
+    ).textContent ="Add Payment";
 
-  if (!modal) return;
 
-  modal.style.display = "flex";
+    document.getElementById(
+        "savePaymentText"
+    ).textContent ="Add Payment";
+
+
+    clearPaymentForm();
+
+    loadMembersIntoSelect();
+
+    clearFormMessage();
+
+
+    modal.style.display = "flex";
 }
 
+
 // ========================================
-// CLOSE PAYMENT MODAL
+// CLOSE MODAL
 // ========================================
 
 function closePaymentModal() {
-  const modal =
-    document.getElementById(
-      "paymentModal"
-    );
 
-  if (!modal) return;
+    const modal =document.getElementById(
+            "paymentModal"
+        );
 
-  modal.style.display = "none";
+
+    if (!modal) {
+        return;
+    }
+
+
+    modal.style.display =  "none";
+
+
+    editingPaymentId = null;
+
+    clearFormMessage();
 }
+
 
 // ========================================
 // CLEAR FORM
 // ========================================
 
 function clearPaymentForm() {
-  document.getElementById(
-    "paymentMember"
-  ).value = "";
 
-  document.getElementById(
-    "paymentMembership"
-  ).value = "";
+    const member =
+        document.getElementById(
+            "paymentMember"
+        );
 
-  document.getElementById(
-    "paymentAmount"
-  ).value = "";
+    const membership =
+        document.getElementById(
+            "paymentMembership"
+        );
 
-  document.getElementById(
-    "paymentDate"
-  ).value = "";
+    const amount =
+        document.getElementById(
+            "paymentAmount"
+        );
 
-  document.getElementById(
-    "paymentDueDate"
-  ).value = "";
+    const paymentDate =
+        document.getElementById(
+            "paymentDate"
+        );
 
-  document.getElementById(
-    "paymentStatus"
-  ).value = "paid";
+    const dueDate =
+        document.getElementById(
+            "paymentDueDate"
+        );
+
+    const status =
+        document.getElementById(
+            "paymentStatus"
+        );
+
+
+    if (member) {
+        member.value = "";
+    }
+
+    if (membership) {
+
+        membership.innerHTML =
+            `<option value="">
+                Select membership
+            </option>`;
+    }
+
+    if (amount) {
+        amount.value = "";
+    }
+
+    if (paymentDate) {
+        paymentDate.value = "";
+    }
+
+    if (dueDate) {
+        dueDate.value = "";
+    }
+
+    if (status) {
+        status.value = "paid";
+    }
 }
+
+
+// ========================================
+// VALIDATE PAYMENT
+// ========================================
+
+function validatePaymentForm() {
+
+    const memberSelect =
+        document.getElementById(
+            "paymentMember"
+        );
+
+    const membershipSelect =
+        document.getElementById(
+            "paymentMembership"
+        );
+
+    const amountInput =
+        document.getElementById(
+            "paymentAmount"
+        );
+
+    const paymentDateInput =
+        document.getElementById(
+            "paymentDate"
+        );
+
+    const dueDateInput =
+        document.getElementById(
+            "paymentDueDate"
+        );
+
+
+    if (!memberSelect.value) {
+
+        showFormMessage(
+            "Please select an existing member."
+        );
+
+        return false;
+    }
+
+
+    if (!membershipSelect.value) {
+
+        showFormMessage(
+            "Please select a membership."
+        );
+
+        return false;
+    }
+
+
+    if (
+        !amountInput.value ||
+        Number(amountInput.value) <= 0
+    ) {
+
+        showFormMessage(
+            "Please enter a valid payment amount."
+        );
+
+        return false;
+    }
+
+
+    if (!paymentDateInput.value) {
+
+        showFormMessage(
+            "Please select the payment date."
+        );
+
+        return false;
+    }
+
+
+    if (!dueDateInput.value) {
+
+        showFormMessage(
+            "Please select the due date."
+        );
+
+        return false;
+    }
+
+
+    if (
+        new Date(paymentDateInput.value) >
+        new Date(dueDateInput.value)
+    ) {
+
+        showFormMessage(
+            "Due date cannot be earlier than payment date."
+        );
+
+        return false;
+    }
+
+
+    return true;
+}
+
 
 // ========================================
 // ADD PAYMENT
 // ========================================
 
 function addPayment() {
-  const memberSelect =
-    document.getElementById(
-      "paymentMember"
+
+    if (!validatePaymentForm()) {
+        return;
+    }
+
+
+    const memberSelect =
+        document.getElementById(
+            "paymentMember"
+        );
+
+    const membershipSelect =
+        document.getElementById(
+            "paymentMembership"
+        );
+
+    const amountInput =
+        document.getElementById(
+            "paymentAmount"
+        );
+
+    const paymentDateInput =
+        document.getElementById(
+            "paymentDate"
+        );
+
+    const dueDateInput =
+        document.getElementById(
+            "paymentDueDate"
+        );
+
+    const statusSelect =
+        document.getElementById(
+            "paymentStatus"
+        );
+
+
+    const memberId = memberSelect.value;
+
+
+    const selectedMember =
+        getMembers().find(
+            (member) =>
+                String(
+                    getMemberId(member)
+                ).toLowerCase() ===
+                String(memberId).toLowerCase()
+        );
+
+
+    if (!selectedMember) {
+
+        showFormMessage(
+            "Selected member could not be found in gymMembers."
+        );
+
+        return;
+    }
+
+
+    const memberName =  getMemberName(selectedMember);
+
+
+    const selectedMembership = getMemberships()[
+            Number(
+                membershipSelect.value
+            )
+        ];
+
+
+    if (!selectedMembership) {
+
+        showFormMessage(
+            "Selected membership could not be found."
+        );
+
+        return;
+    }
+
+
+    const membershipName =
+        selectedMembership.plan ||
+        selectedMembership.membershipPlan || "Membership";
+
+
+    const payment = {
+
+        id: getNextPaymentId(),
+
+        memberId: memberId,
+
+        memberName: memberName,
+
+        membership: membershipName,
+
+        membershipPlan: membershipName,
+
+        amount:
+            Number(amountInput.value),
+
+        paymentDate:
+            paymentDateInput.value,
+
+        dueDate:
+            dueDateInput.value,
+
+        status:
+            statusSelect.value
+    };
+
+
+    const payments =  getPayments();
+
+
+    payments.push(payment);
+
+    savePayments(payments);
+
+
+    renderPayments();
+
+    updatePaymentSummary();
+
+
+    closePaymentModal();
+
+
+    showPageMessage(
+        `Payment ${payment.id} added successfully.`, "success"
     );
-
-  const membershipSelect =
-    document.getElementById(
-      "paymentMembership"
-    );
-
-  const amountInput =
-    document.getElementById(
-      "paymentAmount"
-    );
-
-  const paymentDateInput =
-    document.getElementById(
-      "paymentDate"
-    );
-
-  const dueDateInput =
-    document.getElementById(
-      "paymentDueDate"
-    );
-
-  const statusSelect =
-    document.getElementById(
-      "paymentStatus"
-    );
-
-  if (
-    !memberSelect.value ||
-    !membershipSelect.value ||
-    !amountInput.value ||
-    !paymentDateInput.value ||
-    !dueDateInput.value
-  ) {
-    alert(
-      "Please fill all payment details."
-    );
-    return;
-  }
-
-  const memberName =
-    memberSelect.options[
-      memberSelect.selectedIndex
-    ].text;
-
-  const membership =
-    membershipSelect.options[
-      membershipSelect.selectedIndex
-    ].text;
-
-  const payment = {
-    id: getNextPaymentId(),
-
-    memberId:
-      memberSelect.value,
-
-    memberName:
-      memberName,
-
-    membership:
-      membership,
-
-    amount:
-      Number(amountInput.value),
-
-    paymentDate:
-      paymentDateInput.value,
-
-    dueDate:
-      dueDateInput.value,
-
-    status:
-      statusSelect.value
-  };
-
-  const payments = getPayments();
-
-  payments.push(payment);
-
-  savePayments(payments);
-
-  const tableBody =
-    document.getElementById(
-      "paymentTableBody"
-    );
-
-  tableBody.appendChild(
-    createPaymentRow(payment)
-  );
-
-  updatePaymentSummary();
-
-  clearPaymentForm();
-
-  closePaymentModal();
-
-  alert(
-    "Payment added successfully."
-  );
 }
-
 // ========================================
 // VIEW PAYMENT
 // ========================================
 
 function viewPayment(row) {
-  const paymentId =
-    row.dataset.paymentId;
 
-  // Dynamic payment
-  if (paymentId) {
+    const paymentId =
+        row.dataset.paymentId;
+
+
     const payments = getPayments();
 
+
     const payment =
-      payments.find(
-        (item) =>
-          item.id === paymentId
-      );
+        payments.find(
+            (item) =>
+                item.id === paymentId
+        );
 
-    if (!payment) return;
 
-    alert(
-      `Payment Details\n\n` +
-      `Payment ID: ${payment.id}\n` +
-      `Member: ${payment.memberName}\n` +
-      `Membership: ${payment.membership}\n` +
-      `Amount: Rs. ${Number(
-        payment.amount
-      ).toLocaleString()}\n` +
-      `Payment Date: ${formatDate(
-        payment.paymentDate
-      )}\n` +
-      `Due Date: ${formatDate(
-        payment.dueDate
-      )}\n` +
-      `Status: ${getStatusText(
-        payment.status
-      )}`
+    if (!payment) {
+
+        showPageMessage(
+            "Payment details could not be found.", "error"
+        );
+
+        return;
+    }
+
+
+    const memberId =
+        payment.memberId || "-";
+
+
+    const details =
+        [
+            `Payment ID: ${payment.id}`,
+            `Member: ${payment.memberName}`,
+            `Member ID: ${memberId}`,
+            `Membership: ${payment.membership}`,
+            `Amount: Rs. ${Number(
+                payment.amount || 0
+            ).toLocaleString()}`,
+            `Payment Date: ${formatDate(
+                payment.paymentDate
+            )}`,
+            `Due Date: ${formatDate(
+                payment.dueDate
+            )}`,
+            `Status: ${getStatusText(
+                payment.status
+            )}`
+        ].join(" • ");
+
+
+    showPageMessage(
+        details, "success"
     );
-
-    return;
-  }
-
-  // Hard-coded payment
-  const cells =
-    row.querySelectorAll("td");
-
-  const memberName =
-    cells[1]?.innerText.trim();
-
-  const membership =
-    cells[2]?.innerText.trim();
-
-  const amount =
-    cells[3]?.innerText.trim();
-
-  const paymentDate =
-    cells[4]?.innerText.trim();
-
-  const dueDate =
-    cells[5]?.innerText.trim();
-
-  const status =
-    cells[6]?.innerText.trim();
-
-  alert(
-    `Payment Details\n\n` +
-    `Payment ID: #P001\n` +
-    `Member: ${memberName}\n` +
-    `Membership: ${membership}\n` +
-    `Amount: ${amount}\n` +
-    `Payment Date: ${paymentDate}\n` +
-    `Due Date: ${dueDate}\n` +
-    `Status: ${status}`
-  );
 }
+
 
 // ========================================
 // EDIT PAYMENT
 // ========================================
 
 function editPayment(row) {
-  const paymentId =
-    row.dataset.paymentId;
 
-  if (!paymentId) {
-    alert(
-      "This payment is part of the original HTML data and cannot be edited."
-    );
-    return;
-  }
+    const paymentId =  row.dataset.paymentId;
 
-  const payments = getPayments();
 
-  const payment =
-    payments.find(
-      (item) =>
-        item.id === paymentId
-    );
+    const payments = getPayments();
 
-  if (!payment) return;
 
-  const member =
-    prompt(
-      "Enter Member Name:",
-      payment.memberName
-    );
+    const payment =
+        payments.find(
+            (item) =>
+                item.id === paymentId
+        );
 
-  if (member === null) return;
 
-  const membership =
-    prompt(
-      "Enter Membership:",
-      payment.membership
-    );
+    if (!payment) {
 
-  if (membership === null) return;
+        showPageMessage(
+            "Payment could not be found.", "error"
+        );
 
-  const amount =
-    prompt(
-      "Enter Amount:",
-      payment.amount
-    );
+        return;
+    }
 
-  if (amount === null) return;
 
-  const paymentDate =
-    prompt(
-      "Enter Payment Date (YYYY-MM-DD):",
-      payment.paymentDate
-    );
+    editingPaymentId = paymentId;
 
-  if (paymentDate === null) return;
 
-  const dueDate =
-    prompt(
-      "Enter Due Date (YYYY-MM-DD):",
-      payment.dueDate
+    openPaymentModal();
+
+
+    editingPaymentId = paymentId;
+
+
+    document.getElementById(
+        "paymentModalTitle"
+    ).textContent = "Edit Payment";
+
+
+    document.getElementById(
+        "savePaymentText"
+    ).textContent = "Update Payment";
+
+
+    const memberSelect =
+        document.getElementById(
+            "paymentMember"
+        );
+
+
+    memberSelect.value =  payment.memberId;
+
+
+    loadMembershipsForMember(
+  payment.memberId
     );
 
-  if (dueDate === null) return;
 
-  const status =
-    prompt(
-      "Enter Status (paid / pending / overdue):",
-      payment.status
-    );
+    /*
+     * Membership record search
+     */
 
-  if (status === null) return;
+    const memberships = getMemberships();
 
-  const cleanStatus =
-    status.toLowerCase().trim();
 
-  if (
-    !["paid", "pending", "overdue"]
-      .includes(cleanStatus)
-  ) {
-    alert(
-      "Invalid status. Use paid, pending or overdue."
-    );
-    return;
-  }
+    const membershipIndex =
+        memberships.findIndex(
+            (membership) => {
 
-  if (
-    !member.trim() ||
-    !membership.trim() ||
-    !amount.trim()
-  ) {
-    alert(
-      "Required fields cannot be empty."
-    );
-    return;
-  }
+                const memberMatch =
+                    String(
+                        membership.memberId || ""
+                    ).toLowerCase() ===
+                    String(
+                        payment.memberId || ""
+                    ).toLowerCase();
 
-  payment.memberName =
-    member.trim();
+                const plan =
+                    membership.plan ||
+                    membership.membershipPlan ||"";
 
-  payment.membership =
-    membership.trim();
+                return (
+                    memberMatch &&
+                    plan === payment.membership
+                );
+            }
+        );
 
-  payment.amount =
-    Number(amount);
 
-  payment.paymentDate =
-    paymentDate;
+    if (membershipIndex !== -1) {
 
-  payment.dueDate =
-    dueDate;
+        document.getElementById(
+            "paymentMembership"
+        ).value =
+            String(membershipIndex);
+    }
 
-  payment.status =
-    cleanStatus;
 
-  savePayments(payments);
+    document.getElementById(
+        "paymentAmount"
+    ).value =
+        payment.amount;
 
-  const newRow =
-    createPaymentRow(payment);
 
-  row.replaceWith(newRow);
+    document.getElementById(
+        "paymentDate"
+    ).value =
+        payment.paymentDate;
 
-  updatePaymentSummary();
 
-  filterPayments();
+    document.getElementById(
+        "paymentDueDate"
+    ).value =
+        payment.dueDate;
 
-  alert(
-    "Payment updated successfully."
-  );
+
+    document.getElementById(
+        "paymentStatus"
+    ).value =
+        payment.status;
+
+
+    clearFormMessage();
 }
+
+
+// ========================================
+// UPDATE PAYMENT
+// ========================================
+
+function updatePayment() {
+
+    if (!validatePaymentForm()) {
+        return;
+    }
+
+
+    const payments =
+        getPayments();
+
+
+    const payment =
+        payments.find(
+            (item) =>
+                item.id === editingPaymentId
+        );
+
+
+    if (!payment) {
+
+        showFormMessage(
+            "Payment could not be found."
+        );
+
+        return;
+    }
+
+
+    const memberSelect =
+        document.getElementById(
+            "paymentMember"
+        );
+
+    const membershipSelect =
+        document.getElementById(
+            "paymentMembership"
+        );
+
+    const amountInput =
+        document.getElementById(
+            "paymentAmount"
+        );
+
+    const paymentDateInput =
+        document.getElementById(
+            "paymentDate"
+        );
+
+    const dueDateInput =
+        document.getElementById(
+            "paymentDueDate"
+        );
+
+    const statusSelect =
+        document.getElementById(
+            "paymentStatus"
+        );
+
+
+    const memberId =
+        memberSelect.value;
+
+
+    const member =
+        getMembers().find(
+            (item) =>
+                String(
+                    getMemberId(item)
+                ).toLowerCase() ===
+                String(memberId).toLowerCase()
+        );
+
+
+    const membership =
+        getMemberships()[
+            Number( membershipSelect.value  )
+        ];
+
+
+    if (!member || !membership) {
+
+        showFormMessage(
+            "Member or membership data could not be found."
+        );
+
+        return;
+    }
+
+
+    payment.memberId = memberId;
+
+    payment.memberName = getMemberName(member);
+
+    payment.membership =
+        membership.plan ||
+        membership.membershipPlan || "Membership";
+
+    payment.membershipPlan = payment.membership;
+
+    payment.amount =  Number(amountInput.value);
+
+    payment.paymentDate = paymentDateInput.value;
+
+    payment.dueDate = dueDateInput.value;
+
+    payment.status =  statusSelect.value;
+
+
+    savePayments(payments);
+
+
+    renderPayments();
+
+    updatePaymentSummary();
+
+    closePaymentModal();
+
+
+    showPageMessage(
+        `Payment ${payment.id} updated successfully.`,"success"
+    );
+}
+
 
 // ========================================
 // DELETE PAYMENT
 // ========================================
 
 function deletePayment(row) {
-  const paymentId =
-    row.dataset.paymentId;
 
-  if (!paymentId) {
-    alert(
-      "This payment is part of the original HTML data and cannot be deleted."
+    const paymentId =  row.dataset.paymentId;
+
+
+    const payments = getPayments();
+
+
+    const payment =
+        payments.find(
+            (item) =>
+                item.id === paymentId
+        );
+
+
+    if (!payment) {
+
+        showPageMessage(
+            "Payment could not be found.",  "error"
+        );
+
+        return;
+    }
+
+    const updatedPayments =
+        payments.filter(
+            (item) =>
+                item.id !== paymentId
+        );
+
+
+    savePayments(updatedPayments);
+
+
+    renderPayments();
+
+    updatePaymentSummary();
+
+
+    showPageMessage(
+        `Payment ${payment.id} deleted successfully.`,  "success"
     );
-    return;
-  }
-
-  const payments = getPayments();
-
-  const payment =
-    payments.find(
-      (item) =>
-        item.id === paymentId
-    );
-
-  if (!payment) return;
-
-  const confirmDelete =
-    confirm(
-      `Delete payment ${payment.id}?`
-    );
-
-  if (!confirmDelete) return;
-
-  const updatedPayments =
-    payments.filter(
-      (item) =>
-        item.id !== paymentId
-    );
-
-  savePayments(updatedPayments);
-
-  row.remove();
-
-  updatePaymentSummary();
-
-  alert(
-    "Payment deleted successfully."
-  );
 }
-
 // ========================================
 // TABLE ACTIONS
 // ========================================
 
 function setupPaymentActions() {
-  const tableBody =
-    document.getElementById(
-      "paymentTableBody"
-    );
 
-  if (!tableBody) return;
-
-  if (
-    tableBody.dataset.actionsReady ===
-    "true"
-  ) {
-    return;
-  }
-
-  tableBody.dataset.actionsReady =
-    "true";
-
-  tableBody.addEventListener(
-    "click",
-    function (event) {
-      const viewButton =
-        event.target.closest(
-          ".view-payment"
+    const tableBody =
+        document.getElementById(
+            "paymentTableBody"
         );
 
-      const editButton =
-        event.target.closest(
-          ".edit-payment"
-        );
 
-      const deleteButton =
-        event.target.closest(
-          ".delete-payment"
-        );
-
-      const row =
-        event.target.closest("tr");
-
-      if (!row) return;
-
-      if (viewButton) {
-        viewPayment(row);
-      }
-
-      if (editButton) {
-        editPayment(row);
-      }
-
-      if (deleteButton) {
-        deletePayment(row);
-      }
+    if (!tableBody) {
+        return;
     }
-  );
+
+
+    if (
+        tableBody.dataset.actionsReady ==="true"
+    ) {
+        return;
+    }
+
+
+    tableBody.dataset.actionsReady = "true";
+
+
+    tableBody.addEventListener(
+        "click",
+        function (event) {
+
+            const row = event.target.closest("tr");
+
+
+            if (!row) {
+                return;
+            }
+
+
+            if (
+                event.target.closest(
+                    ".view-payment"
+                )
+            ) {
+
+                viewPayment(row);
+                return;
+            }
+
+
+            if (
+                event.target.closest(
+                    ".edit-payment"
+                )
+            ) {
+
+                editPayment(row);
+                return;
+            }
+
+
+            if (
+                event.target.closest(
+                    ".delete-payment"
+                )
+            ) {
+
+                deletePayment(row);
+            }
+
+        }
+    );
 }
+
 
 // ========================================
 // EVENT LISTENERS
 // ========================================
 
 function setupPaymentEvents() {
-  const addButton =
-    document.getElementById(
-      "addPaymentBtn"
-    );
 
-  const closeButton =
-    document.getElementById(
-      "closePaymentModal"
-    );
+    const addButton =
+        document.getElementById(
+            "addPaymentBtn"
+        );
 
-  const cancelButton =
-    document.getElementById(
-      "cancelPayment"
-    );
+    const closeButton =
+        document.getElementById(
+            "closePaymentModal"
+        );
 
-  const saveButton =
-    document.getElementById(
-      "savePayment"
-    );
+    const cancelButton =
+        document.getElementById(
+            "cancelPayment"
+        );
 
-  const searchInput =
-    document.getElementById(
-      "paymentSearch"
-    );
+    const saveButton =
+        document.getElementById(
+            "savePayment"
+        );
 
-  const statusFilter =
-    document.getElementById(
-      "paymentStatusFilter"
-    );
+    const searchInput =
+        document.getElementById(
+            "paymentSearch"
+        );
 
-  if (addButton) {
-    addButton.addEventListener(
-      "click",
-      openPaymentModal
-    );
-  }
+    const statusFilter =
+        document.getElementById(
+            "paymentStatusFilter"
+        );
 
-  if (closeButton) {
-    closeButton.addEventListener(
-      "click",
-      closePaymentModal
-    );
-  }
+    const memberSelect =
+        document.getElementById(
+            "paymentMember"
+        );
 
-  if (cancelButton) {
-    cancelButton.addEventListener(
-      "click",
-      closePaymentModal
-    );
-  }
+    const membershipSelect =
+        document.getElementById(
+            "paymentMembership"
+        );
 
-  if (saveButton) {
-    saveButton.addEventListener(
-      "click",
-      addPayment
-    );
-  }
 
-  if (searchInput) {
-    searchInput.addEventListener(
-      "input",
-      filterPayments
-    );
-  }
+    if (addButton) {
 
-  if (statusFilter) {
-    statusFilter.addEventListener(
-      "change",
-      filterPayments
+        addButton.addEventListener(
+            "click",
+            openPaymentModal
+        );
+    }
+
+
+    if (closeButton) {
+
+        closeButton.addEventListener(
+            "click",
+            closePaymentModal
+        );
+    }
+
+
+    if (cancelButton) {
+
+        cancelButton.addEventListener(
+            "click",
+            closePaymentModal
+        );
+    }
+
+
+    if (saveButton) {
+
+        saveButton.addEventListener(
+            "click",
+            function () {
+
+                if (editingPaymentId) {
+                    updatePayment();
+                } else {
+                    addPayment();
+                }
+
+            }
+        );
+    }
+
+
+    if (searchInput) {
+
+        searchInput.addEventListener(
+            "input",
+            filterPayments
+        );
+    }
+
+
+    if (statusFilter) {
+
+        statusFilter.addEventListener(
+            "change",
+            filterPayments
+        );
+    }
+
+
+    if (memberSelect) {
+
+        memberSelect.addEventListener(
+            "change",
+            function () {
+
+                loadMembershipsForMember(
+                    memberSelect.value
+                );
+
+                clearFormMessage();
+            }
+        );
+    }
+
+
+    if (membershipSelect) {
+
+        membershipSelect.addEventListener(
+            "change",
+            handleMembershipChange
+        );
+    }
+
+
+    window.addEventListener(
+        "click",
+        function (event) {
+
+            const modal =
+                document.getElementById(
+                    "paymentModal"
+                );
+
+            if (
+                event.target === modal
+            ) {
+
+                closePaymentModal();
+            }
+        }
     );
-  }
 }
+
 
 // ========================================
 // START PAYMENT PAGE
 // ========================================
 
 async function startPaymentPage() {
-  await loadComponents();
 
-  loadSavedPayments();
+    await loadComponents();
 
-  updatePaymentSummary();
+    loadMembersIntoSelect();
 
-  setupPaymentActions();
+    renderPayments();
 
-  setupPaymentEvents();
+    updatePaymentSummary();
+
+    setupPaymentActions();
+
+    setupPaymentEvents();
 }
+
 
 // ========================================
 // START
 // ========================================
 
 startPaymentPage();
+
+

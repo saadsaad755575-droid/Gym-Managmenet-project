@@ -1,0 +1,570 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Fees</title>
+
+
+    <!-- =========================
+         FONT AWESOME
+    ========================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- =========================
+         MEMBER COMPONENT CSS
+    ========================== -->
+
+    <link
+        rel="stylesheet"
+        href="../../../components/member-sidebar/member-sidebar.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../../components/member-navbar/member-navbar.css"
+    >
+
+
+    <!-- =========================
+         MY FEES CSS
+    ========================== -->
+
+    <link
+        rel="stylesheet"
+        href="my-fee.css"
+    >
+
+
+    <!-- =========================
+         ANIMATIONS
+    ========================== -->
+
+    <link
+        rel="stylesheet"
+        href="/components/animations/animtion.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         MEMBER SIDEBAR
+    ================================================== -->
+
+    <div id="member-sidebar"></div>
+
+
+
+    <!-- ==================================================
+         MAIN AREA
+    ================================================== -->
+
+    <main class="member-main">
+
+
+        <!-- ==================================================
+             MEMBER NAVBAR
+        ================================================== -->
+
+        <div id="member-navbar"></div>
+
+
+
+        <!-- ==================================================
+             PAGE CONTENT
+        ================================================== -->
+
+        <div class="member-content">
+
+
+            <!-- ==================================================
+                 PAGE HEADER
+            ================================================== -->
+
+            <section class="fees-page-header">
+
+                <div class="fees-header-content">
+
+                    <div>
+
+                        <span class="fees-label">
+                            <i class="fa-solid fa-wallet"></i>
+                            FINANCIAL OVERVIEW
+                        </span>
+
+                        <h1>
+                            My Fees
+                        </h1>
+
+                        <p>
+                            View your membership fee and payment history.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==================================================
+                 FEE SUMMARY CARDS
+            ================================================== -->
+
+            <section class="fees-summary-grid">
+
+
+                <!-- MEMBERSHIP FEE -->
+
+                <div class="fee-summary-card">
+
+                    <div class="fee-card-icon">
+
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+
+                    </div>
+
+                    <div class="fee-card-content">
+
+                        <span>
+                            Membership Fee
+                        </span>
+
+                        <strong id="membershipFee">
+                            Rs. 0
+                        </strong>
+
+                        <small id="membershipPlan">
+                            No Membership
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TOTAL PAID -->
+
+                <div class="fee-summary-card">
+
+                    <div class="fee-card-icon">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                    </div>
+
+                    <div class="fee-card-content">
+
+                        <span>
+                            Total Paid
+                        </span>
+
+                        <strong id="totalPaid">
+                            Rs. 0
+                        </strong>
+
+                        <small>
+                            Payments made
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- REMAINING -->
+
+                <div class="fee-summary-card">
+
+                    <div class="fee-card-icon">
+
+                        <i class="fa-solid fa-clock"></i>
+
+                    </div>
+
+                    <div class="fee-card-content">
+
+                        <span>
+                            Remaining
+                        </span>
+
+                        <strong id="remainingAmount">
+                            Rs. 0
+                        </strong>
+
+                        <small>
+                            Outstanding amount
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PAYMENT STATUS -->
+
+                <div class="fee-summary-card">
+
+                    <div class="fee-card-icon">
+
+                        <i class="fa-solid fa-money-check-dollar"></i>
+
+                    </div>
+
+                    <div class="fee-card-content">
+
+                        <span>
+                            Payment Status
+                        </span>
+
+                        <strong
+                            id="paymentStatus"
+                            class="fee-status-badge"
+                        >
+                            -
+                        </strong>
+
+                        <small>
+                            Current status
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==================================================
+                 MEMBERSHIP DETAILS
+            ================================================== -->
+
+            <section class="fees-section">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            <i class="fa-solid fa-id-card"></i>
+                            Membership Details
+                        </h2>
+
+                        <p>
+                            Your current membership information
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="membership-details-card">
+
+
+                    <!-- PLAN -->
+
+                    <div class="membership-detail">
+
+                        <span>
+                            <i class="fa-solid fa-dumbbell"></i>
+                            Membership Plan
+                        </span>
+
+                        <strong id="detailMembershipPlan">
+                            -
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- DURATION -->
+
+                    <div class="membership-detail">
+
+                        <span>
+                            <i class="fa-solid fa-calendar-days"></i>
+                            Duration
+                        </span>
+
+                        <strong id="detailDuration">
+                            -
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- TOTAL FEE -->
+
+                    <div class="membership-detail">
+
+                        <span>
+                            <i class="fa-solid fa-money-bill-wave"></i>
+                            Total Fee
+                        </span>
+
+                        <strong id="detailTotalFee">
+                            Rs. 0
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- STATUS -->
+
+                    <div class="membership-detail">
+
+                        <span>
+                            <i class="fa-solid fa-circle-info"></i>
+                            Membership Status
+                        </span>
+
+                        <strong
+                            id="detailMembershipStatus"
+                            class="fee-status-badge"
+                        >
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==================================================
+                 PAYMENT ALERT
+            ================================================== -->
+
+            <section
+                class="fee-alert"
+                id="feeAlert"
+                style="display: none;"
+            >
+
+                <div class="fee-alert-icon">
+
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+
+                </div>
+
+                <div class="fee-alert-content">
+
+                    <strong id="feeAlertTitle">
+                        Payment Alert
+                    </strong>
+
+                    <p id="feeAlertMessage">
+                        Please check your payment details.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==================================================
+                 PAYMENT HISTORY
+            ================================================== -->
+
+            <section class="fees-section payment-history-section">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                            Payment History
+                        </h2>
+
+                        <p>
+                            Your previous membership payments
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TABLE -->
+
+                <div class="payment-table-wrapper">
+
+                    <table class="payment-history-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Payment ID
+                                </th>
+
+                                <th>
+                                    Membership
+                                </th>
+
+                                <th>
+                                    Amount
+                                </th>
+
+                                <th>
+                                    Payment Date
+                                </th>
+
+                                <th>
+                                    Due Date
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="paymentHistoryBody">
+
+                            <tr class="empty-payment-row">
+
+                                <td colspan="6">
+
+                                    <i class="fa-solid fa-receipt"></i>
+
+                                    <span>
+                                        No payment history found.
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==================================================
+                 FEE INFORMATION
+            ================================================== -->
+
+            <section class="fee-info-section">
+
+
+                <div class="fee-info-item">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    <div>
+
+                        <strong>
+                            Payment Information
+                        </strong>
+
+                        <p>
+                            Your fee information is connected with
+                            your membership and payment records.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="fee-info-item">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <div>
+
+                        <strong>
+                            Secure Records
+                        </strong>
+
+                        <p>
+                            Only payments associated with your
+                            Member ID are displayed here.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ==================================================
+         MEMBER MODAL
+    ================================================== -->
+
+    <div id="member-modal"></div>
+
+
+
+    <!-- ==================================================
+         MEMBER COMPONENT JS
+    ================================================== -->
+
+    <script src="../../../components/member-navbar/member-navbar.js"></script>
+
+    <script src="../../../components/member-sidebar/member-sidebar.js"></script>
+
+
+
+    <!-- ==================================================
+         MY FEES JS
+    ================================================== -->
+
+    <script src="my-fee.js"></script>
+
+
+</body>
+
+</html>

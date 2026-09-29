@@ -692,18 +692,19 @@ document.addEventListener("DOMContentLoaded", () => {
             /*=======================
             CREATE NOTIFICATION
             =======================*/
-            createNotification(
-                "workout",
-                editingPlanId
-                ?"Workout plan Updated"
-                :"New Workout Plan",
-                editingPlanId
-                ? `${customerName} 's
-                workout plan has been updated.`
-                :`A new Workout plan has been assigned to $
-                {customerName}.`,
-                "fa-dumbbell"
-            );
+          createNotification(
+    "workout",
+    editingPlanId
+        ? "Workout Plan Updated"
+        : "New Workout Plan",
+
+    editingPlanId
+        ? `${customerName}'s workout plan has been updated.`
+        : `A new workout plan has been assigned to ${customerName}.`,
+
+    "fa-dumbbell"
+);
+
 
 
             alert(

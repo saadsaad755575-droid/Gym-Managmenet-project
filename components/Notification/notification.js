@@ -1,19 +1,14 @@
 
-
 /* =========================
    NOTIFICATION COMPONENT
 ========================= */
 
-
-/* =========================
-   LOCAL STORAGE KEY
-========================= */
-
 const NOTIFICATION_KEY = "trainerNotifications";
+const MEMBER_NOTIFICATION_KEY = "memberNotifications";
 
 
 /* =========================
-   GET NOTIFICATIONS
+   GET TRAINER NOTIFICATIONS
 ========================= */
 
 function getNotifications() {
@@ -26,7 +21,7 @@ function getNotifications() {
 
 
 /* =========================
-   SAVE NOTIFICATIONS
+   SAVE TRAINER NOTIFICATIONS
 ========================= */
 
 function saveNotifications(notifications) {
@@ -40,75 +35,183 @@ function saveNotifications(notifications) {
 
 
 /* =========================
-   CREATE NOTIFICATION
-   REUSABLE FUNCTION
+   GET MEMBER NOTIFICATIONS
 ========================= */
 
-function createNotification(
-    type,
-    title,
-    message,
-    icon = "fa-bell"
-) {
+function getMemberNotifications() {
 
-    const notifications =
-        getNotifications();
-
-
-    const notification = {
-
-        id:
-            Date.now().toString() +
-            Math.random()
-                .toString(36)
-                .substring(2),
-
-        type: type,
-
-        title: title,
-
-        message: message,
-
-        icon: icon,
-
-        read: false,
-
-        createdAt:
-            new Date().toISOString()
-
-    };
-
-
-    notifications.unshift(
-        notification
-    );
-
-
-    saveNotifications(
-        notifications
-    );
-
-
-    /*
-       Agar Notifications page
-       already open ho to update event
-       send hoga.
-    */
-
-    window.dispatchEvent(
-        new CustomEvent(
-            "notificationCreated",
-            {
-                detail: notification
-            }
+    return JSON.parse(
+        localStorage.getItem(
+            MEMBER_NOTIFICATION_KEY
         )
+    ) || [];
+
+}
+
+
+/* =========================
+   SAVE MEMBER NOTIFICATIONS
+========================= */
+
+function saveMemberNotifications(notifications) {
+
+    localStorage.setItem(
+        MEMBER_NOTIFICATION_KEY,
+        JSON.stringify(notifications)
     );
 
 }
 
 
 /* =========================
-   MARK NOTIFICATION AS READ
+   FIND MEMBER FROM NOTIFICATION
+========================= */
+
+function findMemberForNotification(
+    title,
+    message
+) {
+
+    const members =
+        JSON.parse(
+            localStorage.getItem("gymMembers")
+        ) || [];
+
+
+    if (!Array.isArray(members)) {
+        return null;
+    }
+
+
+    const notificationText =
+        `${title} ${message}`.toLowerCase();
+
+
+    const matchedMembers =
+        members.filter(member => {
+
+            const memberName =
+                member.name ||
+                member.fullName ||
+                member.memberName ||
+                member.customerName ||
+                `${member.firstName || ""} ${member.lastName || ""}`.trim();
+
+
+            if (!memberName) {
+                return false;
+            }
+
+
+            return notificationText.includes(
+                String(memberName).toLowerCase()
+            );
+
+        });
+
+if (!targetMemberId) {
+
+        const matchedMember =
+            findMemberForNotification(
+                title,
+                message
+            );
+
+
+        if (matchedMember) {
+
+            targetMemberId =
+                matchedMember.memberId;
+
+            targetMemberName =
+                matchedMember.memberName;
+
+        }
+
+    }
+
+
+    /* =========================
+       CREATE MEMBER NOTIFICATION
+       ONLY WHEN MEMBER IS FOUND
+    ========================== */
+
+    if (targetMemberId) {
+
+        const memberNotifications =
+            getMemberNotifications();
+
+
+        const memberNotification = {
+
+            id:
+                Date.now().toString() +
+                Math.random()
+                    .toString(36)
+                    .substring(2),
+
+            memberId:
+                String(targetMemberId),
+
+            memberName:
+                targetMemberName || "",
+
+            trainerName:
+                trainerName ||
+                getCurrentTrainerName(),
+
+            type:
+                type,
+
+            title:
+                title,
+
+            message:
+                message,
+
+            icon:
+                icon,
+
+            read:
+                false,
+
+            createdAt:
+                new Date().toISOString()
+
+        };
+
+
+        memberNotifications.unshift(
+            memberNotification
+        );
+
+
+        saveMemberNotifications(
+            memberNotifications
+        );
+
+
+        /* =========================
+           MEMBER EVENT
+        ========================== */
+
+        window.dispatchEvent(
+            new CustomEvent(
+                "memberNotificationCreated",
+                {
+                    detail:
+                        memberNotification
+                }
+            )
+        );
+
+    }
+
+}
+
+
+/* =========================
+   MARK ONE TRAINER NOTIFICATION READ
 ========================= */
 
 function markNotificationAsRead(id) {
@@ -144,7 +247,7 @@ function markNotificationAsRead(id) {
 
 
 /* =========================
-   MARK ALL AS READ
+   MARK ALL TRAINER NOTIFICATIONS READ
 ========================= */
 
 function markAllNotificationsAsRead() {
@@ -177,7 +280,7 @@ function markAllNotificationsAsRead() {
 
 
 /* =========================
-   DELETE NOTIFICATION
+   DELETE ONE TRAINER NOTIFICATION
 ========================= */
 
 function deleteNotification(id) {
@@ -208,7 +311,7 @@ function deleteNotification(id) {
 
 
 /* =========================
-   DELETE ALL NOTIFICATIONS
+   DELETE ALL TRAINER NOTIFICATIONS
 ========================= */
 
 function deleteAllNotifications() {
@@ -228,7 +331,7 @@ function deleteAllNotifications() {
 
 
 /* =========================
-   GET UNREAD COUNT
+   UNREAD TRAINER COUNT
 ========================= */
 
 function getUnreadNotificationCount() {
@@ -240,6 +343,147 @@ function getUnreadNotificationCount() {
     return notifications.filter(
         notification =>
             !notification.read
+    ).length;
+
+}
+
+
+/* =========================
+   MARK ONE MEMBER NOTIFICATION READ
+========================= */
+
+function markMemberNotificationAsRead(id) {
+
+    const notifications =
+        getMemberNotifications();
+
+
+    const notification =
+        notifications.find(
+            item => item.id === id
+        );
+
+
+    if (!notification) return;
+
+
+    notification.read = true;
+
+
+    saveMemberNotifications(
+        notifications
+    );
+
+
+    window.dispatchEvent(
+        new CustomEvent(
+            "memberNotificationUpdated"
+        )
+    );
+
+}
+
+
+/* =========================
+   MARK ALL MEMBER NOTIFICATIONS READ
+========================= */
+
+function markAllMemberNotificationsAsRead(
+    memberId = ""
+) {
+
+    const notifications =
+        getMemberNotifications();
+
+
+    notifications.forEach(
+        notification => {
+
+            if (
+                !memberId ||
+                String(notification.memberId) ===
+                String(memberId)
+            ) {
+
+                notification.read = true;
+
+            }
+
+        }
+    );
+
+
+    saveMemberNotifications(
+        notifications
+    );
+
+
+    window.dispatchEvent(
+        new CustomEvent(
+            "memberNotificationUpdated"
+        )
+    );
+
+}
+
+
+/* =========================
+   DELETE ONE MEMBER NOTIFICATION
+========================= */
+
+function deleteMemberNotification(id) {
+
+    const notifications =
+        getMemberNotifications();
+
+
+    const updatedNotifications =
+        notifications.filter(
+            notification =>
+                notification.id !== id
+        );
+
+
+    saveMemberNotifications(
+        updatedNotifications
+    );
+
+
+    window.dispatchEvent(
+        new CustomEvent(
+            "memberNotificationUpdated"
+        )
+    );
+
+}
+
+
+/* =========================
+   UNREAD MEMBER COUNT
+========================= */
+
+function getUnreadMemberNotificationCount(
+    memberId = ""
+) {
+
+    const notifications =
+        getMemberNotifications();
+
+
+    return notifications.filter(
+        notification => {
+
+            const memberMatch =
+                !memberId ||
+                String(notification.memberId) ===
+                String(memberId);
+
+            return (
+                memberMatch &&
+                !notification.read
+            );
+
+        }
     ).length;
 
 }

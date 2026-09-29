@@ -1,1030 +1,1533 @@
-// ========================================
-// MEMBERSHIP MANAGEMENT
-// ========================================
+
+/* =========================================================
+   MEMBERSHIP MANAGEMENT JS
+   Existing Logic + Membership Start/Expiry Date
+========================================================= */
 
 
-// ========================================
-// STORAGE KEYS
-// ========================================
+/* =========================================================
+   STORAGE KEYS
+========================================================= */
 
 const MEMBER_STORAGE_KEY = "gymMembers";
 const MEMBERSHIP_STORAGE_KEY = "gymMemberships";
 
 
-// ========================================
-// MEMBERSHIP PLANS
-// ========================================
+/* =========================================================
+   MEMBERSHIP PLANS
+========================================================= */
 
 const membershipPlans = {
+  "Monthly": {
+    duration: "1 Month",
+    price: 2500
+  },
 
-    "Monthly": {
-        duration: "1 Month",
-        price: 2500
-    },
+  "3 Months": {
+    duration: "3 Months",
+    price: 6500
+  },
 
-    "3 Months": {
-        duration: "3 Months",
-        price: 6500
-    },
+  "6 Months": {
+    duration: "6 Months",
+    price: 11000
+  },
 
-    "6 Months": {
-        duration: "6 Months",
-        price: 11000
-    },
-
-    "Yearly": {
-        duration: "12 Months",
-        price: 20000
-    }
-
+  "Yearly": {
+    duration: "12 Months",
+    price: 20000
+  }
 };
 
 
-// ========================================
-// LOAD CSS
-// ========================================
+/* =========================================================
+   VALID PAYMENT STATUSES
+========================================================= */
 
-function loadCSS(href, id) {
+const validPaymentStatuses = [
+  "Paid",
+  "Pending",
+  "Overdue"
+];
 
-    if (!document.getElementById(id)) {
 
-        const link =
-            document.createElement("link");
+/* =========================================================
+   LOAD CSS
+========================================================= */
 
-        link.id = id;
-        link.rel = "stylesheet";
-        link.href = href;
+function loadCSS(href) {
 
-        document.head.appendChild(link);
+  if (document.querySelector(`link[href="${href}"]`)) {
+    return;
+  }
 
-    }
+  const link = document.createElement("link");
 
+  link.rel = "stylesheet";
+  link.href = href;
+
+  document.head.appendChild(link);
 }
 
 
-// ========================================
-// LOAD COMPONENTS
-// ========================================
+/* =========================================================
+   LOAD COMPONENTS
+========================================================= */
 
 async function loadComponents() {
 
-    try {
+  try {
 
-        // =========================
-        // FONT AWESOME
-        // =========================
+    const sidebarContainer =
+      document.getElementById("sidebar");
 
-        loadCSS(
-            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css",
-            "font-awesome-css"
-        );
+    const navbarContainer =
+      document.getElementById("navbar");
 
 
-        // =========================
-        // SIDEBAR
-        // =========================
+    /* =========================
+       LOAD SIDEBAR
+    ========================== */
 
-        const sidebar =
-            document.getElementById("sidebar");
+    if (sidebarContainer) {
 
-        if (sidebar) {
+      const sidebarResponse =
+        await fetch("/components/sidebar/sidebar.html");
 
-            const sidebarResponse =
-                await fetch(
-                    "/components/sidebar/sidebar.html"
-                );
+      if (!sidebarResponse.ok) {
+        throw new Error("Sidebar component could not be loaded.");
+      }
 
-            if (!sidebarResponse.ok) {
+      sidebarContainer.innerHTML =
+        await sidebarResponse.text();
 
-                throw new Error(
-                    "Sidebar could not be loaded."
-                );
-
-            }
-
-            const sidebarHTML =
-                await sidebarResponse.text();
-
-            const sidebarDocument =
-                new DOMParser().parseFromString(
-                    sidebarHTML,
-                    "text/html"
-                );
-
-            const sidebarElement =
-                sidebarDocument.querySelector(
-                    ".sidebar"
-                );
-
-            if (sidebarElement) {
-
-                sidebarElement
-                    .querySelectorAll("img")
-                    .forEach(function (img) {
-
-                        const src =
-                            img.getAttribute("src");
-
-                        if (
-                            src &&
-                            src.includes("../../assets/")
-                        ) {
-
-                            img.src =
-                                "/assets/" +
-                                src.split("../../assets/")[1];
-
-                        }
-
-                    });
-
-                sidebar.innerHTML =
-                    sidebarElement.outerHTML;
-
-            }
-
-            loadCSS(
-                "/components/sidebar/sidebar.css",
-                "sidebar-component-css"
-            );
-
-        }
-
-
-        // =========================
-        // NAVBAR
-        // =========================
-
-        const navbar =
-            document.getElementById("navbar");
-
-        if (navbar) {
-
-            const navbarResponse =
-                await fetch(
-                    "/components/navbar/navbar.html"
-                );
-
-            if (!navbarResponse.ok) {
-
-                throw new Error(
-                    "Navbar could not be loaded."
-                );
-
-            }
-
-            const navbarHTML =
-                await navbarResponse.text();
-
-            const navbarDocument =
-                new DOMParser().parseFromString(
-                    navbarHTML,
-                    "text/html"
-                );
-
-            const navbarElement =
-                navbarDocument.querySelector(
-                    ".navbar"
-                );
-
-            if (navbarElement) {
-
-                const profileImage =
-                    navbarElement.querySelector("img");
-
-                if (profileImage) {
-
-                    const src =
-                        profileImage.getAttribute("src");
-
-                    if (
-                        src &&
-                        src.includes("../../assets/")
-                    ) {
-
-                        profileImage.src =
-                            "/assets/" +
-                            src.split("../../assets/")[1];
-
-                    }
-
-                }
-
-                navbar.innerHTML =
-                    navbarElement.outerHTML;
-
-            }
-
-            loadCSS(
-                "/components/navbar/navbar.css",
-                "navbar-component-css"
-            );
-
-        }
-
+      loadCSS("/components/sidebar/sidebar.css");
     }
 
-    catch (error) {
 
-        console.error(
-            "Component loading error:",
-            error
-        );
+    /* =========================
+       LOAD NAVBAR
+    ========================== */
 
+    if (navbarContainer) {
+
+      const navbarResponse =
+        await fetch("/components/navbar/navbar.html");
+
+      if (!navbarResponse.ok) {
+        throw new Error("Navbar component could not be loaded.");
+      }
+
+      navbarContainer.innerHTML =
+        await navbarResponse.text();
+
+      loadCSS("/components/navbar/navbar.css");
     }
+
+
+    /* =========================
+       FONT AWESOME
+    ========================== */
+
+    if (
+      !document.querySelector(
+        'link[href*="font-awesome"]'
+      )
+    ) {
+
+      const fontAwesome =
+        document.createElement("link");
+
+      fontAwesome.rel = "stylesheet";
+
+      fontAwesome.href =
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css";
+
+      document.head.appendChild(fontAwesome);
+    }
+
+
+  } catch (error) {
+
+    console.error(
+      "Component loading error:",
+      error
+    );
+
+  }
 
 }
 
 
-// ========================================
-// GET MEMBERS
-// ========================================
+/* =========================================================
+   GET SAVED MEMBERS
+========================================================= */
 
 function getSavedMembers() {
 
-    const savedMembers =
-        localStorage.getItem(
-            MEMBER_STORAGE_KEY
-        );
+  try {
 
-    if (!savedMembers) {
+    const members =
+      JSON.parse(
+        localStorage.getItem(MEMBER_STORAGE_KEY)
+      );
 
-        return [];
+    return Array.isArray(members)
+      ? members
+      : [];
 
-    }
+  } catch (error) {
 
-    try {
+    console.error(
+      "Error reading gymMembers:",
+      error
+    );
 
-        return JSON.parse(savedMembers);
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "Member data could not be loaded:",
-            error
-        );
-
-        return [];
-
-    }
-
+    return [];
+  }
 }
 
 
-// ========================================
-// GET MEMBERSHIPS
-// ========================================
+/* =========================================================
+   GET SAVED MEMBERSHIPS
+========================================================= */
 
 function getSavedMemberships() {
 
-    const savedMemberships =
+  try {
+
+    const memberships =
+      JSON.parse(
         localStorage.getItem(
-            MEMBERSHIP_STORAGE_KEY
-        );
+          MEMBERSHIP_STORAGE_KEY
+        )
+      );
 
-    if (!savedMemberships) {
+    return Array.isArray(memberships)
+      ? memberships
+      : [];
 
-        return [];
+  } catch (error) {
 
-    }
+    console.error(
+      "Error reading gymMemberships:",
+      error
+    );
 
-    try {
-
-        return JSON.parse(savedMemberships);
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "Membership data could not be loaded:",
-            error
-        );
-
-        return [];
-
-    }
-
+    return [];
+  }
 }
 
 
-// ========================================
-// SAVE MEMBERSHIPS
-// ========================================
+/* =========================================================
+   SAVE MEMBERSHIPS
+========================================================= */
 
 function saveMemberships(memberships) {
 
-    localStorage.setItem(
-        MEMBERSHIP_STORAGE_KEY,
-        JSON.stringify(memberships)
-    );
+  localStorage.setItem(
+    MEMBERSHIP_STORAGE_KEY,
+    JSON.stringify(memberships)
+  );
 
 }
 
 
-// ========================================
-// FIND MEMBER
-// ========================================
+/* =========================================================
+   FIND MEMBER
+========================================================= */
 
 function findMember(memberId) {
 
-    const members =
-        getSavedMembers();
+  const members =
+    getSavedMembers();
 
-    return members.find(function (member) {
+  return members.find(member => {
 
-        const id =
-            member.memberId ||
-            member.id ||
-            member.memberID;
+    const id =
+      member.memberId ||
+      member.id ||
+      member.memberID;
 
-        return String(id) === String(memberId);
+    return String(id) === String(memberId);
 
-    });
+  });
 
 }
 
 
-// ========================================
-// GET MEMBER ID
-// ========================================
+/* =========================================================
+   GET MEMBER ID
+========================================================= */
 
 function getMemberId(member) {
 
-    return (
-        member.memberId ||
-        member.id ||
-        member.memberID ||
-        ""
-    );
+  return (
+    member.memberId ||
+    member.id ||
+    member.memberID ||
+    ""
+  );
 
 }
 
 
-// ========================================
-// GET MEMBER NAME
-// ========================================
+/* =========================================================
+   GET MEMBER NAME
+========================================================= */
 
 function getMemberName(member) {
 
-    return (
-        member.memberName ||
-        member.name ||
-        member.fullName ||
-        "Unknown Member"
-    );
+  return (
+    member.memberName ||
+    member.name ||
+    member.fullName ||
+    "Unknown Member"
+  );
 
 }
 
 
-// ========================================
-// FORMAT PRICE
-// ========================================
+/* =========================================================
+   FORMAT PRICE
+========================================================= */
 
 function formatPrice(price) {
 
-    return "Rs. " + Number(price).toLocaleString();
+  const numericPrice =
+    Number(price);
+
+  if (!Number.isFinite(numericPrice)) {
+    return "Rs. 0";
+  }
+
+  return `Rs. ${numericPrice.toLocaleString()}`;
 
 }
 
 
-// ========================================
-// CREATE MEMBERSHIP ROW
-// ========================================
+/* =========================================================
+   NORMALIZE PAYMENT STATUS
+========================================================= */
 
-function createMembershipRow(membership) {
+function normalizePaymentStatus(status) {
 
-    const row =
-        document.createElement("tr");
+  const cleanedStatus =
+    String(status || "")
+      .trim();
 
-    row.innerHTML = `
+  const matchedStatus =
+    validPaymentStatuses.find(
+      item =>
+        item.toLowerCase() ===
+        cleanedStatus.toLowerCase()
+    );
 
-        <td>${membership.memberId}</td>
-
-        <td>${membership.memberName}</td>
-
-        <td>${membership.plan}</td>
-
-        <td>${membership.duration}</td>
-
-        <td>${formatPrice(membership.price)}</td>
-
-        <td>
-            <span class="payment-status">
-                ${membership.paymentStatus}
-            </span>
-        </td>
-
-        <td>
-            <button
-                class="manage-membership-btn"
-                data-member-id="${membership.memberId}"
-            >
-                Manage
-            </button>
-        </td>
-
-    `;
-
-    return row;
+  return matchedStatus || "Pending";
 
 }
 
 
-// ========================================
-// RENDER MEMBERSHIPS
-// ========================================
+/* =========================================================
+   GET TODAY DATE
+   Format: YYYY-MM-DD
+========================================================= */
+
+function getTodayDate() {
+
+  const today =
+    new Date();
+
+  const year =
+    today.getFullYear();
+
+  const month =
+    String(
+      today.getMonth() + 1
+    ).padStart(2, "0");
+
+  const day =
+    String(
+      today.getDate()
+    ).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+
+}
+
+
+/* =========================================================
+   FORMAT DATE
+========================================================= */
+
+function formatDate(dateString) {
+
+  if (!dateString) {
+    return "Not Set";
+  }
+
+  const date =
+    new Date(
+      `${dateString}T00:00:00`
+    );
+
+  if (isNaN(date.getTime())) {
+    return "Not Set";
+  }
+
+  return date.toLocaleDateString(
+    "en-GB",
+    {
+      day: "2-digit",
+      month: "short",
+      year: "numeric"
+    }
+  );
+
+}
+
+
+/* =========================================================
+   ADD MONTHS SAFELY
+   Prevents month-end date problems
+========================================================= */
+
+function addMonthsSafely(
+  date,
+  months
+) {
+
+  const originalDay =
+    date.getDate();
+
+  date.setDate(1);
+
+  date.setMonth(
+    date.getMonth() + months
+  );
+
+  const lastDayOfMonth =
+    new Date(
+      date.getFullYear(),
+      date.getMonth() + 1,
+      0
+    ).getDate();
+
+  date.setDate(
+    Math.min(
+      originalDay,
+      lastDayOfMonth
+    )
+  );
+
+  return date;
+
+}
+
+
+/* =========================================================
+   CALCULATE EXPIRY DATE
+========================================================= */
+
+function calculateExpiryDate(
+  startDate,
+  plan
+) {
+
+  if (!startDate || !plan) {
+    return "";
+  }
+
+  const date =
+    new Date(
+      `${startDate}T00:00:00`
+    );
+
+  if (isNaN(date.getTime())) {
+    return "";
+  }
+
+
+  /* =========================
+     MONTHLY
+  ========================== */
+
+  if (plan === "Monthly") {
+
+    addMonthsSafely(
+      date,
+      1
+    );
+
+  }
+
+
+  /* =========================
+     3 MONTHS
+  ========================== */
+
+  else if (plan === "3 Months") {
+
+    addMonthsSafely(
+      date,
+      3
+    );
+
+  }
+
+
+  /* =========================
+     6 MONTHS
+  ========================== */
+
+  else if (plan === "6 Months") {
+
+    addMonthsSafely(
+      date,
+      6
+    );
+
+  }
+
+
+  /* =========================
+     YEARLY
+  ========================== */
+
+  else if (plan === "Yearly") {
+
+    date.setFullYear(
+      date.getFullYear() + 1
+    );
+
+  }
+
+
+  const year =
+    date.getFullYear();
+
+  const month =
+    String(
+      date.getMonth() + 1
+    ).padStart(2, "0");
+
+  const day =
+    String(
+      date.getDate()
+    ).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+
+}
+
+/* =========================================================
+   CREATE MEMBERSHIP ROW
+========================================================= */
+
+function createMembershipRow(
+  membership
+) {
+
+  const row =
+    document.createElement("tr");
+
+  row.innerHTML = `
+
+    <td>
+      ${membership.memberId || "-"}
+    </td>
+
+    <td>
+      ${membership.memberName || "-"}
+    </td>
+
+    <td>
+      ${membership.plan || "-"}
+    </td>
+
+    <td>
+      ${membership.duration || "-"}
+    </td>
+
+    <td>
+      ${formatPrice(membership.price)}
+    </td>
+
+    <td>
+      <span class="payment-status ${String(
+        membership.paymentStatus || "Pending"
+      ).toLowerCase()}">
+        ${membership.paymentStatus || "Pending"}
+      </span>
+    </td>
+
+    <td>
+      <button
+        class="manage-membership-btn"
+        data-member-id="${membership.memberId}"
+      >
+        <i class="fa-solid fa-pen-to-square"></i>
+        Manage
+      </button>
+    </td>
+
+  `;
+
+  return row;
+
+}
+
+
+/* =========================================================
+   RENDER MEMBERSHIPS
+========================================================= */
 
 function renderMemberships() {
 
-    const tableBody =
-        document.getElementById(
-            "membershipTableBody"
-        );
+  const tableBody =
+    document.getElementById(
+      "membershipTableBody"
+    );
 
-    if (!tableBody) {
-
-        return;
-
-    }
-
-    const memberships =
-        getSavedMemberships();
-
-    tableBody.innerHTML = "";
+  if (!tableBody) {
+    return;
+  }
 
 
-    memberships.forEach(function (membership) {
+  const memberships =
+    getSavedMemberships();
 
-        const row =
-            createMembershipRow(membership);
 
-        tableBody.appendChild(row);
+  tableBody.innerHTML = "";
 
-    });
 
+  /* =========================
+     NO MEMBERSHIP
+  ========================== */
+
+  if (memberships.length === 0) {
+
+    tableBody.innerHTML = `
+
+      <tr>
+
+        <td
+          colspan="7"
+          style="text-align:center;"
+        >
+
+          No memberships found.
+
+        </td>
+
+      </tr>
+
+    `;
 
     updatePaymentStatusCounts();
 
+    return;
+  }
+
+
+  /* =========================
+     CREATE ROWS
+  ========================== */
+
+  memberships.forEach(
+    membership => {
+
+      tableBody.appendChild(
+        createMembershipRow(
+          membership
+        )
+      );
+
+    }
+  );
+
+
+  updatePaymentStatusCounts();
+
 }
 
 
-// ========================================
-// UPDATE PAYMENT STATUS COUNTS
-// ========================================
+/* =========================================================
+   UPDATE PAYMENT STATUS COUNTS
+========================================================= */
 
 function updatePaymentStatusCounts() {
 
-    const memberships =
-        getSavedMemberships();
+  const memberships =
+    getSavedMemberships();
 
 
-    const paidCount =
-        memberships.filter(function (membership) {
-
-            return membership.paymentStatus === "Paid";
-
-        }).length;
-
-
-    const pendingCount =
-        memberships.filter(function (membership) {
-
-            return membership.paymentStatus === "Pending";
-
-        }).length;
+  const paidCount =
+    memberships.filter(
+      membership =>
+        normalizePaymentStatus(
+          membership.paymentStatus
+        ) === "Paid"
+    ).length;
 
 
-    const overdueCount =
-        memberships.filter(function (membership) {
-
-            return membership.paymentStatus === "Overdue";
-
-        }).length;
-
-
-    const paidCard =
-        document.querySelector(
-            ".status-card.paid h3"
-        );
-
-    const pendingCard =
-        document.querySelector(
-            ".status-card.pending h3"
-        );
-
-    const overdueCard =
-        document.querySelector(
-            ".status-card.overdue h3"
-        );
+  const pendingCount =
+    memberships.filter(
+      membership =>
+        normalizePaymentStatus(
+          membership.paymentStatus
+        ) === "Pending"
+    ).length;
 
 
-    if (paidCard) {
-
-        paidCard.textContent =
-            `Paid (${paidCount})`;
-
-    }
-
-
-    if (pendingCard) {
-
-        pendingCard.textContent =
-            `Pending (${pendingCount})`;
-
-    }
+  const overdueCount =
+    memberships.filter(
+      membership =>
+        normalizePaymentStatus(
+          membership.paymentStatus
+        ) === "Overdue"
+    ).length;
 
 
-    if (overdueCard) {
+  const paidElement =
+    document.getElementById(
+      "paidCount"
+    );
 
-        overdueCard.textContent =
-            `Overdue (${overdueCount})`;
+  const pendingElement =
+    document.getElementById(
+      "pendingCount"
+    );
 
-    }
+  const overdueElement =
+    document.getElementById(
+      "overdueCount"
+    );
+
+
+  if (paidElement) {
+    paidElement.textContent =
+      paidCount;
+  }
+
+  if (pendingElement) {
+    pendingElement.textContent =
+      pendingCount;
+  }
+
+  if (overdueElement) {
+    overdueElement.textContent =
+      overdueCount;
+  }
 
 }
 
 
-// ========================================
-// ADD MEMBERSHIP
-// ========================================
+/* =========================================================
+   ADD MEMBERSHIP
+========================================================= */
 
 function addMembership() {
 
-    const members =
-        getSavedMembers();
+  const members =
+    getSavedMembers();
 
 
-    if (members.length === 0) {
+  /* =========================
+     CHECK MEMBERS
+  ========================== */
 
-        alert(
-            "No members found. Please add a member first."
-        );
+  if (members.length === 0) {
 
-        return;
+    alert(
+      "No members found. Please add a member first."
+    );
 
-    }
-
-
-    const memberId =
-        prompt(
-            "Enter Member ID:"
-        );
+    return;
+  }
 
 
-    if (!memberId) {
+  /* =========================
+     MEMBER ID
+  ========================== */
 
-        return;
-
-    }
-
-
-    const member =
-        findMember(memberId);
-
-
-    if (!member) {
-
-        alert(
-            "Member not found."
-        );
-
-        return;
-
-    }
+  const memberIdInput =
+    prompt(
+      "Enter Member ID:"
+    );
 
 
-    const plan =
-        prompt(
-            "Enter Plan:\n\nMonthly\n3 Months\n6 Months\nYearly"
-        );
+  if (
+    memberIdInput === null
+  ) {
+    return;
+  }
 
 
-    if (!plan) {
-
-        return;
-
-    }
+  const memberId =
+    memberIdInput.trim();
 
 
-    if (!membershipPlans[plan]) {
+  if (!memberId) {
 
-        alert(
-            "Invalid membership plan."
-        );
+    alert(
+      "Member ID is required."
+    );
 
-        return;
-
-    }
-
-
-    const paymentStatus =
-        prompt(
-            "Enter Payment Status:\n\nPaid\nPending\nOverdue"
-        );
+    return;
+  }
 
 
-    if (!paymentStatus) {
+  /* =========================
+     FIND MEMBER
+  ========================== */
 
-        return;
+  const member =
+    findMember(memberId);
 
-    }
+
+  if (!member) {
+
+    alert(
+      "Member not found. Please enter a valid Member ID."
+    );
+
+    return;
+  }
 
 
-    const validStatuses = [
-        "Paid",
-        "Pending",
-        "Overdue"
+  /* =========================
+     SELECT PLAN
+  ========================== */
+
+  const planInput =
+    prompt(
+      "Enter Membership Plan:\n\nMonthly\n3 Months\n6 Months\nYearly"
+    );
+
+
+  if (
+    planInput === null
+  ) {
+    return;
+  }
+
+
+  const cleanedPlan =
+    planInput.trim();
+
+
+  /* =========================
+     VALIDATE PLAN
+  ========================== */
+
+  if (
+    !membershipPlans[
+      cleanedPlan
+    ]
+  ) {
+
+    alert(
+      "Invalid membership plan."
+    );
+
+    return;
+  }
+
+
+  const planData =
+    membershipPlans[
+      cleanedPlan
     ];
 
 
-    if (
-        !validStatuses.includes(
-            paymentStatus
-        )
-    ) {
+  /* =========================
+     PAYMENT STATUS
+  ========================== */
 
-        alert(
-            "Invalid payment status."
-        );
-
-        return;
-
-    }
-
-
-    const memberships =
-        getSavedMemberships();
-
-
-    const planData =
-        membershipPlans[plan];
-
-
-    const membership = {
-
-        memberId:
-            getMemberId(member),
-
-        memberName:
-            getMemberName(member),
-
-        plan:
-            plan,
-
-        duration:
-            planData.duration,
-
-        price:
-            planData.price,
-
-        paymentStatus:
-            paymentStatus
-
-    };
-
-
-    memberships.push(
-        membership
+  const paymentStatusInput =
+    prompt(
+      "Enter Payment Status:\n\nPaid\nPending\nOverdue"
     );
 
 
-    saveMemberships(
-        memberships
+  if (
+    paymentStatusInput === null
+  ) {
+    return;
+  }
+
+
+  const normalizedStatus =
+    normalizePaymentStatus(
+      paymentStatusInput
     );
 
 
-    renderMemberships();
+  /* =========================
+     CHECK DUPLICATE
+  ========================== */
 
+  const memberships =
+    getSavedMemberships();
+
+
+  const existingMembership =
+    memberships.find(
+      membership =>
+        String(
+          membership.memberId
+        ) === String(memberId)
+    );
+
+
+  if (existingMembership) {
 
     alert(
-        "Membership added successfully."
+      "This member already has a membership. Please use Manage Membership."
     );
+
+    return;
+  }
+
+
+  /* =====================================================
+     CREATE START + EXPIRY DATE
+  ===================================================== */
+
+  const startDate =
+    getTodayDate();
+
+
+  const expiryDate =
+    calculateExpiryDate(
+      startDate,
+      cleanedPlan
+    );
+
+
+  /* =========================
+     CREATE MEMBERSHIP
+  ========================== */
+
+  const membership = {
+
+    memberId:
+      getMemberId(member),
+
+    memberName:
+      getMemberName(member),
+
+    plan:
+      cleanedPlan,
+
+    duration:
+      planData.duration,
+
+    price:
+      planData.price,
+
+    paymentStatus:
+      normalizedStatus,
+
+    startDate:
+      startDate,
+
+    expiryDate:
+      expiryDate
+
+  };
+
+
+  /* =========================
+     SAVE
+  ========================== */
+
+  memberships.push(
+    membership
+  );
+
+
+  saveMemberships(
+    memberships
+  );
+
+
+  /* =========================
+     REFRESH UI
+  ========================== */
+
+  renderMemberships();
+
+
+  /* =========================
+     SUCCESS MESSAGE
+  ========================== */
+
+  alert(
+
+    `Membership added successfully!\n\n` +
+
+    `Member: ${membership.memberName}\n` +
+
+    `Plan: ${membership.plan}\n` +
+
+    `Start Date: ${formatDate(
+      membership.startDate
+    )}\n` +
+
+    `Expiry Date: ${formatDate(
+      membership.expiryDate
+    )}\n\n` +
+
+    `Payment Status: ${membership.paymentStatus}`
+
+  );
 
 }
 
 
-// ========================================
-// MANAGE EXISTING MEMBERSHIP
-// ========================================
+/* =========================================================
+   MANAGE MEMBERSHIP
+========================================================= */
 
-function manageMembership(memberId) {
+function manageMembership(
+  memberId
+) {
 
-    const memberships =
-        getSavedMemberships();
-
-
-    const membershipIndex =
-        memberships.findIndex(
-            function (membership) {
-
-                return String(
-                    membership.memberId
-                ) === String(memberId);
-
-            }
-        );
+  const memberships =
+    getSavedMemberships();
 
 
-    if (membershipIndex === -1) {
-
-        alert(
-            "Membership record not found."
-        );
-
-        return;
-
-    }
+  const membershipIndex =
+    memberships.findIndex(
+      membership =>
+        String(
+          membership.memberId
+        ) === String(memberId)
+    );
 
 
-    const currentMembership =
-        memberships[membershipIndex];
+  /* =========================
+     MEMBERSHIP NOT FOUND
+  ========================== */
+
+  if (
+    membershipIndex === -1
+  ) {
+
+    alert(
+      "Membership not found."
+    );
+
+    return;
+  }
 
 
-    const plan =
-        prompt(
-            "Enter New Plan:\n\nMonthly\n3 Months\n6 Months\nYearly",
-            currentMembership.plan
-        );
-
-
-    if (!plan) {
-
-        return;
-
-    }
-
-
-    if (!membershipPlans[plan]) {
-
-        alert(
-            "Invalid membership plan."
-        );
-
-        return;
-
-    }
-
-
-    const paymentStatus =
-        prompt(
-            "Enter Payment Status:\n\nPaid\nPending\nOverdue",
-            currentMembership.paymentStatus
-        );
-
-
-    if (!paymentStatus) {
-
-        return;
-
-    }
-
-
-    const validStatuses = [
-        "Paid",
-        "Pending",
-        "Overdue"
+  const membership =
+    memberships[
+      membershipIndex
     ];
 
 
+  /* =========================
+     CURRENT / OLD PLAN
+  ========================== */
+
+  const currentPlan =
+    membership.plan || "Monthly";
+
+  const oldPlan =
+    membership.plan || "Monthly";
+
+
+  /* =========================
+     CHANGE PLAN
+  ========================== */
+
+  const planInput =
+    prompt(
+
+      `Enter Membership Plan:\n\n` +
+
+      `Monthly\n` +
+      `3 Months\n` +
+      `6 Months\n` +
+      `Yearly\n\n` +
+
+      `Current Plan: ${currentPlan}`
+
+    );
+
+
+  if (
+    planInput === null
+  ) {
+    return;
+  }
+
+
+  const cleanedPlan =
+    planInput.trim();
+
+
+  /* =========================
+     VALIDATE PLAN
+  ========================== */
+
+  if (
+    !membershipPlans[
+      cleanedPlan
+    ]
+  ) {
+
+    alert(
+      "Invalid membership plan."
+    );
+
+    return;
+  }
+
+
+  const planData =
+    membershipPlans[
+      cleanedPlan
+    ];
+
+
+  /* =========================
+     PAYMENT STATUS
+  ========================== */
+
+  const paymentStatusInput =
+    prompt(
+
+      `Enter Payment Status:\n\n` +
+
+      `Paid\n` +
+      `Pending\n` +
+      `Overdue\n\n` +
+
+      `Current Status: ${
+        membership.paymentStatus ||
+        "Pending"
+      }`
+
+    );
+
+
+  if (
+    paymentStatusInput === null
+  ) {
+    return;
+  }
+
+
+  const normalizedStatus =
+    normalizePaymentStatus(
+      paymentStatusInput
+    );
+
+
+  /* =====================================================
+     UPDATE MEMBERSHIP INFORMATION
+  ===================================================== */
+
+  membership.plan =
+    cleanedPlan;
+
+  membership.duration =
+    planData.duration;
+
+  membership.price =
+    planData.price;
+
+  membership.paymentStatus =
+    normalizedStatus;
+
+
+  /* =====================================================
+     RENEWAL DATE LOGIC
+  ===================================================== */
+
+  const today =
+    getTodayDate();
+
+
+  const currentExpiry =
+    membership.expiryDate || "";
+
+
+  let shouldRenew =
+    false;
+
+
+  /* =========================
+     DATE MISSING
+  ========================== */
+
+  if (
+    !membership.startDate ||
+    !membership.expiryDate
+  ) {
+
+    shouldRenew = true;
+
+  }
+
+
+  /* =========================
+     PLAN CHANGED
+  ========================== */
+
+  if (
+    oldPlan !== cleanedPlan
+  ) {
+
+    shouldRenew = true;
+
+  }
+
+
+  /* =========================
+     CHECK EXPIRED
+  ========================== */
+
+  if (currentExpiry) {
+
+    const todayDate =
+      new Date(
+        `${today}T00:00:00`
+      );
+
+
+    const expiryDate =
+      new Date(
+        `${currentExpiry}T00:00:00`
+      );
+
+
     if (
-        !validStatuses.includes(
-            paymentStatus
-        )
+      expiryDate < todayDate
     ) {
 
-        alert(
-            "Invalid payment status."
-        );
-
-        return;
+      shouldRenew = true;
 
     }
 
-
-    const planData =
-        membershipPlans[plan];
+  }
 
 
-    memberships[membershipIndex].plan =
-        plan;
+  /* =====================================================
+     RENEW MEMBERSHIP
+  ===================================================== */
 
-    memberships[membershipIndex].duration =
-        planData.duration;
+  if (shouldRenew) {
 
-    memberships[membershipIndex].price =
-        planData.price;
-
-    memberships[membershipIndex].paymentStatus =
-        paymentStatus;
+    const newStartDate =
+      today;
 
 
-    saveMemberships(
-        memberships
-    );
+    const newExpiryDate =
+      calculateExpiryDate(
+        newStartDate,
+        cleanedPlan
+      );
 
 
-    renderMemberships();
+    membership.startDate =
+      newStartDate;
 
 
-    alert(
-        "Membership updated successfully."
-    );
+    membership.expiryDate =
+      newExpiryDate;
+
+  }
+
+
+  /* =========================
+     SAVE
+  ========================== */
+
+  memberships[
+    membershipIndex
+  ] = membership;
+
+
+  saveMemberships(
+    memberships
+  );
+
+
+  /* =========================
+     REFRESH
+  ========================== */
+
+  renderMemberships();
+
+
+  /* =========================
+     SUCCESS MESSAGE
+  ========================== */
+
+  alert(
+
+    `Membership updated successfully!\n\n` +
+
+    `Member: ${membership.memberName}\n` +
+
+    `Plan: ${membership.plan}\n` +
+
+    `Start Date: ${formatDate(
+      membership.startDate
+    )}\n` +
+
+    `Expiry Date: ${formatDate(
+      membership.expiryDate
+    )}\n\n` +
+
+    `Payment Status: ${membership.paymentStatus}`
+
+  );
 
 }
 
 
-// ========================================
-// PLAN CARD BUTTONS
-// ========================================
+/* =========================================================
+   PLAN BUTTONS
+========================================================= */
 
 function setupPlanButtons() {
 
-    const planButtons =
-        document.querySelectorAll(
-            ".plan-btn"
-        );
+  const planButtons =
+    document.querySelectorAll(
+      ".plan-btn"
+    );
 
 
-    planButtons.forEach(
-        function (button) {
+  planButtons.forEach(
+    button => {
 
-            button.addEventListener(
-                "click",
-                function () {
+      button.addEventListener(
+        "click",
+        function () {
 
-                    const card =
-                        button.closest(
-                            ".membership-card"
-                        );
-
-
-                    if (!card) {
-
-                        return;
-
-                    }
-
-
-                    const plan =
-                        card.querySelector(
-                            "h3"
-                        ).textContent.trim();
-
-
-                    const memberId =
-                        prompt(
-                            `Enter Member ID to manage ${plan}:`
-                        );
-
-
-                    if (!memberId) {
-
-                        return;
-
-                    }
-
-
-                    const memberships =
-                        getSavedMemberships();
-
-
-                    const membershipExists =
-                        memberships.some(
-                            function (membership) {
-
-                                return String(
-                                    membership.memberId
-                                ) === String(memberId);
-
-                            }
-                        );
-
-
-                    if (!membershipExists) {
-
-                        alert(
-                            "This member does not have a membership yet. Please use Add Membership first."
-                        );
-
-                        return;
-
-                    }
-
-
-                    manageMembership(
-                        memberId
-                    );
-
-                }
+          const planCard =
+            button.closest(
+              ".plan-card"
             );
 
+
+          if (!planCard) {
+            return;
+          }
+
+
+          const planHeading =
+            planCard.querySelector(
+              "h3"
+            );
+
+
+          if (!planHeading) {
+            return;
+          }
+
+
+          const selectedPlan =
+            planHeading.textContent.trim();
+
+
+          const memberIdInput =
+            prompt(
+              `Enter Member ID for ${selectedPlan}:`
+            );
+
+
+          if (
+            memberIdInput === null
+          ) {
+            return;
+          }
+
+
+          const memberId =
+            memberIdInput.trim();
+
+
+          if (!memberId) {
+
+            alert(
+              "Member ID is required."
+            );
+
+            return;
+          }
+
+
+          const membership =
+            getSavedMemberships()
+              .find(
+                item =>
+                  String(
+                    item.memberId
+                  ) === String(memberId)
+              );
+
+
+          if (!membership) {
+
+            alert(
+              "No membership found for this member."
+            );
+
+            return;
+          }
+
+
+          /* =========================
+             USE EXISTING MANAGE LOGIC
+          ========================== */
+
+          manageMembership(
+            memberId
+          );
+
         }
-    );
+      );
+
+    }
+  );
 
 }
 
 
-// ========================================
-// TABLE MANAGE BUTTON
-// ========================================
+/* =========================================================
+   TABLE BUTTONS
+========================================================= */
 
 function setupTableButtons() {
 
-    const tableBody =
-        document.getElementById(
-            "membershipTableBody"
+  const tableBody =
+    document.getElementById(
+      "membershipTableBody"
+    );
+
+
+  if (!tableBody) {
+    return;
+  }
+
+
+  tableBody.addEventListener(
+    "click",
+    function (event) {
+
+      const button =
+        event.target.closest(
+          ".manage-membership-btn"
         );
 
 
-    if (!tableBody) {
-
+      if (!button) {
         return;
+      }
+
+
+      const memberId =
+        button.dataset.memberId;
+
+
+      if (!memberId) {
+        return;
+      }
+
+
+      manageMembership(
+        memberId
+      );
 
     }
-
-
-    tableBody.addEventListener(
-        "click",
-        function (event) {
-
-            const button =
-                event.target.closest(
-                    ".manage-membership-btn"
-                );
-
-
-            if (!button) {
-
-                return;
-
-            }
-
-
-            const memberId =
-                button.dataset.memberId;
-
-
-            manageMembership(
-                memberId
-            );
-
-        }
-    );
+  );
 
 }
 
 
-// ========================================
-// ADD MEMBERSHIP BUTTON
-// ========================================
+/* =========================================================
+   ADD MEMBERSHIP BUTTON
+========================================================= */
 
 function setupAddMembershipButton() {
 
-    const button =
-        document.getElementById(
-            "addMembershipBtn"
-        );
-
-
-    if (!button) {
-
-        return;
-
-    }
-
-
-    button.addEventListener(
-        "click",
-        addMembership
+  const addButton =
+    document.getElementById(
+      "addMembershipBtn"
     );
+
+
+  if (!addButton) {
+
+    console.warn(
+      "addMembershipBtn not found."
+    );
+
+    return;
+  }
+
+
+  addButton.addEventListener(
+    "click",
+    addMembership
+  );
 
 }
 
 
-// ========================================
-// START MEMBERSHIP PAGE
-// ========================================
+/* =========================================================
+   START MEMBERSHIP PAGE
+========================================================= */
 
 async function startMembershipPage() {
 
-    await loadComponents();
+  /* =========================
+     LOAD COMPONENTS
+  ========================== */
 
-    renderMemberships();
+  await loadComponents();
 
-    setupAddMembershipButton();
 
-    setupPlanButtons();
+  /* =========================
+     RENDER MEMBERSHIPS
+  ========================== */
 
-    setupTableButtons();
+  renderMemberships();
+
+
+  /* =========================
+     ADD BUTTON
+  ========================== */
+
+  setupAddMembershipButton();
+
+
+  /* =========================
+     PLAN BUTTONS
+  ========================== */
+
+  setupPlanButtons();
+
+
+  /* =========================
+     TABLE BUTTONS
+  ========================== */
+
+  setupTableButtons();
 
 }
 
 
-// ========================================
-// START
-// ========================================
+/* =========================================================
+   START MEMBERSHIP PAGE
+========================================================= */
 
 startMembershipPage();
