@@ -1,4 +1,35 @@
 // ========================================
+// LOAD COMPONENTS
+// ========================================
+
+function loadComponent(elementId, filePath) {
+
+    fetch(filePath)
+        .then(response => {
+
+            if (!response.ok) {
+                throw new Error(
+                    `Component could not be loaded: ${filePath}`
+                );
+            }
+
+            return response.text();
+
+        })
+        .then(data => {
+
+            document.getElementById(elementId).innerHTML = data;
+
+        })
+        .catch(error => {
+
+            console.error(error);
+
+        });
+}
+
+
+// ========================================
 // REPORTS STORAGE
 // ========================================
 
@@ -207,8 +238,7 @@ function generateMemberReport() {
                 <td>${member.email || "-"}</td>
                 <td>${member.phone || "-"}</td>
                 <td>${member.status || "-"}</td>
-            </tr>
-        `;
+            </tr> `;
     });
 
 
@@ -230,8 +260,7 @@ function generateMemberReport() {
             <tbody>
                 ${reportRows}
             </tbody>
-        </table>
-        `
+        </table> `
     );
 }
 
@@ -246,9 +275,7 @@ function generateMembershipReport() {
 
     if (memberships.length === 0) {
 
-        showReportMessage(
-            "No membership records found."
-        );
+        showReportMessage("No membership records found." );
 
         return;
     }
@@ -266,8 +293,7 @@ function generateMembershipReport() {
                 <td>${membership.startDate || "-"}</td>
                 <td>${membership.endDate || "-"}</td>
                 <td>${membership.status || "-"}</td>
-            </tr>
-        `;
+            </tr>`;
     });
 
 
@@ -290,8 +316,7 @@ function generateMembershipReport() {
             <tbody>
                 ${reportRows}
             </tbody>
-        </table>
-        `
+        </table>`
     );
 }
 
@@ -325,8 +350,7 @@ function generatePaymentReport() {
                 <td>Rs. ${payment.amount || 0}</td>
                 <td>${payment.date || "-"}</td>
                 <td>${payment.status || "-"}</td>
-            </tr>
-        `;
+            </tr>`;
     });
 
 
@@ -348,8 +372,7 @@ function generatePaymentReport() {
             <tbody>
                 ${reportRows}
             </tbody>
-        </table>
-        `
+        </table> `
     );
 }
 
@@ -385,8 +408,7 @@ function generateAttendanceReport() {
                 <td>${record.checkIn || "-"}</td>
                 <td>${record.checkOut || "-"}</td>
                 <td>${record.status || "-"}</td>
-            </tr>
-        `;
+            </tr>`;
     });
 
 
@@ -410,8 +432,7 @@ function generateAttendanceReport() {
             <tbody>
                 ${reportRows}
             </tbody>
-        </table>
-        `
+        </table> `
     );
 }
 
@@ -422,10 +443,8 @@ function generateAttendanceReport() {
 
 function openReportWindow(title, content) {
 
-    const reportWindow = window.open(
-        "",
-        "_blank",
-        "width=1200,height=750"
+    const reportWindow = window.open("",
+        "_blank","width=1200,height=750"
     );
 
 
@@ -586,22 +605,19 @@ function setupReportButtons() {
 
     // Membership Report
     reportButtons[1].addEventListener(
-        "click",
-        generateMembershipReport
+        "click", generateMembershipReport
     );
 
 
     // Payment Report
     reportButtons[2].addEventListener(
-        "click",
-        generatePaymentReport
+        "click",generatePaymentReport
     );
 
 
     // Attendance Report
     reportButtons[3].addEventListener(
-        "click",
-        generateAttendanceReport
+        "click",generateAttendanceReport
     );
 }
 
@@ -612,8 +628,7 @@ function setupReportButtons() {
 
 function setupGenerateButton() {
 
-    const generateButton =
-        document.querySelector(".generate-btn");
+    const generateButton =document.querySelector(".generate-btn");
 
 
     if (!generateButton) {
@@ -622,14 +637,11 @@ function setupGenerateButton() {
 
 
     generateButton.addEventListener(
-        "click",
-        function () {
+        "click", function () {
 
             updateReportSummary();
 
-            alert(
-                "Report summary generated successfully."
-            );
+            alert("Report summary generated successfully.");
 
         }
     );
@@ -654,6 +666,16 @@ function refreshReports() {
 document.addEventListener(
     "DOMContentLoaded",
     function () {
+
+        loadComponent(
+            "sidebar",
+            "../../../components/sidebar/sidebar.html"
+        );
+
+        loadComponent(
+            "navbar",
+            "../../../components/navbar/navbar.html"
+        );
 
         refreshReports();
 

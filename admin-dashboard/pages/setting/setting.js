@@ -1,4 +1,34 @@
 
+// ========================================
+// LOAD COMPONENTS
+// ========================================
+
+function loadComponent(elementId, filePath) {
+
+    fetch(filePath)
+        .then(response => {
+
+            if (!response.ok) {
+                throw new Error(
+                    `Component could not be loaded: ${filePath}`
+                );
+            }
+
+            return response.text();
+
+        })
+        .then(data => {
+
+            document.getElementById(elementId).innerHTML = data;
+
+        })
+        .catch(error => {
+
+            console.error(error);
+
+        });
+}
+
 
 // ========================================
 // SETTINGS STORAGE
@@ -508,14 +538,6 @@ function setupPasswordChange() {
             }
 
 
-            /*
-                Password handling is kept separate
-                from general settings.
-
-                For the final project demo, the
-                password is stored locally.
-            */
-
             const settings =
                 getSettings();
 
@@ -593,6 +615,7 @@ function setupSettingsMenu() {
 
     });
 
+
 }
 
 
@@ -603,6 +626,17 @@ function setupSettingsMenu() {
 document.addEventListener(
     "DOMContentLoaded",
     function () {
+
+        loadComponent(
+            "sidebar",
+            "../../../components/sidebar/sidebar.html"
+        );
+
+        loadComponent(
+            "navbar",
+            "../../../components/navbar/navbar.html"
+        );
+
 
         loadSettings();
 

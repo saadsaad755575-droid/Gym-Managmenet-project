@@ -328,3 +328,81 @@
     }
 
 }
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.main-content {
+    margin-left: 260px;
+    min-height: 100vh;
+    width: calc(100% - 260px);
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+#navbar {
+    width: 100%;
+}
+
+
+/* =========================
+   REPORTS PAGE
+========================= */
+
+.reports-page {
+    padding: 100px 30px 30px;
+}
+/* =========================
+   PAGE BACKGROUND
+========================= */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background: #0d0f10;
+    color: #ffffff;
+}
+
+body {
+    min-height: 100vh;
+}
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.main-content {
+    margin-left: 260px;
+    min-height: 100vh;
+    width: calc(100% - 260px);
+    background: #0d0f10;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+#navbar {
+    width: 100%;
+    background: #111315;
+}
+
+
+/* =========================
+   SETTINGS PAGE
+========================= */
+
+.settings-page {
+    min-height: calc(100vh - 80px);
+    padding: 100px 30px 30px;
+    background: #0d0f10;
+}

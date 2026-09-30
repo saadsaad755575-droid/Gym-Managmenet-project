@@ -1,4 +1,32 @@
+// ========================================
+// COMPONENT LOADER
+// ========================================
 
+function loadComponent(elementId, filePath) {
+
+    fetch(filePath)
+        .then(response => {
+
+            if (!response.ok) {
+                throw new Error(
+                    `Component could not be loaded: ${filePath}`
+                );
+            }
+
+            return response.text();
+
+        })
+        .then(data => {
+
+            document.getElementById(elementId).innerHTML = data;
+
+        })
+        .catch(error => {
+
+            console.error(error);
+
+        });
+}
 
 
 // ========================================
@@ -62,8 +90,7 @@ function getStorageData(possibleKeys) {
             } catch (error) {
 
                 console.error(
-                    "Invalid localStorage data:",
-                    key
+                    "Invalid localStorage data:", key
                 );
 
             }
@@ -176,8 +203,7 @@ function getElement(selector) {
 
 function updateText(selector, value) {
 
-    const element =
-        getElement(selector);
+    const element = getElement(selector);
 
     if (element) {
         element.textContent = value;
@@ -191,8 +217,7 @@ function updateText(selector, value) {
 
 function updateTotalMembers() {
 
-    const members =
-        getMembers();
+    const members = getMembers();
 
     updateText(
         ".statistics-cards .stat-card:nth-child(1) h2",
@@ -244,15 +269,13 @@ function isCurrentMonth(dateValue) {
         return false;
     }
 
-    const date =
-        new Date(dateValue);
+    const date = new Date(dateValue);
 
     if (isNaN(date.getTime())) {
         return false;
     }
 
-    const now =
-        new Date();
+    const now = new Date();
 
     return (
         date.getMonth() === now.getMonth() &&
@@ -277,8 +300,7 @@ function calculateMonthlyRevenue() {
         const status =
             String(
                 payment.status ||
-                payment.paymentStatus ||
-                ""
+                payment.paymentStatus ||""
             ).toLowerCase().trim();
 
         const paymentDate =
@@ -286,7 +308,6 @@ function calculateMonthlyRevenue() {
             payment.paymentDate ||
             payment.createdAt;
 
-        // Paid payments only
         if (
             status &&
             ![
@@ -340,8 +361,7 @@ function formatRupees(value) {
 
 function updateRevenueCard() {
 
-    const revenue =
-        calculateMonthlyRevenue();
+    const revenue = calculateMonthlyRevenue();
 
     updateText(
         ".statistics-cards .stat-card:nth-child(3) h2",
@@ -361,11 +381,8 @@ function updateRevenueCard() {
 
 function getTodayDate() {
 
-    const now =
-        new Date();
-
-    const year =
-        now.getFullYear();
+    const now = new Date();
+    const year = now.getFullYear();
 
     const month =
         String(
@@ -393,11 +410,9 @@ function getTodayDate() {
 
 function updateTodayAttendance() {
 
-    const attendance =
-        getAttendance();
+    const attendance =  getAttendance();
 
-    const today =
-        getTodayDate();
+    const today = getTodayDate();
 
     let count = 0;
 
@@ -412,8 +427,7 @@ function updateTodayAttendance() {
     });
 
     updateText(
-        ".statistics-cards .stat-card:nth-child(4) h2",
-        count
+        ".statistics-cards .stat-card:nth-child(4) h2",  count
     );
 }
 
@@ -424,8 +438,7 @@ function updateTodayAttendance() {
 
 function updateMemberGrowth() {
 
-    const members =
-        getMembers();
+    const members =  getMembers();
 
     const bars =
         document.querySelectorAll(
@@ -436,8 +449,7 @@ function updateMemberGrowth() {
         return;
     }
 
-    const monthlyCounts =
-        new Array(12).fill(0);
+    const monthlyCounts = new Array(12).fill(0);
 
     members.forEach((member) => {
 
@@ -472,38 +484,30 @@ function updateMemberGrowth() {
 
     const maximum =
         Math.max(
-            ...monthlyCounts,
-            1
+            ...monthlyCounts, 1
         );
 
 
     bars.forEach((bar, index) => {
 
-        const span =
-            bar.querySelector("span");
-
+        const span =  bar.querySelector("span");
         if (!span) {
             return;
         }
 
-        const count =
-            monthlyCounts[index];
+        const count =  monthlyCounts[index];
 
-        let height =
-            (count / maximum) * 100;
+        let height =(count / maximum) * 100;
 
-        // Keep zero values visible
         if (
             count === 0
         ) {
             height = 3;
         }
 
-        span.style.height =
-            height + "%";
+        span.style.height =  height + "%";
 
-        span.title =
-            count +
+        span.title = count +
             " new member" +
             (count === 1 ? "" : "s");
 
@@ -517,11 +521,9 @@ function updateMemberGrowth() {
 
 function updateMembershipStatistics() {
 
-    const memberships =
-        getMemberships();
+    const memberships = getMemberships();
 
-    const total =
-        memberships.length;
+    const total = memberships.length;
 
     const categories = {
         premium: 0,
@@ -537,23 +539,25 @@ function updateMembershipStatistics() {
                 membership.type ||
                 membership.plan ||
                 membership.membershipType ||
-                membership.membershipPlan ||
-                ""
+                membership.membershipPlan || ""
             ).toLowerCase().trim();
 
         if (
             type.includes("premium")
         ) {
+
             categories.premium++;
 
         } else if (
             type.includes("standard")
         ) {
+
             categories.standard++;
 
         } else if (
             type.includes("basic")
         ) {
+
             categories.basic++;
         }
 
@@ -587,12 +591,10 @@ function updateMembershipStatistics() {
                 )
                 : 0;
 
-        const strong =
-            item.querySelector("strong");
+        const strong = item.querySelector("strong");
 
         if (strong) {
-            strong.textContent =
-                percentage + "%";
+            strong.textContent = percentage + "%";
         }
 
         if (
@@ -612,8 +614,7 @@ function updateMembershipStatistics() {
 
 function updateRevenueChart() {
 
-    const payments =
-        getPayments();
+    const payments = getPayments();
 
     const bars =
         document.querySelectorAll(
@@ -625,8 +626,7 @@ function updateRevenueChart() {
     }
 
 
-    const monthlyRevenue =
-        new Array(12).fill(0);
+    const monthlyRevenue = new Array(12).fill(0);
 
 
     payments.forEach((payment) => {
@@ -640,8 +640,7 @@ function updateRevenueChart() {
             return;
         }
 
-        const date =
-            new Date(paymentDate);
+        const date = new Date(paymentDate);
 
         if (
             isNaN(
@@ -677,8 +676,7 @@ function updateRevenueChart() {
             payment.amount ??
             payment.paymentAmount ??
             payment.price ??
-            payment.total ??
-            0;
+            payment.total ?? 0;
 
 
         monthlyRevenue[
@@ -695,11 +693,7 @@ function updateRevenueChart() {
         );
 
 
-    // Existing HTML has 7 bars.
-    // Show the latest 7 months.
-
-    const currentMonth =
-        new Date().getMonth();
+    const currentMonth = new Date().getMonth();
 
 
     bars.forEach((bar, index) => {
@@ -712,12 +706,10 @@ function updateRevenueChart() {
             ) % 12;
 
 
-        const amount =
-            monthlyRevenue[monthIndex];
+        const amount =  monthlyRevenue[monthIndex];
 
 
-        let height =
-            (amount / maximum) * 100;
+        let height = (amount / maximum) * 100;
 
 
         if (
@@ -727,12 +719,10 @@ function updateRevenueChart() {
         }
 
 
-        bar.style.height =
-            height + "%";
+        bar.style.height = height + "%";
 
 
-        bar.title =
-            formatRupees(amount);
+        bar.title = formatRupees(amount);
 
     });
 }
@@ -758,8 +748,7 @@ function updateTrainerStatistics() {
             String(
                 trainer.status ||
                 trainer.availability ||
-                trainer.trainerStatus ||
-                ""
+                trainer.trainerStatus ||""
             ).toLowerCase().trim();
 
 
@@ -800,26 +789,23 @@ function updateTrainerStatistics() {
 
         trainerStats[0]
             .querySelector("strong")
-            .textContent =
-            available;
+            .textContent = available;
 
 
         trainerStats[1]
             .querySelector("strong")
-            .textContent =
-            limited;
+            .textContent = limited;
 
 
         trainerStats[2]
             .querySelector("strong")
-            .textContent =
-            busy;
+            .textContent = busy;
 
     }
 }
 
 
-// ========================================
+//======================================
 // UPDATE REPORT DATE
 // ========================================
 
@@ -835,8 +821,7 @@ function updateReportDate() {
     }
 
 
-    const now =
-        new Date();
+    const now = new Date();
 
 
     const month =
@@ -848,14 +833,12 @@ function updateReportDate() {
         );
 
 
-    const year =
-        now.getFullYear();
+    const year = now.getFullYear();
 
 
     dateElement.innerHTML = `
         <i class="fa-solid fa-calendar-days"></i>
-        ${month} ${year}
-    `;
+        ${month} ${year}`;
 }
 
 
@@ -883,9 +866,7 @@ function updateStatistics() {
 
     updateReportDate();
 
-    console.log(
-        "Statistics updated successfully."
-    );
+    console.log("Statistics updated successfully.");
 }
 
 
@@ -894,8 +875,7 @@ function updateStatistics() {
 // ========================================
 
 window.addEventListener(
-    "storage",
-    function () {
+    "storage",function () {
 
         updateStatistics();
 
@@ -910,6 +890,16 @@ window.addEventListener(
 document.addEventListener(
     "DOMContentLoaded",
     function () {
+
+        loadComponent(
+            "sidebar",
+            "../../../components/sidebar/sidebar.html"
+        );
+
+        loadComponent(
+            "navbar",
+            "../../../components/navbar/navbar.html"
+        );
 
         updateStatistics();
 

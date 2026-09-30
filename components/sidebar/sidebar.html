@@ -1,85 +1,164 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gym Sidebar</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <!---Sidebar CSS-->
-    <link rel="stylesheet" href="sidebar.css">
-</head>
-<body>
-    
+
+<!-- Font Awesome -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+<!-- Sidebar CSS -->
+<link rel="stylesheet" href="sidebar.css">
+
+</head><body><aside class="sidebar">
+    <!-- =========================
+     LOGO
+========================== -->
+<div class="sidebar-logo">
+
+    <img
+        src="/assets/images/gym-logo.png.png"
+        alt="GYM Logo"
+    >
+
+    <h2>GYM<span>PRO</span></h2>
+
+</div>
 
 
+<!-- =========================
+     ADMIN PROFILE
+========================== -->
+<div class="admin-profile">
 
-<aside class="sidebar">
-    <!-- logo-->
-     <div class="sidebar-logo">
-        <img src="/assets/images/gym-logo.png.png" alt="gym-logo">
-        <h2> GYM<span>PRO</span></h2>
-     </div>
-     <!-- Admin Profile -->
-      <div class="admin-profile">
-        <div class="profile-icon">
-            <img src="/assets/images/admin-avatar.png.png" alt="Admin-profile">
-        </div>
-        <div class="Profile-info">
-            <h3> Admin</h3>
-            <p> Administration</p>
-        </div>
-      </div>
-      <!--Navigation-->
-      <nav class="sidebar-menu">
-        <a href="#" class="menu-item-active">
-            <i class="fa-solid fa-chart-line"></i>
-            <samp>Dashboard</samp>
-        </a>
-        <p class="menu-item">MANAGEMENT</p>
-        <a href="/admin-dashboard/pages/trainers/trainer.html" class="menu-item">
-            <i class="fa-solid fa-user-tie"></i>
-            <samp>Trainer</samp>
-        </a>
-        <a href="/admin-dashboard/pages/trainers/Member/Member.html" class="menu-item">
-    <i class="fa-solid fa-users"></i>
-    <span>Members</span>
-</a>
-         <a href="/admin-dashboard/pages/membership/membership.html" class="menu-item">
-            <i class="fa-solid fa-id-card"></i>
-            <span>Memberships</span>
-        </a>
-         <a href="/admin-dashboard/pages/payment/payment.html" class="menu-item">
-            <i class="fa-solid fa-credit-card"></i>
-            <span>payment</span>
-        </a>
-         <a href="/admin-dashboard/pages/Attendance/Attendance.html" class="menu-item">
-            <i class="fa-solid fa-calender-check"></i>
-            <span>Attendance</span>
-        </a>
-        <p class="menu-title">REPORTS</p>
-         <a href="/admin-dashboard/pages/statistics/statistics.html" class="menu-item">
-            <i class="fa-solid fa-chart-pie"></i>
-            <span>Statistics</span>
-        </a>
-         <a href="/admin-dashboard/pages/reports/report.html" class="menu-item">
-            <i class="fa-solid fa-file-line"></i>
-            <span>Reports</span>
-        </a>
-         <a href="/admin-dashboard/pages/setting/setting.html" class="menu-item">
-            <i class="fa-solid fa-gear"></i>
-            <span>Settings</span>
-        </a>
+    <div class="profile-icon">
+        <img
+            src="/assets/images/admin-avatar.png.png"
+            alt="Admin Profile"
+        >
+    </div>
 
-      </nav>
-      <!--LOgout-->
-      <div class="sidebar-bottom">
-         <a href="#" class="menu-item logout">
-            <i class="fa-solid fa-rigth-from-bracket"></i>
-            <span>Logout</span>
-        </a>
-      </div>
+    <div class="profile-info">
+        <h3>Admin</h3>
+        <p>Administration</p>
+    </div>
+
+</div>
+
+
+<!-- =========================
+     NAVIGATION
+========================== -->
+<nav class="sidebar-menu">
+
+    <!-- Dashboard -->
+    <a href="#" class="menu-item active">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Dashboard</span>
+    </a>
+
+
+    <!-- Management -->
+    <p class="menu-title">MANAGEMENT</p>
+
+
+    <a
+        href="/admin-dashboard/pages/trainers/trainer.html"
+        class="menu-item"
+    >
+        <i class="fa-solid fa-user-tie"></i>
+        <span>Trainer</span>
+    </a>
+
+
+    <a
+        href="/admin-dashboard/pages/trainers/Member/Member.html"
+        class="menu-item"
+    >
+        <i class="fa-solid fa-users"></i>
+        <span>Members</span>
+    </a>
+
+
+    <a
+        href="/admin-dashboard/pages/membership/membership.html"
+        class="menu-item"
+    >
+        <i class="fa-solid fa-id-card"></i>
+        <span>Memberships</span>
+    </a>
+
+
+    <a
+        href="/admin-dashboard/pages/payment/payment.html"
+        class="menu-item"
+    >
+        <i class="fa-solid fa-credit-card"></i>
+        <span>Payment</span>
+    </a>
+
+
+    <a
+        href="/admin-dashboard/pages/Attendance/Attendance.html"
+        class="menu-item"
+    >
+        <i class="fa-solid fa-calendar-check"></i>
+        <span>Attendance</span>
+    </a>
+
+
+    <!-- Reports -->
+    <p class="menu-title">REPORTS</p>
+
+
+    <a
+        href="/admin-dashboard/pages/statistics/statistics.html"
+        class="menu-item"
+    >
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Statistics</span>
+    </a>
+
+
+    <a
+        href="/admin-dashboard/pages/reports/report.html"
+        class="menu-item"
+    >
+        <i class="fa-solid fa-file-lines"></i>
+        <span>Reports</span>
+    </a>
+
+
+    <a
+        href="/admin-dashboard/pages/setting/setting.html"
+        class="menu-item"
+    >
+        <i class="fa-solid fa-gear"></i>
+        <span>Settings</span>
+    </a>
+
+</nav>
+
+
+<!-- =========================
+     LOGOUT
+========================== -->
+<div class="sidebar-bottom">
+
+    <a
+        href="/Login/login.html"
+        class="menu-item logout"
+    >
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Logout</span>
+    </a>
+
+</div>
+
 </aside>
-<!---Sidebar JavaScript-->
-<script src="sidebar.js"></script>
-</body>
-</html>
+<!-- Sidebar JavaScript -->
+<script src="sidebar.js"></script></body>
+</html> 
