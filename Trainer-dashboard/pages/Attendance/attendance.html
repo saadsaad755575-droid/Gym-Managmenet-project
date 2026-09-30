@@ -1,161 +1,342 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Trainer Attendance</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Attendance | Trainer Dashboard</title>
 
-    <!-- Trainer Components CSS -->
-    <link rel="stylesheet" href="../../../components/trainer.sidebar/trainer.sidebar.css">
-    <link rel="stylesheet" href="../../../components/trainer-navbar/trainer-navbar.css">
 
-    <!-- Trainer Modal -->
-    <link rel="stylesheet" href="../../../components/trainer-modal/trainer-modal.css">
+    <!-- ========================================
+         FONT AWESOME
+    ========================================= -->
 
-    <!-- Attendance CSS -->
-    <link rel="stylesheet" href="attendance.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- ========================================
+         TRAINER ATTENDANCE CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="attendance.css"
+    >
+
+
+    <!-- ========================================
+         TRAINER SIDEBAR CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="../../../components/trainer.sidebar/trainer.sidebar.css"
+    >
+
+
+    <!-- ========================================
+         TRAINER NAVBAR CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="../../../components/trainer-navbar/trainer-navbar.css"
+    >
+
+
+    <!-- ========================================
+         ANIMATION CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="../../../components/animations/animtion.css"
+    >
+
 </head>
+
 
 <body>
 
-    <!-- =========================
-         TRAINER SIDEBAR
-    ========================== -->
 
-    <div id="trainer-sidebar"></div>
+    <!-- ========================================
+         BLACK PAGE BACKGROUND
+    ========================================= -->
 
-
-    <!-- =========================
-         MAIN CONTENT
-    ========================== -->
-
-    <main class="trainer-main">
-
-        <!-- Trainer Navbar -->
-        <div id="trainer-navbar"></div>
+    <div class="page-background">
 
 
-        <!-- =========================
-             ATTENDANCE CONTENT
-        ========================== -->
+        <!-- ====================================
+             TRAINER SIDEBAR
+        ==================================== -->
 
-        <section class="attendance-content">
-
-            <!-- Page Header -->
-
-            <div class="attendance-header">
-
-                <div>
-                    <h1>
-                        <i class="fa-solid fa-calendar-check"></i>
-                        Attendance
-                    </h1>
-
-                    <p>
-                        Mark and manage attendance of your assigned customers.
-                    </p>
-                </div>
-
-                <button
-                    type="button"
-                    class="attendance-primary-btn"
-                    id="openAttendanceForm">
-
-                    <i class="fa-solid fa-plus"></i>
-                    Mark Attendance
-
-                </button>
-
-            </div>
+        <div id="trainer-sidebar"></div>
 
 
-            <!-- =========================
-                 ATTENDANCE FORM
-            ========================== -->
+        <!-- ====================================
+             MAIN
+        ==================================== -->
 
-            <div class="attendance-form-card" id="attendanceFormCard">
+        <main class="trainer-main">
 
-                <div class="form-card-header">
+
+            <!-- ==================================
+                 TRAINER NAVBAR
+            ================================== -->
+
+            <div id="trainer-navbar"></div>
+
+
+            <!-- ==================================
+                 ATTENDANCE CONTENT
+            ================================== -->
+
+            <div class="attendance-content">
+
+
+                <!-- =================================
+                     PAGE HEADER
+                ================================= -->
+
+                <div class="attendance-header">
 
                     <div>
-                        <h2>Mark Customer Attendance</h2>
+
+                        <span class="attendance-label">
+                            TRAINER ATTENDANCE
+                        </span>
+
+                        <h1>
+                            Attendance
+                        </h1>
 
                         <p>
-                            Record today's attendance details.
+                            Monitor member attendance
+                            and track daily gym activity.
                         </p>
+
                     </div>
 
-                    <button
-                        type="button"
-                        class="form-close-btn"
-                        id="closeAttendanceForm">
 
-                        <i class="fa-solid fa-xmark"></i>
+                    <div class="attendance-header-icon">
 
-                    </button>
+                        <i class="fa-solid fa-calendar-check"></i>
+
+                    </div>
 
                 </div>
 
 
-                <form id="attendanceForm">
 
-                    <div class="attendance-form-grid">
+                <!-- =================================
+                     ATTENDANCE STATS
+                ================================= -->
+
+                <div class="attendance-stats">
 
 
-                        <!-- Customer -->
+                    <!-- TOTAL -->
 
-                        <div class="form-group">
+                    <div class="attendance-stat-card">
 
-                            <label for="customerSelect">
-                                Select Customer
+                        <div class="stat-icon">
+
+                            <i class="fa-solid fa-users"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Total Attendance
+                            </span>
+
+                            <strong id="totalAttendance">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PRESENT -->
+
+                    <div class="attendance-stat-card">
+
+                        <div class="stat-icon">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Present Today
+                            </span>
+
+                            <strong id="todayPresent">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ABSENT -->
+
+                    <div class="attendance-stat-card">
+
+                        <div class="stat-icon">
+
+                            <i class="fa-solid fa-circle-xmark"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Absent Today
+                            </span>
+
+                            <strong id="todayAbsent">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LATE -->
+
+                    <div class="attendance-stat-card">
+
+                        <div class="stat-icon">
+
+                            <i class="fa-solid fa-clock"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Late Today
+                            </span>
+
+                            <strong id="todayLate">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     ATTENDANCE TABLE
+                ================================= -->
+
+                <div class="attendance-table-card">
+
+
+                    <!-- TABLE HEADER -->
+
+                    <div class="table-header">
+
+                        <div>
+
+                            <h2>
+                                Member Attendance
+                            </h2>
+
+                            <p>
+                                View attendance records
+                                of gym members.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         FILTERS
+                    ================================= -->
+
+                    <div class="attendance-filters">
+
+
+                        <!-- SEARCH -->
+
+                        <div class="filter-group">
+
+                            <label for="attendanceSearch">
+                                Search
                             </label>
 
-                            <select id="customerSelect" required>
+                            <div class="search-box">
 
-                                <option value="">
-                                    Select Customer
-                                </option>
+                                <i
+                                    class="fa-solid fa-magnifying-glass"
+                                ></i>
 
-                            </select>
+                                <input
+                                    type="text"
+                                    id="attendanceSearch"
+                                    placeholder="Search member ID or name..."
+                                >
+
+                            </div>
 
                         </div>
 
 
-                        <!-- Date -->
+                        <!-- DATE -->
 
-                        <div class="form-group">
+                        <div class="filter-group">
 
-                            <label for="attendanceDate">
-                                Attendance Date
+                            <label for="attendanceDateFilter">
+                                Date
                             </label>
 
                             <input
                                 type="date"
-                                id="attendanceDate"
-                                required>
+                                id="attendanceDateFilter"
+                            >
 
                         </div>
 
 
-                        <!-- Status -->
+                        <!-- STATUS -->
 
-                        <div class="form-group">
+                        <div class="filter-group">
 
-                            <label for="attendanceStatus">
-                                Attendance Status
+                            <label for="attendanceStatusFilter">
+                                Status
                             </label>
 
-                            <select id="attendanceStatus" required>
+                            <select
+                                id="attendanceStatusFilter"
+                            >
 
-                                <option value="">
-                                    Select Status
+                                <option value="all">
+                                    All Status
                                 </option>
 
                                 <option value="Present">
@@ -175,167 +356,191 @@
                         </div>
 
 
-                        <!-- Check In -->
-
-                        <div class="form-group">
-
-                            <label for="checkInTime">
-                                Check-in Time
-                            </label>
-
-                            <input
-                                type="time"
-                                id="checkInTime">
-
-                        </div>
-
-
-                        <!-- Check Out -->
-
-                        <div class="form-group">
-
-                            <label for="checkOutTime">
-                                Check-out Time
-                            </label>
-
-                            <input
-                                type="time"
-                                id="checkOutTime">
-
-                        </div>
-
-
-                        <!-- Trainer Notes -->
-
-                        <div class="form-group full-width">
-
-                            <label for="attendanceNotes">
-                                Trainer Notes
-                            </label>
-
-                            <textarea
-                                id="attendanceNotes"
-                                rows="4"
-                                placeholder="Add attendance notes..."></textarea>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Form Buttons -->
-
-                    <div class="attendance-form-actions">
+                        <!-- CLEAR -->
 
                         <button
                             type="button"
-                            class="attendance-cancel-btn"
-                            id="cancelAttendance">
+                            id="clearAttendanceFilters"
+                            class="filter-clear-btn"
+                        >
 
-                            Cancel
+                            <i
+                                class="fa-solid fa-rotate-left"
+                            ></i>
 
-                        </button>
-
-                        <button
-                            type="submit"
-                            class="attendance-save-btn"
-                            id="saveAttendance">
-
-                            <i class="fa-solid fa-floppy-disk"></i>
-                            Save Attendance
+                            Clear
 
                         </button>
 
                     </div>
 
-                </form>
-
-            </div>
 
 
-            <!-- =========================
-                 ATTENDANCE TABLE
-            ========================== -->
+                    <!-- =================================
+                         TABLE
+                    ================================= -->
 
-            <div class="attendance-table-card">
+                    <div class="table-wrapper">
 
-                <div class="table-card-header">
+                        <table>
 
-                    <div>
-                        <h2>Attendance Records</h2>
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        #
+                                    </th>
+
+                                    <th>
+                                        Member ID
+                                    </th>
+
+                                    <th>
+                                        Member Name
+                                    </th>
+
+                                    <th>
+                                        Date
+                                    </th>
+
+                                    <th>
+                                        Check In
+                                    </th>
+
+                                    <th>
+                                        Status
+                                    </th>
+
+                                    <th>
+                                        Verification
+                                    </th>
+
+                                    <th>
+                                        Location
+                                    </th>
+
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="attendanceTableBody">
+
+                                <!--
+                                    Attendance records
+                                    will load here.
+                                -->
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         EMPTY STATE
+                    ================================= -->
+
+                    <div
+                        id="attendanceEmptyState"
+                        class="attendance-empty-state"
+                    >
+
+                        <i
+                            class="fa-solid fa-calendar-xmark"
+                        ></i>
+
+                        <h3>
+                            No Attendance Records
+                        </h3>
 
                         <p>
-                            View attendance history of your customers.
+                            Member attendance records
+                            will appear here.
                         </p>
+
                     </div>
 
                 </div>
 
 
-                <div class="table-wrapper">
 
-                    <table class="attendance-table">
+                <!-- =================================
+                     TRAINER INFORMATION
+                ================================= -->
 
-                        <thead>
+                <div class="attendance-info">
 
-                            <tr>
+                    <div class="info-icon">
 
-                                <th>Customer</th>
+                        <i
+                            class="fa-solid fa-circle-info"
+                        ></i>
 
-                                <th>Date</th>
-
-                                <th>Check-in</th>
-
-                                <th>Check-out</th>
-
-                                <th>Status</th>
-
-                                <th>Notes</th>
-
-                                <th>Actions</th>
-
-                            </tr>
-
-                        </thead>
+                    </div>
 
 
-                        <tbody id="attendanceTableBody">
+                    <div>
 
-                            <!-- Attendance records will be added by JavaScript -->
+                        <strong>
+                            Attendance Monitoring
+                        </strong>
 
-                        </tbody>
+                        <p>
+                            Attendance is automatically
+                            synchronized with member
+                            attendance records. When a
+                            member marks attendance, the
+                            record becomes available here.
+                        </p>
 
-                    </table>
+                    </div>
 
                 </div>
 
+
             </div>
 
-        </section>
+        </main>
 
-    </main>
-
-
-    <!-- =========================
-         REUSABLE TRAINER MODAL
-    ========================== -->
-
-    <div id="trainer-modal-container"></div>
+    </div>
 
 
-    <!-- =========================
-         COMPONENT JS
-    ========================== -->
 
-    <script src="../../../components/trainer-navbar/trainer-navbar.js"></script>
+    <!-- ========================================
+         TRAINER NAVBAR JS
+    ========================================= -->
 
-    <script src="../../../components/trainer.sidebar/trainer.sidebar.js"></script>
+    <script
+        src="../../../components/trainer-navbar/trainer-navbar.js"
+    ></script>
 
 
-    <!-- Attendance JS -->
+    <!-- ========================================
+         TRAINER SIDEBAR JS
+    ========================================= -->
 
-    <script src="attendance.js"></script>
+    <script
+        src="../../../components/trainer.sidebar/trainer.sidebar.js"
+    ></script>
+
+
+    <!-- ========================================
+         TRAINER ATTENDANCE JS
+    ========================================= -->
+
+    <script
+        src="attendance.js"
+    ></script>
+
 
 </body>
 
-</html>
+</html> 

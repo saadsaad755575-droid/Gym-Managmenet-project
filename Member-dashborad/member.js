@@ -478,9 +478,193 @@ const viewProfileButton =
         "#memberDashboard .view-profile-btn"
     );
 
+/* ========================================
+   QUICK ACCESS BUTTONS
+======================================== */
+
+setupQuickAccess();
+
 
 /* ========================================
-   IF SPECIFIC ID/CLASS NOT FOUND
+   SETUP QUICK ACCESS
+======================================== */
+
+function setupQuickAccess() {
+
+    const quickCards =
+        document.querySelectorAll(
+            ".quick-access-card"
+        );
+
+
+    if (!quickCards.length) {
+
+        console.warn(
+            "No Quick Access cards found."
+        );
+
+        return;
+
+    }
+
+
+    quickCards.forEach(
+        function (card) {
+
+            const titleElement =
+                card.querySelector("h3");
+
+
+            if (!titleElement) {
+
+                return;
+
+            }
+
+
+            const title =
+                titleElement.textContent
+                    .trim()
+                    .toLowerCase();
+
+
+            /* ========================================
+               MY TRAINER
+            ======================================== */
+
+            if (
+                title === "my trainer"
+            ) {
+
+                card.addEventListener(
+                    "click",
+                    function () {
+
+                        console.log(
+                            "My Trainer clicked"
+                        );
+
+                    }
+                );
+
+            }
+
+
+            /* ========================================
+               PROGRESS TRACKING
+            ======================================== */
+
+            if (
+                title === "progress tracking"
+            ) {
+
+                card.addEventListener(
+                    "click",
+                    function () {
+
+                        console.log(
+                            "Progress Tracking clicked"
+                        );
+
+                    }
+                );
+
+            }
+
+
+            /* ========================================
+               FIND MY TRAINER
+            ======================================== */
+
+            if (
+                title === "find my trainer"
+            ) {
+
+                card.addEventListener(
+                    "click",
+                    function () {
+
+                        window.location.href =
+                            "pages/find-my-trainer/find-my-trainer.html";
+
+                    }
+                );
+
+            }
+
+
+            /* ========================================
+               TRAINER RECOMMENDATION
+            ======================================== */
+
+            if (
+                title ===
+                "trainer recommendation"
+            ) {
+
+                card.addEventListener(
+                    "click",
+                    function () {
+
+                        window.location.href =
+                            "pages/Trainer-Recomend/trainer-recomed.html";
+
+                    }
+                );
+
+            }
+
+
+            /* ========================================
+               PAYMENT HISTORY
+            ======================================== */
+
+            if (
+                title === "payment history"
+            ) {
+
+                card.addEventListener(
+                    "click",
+                    function () {
+
+                        console.log(
+                            "Payment History clicked"
+                        );
+
+                    }
+                );
+
+            }
+
+
+            /* ========================================
+               MY DIET PLAN
+            ======================================== */
+
+            if (
+                title === "my diet plan"
+            ) {
+
+                card.addEventListener(
+                    "click",
+                    function () {
+
+                        console.log(
+                            "My Diet Plan clicked"
+                        );
+
+                    }
+                );
+
+            }
+
+        }
+    );
+
+} 
+
+/* ========================================
+   
    TRY BUTTON TEXT
 ======================================== */
 

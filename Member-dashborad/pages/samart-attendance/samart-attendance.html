@@ -1,0 +1,525 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Member Attendance</title>
+
+
+    <!-- ========================================
+         FONT AWESOME
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- ========================================
+         MEMBER ATTENDANCE CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="samart-attendance.css"
+    >
+
+
+    <!-- ========================================
+         MEMBER SIDEBAR CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="../../../components/member-sidebar/member-sidebar.css"
+    >
+
+
+    <!-- ========================================
+         MEMBER NAVBAR CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="../../../components/member-navbar/member-navbar.css"
+    >
+
+
+    <!-- ========================================
+         ANIMATION CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="../../../components/animations/animtion.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================================
+         MEMBER SIDEBAR
+    ========================================= -->
+
+    <div id="member-sidebar"></div>
+
+
+
+    <!-- ========================================
+         MAIN
+    ========================================= -->
+
+    <main class="member-main">
+
+
+        <!-- ========================================
+             MEMBER NAVBAR
+        ========================================= -->
+
+        <div id="member-navbar"></div>
+
+
+
+        <!-- ========================================
+             ATTENDANCE CONTENT
+        ========================================= -->
+
+        <div class="attendance-content">
+
+
+            <!-- ====================================
+                 PAGE HEADER
+            ==================================== -->
+
+            <div class="attendance-header">
+
+                <div>
+
+                    <span class="attendance-label">
+                        MEMBER ATTENDANCE
+                    </span>
+
+                    <h1>
+                        Smart Attendance
+                    </h1>
+
+                    <p>
+                        Mark your gym attendance using
+                        identity verification and location.
+                    </p>
+
+                </div>
+
+
+                <div class="attendance-header-icon">
+
+                    <i class="fa-solid fa-calendar-check fa-beat"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ====================================
+                 SMART ATTENDANCE CARD
+            ==================================== -->
+
+            <div class="smart-attendance-card">
+
+
+                <!-- ==================================
+                     CAMERA / FACE AREA
+                ================================== -->
+
+                <div class="face-section">
+
+                    <div class="face-camera">
+
+                        <div class="camera-overlay">
+                            <video id="cameraVideo"
+                            autoplay
+                            playsinline
+                            muted></video>
+
+                            <div class="face-corner top-left"></div>
+
+                            <div class="face-corner top-right"></div>
+
+                            <div class="face-corner bottom-left"></div>
+
+                            <div class="face-corner bottom-right"></div>
+
+                        </div>
+
+
+                        <div class="camera-icon">
+
+                            <i class="fa-solid fa-camera fa-fade"></i>
+
+                        </div>
+
+                        <p id="cameraMessage">
+                            Camera ready for identity verification
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="startFaceVerification"
+                        class="attendance-btn"
+                    >
+
+                        <i class="fa-solid fa-face-smile"></i>
+
+                        Verify My Identity
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- ==================================
+                     MEMBER INFORMATION
+                ================================== -->
+
+                <div class="member-attendance-info">
+
+                    <div class="section-title">
+
+                        <div class="title-icon">
+
+                            <i class="fa-solid fa-user-check fa-fade"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Attendance Verification
+                            </h2>
+
+                            <p>
+                                Your identity will be verified
+                                before attendance is marked.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- MEMBER ID -->
+
+                    <div class="verification-row">
+
+                        <span>
+
+                            <i class="fa-solid fa-id-card"></i>
+
+                            Member ID
+
+                        </span>
+
+                        <strong id="attendanceMemberId">
+                            -
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- MEMBER NAME -->
+
+                    <div class="verification-row">
+
+                        <span>
+
+                            <i class="fa-solid fa-user"></i>
+
+                            Member Name
+
+                        </span>
+
+                        <strong id="attendanceMemberName">
+                            -
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- LOCATION -->
+
+                    <div class="verification-row">
+
+                        <span>
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            Gym Location
+
+                        </span>
+
+                        <strong id="attendanceLocationStatus">
+                            Checking location...
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- DATE -->
+
+                    <div class="verification-row">
+
+                        <span>
+
+                            <i class="fa-solid fa-calendar-days"></i>
+
+                            Date
+
+                        </span>
+
+                        <strong id="attendanceDate">
+                            -
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- TIME -->
+
+                    <div class="verification-row">
+
+                        <span>
+
+                            <i class="fa-solid fa-clock"></i>
+
+                            Current Time
+
+                        </span>
+
+                        <strong id="attendanceTime">
+                            -
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- VERIFICATION STATUS -->
+
+                    <div class="verification-status">
+
+                        <span>
+                            Verification Status
+                        </span>
+
+                        <strong
+                            id="verificationStatus"
+                            class="status-pending"
+                        >
+                            Not Verified
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ====================================
+                 MARK ATTENDANCE SECTION
+            ==================================== -->
+
+            <div class="mark-attendance-card">
+
+
+                <div class="section-title">
+
+                    <div class="title-icon">
+
+                        <i class="fa-solid fa-fingerprint fa-beat"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Mark Attendance
+                        </h2>
+
+                        <p>
+                            Attendance can be marked once
+                            after successful verification.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="attendance-action-area">
+
+                    <button
+                        type="button"
+                        id="markAttendanceBtn"
+                        class="attendance-btn primary"
+                        disabled
+                    >
+
+                        <i class="fa-solid fa-calendar-check"></i>
+
+                        Mark Attendance
+
+                    </button>
+
+
+                    <div
+                        id="attendanceMessage"
+                        class="attendance-message"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ====================================
+                 TODAY'S ATTENDANCE
+            ==================================== -->
+
+            <div class="today-attendance-card">
+
+
+                <div class="section-title">
+
+                    <div class="title-icon">
+
+                        <i class="fa-solid fa-clock-rotate-left fa-fade"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Today's Attendance
+                        </h2>
+
+                        <p>
+                            Your latest attendance status
+                            for today.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div
+                    id="todayAttendanceStatus"
+                    class="today-status"
+                >
+
+                    <i class="fa-solid fa-calendar-xmark"></i>
+
+                    <span>
+                        Attendance not marked today.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ====================================
+                 ATTENDANCE INFORMATION NOTE
+            ==================================== -->
+
+            <div class="attendance-note">
+
+                <i class="fa-solid fa-circle-info fa-fade"></i>
+
+                <div>
+
+                    <strong>
+                        Smart Attendance
+                    </strong>
+
+                    <p>
+                        Your attendance is linked with your
+                        member identity. The system verifies
+                        your identity and gym location before
+                        allowing attendance to be marked.
+                        Once attendance is successfully marked
+                        for the day, it cannot be marked again.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ========================================
+         MEMBER NAVBAR JS
+    ========================================= -->
+
+    <script
+        src="../../../components/member-navbar/member-navbar.js"
+    ></script>
+
+
+
+    <!-- ========================================
+         MEMBER SIDEBAR JS
+    ========================================= -->
+
+    <script
+        src="../../../components/member-sidebar/member-sidebar.js"
+    ></script>
+
+
+
+    <!-- ========================================
+         SMART ATTENDANCE JS
+    ========================================= -->
+
+    <script
+        src="samrt-attendance.js"
+    ></script>
+
+
+</body>
+
+</html> 

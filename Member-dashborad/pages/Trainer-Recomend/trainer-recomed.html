@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Trainer Recommendation | Member Dashboard</title>
+
+
+    <!-- =========================
+         FONT AWESOME
+    ========================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- =========================
+         MEMBER COMPONENT CSS
+    ========================== -->
+
+    <link
+        rel="stylesheet"
+        href="../../../components/member-sidebar/member-sidebar.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../../components/member-navbar/member-navbar.css"
+    >
+
+
+    <!-- =========================
+         EXPERT PAGE CSS
+    ========================== -->
+
+    <link
+        rel="stylesheet"
+        href="trainer-recomend.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         MEMBER SIDEBAR
+    ========================== -->
+
+    <div id="member-sidebar"></div>
+
+
+    <!-- =========================
+         MAIN AREA
+    ========================== -->
+
+    <main class="member-main">
+
+
+        <!-- =========================
+             MEMBER NAVBAR
+        ========================== -->
+
+        <div id="member-navbar"></div>
+
+
+        <!-- =========================
+             EXPERT CONTENT
+        ========================== -->
+
+        <section class="expert-page">
+
+
+            <!-- =========================
+                 PAGE HEADER
+            ========================== -->
+
+            <div class="expert-header">
+
+                <div class="expert-header-text">
+
+                    <span class="expert-label">
+                        <i class="fa-solid fa-user-tie fa-beat"></i>
+                        TRAINER EXPERT
+                    </span>
+
+                    <h1>
+                        Find the Right Trainer
+                        <span>For Your Goal</span>
+                    </h1>
+
+                    <p>
+                        Get trainer recommendations based on
+                        your fitness goal, specialization,
+                        availability and experience.
+                    </p>
+
+                </div>
+
+
+                <div class="expert-header-icon">
+
+                    <i class="fa-solid fa-dumbbell fa-beat"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 MEMBER GOAL CARD
+            ========================== -->
+
+            <div class="member-goal-card">
+
+                <div class="goal-icon">
+
+                    <i class="fa-solid fa-bullseye"></i>
+
+                </div>
+
+
+                <div class="goal-content">
+
+                    <span>
+                        YOUR FITNESS GOAL
+                    </span>
+
+                    <h2 id="memberGoal">
+                        Loading...
+                    </h2>
+
+                    <p>
+                        Recommendations are based on
+                        your current fitness goal.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 ASSIGNED TRAINER
+            ========================== -->
+
+            <section class="assigned-trainer-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            <i class="fa-solid fa-user-check"></i>
+                            CURRENT TRAINER
+                        </span>
+
+                        <h2>
+                            Your Assigned Trainer
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="assignedTrainerCard"
+                    class="trainer-card assigned-card"
+                >
+
+                    <div class="trainer-loading">
+
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+
+                        Loading trainer information...
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 RECOMMENDED TRAINERS
+            ========================== -->
+
+            <section class="recommended-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            <i class="fa-solid fa-star"></i>
+                            SMART RECOMMENDATION
+                        </span>
+
+                        <h2>
+                            Recommended Trainers
+                        </h2>
+
+                        <p>
+                            Trainers are matched with your
+                            fitness goal and current availability.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+    <!-- =========================
+                     MAIN RECOMMENDATION
+                ========================== -->
+
+                <div
+                    id="recommendedTrainer"
+                    class="recommended-trainer"
+                >
+
+                    <div class="trainer-loading">
+
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+
+                        Finding the right trainer for you...
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     ALTERNATIVE TRAINERS
+                ========================== -->
+
+                <div
+                    id="alternativeTrainers"
+                    class="alternative-trainers"
+                >
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 NO TRAINER MESSAGE
+            ========================== -->
+
+            <div
+                id="noTrainerMessage"
+                class="no-trainer-message"
+                style="display: none;"
+            >
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <div>
+
+                    <h3>
+                        No Matching Trainer Found
+                    </h3>
+
+                    <p>
+                        There is currently no trainer
+                        matching your fitness goal.
+                        Please check again later.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         MEMBER SIDEBAR JS
+    ========================== -->
+
+    <script
+        src="../../../components/member-sidebar/member-sidebar.js"
+    ></script>
+
+
+    <!-- =========================
+         MEMBER NAVBAR JS
+    ========================== -->
+
+    <script
+        src="../../../components/member-navbar/member-navbar.js"
+    ></script>
+
+
+    <!-- =========================
+         EXPERT PAGE JS
+    ========================== -->
+
+    <script
+        src="trainer-recomend.js"
+    ></script>
+
+
+</body>
+
+</html>
