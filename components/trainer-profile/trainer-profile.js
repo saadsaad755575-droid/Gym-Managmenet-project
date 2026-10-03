@@ -1,5 +1,4 @@
 
-
 /* =========================
    TRAINER PROFILE JS
 ========================= */
@@ -34,6 +33,10 @@ function initTrainerProfile() {
 
     const trainers = {
 
+        /* =========================
+           AHMED KHAN
+        ========================== */
+
         "Ahmed Khan": {
 
             name: "Ahmed Khan",
@@ -67,6 +70,10 @@ function initTrainerProfile() {
         },
 
 
+        /* =========================
+           USMAN AHMED
+        ========================== */
+
         "Usman Ahmed": {
 
             name: "Usman Ahmed",
@@ -94,6 +101,117 @@ function initTrainerProfile() {
                 "Weight Training",
                 "Workout Planning",
                 "Bodybuilding Training",
+                "Fitness Assessment"
+            ]
+
+        },
+
+
+        /* =========================
+           SAAD MALIK
+        ========================== */
+
+        "Saad Malik": {
+
+            name: "Saad Malik",
+
+            type: "Yoga & Mobility Trainer",
+
+            id: "TRN-002",
+
+            qualification: "Certified Yoga Trainer",
+
+            experience: "4 Years",
+
+            specialization: "Yoga & Flexibility",
+
+            availability: "Available",
+
+            skills: [
+                "Yoga",
+                "Flexibility",
+                "Mobility",
+                "Stretching"
+            ],
+
+            services: [
+                "Yoga Training",
+                "Mobility Training",
+                "Flexibility Training",
+                "Personal Training"
+            ]
+
+        },
+
+
+        /* =========================
+           BILAL SHAH
+        ========================== */
+
+        "Bilal Shah": {
+
+            name: "Bilal Shah",
+
+            type: "Certified Fitness Coach",
+
+            id: "TRN-004",
+
+            qualification: "Certified Fitness Coach",
+
+            experience: "3 Years",
+
+            specialization: "Weight Loss & Cardio",
+
+            availability: "Limited Slots",
+
+            skills: [
+                "Weight Loss",
+                "Cardio",
+                "Fitness Conditioning",
+                "Fat Loss Training"
+            ],
+
+            services: [
+                "Weight Loss Training",
+                "Cardio Training",
+                "Workout Planning",
+                "Fitness Assessment"
+            ]
+
+        },
+
+
+        /* =========================
+           HAMZA ALI
+        ========================== */
+
+        "Hamza Ali": {
+
+            name: "Hamza Ali",
+
+            type: "Strength & Conditioning Trainer",
+
+            id: "TRN-005",
+
+            qualification: "Strength & Conditioning",
+
+            experience: "5 Years",
+
+            specialization: "Strength & Endurance",
+
+            availability: "Available",
+
+            skills: [
+                "Strength Training",
+                "Endurance",
+                "Conditioning",
+                "Weight Training"
+            ],
+
+            services: [
+                "Strength Training",
+                "Endurance Training",
+                "Workout Planning",
                 "Fitness Assessment"
             ]
 
@@ -285,4 +403,4 @@ function initTrainerProfile() {
         trainer.name
     );
 
-}
+} 

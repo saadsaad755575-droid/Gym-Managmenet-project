@@ -1,4 +1,3 @@
-
 /* =========================
    LOGIN JS
 ========================= */
@@ -42,17 +41,19 @@ if (!loginMessage) {
     loginMessage =
         document.createElement("p");
 
-    loginMessage.id ="loginMessage";
+    loginMessage.id = "loginMessage";
 
-    loginMessage.style.marginTop ="10px";
+    loginMessage.style.marginTop = "10px";
 
     loginMessage.style.fontSize = "14px";
 
     loginMessage.style.fontWeight = "500";
 
-    loginMessage.style.textAlign ="center";
+    loginMessage.style.textAlign = "center";
 
-    password.parentElement.appendChild( loginMessage );
+    password.parentElement.appendChild(
+        loginMessage
+    );
 }
 
 
@@ -61,7 +62,8 @@ if (!loginMessage) {
 ========================= */
 
 function showLoginMessage(
-    message,type = "error"
+    message,
+    type = "error"
 ) {
 
     loginMessage.textContent = message;
@@ -69,11 +71,13 @@ function showLoginMessage(
 
     if (type === "success") {
 
-        loginMessage.style.color = "#22c55e";
+        loginMessage.style.color =
+            "#22c55e";
 
     } else {
 
-        loginMessage.style.color = "#f5b900";
+        loginMessage.style.color =
+            "#f5b900";
 
     }
 
@@ -85,6 +89,7 @@ function showLoginMessage(
 ========================= */
 
 function clearLoginMessage() {
+
     loginMessage.textContent = "";
 
 }
@@ -212,10 +217,12 @@ loginButton.addEventListener(
         clearLoginMessage();
 
 
-        const userId = loginId.value.trim();
+        const userId =
+            loginId.value.trim();
 
 
-        const userPassword =password.value.trim();
+        const userPassword =
+            password.value.trim();
 
 
         /* =========================
@@ -269,7 +276,8 @@ loginButton.addEventListener(
 
         if (selectedRole === "trainer") {
 
-            const trainerEmail =userId.toLowerCase();
+            const trainerEmail =
+                userId.toLowerCase();
 
 
             /* =========================
@@ -277,18 +285,23 @@ loginButton.addEventListener(
             ========================= */
 
             if (
-                trainerEmail === "ahmed@gmail.com"
+                trainerEmail ===
+                "ahmed@gmail.com"
             ) {
 
                 localStorage.setItem(
-                    "loggedInTrainer", "Ahmed Khan"
-                );
-                localStorage.setItem(
-                    "currentTrainer","Ahmed Khan"
+                    "loggedInTrainer",
+                    "Ahmed Khan"
                 );
 
                 localStorage.setItem(
-                    "loggedInTrainerEmail", "ahmed@gmail.com"
+                    "currentTrainer",
+                    "Ahmed Khan"
+                );
+
+                localStorage.setItem(
+                    "loggedInTrainerEmail",
+                    "ahmed@gmail.com"
                 );
 
 
@@ -305,18 +318,23 @@ loginButton.addEventListener(
             ========================= */
 
             if (
-                trainerEmail === "usman@gmail.com"
+                trainerEmail ===
+                "usman@gmail.com"
             ) {
 
                 localStorage.setItem(
-                    "loggedInTrainer","Usman Ahmed"
-                );
-                localStorage.getItem(
-                    "currentTrainer", "Usman Ahmed"
+                    "loggedInTrainer",
+                    "Usman Ahmed"
                 );
 
                 localStorage.setItem(
-                    "loggedInTrainerEmail","usman@gmail.com"
+                    "currentTrainer",
+                    "Usman Ahmed"
+                );
+
+                localStorage.setItem(
+                    "loggedInTrainerEmail",
+                    "usman@gmail.com"
                 );
 
 
@@ -327,6 +345,109 @@ loginButton.addEventListener(
 
             }
 
+
+            /* =========================
+               SAAD MALIK
+            ========================= */
+
+            if (
+                trainerEmail ===
+                "saad@gmail.com"
+            ) {
+
+                localStorage.setItem(
+                    "loggedInTrainer",
+                    "Saad Malik"
+                );
+
+                localStorage.setItem(
+                    "currentTrainer",
+                    "Saad Malik"
+                );
+
+                localStorage.setItem(
+                    "loggedInTrainerEmail",
+                    "saad@gmail.com"
+                );
+
+
+                window.location.href =
+                    "../Trainer-dashboard/trainer.html";
+
+                return;
+
+            }
+
+
+            /* =========================
+               BILAL SHAH
+            ========================= */
+
+            if (
+                trainerEmail ===
+                "bilal@gmail.com"
+            ) {
+
+                localStorage.setItem(
+                    "loggedInTrainer",
+                    "Bilal Shah"
+                );
+
+                localStorage.setItem(
+                    "currentTrainer",
+                    "Bilal Shah"
+                );
+
+                localStorage.setItem(
+                    "loggedInTrainerEmail",
+                    "bilal@gmail.com"
+                );
+
+
+                window.location.href =
+                    "../Trainer-dashboard/trainer.html";
+
+                return;
+
+            }
+
+
+            /* =========================
+               HAMZA ALI
+            ========================= */
+
+            if (
+                trainerEmail ===
+                "hamza@gmail.com"
+            ) {
+
+                localStorage.setItem(
+                    "loggedInTrainer",
+                    "Hamza Ali"
+                );
+
+                localStorage.setItem(
+                    "currentTrainer",
+                    "Hamza Ali"
+                );
+
+                localStorage.setItem(
+                    "loggedInTrainerEmail",
+                    "hamza@gmail.com"
+                );
+
+
+                window.location.href =
+                    "../Trainer-dashboard/trainer.html";
+
+                return;
+
+            }
+
+
+            /* =========================
+               INVALID TRAINER EMAIL
+            ========================= */
 
             showLoginMessage(
                 "Trainer email not found. Please enter a valid trainer email."
@@ -346,12 +467,16 @@ loginButton.addEventListener(
         if (selectedRole === "admin") {
 
             const passwordError =
-                validatePassword(userPassword);
+                validatePassword(
+                    userPassword
+                );
 
 
             if (passwordError !== "") {
 
-                showLoginMessage(passwordError);
+                showLoginMessage(
+                    passwordError
+                );
 
                 password.focus();
 
@@ -380,12 +505,16 @@ loginButton.addEventListener(
             ========================= */
 
             const storedMembers =
-                localStorage.getItem("gymMembers");
+                localStorage.getItem(
+                    "gymMembers"
+                );
 
 
             if (!storedMembers) {
 
-                showLoginMessage("No member records found.");
+                showLoginMessage(
+                    "No member records found."
+                );
 
                 return;
 
@@ -398,11 +527,17 @@ loginButton.addEventListener(
             try {
 
                 members =
-                    JSON.parse(storedMembers);
+                    JSON.parse(
+                        storedMembers
+                    );
 
-            } catch (error) {
+            }
 
-                showLoginMessage("Member data is invalid.");
+            catch (error) {
+
+                showLoginMessage(
+                    "Member data is invalid."
+                );
 
                 return;
 
@@ -411,7 +546,9 @@ loginButton.addEventListener(
 
             if (!Array.isArray(members)) {
 
-                showLoginMessage("Member data format is invalid.");
+                showLoginMessage(
+                    "Member data format is invalid."
+                );
 
                 return;
 
@@ -422,20 +559,30 @@ loginButton.addEventListener(
                FIND MEMBER BY ID
             ========================= */
 
+            const enteredMemberId =
+                userId
+                    .trim()
+                    .toLowerCase();
+
+
             const currentMember =
                 members.find(
                     function (member) {
 
                         const memberId =
                             String(
-                                member.id || member.memberId ||
-                                member.customerId || ""
+                                member.id ||
+                                member.memberId ||
+                                member.customerId ||
+                                ""
                             )
-                            .trim().toLowerCase();
+                                .trim()
+                                .toLowerCase();
 
 
                         return (
-                            memberId === userId.toLowerCase()
+                            memberId ===
+                            enteredMemberId
                         );
 
                     }
@@ -460,129 +607,24 @@ loginButton.addEventListener(
 
 
             /* ==================================================
-               FIRST TIME MEMBER LOGIN
+               PASSWORD VALIDATION
+
+               IMPORTANT:
+               Password is NOT saved.
+               Member can enter a new valid
+               password every time.
             ================================================== */
 
-            const savedPassword =
-                String(
-                    currentMember.password || currentMember.memberPassword ||
-                    currentMember.loginPassword || ""
+            const passwordError =
+                validatePassword(
+                    userPassword
                 );
 
 
-            /*
-               PASSWORD NOT CREATED YET
-            */
-
-            if (savedPassword === "") {
-
-                const passwordError =
-                    validatePassword( userPassword);
-
-
-                if (passwordError !== "") {
-
-                    showLoginMessage(passwordError);
-
-                    password.focus();
-
-                    return;
-
-                }
-
-
-                /*
-                   SAVE MEMBER CREATED PASSWORD
-                */
-
-                currentMember.password = userPassword;
-
-
-                /*
-                   UPDATE MEMBERS ARRAY
-                */
-
-                const memberIndex =
-                    members.findIndex(
-                        function (member) {
-
-                            return (
-                                member ===currentMember
-                            );
-
-                        }
-                    );
-
-
-                if (memberIndex !== -1) {
-
-                    members[memberIndex] =currentMember;
-
-                }
-
-
-                localStorage.setItem(
-                    "gymMembers",
-                    JSON.stringify(members)
-                );
-
-
-                /*
-                   SAVE LOGIN MEMBER
-                */
-
-                const actualMemberId =
-                    currentMember.id ||currentMember.memberId ||
-                    currentMember.customerId;
-
-
-                const actualMemberName =
-                    currentMember.name ||currentMember.memberName ||
-                    currentMember.fullName ||"";
-
-
-                localStorage.setItem(
-                    "loggedInMemberId",String(actualMemberId)
-                );
-
-
-                localStorage.setItem(
-                    "loggedInMemberName",actualMemberName
-                );
-
+            if (passwordError !== "") {
 
                 showLoginMessage(
-                    "Password created successfully. Opening Member Dashboard...",
-                    "success"
-                );
-
-
-                setTimeout(
-                    function () {
-
-                        window.location.href =
-                            "../Member-dashborad/member.html";
-
-                    },
-                    700
-                );
-
-
-                return;
-
-            }
-
-
-            /* ==================================================
-               EXISTING MEMBER LOGIN
-            ================================================== */
-
-            if (
-                savedPassword !== userPassword
-            ) {
-
-                showLoginMessage(
-                    "Incorrect Member ID or password."
+                    passwordError
                 );
 
                 password.focus();
@@ -593,28 +635,35 @@ loginButton.addEventListener(
 
 
             /* =========================
-               SAVE LOGGED-IN MEMBER
+               SAVE LOGGED-IN MEMBER ID
             ========================= */
 
             const actualMemberId =
-                currentMember.id ||currentMember.memberId ||
+                currentMember.id ||
+                currentMember.memberId ||
                 currentMember.customerId;
 
 
             const actualMemberName =
-                currentMember.name ||currentMember.memberName ||
-                currentMember.fullName ||"";
+                currentMember.name ||
+                currentMember.memberName ||
+                currentMember.fullName ||
+                "";
 
 
             localStorage.setItem(
                 "loggedInMemberId",
-                String(actualMemberId)
+                String(
+                    actualMemberId
+                ).trim()
             );
 
 
             localStorage.setItem(
                 "loggedInMemberName",
-                actualMemberName
+                String(
+                    actualMemberName
+                ).trim()
             );
 
 
@@ -627,7 +676,6 @@ loginButton.addEventListener(
 
             return;
 
-        }
-
-    }
+ }
+}
 );

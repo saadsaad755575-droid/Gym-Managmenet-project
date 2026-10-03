@@ -1,469 +1,1867 @@
-
 /* ========================================
-MEMBER DASHBOARD JS
-PART 2 — VIEW PROFILE
+   MEMBER DASHBOARD JS
+   COMPLETE UPDATED VERSION
 ======================================== */
 
+
 /* ========================================
-DOM CONTENT LOADED
+   DOM CONTENT LOADED
 ======================================== */
 
 document.addEventListener(
-"DOMContentLoaded",
-function () {
-
-    /* ========================================
-       LOAD MEMBER SIDEBAR
-    ======================================== */
-
-    loadComponenet(
-        "member-sidebar",
-        "../components/member-sidebar/member-sidebar.html"
-    );
+    "DOMContentLoaded",
+    function () {
 
 
-    /* ========================================
-       LOAD MEMBER NAVBAR
-    ======================================== */
+        /* ========================================
+           LOAD MEMBER SIDEBAR
+        ======================================== */
 
-    loadComponenet(
-        "member-navbar",
-        "../components/member-navbar/member-navbar.html"
-    );
-
-
-    /* ========================================
-       LOAD MEMBER TABLE
-    ======================================== */
-
-    loadComponenet(
-        "member-table",
-        "../components/member-table/member-table.html"
-    );
+        loadComponenet(
+            "member-sidebar",
+            "../components/member-sidebar/member-sidebar.html"
+        );
 
 
-    /* ========================================
-       LOAD MEMBER MODAL
-    ======================================== */
+        /* ========================================
+           LOAD MEMBER NAVBAR
+        ======================================== */
 
-    loadComponenet(
-        "member-modal",
-        "../components/member-modal/member-modal.html"
-    );
-
-
-    /* ========================================
-       LOAD LOGGED-IN MEMBER
-    ======================================== */
-
-    loadLoggedInMember();
+        loadComponenet(
+            "member-navbar",
+            "../components/member-navbar/member-navbar.html"
+        );
 
 
-    /* ========================================
-       VIEW PROFILE BUTTON
-    ======================================== */
+        /* ========================================
+           LOAD MEMBER TABLE
+        ======================================== */
 
-    setupViewProfileButton();
+        loadComponenet(
+            "member-table",
+            "../components/member-table/member-table.html"
+        );
 
-}
+
+        /* ========================================
+           LOAD MEMBER MODAL
+        ======================================== */
+
+        loadComponenet(
+            "member-modal",
+            "../components/member-modal/member-modal.html"
+        );
+
+
+        /* ========================================
+           LOAD LOGGED-IN MEMBER
+        ======================================== */
+
+        loadLoggedInMember();
+
+
+        /* ========================================
+           VIEW PROFILE BUTTON
+        ======================================== */
+
+        setupViewProfileButton();
+
+
+        /* ========================================
+           SUMMARY + QUICK ACCESS CARDS
+        ======================================== */
+
+        setupDashboardCardActions();
+
+
+        /* ========================================
+           MEMBERSHIP CARD
+        ======================================== */
+
+        updateMembershipCard();
+
+
+        /* ========================================
+           TODAY'S WORKOUT
+        ======================================== */
+
+        updateTodayWorkout();
+
+
+        /* ========================================
+           TODAY'S DIET
+        ======================================== */
+
+        updateTodayDiet();
+
+
+        /* ========================================
+           ATTENDANCE
+        ======================================== */
+
+        updateAttendanceCard();
+
+    }
 
 );
 
+
 /* ========================================
-LOAD COMPONENT FUNCTION
+   LOAD COMPONENT FUNCTION
 ======================================== */
 
 function loadComponenet(
-containerId,
-filePath
+    containerId,
+    filePath
 ) {
 
-const container =
-    document.getElementById(containerId);
+    const container =
+        document.getElementById(
+            containerId
+        );
 
 
-/* ========================================
-   CHECK CONTAINER
-======================================== */
+    /* ========================================
+       CHECK CONTAINER
+    ======================================== */
 
-if (!container) {
+    if (!container) {
 
-    console.error(
-        "Container not found:",
-        containerId
-    );
+        console.error(
+            "Container not found:",
+            containerId
+        );
 
-    return;
-}
+        return;
+
+    }
 
 
-/* ========================================
-   FETCH COMPONENT
-======================================== */
+    /* ========================================
+       FETCH COMPONENT
+    ======================================== */
 
-fetch(filePath)
+    fetch(filePath)
 
-    .then(response => {
+        .then(response => {
 
-        if (!response.ok) {
+            if (!response.ok) {
 
-            throw new Error(
-                `Failed to load: ${filePath}`
+                throw new Error(
+                    `Failed to load: ${filePath}`
+                );
+
+            }
+
+            return response.text();
+
+        })
+
+
+        /* ========================================
+           INSERT COMPONENT
+        ======================================== */
+
+        .then(data => {
+
+            container.innerHTML =
+                data;
+
+
+            /* ========================================
+               INITIALIZE SIDEBAR
+            ======================================== */
+
+            if (
+                containerId === "member-sidebar" &&
+                typeof initializeMemberSidebar === "function"
+            ) {
+
+                initializeMemberSidebar();
+
+            }
+
+
+            /* ========================================
+               INITIALIZE NAVBAR
+            ======================================== */
+
+            if (
+                containerId === "member-navbar" &&
+                typeof initMemberNavbar === "function"
+            ) {
+
+                initMemberNavbar();
+
+            }
+
+
+            /* ========================================
+               INITIALIZE CARD
+            ======================================== */
+
+            if (
+                containerId === "member-cards" &&
+                typeof initMemberCard === "function"
+            ) {
+
+                initMemberCard();
+
+            }
+
+
+            /* ========================================
+               INITIALIZE TABLE
+            ======================================== */
+
+            if (
+                containerId === "member-table" &&
+                typeof initMemberTable === "function"
+            ) {
+
+                initMemberTable();
+
+            }
+
+
+            /* ========================================
+               INITIALIZE MODAL
+            ======================================== */
+
+            if (
+                containerId === "member-modal" &&
+                typeof initMemberModal === "function"
+            ) {
+
+                initMemberModal();
+
+            }
+
+        })
+
+
+        /* ========================================
+           ERROR HANDLING
+        ======================================== */
+
+        .catch(error => {
+
+            console.error(
+                error
             );
 
-        }
+            container.innerHTML = `
+                <p style="
+                    color:#f5b900;
+                    padding:20px;
+                ">
+                    Component could not be loaded.
+                </p>
+            `;
 
-        return response.text();
-
-    })
-
-
-    /* ========================================
-       INSERT COMPONENT
-    ======================================== */
-
-    .then(data => {
-
-        container.innerHTML = data;
-
-
-        /* ========================================
-           INITIALIZE SIDEBAR
-        ======================================== */
-
-        if (
-            containerId === "member-sidebar" &&
-            typeof initializeMemberSidebar === "function"
-        ) {
-
-            initializeMemberSidebar();
-
-        }
-
-
-        /* ========================================
-           INITIALIZE NAVBAR
-        ======================================== */
-
-        if (
-            containerId === "member-navbar" &&
-            typeof initMemberNavbar === "function"
-        ) {
-
-            initMemberNavbar();
-
-        }
-
-
-        /* ========================================
-           INITIALIZE CARD
-        ======================================== */
-
-        if (
-            containerId === "member-cards" &&
-            typeof initMemberCard === "function"
-        ) {
-
-            initMemberCard();
-
-        }
-
-
-        /* ========================================
-           INITIALIZE TABLE
-        ======================================== */
-
-        if (
-            containerId === "member-table" &&
-            typeof initMemberTable === "function"
-        ) {
-
-            initMemberTable();
-
-        }
-
-
-        /* ========================================
-           INITIALIZE MODAL
-        ======================================== */
-
-        if (
-            containerId === "member-modal" &&
-            typeof initMemberModal === "function"
-        ) {
-
-            initMemberModal();
-
-        }
-
-    })
-
-
-    /* ========================================
-       ERROR HANDLING
-    ======================================== */
-
-    .catch(error => {
-
-        console.error(error);
-
-        container.innerHTML = `
-            <p style="
-                color:#f5b900;
-                padding:20px;
-            ">
-                Component could not be loaded.
-            </p>
-        `;
-
-    });
+        });
 
 }
 
+
 /* ========================================
-LOAD LOGGED-IN MEMBER
+   GET LOGGED-IN MEMBER
+======================================== */
+
+function getLoggedInMember() {
+
+    const loggedInMemberId =
+        localStorage.getItem(
+            "loggedInMemberId"
+        );
+
+
+    if (!loggedInMemberId) {
+
+        console.warn(
+            "No logged-in member ID found."
+        );
+
+        return null;
+
+    }
+
+
+    const savedMembers =
+        localStorage.getItem(
+            "gymMembers"
+        );
+
+
+    if (!savedMembers) {
+
+        console.warn(
+            "No member data found."
+        );
+
+        return null;
+
+    }
+
+
+    let members;
+
+
+    try {
+
+        members =
+            JSON.parse(
+                savedMembers
+            );
+
+    } catch (error) {
+
+        console.error(
+            "Invalid gymMembers data.",
+            error
+        );
+
+        return null;
+
+    }
+
+
+    if (!Array.isArray(members)) {
+
+        return null;
+
+    }
+
+
+    const currentMember =
+        members.find(
+            member => {
+
+                const memberId =
+                    member.id ||
+                    member.memberId ||
+                    member.customerId;
+
+
+                return String(
+                    memberId
+                )
+                    .trim()
+                    .toLowerCase()
+                    ===
+                    String(
+                        loggedInMemberId
+                    )
+                        .trim()
+                        .toLowerCase();
+
+            }
+        );
+
+
+    return currentMember || null;
+
+}
+
+
+/* ========================================
+   LOAD LOGGED-IN MEMBER
 ======================================== */
 
 function loadLoggedInMember() {
 
-/* ========================================
-   GET LOGGED-IN MEMBER ID
-======================================== */
-
-const loggedInMemberId =
-    localStorage.getItem("loggedInMemberId");
+    const currentMember =
+        getLoggedInMember();
 
 
-if (!loggedInMemberId) {
+    if (!currentMember) {
 
-    console.warn(
-        "No logged-in member ID found."
-    );
+        console.warn(
+            "Logged-in member record not found."
+        );
 
-    return;
+        return;
+
+    }
+
+
+    /* ========================================
+       MEMBER NAME
+    ======================================== */
+
+    const memberName =
+        currentMember.name ||
+        currentMember.memberName ||
+        currentMember.fullName ||
+        "Member";
+
+
+    /* ========================================
+       MEMBER TYPE
+    ======================================== */
+
+    const memberType =
+        currentMember.type ||
+        currentMember.memberType ||
+        currentMember.customerType ||
+        "Customer";
+
+
+    /* ========================================
+       MEMBER ID
+    ======================================== */
+
+    const memberId =
+        currentMember.id ||
+        currentMember.memberId ||
+        currentMember.customerId ||
+        localStorage.getItem(
+            "loggedInMemberId"
+        );
+
+
+    /* ========================================
+       ASSIGNED TRAINER
+    ======================================== */
+
+    const assignedTrainerName =
+        currentMember.assignedTrainer ||
+        currentMember.trainer ||
+        currentMember.trainerName ||
+        currentMember.assignedTrainerName ||
+        "-";
+
+
+    /* ========================================
+       TRAINER TYPE
+    ======================================== */
+
+    const assignedTrainerType =
+        currentMember.trainerType ||
+        currentMember.assignedTrainerType ||
+        currentMember.trainerSpecialization ||
+        "Fitness Trainer";
+
+
+    /* ========================================
+       SHOW MEMBER NAME
+    ======================================== */
+
+    const welcomeName =
+        document.getElementById(
+            "memberWelcomeName"
+        );
+
+
+    if (welcomeName) {
+
+        welcomeName.textContent =
+            memberName;
+
+    }
+
+
+    const nameElement =
+        document.getElementById(
+            "memberName"
+        );
+
+
+    if (nameElement) {
+
+        nameElement.textContent =
+            memberName;
+
+    }
+
+
+    /* ========================================
+       SHOW MEMBER TYPE
+    ======================================== */
+
+    const typeElement =
+        document.getElementById(
+            "memberType"
+        );
+
+
+    if (typeElement) {
+
+        typeElement.textContent =
+            memberType;
+
+    }
+
+
+    /* ========================================
+       SHOW MEMBER ID
+    ======================================== */
+
+    const idElement =
+        document.getElementById(
+            "memberId"
+        );
+
+
+    if (idElement) {
+
+        idElement.textContent =
+            `Member ID: ${memberId}`;
+
+    }
+
+
+    /* ========================================
+       SHOW TRAINER
+    ======================================== */
+
+    const trainerElement =
+        document.getElementById(
+            "assignedTrainerName"
+        );
+
+
+    if (trainerElement) {
+
+        trainerElement.textContent =
+            assignedTrainerName;
+
+    }
+
+
+    /* ========================================
+       SHOW TRAINER TYPE
+    ======================================== */
+
+    const trainerTypeElement =
+        document.getElementById(
+            "assignedTrainerType"
+        );
+
+
+    if (trainerTypeElement) {
+
+        trainerTypeElement.textContent =
+            assignedTrainerType;
+
+    }
+
 }
 
 
 /* ========================================
-   GET MEMBERS
+   MEMBERSHIP CARD
 ======================================== */
 
-const savedMembers =
-    localStorage.getItem("gymMembers");
+function updateMembershipCard() {
+
+    const currentMember =
+        getLoggedInMember();
 
 
-if (!savedMembers) {
+    if (!currentMember) {
 
-    console.warn(
-        "No member data found."
-    );
+        return;
 
-    return;
-}
+    }
 
 
-let members;
+    let plan =
+        currentMember.membership ||
+        currentMember.membershipPlan ||
+        currentMember.plan ||
+        "No Membership";
 
 
-try {
+    let status =
+        currentMember.status ||
+        currentMember.membershipStatus ||
+        "Non-Active";
 
-    members =
-        JSON.parse(savedMembers);
 
-} catch (error) {
+    let validTill =
+        currentMember.validTill ||
+        currentMember.expiryDate ||
+        currentMember.membershipExpiry ||
+        "";
 
-    console.error(
-        "Invalid gymMembers data.",
-        error
-    );
 
-    return;
+    /* ========================================
+       CHECK GYM MEMBERSHIPS
+    ======================================== */
+
+    const savedMemberships =
+        localStorage.getItem(
+            "gymMemberships"
+        );
+
+
+    if (savedMemberships) {
+
+        try {
+
+            const memberships =
+                JSON.parse(
+                    savedMemberships
+                );
+
+
+            if (Array.isArray(memberships)) {
+
+                const memberId =
+                    currentMember.id ||
+                    currentMember.memberId ||
+                    currentMember.customerId;
+
+
+                const memberName =
+                    currentMember.name ||
+                    currentMember.memberName ||
+                    currentMember.fullName;
+
+
+                const membership =
+                    memberships.find(
+                        item => {
+
+                            const itemMemberId =
+                                item.memberId ||
+                                item.memberID ||
+                                item.customerId;
+
+
+                            const itemMemberName =
+                                item.memberName ||
+                                item.name;
+
+
+                            const idMatch =
+                                itemMemberId &&
+                                memberId &&
+                                String(itemMemberId)
+                                    .trim()
+                                    .toLowerCase()
+                                    ===
+                                String(memberId)
+                                    .trim()
+                                    .toLowerCase();
+
+
+                            const nameMatch =
+                                itemMemberName &&
+                                memberName &&
+                                String(itemMemberName)
+                                    .trim()
+                                    .toLowerCase()
+                                    ===
+                                String(memberName)
+                                    .trim()
+                                    .toLowerCase();
+
+
+                            return (
+                                idMatch ||
+                                nameMatch
+                            );
+
+                        }
+                    );
+
+
+                if (membership) {
+
+                    plan =
+                        membership.plan ||
+                        membership.membership ||
+                        membership.planName ||
+                        plan;
+
+
+                    status =
+                        membership.status ||
+                        membership.membershipStatus ||
+                        status;
+
+
+                    validTill =
+                        membership.validTill ||
+                        membership.expiryDate ||
+                        membership.expiry ||
+                        validTill;
+
+                }
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Invalid gymMemberships data.",
+                error
+            );
+
+        }
+
+    }
+
+
+    /* ========================================
+       CHECK EXPIRY
+    ======================================== */
+
+    if (validTill) {
+
+        const expiryDate =
+            parseDateValue(
+                validTill
+            );
+
+
+        if (expiryDate) {
+
+            const today =
+                new Date();
+
+
+            today.setHours(
+                0,
+                0,
+                0,
+                0
+            );
+
+
+            expiryDate.setHours(
+                0,
+                0,
+                0,
+                0
+            );
+
+
+            if (
+                expiryDate < today
+            ) {
+
+                status =
+                    "Non-Active";
+
+            } else {
+
+                status =
+                    "Active";
+
+            }
+
+        }
+
+    }
+
+
+    /* ========================================
+       SHOW MEMBERSHIP PLAN
+    ======================================== */
+
+    const membershipPlan =
+        document.getElementById(
+            "membershipPlan"
+        );
+
+
+    if (membershipPlan) {
+
+        membershipPlan.textContent =
+            plan;
+
+    }
+
+
+    /* ========================================
+       SHOW MEMBERSHIP STATUS
+    ======================================== */
+
+    const membershipStatus =
+        document.getElementById(
+            "membershipStatus"
+        );
+
+
+    if (membershipStatus) {
+
+        membershipStatus.textContent =
+            normalizeMembershipStatus(
+                status
+            );
+
+
+        membershipStatus.classList.remove(
+            "active-badge"
+        );
+
+
+        if (
+            String(status)
+                .toLowerCase()
+                .includes("active")
+        ) {
+
+            membershipStatus.classList.add(
+                "active-badge"
+            );
+
+        }
+
+    }
+
+
+    /* ========================================
+       SHOW VALID TILL
+    ======================================== */
+
+    const membershipValidTill =
+        document.getElementById(
+            "membershipValidTill"
+        );
+
+
+    if (membershipValidTill) {
+
+        if (validTill) {
+
+            membershipValidTill.textContent =
+                `Valid Till: ${formatDate(validTill)}`;
+
+        } else {
+
+            membershipValidTill.textContent =
+                "Valid Till: -";
+
+        }
+
+    }
+
 }
 
 
 /* ========================================
-   FIND CURRENT MEMBER
+   MEMBERSHIP STATUS NORMALIZER
 ======================================== */
+
+function normalizeMembershipStatus(
+    status
+) {
+
+    const value =
+        String(
+            status || ""
+        )
+            .trim()
+            .toLowerCase();
+
+
+    if (
+        value === "paid" ||
+        value === "active"
+    ) {
+
+        return "Active";
+
+    }
+
+
+    if (
+        value === "expired" ||
+        value === "inactive" ||
+        value === "overdue" ||
+        value === "cancelled" ||
+        value === "canceled"
+    ) {
+
+        return "Non-Active";
+
+    }
+
+
+    if (
+        value.includes("active") &&
+        !value.includes("inactive")
+    ) {
+
+        return "Active";
+
+    }
+
+
+    return "Non-Active";
+
+}
+
+
+ /*========================================
+TODAY'S WORKOUT
+======================================== */
+
+function updateTodayWorkout() {
+
+const workoutElement =
+    document.getElementById(
+        "todayWorkout"
+    );
+
+
+if (!workoutElement) {
+
+    return;
+
+}
+
 
 const currentMember =
-    members.find(member => {
-
-        const memberId =
-            member.id ||
-            member.memberId ||
-            member.customerId;
-
-        return String(memberId).trim().toLowerCase()
-            ===
-            String(loggedInMemberId)
-                .trim()
-                .toLowerCase();
-
-    });
+    getLoggedInMember();
 
 
 if (!currentMember) {
 
-    console.warn(
-        "Logged-in member record not found."
-    );
+    workoutElement.textContent =
+        "No Workout";
 
     return;
+
 }
 
-
-/* ========================================
-   MEMBER NAME
-======================================== */
-
-const memberName =
-    currentMember.name ||
-    currentMember.memberName ||
-    currentMember.fullName ||
-    "Member";
-
-
-/* ========================================
-   MEMBER TYPE
-======================================== */
-
-const memberType =
-    currentMember.type ||
-    currentMember.memberType ||
-    currentMember.customerType ||
-    "Customer";
-
-
-/* ========================================
-   MEMBER ID
-======================================== */
 
 const memberId =
     currentMember.id ||
     currentMember.memberId ||
-    currentMember.customerId ||
-    loggedInMemberId;
+    currentMember.customerId;
 
 
-/* ========================================
-   ASSIGNED TRAINER
-
-======================================== */
-
-const assignedTrainerName =
-    currentMember.assignedTrainer ||
-    currentMember.trainerName ||
-    currentMember.assignedTrainerName ||
-    "-";
+const memberName =
+    currentMember.name ||
+    currentMember.memberName ||
+    currentMember.fullName;
 
 
-/* ========================================
-   TRAINER TYPE
-======================================== */
-
-const assignedTrainerType =
-    currentMember.trainerType ||
-    currentMember.assignedTrainerType ||
-    currentMember.trainerSpecialization ||
-    "Fitness Trainer";
-
-
-/* ========================================
-   SHOW MEMBER NAME
-======================================== */
-
-const welcomeName =
-    document.getElementById(
-        "memberWelcomeName"
+const savedPlans =
+    localStorage.getItem(
+        "trainerWorkoutPlans"
     );
 
-if (welcomeName) {
 
-    welcomeName.textContent =
-        memberName;
+if (!savedPlans) {
+
+    workoutElement.textContent =
+        "No Workout";
+
+    return;
 
 }
 
 
-const nameElement =
-    document.getElementById(
-        "memberName"
+let plans;
+
+
+try {
+
+    plans =
+        JSON.parse(
+            savedPlans
+        );
+
+} catch (error) {
+
+    console.error(
+        "Invalid trainerWorkoutPlans data.",
+        error
     );
 
-if (nameElement) {
+    workoutElement.textContent =
+        "No Workout";
 
-    nameElement.textContent =
-        memberName;
+    return;
+
+}
+
+
+if (!Array.isArray(plans)) {
+
+    workoutElement.textContent =
+        "No Workout";
+
+    return;
+
+}
+
+
+const assignedPlan =
+    plans.find(
+        plan => {
+
+            const planMemberId =
+                plan.memberId ||
+                plan.memberID ||
+                plan.customerId;
+
+
+            const planMemberName =
+                plan.memberName ||
+                plan.customerName ||
+                plan.member ||
+                plan.customer;
+
+
+            const idMatch =
+                planMemberId &&
+                memberId &&
+                String(planMemberId)
+                    .trim()
+                    .toLowerCase()
+                    ===
+                String(memberId)
+                    .trim()
+                    .toLowerCase();
+
+
+            const nameMatch =
+                planMemberName &&
+                memberName &&
+                String(planMemberName)
+                    .trim()
+                    .toLowerCase()
+                    ===
+                String(memberName)
+                    .trim()
+                    .toLowerCase();
+
+
+            return (
+                idMatch ||
+                nameMatch
+            );
+
+        }
+    );
+
+
+if (!assignedPlan) {
+
+    workoutElement.textContent =
+        "No Workout";
+
+    return;
 
 }
 
 
 /* ========================================
-   SHOW MEMBER TYPE
+   GET TODAY
 ======================================== */
 
-const typeElement =
-    document.getElementById(
-        "memberType"
+const today =
+    new Date();
+
+
+const dayName =
+    today.toLocaleDateString(
+        "en-US",
+        {
+            weekday: "long"
+        }
     );
 
-if (typeElement) {
 
-    typeElement.textContent =
-        memberType;
+let todayWorkout =
+    getTodayRoutine(
+        assignedPlan,
+        dayName
+    );
+
+
+if (!todayWorkout) {
+
+    todayWorkout =
+        assignedPlan.planName ||
+        assignedPlan.workoutName ||
+        assignedPlan.title ||
+        assignedPlan.name ||
+        "Workout Plan";
 
 }
+
+
+workoutElement.textContent =
+    todayWorkout;
+
+}
+
+/* ========================================
+GET TODAY ROUTINE
+======================================== */
+
+function getTodayRoutine(
+plan,
+dayName
+) {
+
+const routine =
+    plan.dailyRoutine ||
+    plan.routine ||
+    plan.weeklyRoutine ||
+    plan.schedule;
+
+
+if (!routine) {
+
+    return "";
+
+}
+
+
+if (
+    typeof routine === "object" &&
+    !Array.isArray(routine)
+) {
+
+    return (
+        routine[dayName] ||
+        routine[dayName.toLowerCase()] ||
+        ""
+    );
+
+}
+
+
+if (typeof routine === "string") {
+
+    const lines =
+        routine.split(
+            /\n|,/
+        );
+
+
+    const todayLine =
+        lines.find(
+            line =>
+                line
+                    .toLowerCase()
+                    .includes(
+                        dayName.toLowerCase()
+                    )
+        );
+
+
+    if (todayLine) {
+
+        return todayLine
+            .replace(
+                new RegExp(
+                    dayName,
+                    "i"
+                ),
+                ""
+            )
+            .replace(
+                /^[:\-–—]\s*/,
+                ""
+            )
+            .trim();
+
+    }
+
+}
+
+
+return "";
+
+}
+
+/* ========================================
+TODAY'S DIET
+======================================== */
+
+function updateTodayDiet() {
+
+const dietElement =
+    document.getElementById(
+        "todayDiet"
+    );
+
+
+if (!dietElement) {
+
+    return;
+
+}
+
+
+const currentMember =
+    getLoggedInMember();
+
+
+if (!currentMember) {
+
+    dietElement.textContent =
+        "No Diet Plan";
+
+    return;
+
+}
+
+
+const memberId =
+    currentMember.id ||
+    currentMember.memberId ||
+    currentMember.customerId;
+
+
+const memberName =
+    currentMember.name ||
+    currentMember.memberName ||
+    currentMember.fullName;
+
+
+const savedPlans =
+    localStorage.getItem(
+        "trainerDietPlans"
+    );
+
+
+if (!savedPlans) {
+
+    dietElement.textContent =
+        "No Diet Plan";
+
+    return;
+
+}
+
+
+let plans;
+
+
+try {
+
+    plans =
+        JSON.parse(
+            savedPlans
+        );
+
+} catch (error) {
+
+    console.error(
+        "Invalid trainerDietPlans data.",
+        error
+    );
+
+    dietElement.textContent =
+        "No Diet Plan";
+
+    return;
+
+}
+
+
+if (!Array.isArray(plans)) {
+
+    dietElement.textContent =
+        "No Diet Plan";
+
+    return;
+
+}
+
+
+const assignedPlan =
+    plans.find(
+        plan => {
+
+            const planMemberId =
+                plan.memberId ||
+                plan.memberID ||
+                plan.customerId;
+
+
+            const planMemberName =
+                plan.memberName ||
+                plan.customerName ||
+                plan.member ||
+                plan.customer;
+
+
+            const idMatch =
+                planMemberId &&
+                memberId &&
+                String(planMemberId)
+                    .trim()
+                    .toLowerCase()
+                    ===
+                String(memberId)
+                    .trim()
+                    .toLowerCase();
+
+
+            const nameMatch =
+                planMemberName &&
+                memberName &&
+                String(planMemberName)
+                    .trim()
+                    .toLowerCase()
+                    ===
+                String(memberName)
+                    .trim()
+                    .toLowerCase();
+
+
+            return (
+                idMatch ||
+                nameMatch
+            );
+
+        }
+    );
+
+
+if (!assignedPlan) {
+
+    dietElement.textContent =
+        "No Diet Plan";
+
+    return;
+
+}
+
+
+const dietName =
+    assignedPlan.planName ||
+    assignedPlan.dietName ||
+    assignedPlan.title ||
+    assignedPlan.name ||
+    "Diet Plan";
+
+
+dietElement.textContent =
+    dietName;
+
+}
+
+/* ========================================
+ATTENDANCE CARD
+======================================== */
+
+function updateAttendanceCard() {
+
+const attendanceElement =
+    document.getElementById(
+        "attendanceCount"
+    );
+
+
+if (!attendanceElement) {
+
+    return;
+
+}
+
+
+const currentMember =
+    getLoggedInMember();
+
+
+if (!currentMember) {
+
+    attendanceElement.textContent =
+        "0 / 0";
+
+    return;
+
+}
+
+
+const memberId =
+    currentMember.id ||
+    currentMember.memberId ||
+    currentMember.customerId;
+
+
+const memberName =
+    currentMember.name ||
+    currentMember.memberName ||
+    currentMember.fullName;
+
+
+const savedAttendance =
+    localStorage.getItem(
+        "gymAttendance"
+    );
+
+
+if (!savedAttendance) {
+
+    attendanceElement.textContent =
+        "0 / 0";
+
+    return;
+
+}
+
+
+let attendance;
+
+
+try {
+
+    attendance =
+        JSON.parse(
+            savedAttendance
+        );
+
+} catch (error) {
+
+    console.error(
+        "Invalid gymAttendance data.",
+        error
+    );
+
+    attendanceElement.textContent =
+        "0 / 0";
+
+    return;
+
+}
+
+
+if (!Array.isArray(attendance)) {
+
+    attendanceElement.textContent =
+        "0 / 0";
+
+    return;
+
+}
+
+
+const now =
+    new Date();
+
+
+const currentMonth =
+    now.getMonth();
+
+
+const currentYear =
+    now.getFullYear();
+
+
+const memberAttendance =
+    attendance.filter(
+        record => {
+
+            const recordMemberId =
+                record.memberId ||
+                record.memberID ||
+                record.customerId;
+
+
+            const recordMemberName =
+                record.memberName ||
+                record.customerName ||
+                record.member ||
+                record.customer;
+
+
+            const recordDate =
+                record.date ||
+                record.attendanceDate ||
+                record.createdAt ||
+                record.checkInDate;
+
+
+            const parsedDate =
+                parseDateValue(
+                    recordDate
+                );
+
+
+            if (!parsedDate) {
+
+                return false;
+
+            }
+
+
+            const sameMember =
+                (
+                    recordMemberId &&
+                    memberId &&
+                    String(recordMemberId)
+                        .trim()
+                        .toLowerCase()
+                        ===
+                    String(memberId)
+                        .trim()
+                        .toLowerCase()
+                )
+                ||
+                (
+                    recordMemberName &&
+                    memberName &&
+                    String(recordMemberName)
+                        .trim()
+                        .toLowerCase()
+                        ===
+                    String(memberName)
+                        .trim()
+                        .toLowerCase()
+                );
+
+
+            const sameMonth =
+                parsedDate.getMonth()
+                ===
+                currentMonth
+                &&
+                parsedDate.getFullYear()
+                ===
+                currentYear;
+
+
+            return (
+                sameMember &&
+                sameMonth
+            );
+
+        }
+    );
+
+
+const totalDays =
+    memberAttendance.length;
+
+
+const presentDays =
+    memberAttendance.filter(
+        record => {
+
+            const status =
+                String(
+                    record.status ||
+                    record.attendanceStatus ||
+                    record.state ||
+                    "Present"
+                )
+                    .trim()
+                    .toLowerCase();
+
+
+            return (
+                status === "present" ||
+                status === "p" ||
+                status === "checked-in" ||
+                status === "check-in" ||
+                status === "active"
+            );
+
+        }
+    ).length;
+
+
+attendanceElement.textContent =
+    `${presentDays} / ${totalDays}`;
+
+}
+
+/* ========================================
+SUMMARY CARDS + QUICK ACCESS
+======================================== */
+
+function setupDashboardCardActions() {
+
+/* ========================================
+   SUMMARY CARDS
+======================================== */
+
+const summaryCards =
+    document.querySelectorAll(
+        ".member-summary-card"
+    );
+
+
+summaryCards.forEach(
+    function (card) {
+
+        const titleElement =
+            card.querySelector(
+                ".summary-content > span"
+            );
+
+
+        if (!titleElement) {
+
+            return;
+
+        }
+
+
+        const title =
+            titleElement.textContent
+                .trim()
+                .toLowerCase();
+
+
+        card.style.cursor =
+            "pointer";
+
+
+        /* ========================================
+           MEMBERSHIP PLAN
+        ======================================== */
+
+        if (
+            title === "membership plan"
+        ) {
+
+            card.addEventListener(
+                "click",
+                function () {
+
+                    window.location.href =
+                        "pages/my fee/my-fee.html";
+
+                }
+            );
+
+        }
+
+
+        /* ========================================
+           TODAY'S WORKOUT
+        ======================================== */
+
+        else if (
+            title === "today's workout"
+        ) {
+
+            card.addEventListener(
+                "click",
+                function () {
+
+                    window.location.href =
+                        "pages/my-Progress/my-progress.html";
+
+                }
+            );
+
+        }
+
+
+        /* ========================================
+           TODAY'S DIET
+        ======================================== */
+
+        else if (
+            title === "today's diet"
+        ) {
+
+            card.addEventListener(
+                "click",
+                function () {
+
+                    window.location.href =
+                        "pages/my-dite-plan/my-dite-plan.html";
+
+                }
+            );
+
+        }
+
+
+        /* ========================================
+           ATTENDANCE
+        ======================================== */
+
+        else if (
+            title === "attendance"
+        ) {
+
+            card.addEventListener(
+                "click",
+                function () {
+
+                    window.location.href =
+                        "pages/my-attendance/my-attendance.html";
+
+                }
+            );
+
+        }
+
+    }
+);
 
 
 /* ========================================
-   SHOW MEMBER ID
+   QUICK ACCESS CARDS
 ======================================== */
 
-const idElement =
-    document.getElementById(
-        "memberId"
+const quickCards =
+    document.querySelectorAll(
+        ".quick-access-card"
     );
 
-if (idElement) {
 
-    idElement.textContent =
-        `Member ID: ${memberId}`;
+quickCards.forEach(
+    function (card) {
 
-}
-
-
-/* ========================================
-   SHOW TRAINER
-======================================== */
-
-const trainerElement =
-    document.getElementById(
-        "assignedTrainerName"
-    );
-
-if (trainerElement) {
-
-    trainerElement.textContent =
-        assignedTrainerName;
-
-}
+        const titleElement =
+            card.querySelector(
+                "h3"
+            );
 
 
-/* ========================================
-   SHOW TRAINER TYPE
-======================================== */
+        if (!titleElement) {
 
-const trainerTypeElement =
-    document.getElementById(
-        "assignedTrainerType"
-    );
+            return;
 
-if (trainerTypeElement) {
+        }
 
-    trainerTypeElement.textContent =
-        assignedTrainerType;
 
-}
+        const title =
+            titleElement.textContent
+                .trim()
+                .toLowerCase();
+
+
+        card.style.cursor =
+            "pointer";
+
+
+        /* ========================================
+           MY TRAINER
+        ======================================== */
+
+        if (
+            title === "my trainer"
+        ) {
+
+            card.addEventListener(
+                "click",
+                function () {
+
+                    window.location.href =
+                        "pages/my-profile/my-profile.html";
+
+                }
+            );
+
+        }
+
+
+        /* ========================================
+           PROGRESS TRACKING
+        ======================================== */
+
+        else if (
+            title === "progress tracking"
+        ) {
+
+            card.addEventListener(
+                "click",
+                function () {
+
+                    window.location.href =
+                        "pages/my-Progress/my-progress.html";
+
+                }
+            );
+
+        }
+
+
+        /* ========================================
+           FIND MY TRAINER
+        ======================================== */
+
+        else if (
+            title === "find my trainer"
+        ) {
+
+            card.addEventListener(
+                "click",
+                function () {
+
+                    window.location.href =
+                        "pages/find-my-trainer/find-my-trainer.html";
+
+                }
+            );
+
+        }
+
+
+        /* ========================================
+           TRAINER RECOMMENDATION
+        ======================================== */
+
+        else if (
+            title === "trainer recommendation"
+        ) {
+
+            card.addEventListener(
+                "click",
+                function () {
+
+                    window.location.href =
+                        "pages/Trainer-Recomend/trainer-recomed.html";
+
+                }
+            );
+
+        }
+
+
+        /* ========================================
+           PAYMENT HISTORY
+        ======================================== */
+
+        else if (
+            title === "payment history"
+        ) {
+
+            card.addEventListener(
+                "click",
+                function () {
+
+                    window.location.href =
+                        "pages/my fee/my-fee.html";
+
+                }
+            );
+
+        }
+
+
+        /* ========================================
+           MY DIET PLAN
+        ======================================== */
+
+        else if (
+            title === "my diet plan"
+        ) {
+
+            card.addEventListener(
+                "click",
+                function () {
+
+                    window.location.href =
+                        "pages/my-dite-plan/my-dite-plan.html";
+
+                }
+            );
+
+        }
+
+    }
+);
 
 }
 
@@ -478,29 +1876,20 @@ const viewProfileButton =
         "#memberDashboard .view-profile-btn"
     );
 
-/* ========================================
-   QUICK ACCESS BUTTONS
-======================================== */
 
-setupQuickAccess();
+if (!viewProfileButton) {
 
-
-/* ========================================
-   SETUP QUICK ACCESS
-======================================== */
-
-function setupQuickAccess() {
-
-    const quickCards =
-        document.querySelectorAll(
-            ".quick-access-card"
+    const bannerButton =
+        document.querySelector(
+            ".banner-btn"
         );
 
 
-    if (!quickCards.length) {
+    if (bannerButton) {
 
-        console.warn(
-            "No Quick Access cards found."
+        bannerButton.addEventListener(
+            "click",
+            openMemberProfile
         );
 
         return;
@@ -508,152 +1897,30 @@ function setupQuickAccess() {
     }
 
 
-    quickCards.forEach(
-        function (card) {
-
-            const titleElement =
-                card.querySelector("h3");
-
-
-            if (!titleElement) {
-
-                return;
-
-            }
+    const buttons =
+        document.querySelectorAll(
+            "button"
+        );
 
 
-            const title =
-                titleElement.textContent
+    buttons.forEach(
+        button => {
+
+            const buttonText =
+                button.textContent
                     .trim()
                     .toLowerCase();
 
 
-            /* ========================================
-               MY TRAINER
-            ======================================== */
-
             if (
-                title === "my trainer"
+                buttonText.includes(
+                    "view profile"
+                )
             ) {
 
-                card.addEventListener(
+                button.addEventListener(
                     "click",
-                    function () {
-
-                        console.log(
-                            "My Trainer clicked"
-                        );
-
-                    }
-                );
-
-            }
-
-
-            /* ========================================
-               PROGRESS TRACKING
-            ======================================== */
-
-            if (
-                title === "progress tracking"
-            ) {
-
-                card.addEventListener(
-                    "click",
-                    function () {
-
-                        console.log(
-                            "Progress Tracking clicked"
-                        );
-
-                    }
-                );
-
-            }
-
-
-            /* ========================================
-               FIND MY TRAINER
-            ======================================== */
-
-            if (
-                title === "find my trainer"
-            ) {
-
-                card.addEventListener(
-                    "click",
-                    function () {
-
-                        window.location.href =
-                            "pages/find-my-trainer/find-my-trainer.html";
-
-                    }
-                );
-
-            }
-
-
-            /* ========================================
-               TRAINER RECOMMENDATION
-            ======================================== */
-
-            if (
-                title ===
-                "trainer recommendation"
-            ) {
-
-                card.addEventListener(
-                    "click",
-                    function () {
-
-                        window.location.href =
-                            "pages/Trainer-Recomend/trainer-recomed.html";
-
-                    }
-                );
-
-            }
-
-
-            /* ========================================
-               PAYMENT HISTORY
-            ======================================== */
-
-            if (
-                title === "payment history"
-            ) {
-
-                card.addEventListener(
-                    "click",
-                    function () {
-
-                        console.log(
-                            "Payment History clicked"
-                        );
-
-                    }
-                );
-
-            }
-
-
-            /* ========================================
-               MY DIET PLAN
-            ======================================== */
-
-            if (
-                title === "my diet plan"
-            ) {
-
-                card.addEventListener(
-                    "click",
-                    function () {
-
-                        console.log(
-                            "My Diet Plan clicked"
-                        );
-
-                    }
+                    openMemberProfile
                 );
 
             }
@@ -661,51 +1928,11 @@ function setupQuickAccess() {
         }
     );
 
-} 
-
-/* ========================================
-   
-   TRY BUTTON TEXT
-======================================== */
-
-if (!viewProfileButton) {
-
-    const buttons =
-        document.querySelectorAll(
-            "button"
-        );
-
-
-    buttons.forEach(button => {
-
-        const buttonText =
-            button.textContent
-                .trim()
-                .toLowerCase();
-
-
-        if (
-            buttonText.includes(
-                "view profile"
-            )
-        ) {
-
-            button.addEventListener(
-                "click",
-                openMemberProfile
-            );
-
-        }
-
-    });
 
     return;
+
 }
 
-
-/* ========================================
-   CONNECT BUTTON
-======================================== */
 
 viewProfileButton.addEventListener(
     "click",
@@ -722,5 +1949,84 @@ function openMemberProfile() {
 
 window.location.href =
     "pages/my-profile/my-profile.html";
+
+}
+
+/* ========================================
+DATE PARSER
+======================================== */
+
+function parseDateValue(
+value
+) {
+
+if (!value) {
+
+    return null;
+
+}
+
+
+if (
+    value instanceof Date
+) {
+
+    return new Date(
+        value
+    );
+
+}
+
+
+const date =
+    new Date(
+        value
+    );
+
+
+if (
+    !isNaN(
+        date.getTime()
+    )
+) {
+
+    return date;
+
+}
+
+
+return null;
+
+}
+
+/* ========================================
+FORMAT DATE
+======================================== */
+
+function formatDate(
+value
+) {
+
+const date =
+    parseDateValue(
+        value
+    );
+
+
+if (!date) {
+
+    return value || "-";
+
+}
+
+
+return date.toLocaleDateString(
+    "en-GB",
+    {
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+    }
+);
 
 } 

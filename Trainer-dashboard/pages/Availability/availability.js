@@ -695,7 +695,6 @@ function openAvailabilityModal(record = null) {
         });
 }
 
-
 /* =========================
    SAVE AVAILABILITY RECORD
 ========================= */
@@ -703,120 +702,188 @@ function openAvailabilityModal(record = null) {
 function saveAvailabilityRecord() {
 
     const day =
-        document.getElementById(
-            "availabilityDay"
-        ).value;
+        document.getElementById("availabilityDay").value;
 
     const status =
-        document.getElementById(
-            "availabilityStatus"
-        ).value;
+        document.getElementById("availabilityStatus").value;
 
     const startTime =
-        document.getElementById(
-            "availabilityStartTime"
-        ).value;
+        document.getElementById("availabilityStartTime").value;
 
     const endTime =
-        document.getElementById(
-            "availabilityEndTime"
-        ).value;
+        document.getElementById("availabilityEndTime").value;
 
     const maxSlots =
         Number(
-            document.getElementById(
-                "maximumSlots"
-            ).value
+            document.getElementById("maximumSlots").value
         );
 
     const bookedSlots =
         Number(
-            document.getElementById(
-                "bookedSlots"
-            ).value
+            document.getElementById("bookedSlots").value
         );
 
     const notes =
-        document.getElementById(
-            "availabilityNotes"
-        ).value.trim();
+        document.getElementById("availabilityNotes").value.trim();
 
+
+    /* =========================
+       BASIC CHECKS
+    ========================= */
 
     if (!day) {
-
         alert("Please select a day.");
-
         return;
     }
-
 
     if (
         status !== "Unavailable" &&
         (!startTime || !endTime)
     ) {
-
-        alert(
-            "Please select start and end time."
-        );
-
+        alert("Please select start and end time.");
         return;
     }
-
 
     if (
         startTime &&
         endTime &&
         endTime <= startTime
     ) {
-
-        alert(
-            "End time must be after start time."
-        );
-
+        alert("End time must be after start time.");
         return;
     }
-
 
     if (maxSlots < 0 || bookedSlots < 0) {
-
-        alert(
-            "Slot values cannot be negative."
-        );
-
+        alert("Slot values cannot be negative.");
         return;
     }
 
-
     if (bookedSlots > maxSlots) {
-
         alert(
             "Booked slots cannot be greater than maximum slots."
         );
-
         return;
     }
 
 
-    let finalStatus = calculateStatus(
-        maxSlots,
-        bookedSlots,
-        status
-    );
+    /* =========================
+       GET CURRENT TRAINER
+    ========================= */
+
+    let currentTrainer = null;
 
 
-    if (status === "Limited Slots") {
+    try {
 
-        finalStatus = "Limited Slots";
+        const currentTrainerData =
+            localStorage.getItem("currentTrainer");
+
+        const loggedInTrainerData =
+            localStorage.getItem("loggedInTrainer");
+
+
+        if (currentTrainerData) {
+
+            try {
+
+                currentTrainer =
+                    JSON.parse(currentTrainerData);
+
+            } catch {
+
+                currentTrainer = {
+                    name: currentTrainerData
+                };
+
+            }
+
+        }
+
+
+        if (!currentTrainer && loggedInTrainerData) {
+
+            try {
+
+                currentTrainer =
+                    JSON.parse(loggedInTrainerData);
+
+            } catch {
+
+                currentTrainer = {
+                    name: loggedInTrainerData
+                };
+
+            }
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Trainer data error:",
+            error
+        );
 
     }
 
 
+    /* =========================
+       TRAINER ID / NAME
+    ========================= */
+
+    const trainerId =
+        currentTrainer?.id ||
+        currentTrainer?.trainerId ||
+        currentTrainer?.ID ||
+        currentTrainer?.trainerID ||
+        "";
+
+
+    const trainerName =
+        currentTrainer?.name ||
+        currentTrainer?.trainerName ||
+        currentTrainer?.fullName ||
+        currentTrainer?.username ||
+        "";
+
+
+    /* =========================
+       FINAL STATUS
+    ========================= */
+
+    let finalStatus =
+        calculateStatus(
+            maxSlots,
+            bookedSlots,
+            status
+        );
+
+
+    if (status === "Limited Slots") {
+        finalStatus = "Limited Slots";
+    }
+
+
+    /* =========================
+       AVAILABILITY RECORD
+    ========================= */
+
     const record = {
 
-        id: editingAvailabilityId ||
+        id:
+            editingAvailabilityId ||
             Date.now().toString(),
 
-        day: day,
+        trainerId:
+            trainerId,
+
+        trainerName:
+            trainerName,
+
+        day:
+            day,
 
         startTime:
             status === "Unavailable"
@@ -828,16 +895,24 @@ function saveAvailabilityRecord() {
                 ? ""
                 : endTime,
 
-        status: finalStatus,
+        status:
+            finalStatus,
 
-        maxSlots: maxSlots,
+        maxSlots:
+            maxSlots,
 
-        bookedSlots: bookedSlots,
+        bookedSlots:
+            bookedSlots,
 
-        notes: notes
+        notes:
+            notes
 
     };
 
+
+    /* =========================
+       UPDATE EXISTING
+    ========================= */
 
     if (editingAvailabilityId) {
 
@@ -848,6 +923,7 @@ function saveAvailabilityRecord() {
                     editingAvailabilityId
             );
 
+
         if (index !== -1) {
 
             availabilityRecords[index] =
@@ -857,12 +933,21 @@ function saveAvailabilityRecord() {
 
     }
 
+
+    /* =========================
+       ADD NEW
+    ========================= */
+
     else {
 
         availabilityRecords.push(record);
 
     }
 
+
+    /* =========================
+       SAVE
+    ========================= */
 
     saveAvailability();
 
@@ -873,10 +958,15 @@ function saveAvailabilityRecord() {
     updateCurrentAvailability();
 
 
+    /* =========================
+       CLOSE MODAL
+    ========================= */
+
     const modal =
         document.getElementById(
             "trainerModal"
         );
+
 
     if (modal) {
 
@@ -886,7 +976,9 @@ function saveAvailabilityRecord() {
 
 
     editingAvailabilityId = null;
-}
+
+} 
+
 
 
 /* =========================
@@ -1073,16 +1165,14 @@ function formatTime(timeString) {
 
     if (!timeString) return "—";
 
-    const [hours, minutes] =
-        timeString.split(":");
+    const [hours, minutes] =timeString.split(":");
 
     const date = new Date();
 
     date.setHours(
         Number(hours),
         Number(minutes),
-        0,
-        0
+        0, 0
     );
 
     return date.toLocaleTimeString(
@@ -1149,9 +1239,7 @@ fetch(
     .catch(error => {
 
         console.error(
-            "Trainer Card Error:",
-            error
-        );
+            "Trainer Card Error:", error);
 
     });
 
@@ -1161,5 +1249,4 @@ fetch(
 ========================= */
 
 renderAvailability();
-
 updateCurrentAvailability();

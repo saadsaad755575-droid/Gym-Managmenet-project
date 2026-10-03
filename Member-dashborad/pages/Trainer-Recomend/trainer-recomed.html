@@ -1,8 +1,9 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -12,20 +13,10 @@
 
     <title>Trainer Recommendation | Member Dashboard</title>
 
-
-    <!-- =========================
-         FONT AWESOME
-    ========================== -->
-
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
-
-
-    <!-- =========================
-         MEMBER COMPONENT CSS
-    ========================== -->
 
     <link
         rel="stylesheet"
@@ -37,15 +28,10 @@
         href="../../../components/member-navbar/member-navbar.css"
     >
 
-
-    <!-- =========================
-         EXPERT PAGE CSS
-    ========================== -->
-
     <link
         rel="stylesheet"
-        href="trainer-recomend.css">
-
+        href="trainer-recomend.css"
+    >
 </head>
 
 
@@ -53,75 +39,79 @@
 
 
     <!-- =========================
-         MEMBER SIDEBAR
+         SIDEBAR
     ========================== -->
 
     <div id="member-sidebar"></div>
 
 
+
     <!-- =========================
-         MAIN AREA
+         MAIN
     ========================== -->
 
     <main class="member-main">
 
-
-        <!-- =========================
-             MEMBER NAVBAR
-        ========================== -->
-
         <div id="member-navbar"></div>
 
 
-        <!-- =========================
-             EXPERT CONTENT
-        ========================== -->
-
-        <section class="expert-page">
+        <section class="trainer-recommendation-page">
 
 
             <!-- =========================
-                 PAGE HEADER
+                 HERO
             ========================== -->
 
-            <div class="expert-header">
+            <section class="trainer-hero">
 
-                <div class="expert-header-text">
+                <div class="hero-content">
 
-                    <span class="expert-label">
-                        <i class="fa-solid fa-user-tie fa-beat"></i>
+                    <div class="hero-label">
+
+                        <i class="fa-solid fa-user-check"></i>
+
                         TRAINER EXPERT
-                    </span>
+
+                    </div>
+
 
                     <h1>
+
                         Find the Right Trainer
-                        <span>For Your Goal</span>
+
+                        <span>
+                            For Your Schedule
+                        </span>
+
                     </h1>
 
+
                     <p>
-                        Get trainer recommendations based on
-                        your fitness goal, specialization,
-                        availability and experience.
+
+                        Find available trainers according
+                        to your selected day, time and
+                        trainer availability.
+
                     </p>
 
                 </div>
 
 
-                <div class="expert-header-icon">
+                <div class="hero-icon">
 
-                    <i class="fa-solid fa-dumbbell fa-beat"></i>
+                    <i class="fa-solid fa-dumbbell"></i>
 
                 </div>
 
-            </div>
+            </section>
 
 
 
             <!-- =========================
-                 MEMBER GOAL CARD
+                 FITNESS GOAL
             ========================== -->
 
-            <div class="member-goal-card">
+            <section class="fitness-goal-card">
 
                 <div class="goal-icon">
 
@@ -132,27 +122,28 @@
 
                 <div class="goal-content">
 
-                    <span>
+                    <span class="section-label">
                         YOUR FITNESS GOAL
                     </span>
+
 
                     <h2 id="memberGoal">
                         Loading...
                     </h2>
 
+
                     <p>
-                        Recommendations are based on
-                        your current fitness goal.
+                        Your current fitness goal.
                     </p>
 
                 </div>
 
-            </div>
+            </section>
 
 
 
             <!-- =========================
-                 ASSIGNED TRAINER
+                 CURRENT TRAINER
             ========================== -->
 
             <section class="assigned-trainer-section">
@@ -162,13 +153,22 @@
                     <div>
 
                         <span class="section-label">
+
                             <i class="fa-solid fa-user-check"></i>
+
                             CURRENT TRAINER
+
                         </span>
+
 
                         <h2>
                             Your Assigned Trainer
                         </h2>
+
+
+                        <p>
+                            Your currently assigned trainer.
+                        </p>
 
                     </div>
 
@@ -177,7 +177,7 @@
 
                 <div
                     id="assignedTrainerCard"
-                    class="trainer-card assigned-card"
+                    class="trainer-card"
                 >
 
                     <div class="trainer-loading">
@@ -195,27 +195,32 @@
 
 
             <!-- =========================
-                 RECOMMENDED TRAINERS
+                 CHANGE TRAINER
             ========================== -->
 
-            <section class="recommended-section">
+            <section class="available-trainers-section">
 
                 <div class="section-heading">
 
                     <div>
 
                         <span class="section-label">
-                            <i class="fa-solid fa-star"></i>
-                            SMART RECOMMENDATION
+
+                            <i class="fa-solid fa-repeat"></i>
+
+                            CHANGE TRAINER
+
                         </span>
 
+
                         <h2>
-                            Recommended Trainers
+                            Find Available Trainer
                         </h2>
 
+
                         <p>
-                            Trainers are matched with your
-                            fitness goal and current availability.
+                            Select your preferred day and
+                            time to find matching trainers.
                         </p>
 
                     </div>
@@ -223,34 +228,167 @@
                 </div>
 
 
-    <!-- =========================
-                     MAIN RECOMMENDATION
+
+                <!-- =========================
+                     CHANGE BUTTON
+                ========================== -->
+
+                <button
+                    type="button"
+                    id="changeTrainerBtn"
+                    class="request-trainer-btn"
+                >
+
+                    <i class="fa-solid fa-user-pen"></i>
+
+                    Change Trainer
+
+                </button>
+
+
+
+                <!-- =========================
+                     SEARCH PANEL
+                ========================== -->
+
+                <div
+                    id="trainerSearchPanel"
+                    class="trainer-search-panel"
+                    style="display: none;"
+                >
+
+                    <div class="search-field">
+
+                        <label for="trainerDay">
+
+                            <i class="fa-regular fa-calendar"></i>
+
+                            Select Day
+
+                        </label>
+
+
+                        <select id="trainerDay">
+
+                            <option value="">
+                                Select Day
+                            </option>
+
+                            <option value="Monday">
+                                Monday
+                            </option>
+
+                            <option value="Tuesday">
+                                Tuesday
+                            </option>
+
+                            <option value="Wednesday">
+                                Wednesday
+                            </option>
+
+                            <option value="Thursday">
+                                Thursday
+                            </option>
+
+                            <option value="Friday">
+                                Friday
+                            </option>
+
+                            <option value="Saturday">
+                                Saturday
+                            </option>
+
+                            <option value="Sunday">
+                                Sunday
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="search-field">
+
+                        <label for="trainerTime">
+
+                            <i class="fa-regular fa-clock"></i>
+
+                            Select Time
+
+                        </label>
+
+
+                        <input
+                            type="time"
+                            id="trainerTime"
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="findTrainerBtn"
+                        class="request-trainer-btn"
+                    >
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        Find Available Trainers
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- =========================
+                     RESULTS
                 ========================== -->
 
                 <div
                     id="recommendedTrainer"
                     class="recommended-trainer"
-                >
+                ></div>
 
-                    <div class="trainer-loading">
-
-                        <i class="fa-solid fa-spinner fa-spin"></i>
-
-                        Finding the right trainer for you...
-
-                    </div>
-
-                </div>
-
-
-                <!-- =========================
-                     ALTERNATIVE TRAINERS
-                ========================== -->
 
                 <div
                     id="alternativeTrainers"
                     class="alternative-trainers"
+                ></div>
+
+
+                <!-- =========================
+                     NO RESULT
+                ========================== -->
+
+                <div
+                    id="noTrainerMessage"
+                    class="no-trainer-message"
+                    style="display: none;"
                 >
+
+                    <div class="no-trainer-icon">
+
+                        <i class="fa-solid fa-calendar-xmark"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            No Trainer Available
+                        </h3>
+
+
+                        <p>
+                            No available trainer matches
+                            the selected day and time.
+                        </p>
+
+                    </div>
 
                 </div>
 
@@ -259,32 +397,42 @@
 
 
             <!-- =========================
-                 NO TRAINER MESSAGE
+                 REQUEST STATUS
             ========================== -->
 
-            <div
-                id="noTrainerMessage"
-                class="no-trainer-message"
+            <section
+                id="trainerRequestStatus"
+                class="trainer-request-status"
                 style="display: none;"
             >
 
-                <i class="fa-solid fa-circle-info"></i>
+                <div class="request-status-icon">
+
+                    <i class="fa-solid fa-clock"></i>
+
+                </div>
+
 
                 <div>
 
-                    <h3>
-                        No Matching Trainer Found
+                    <span class="section-label">
+                        TRAINER CHANGE REQUEST
+                    </span>
+
+
+                    <h3 id="requestStatusTitle">
+                        Request Pending
                     </h3>
 
-                    <p>
-                        There is currently no trainer
-                        matching your fitness goal.
-                        Please check again later.
+
+                    <p id="requestStatusMessage">
+                        Your request is waiting for
+                        Admin approval.
                     </p>
 
                 </div>
 
-            </div>
+            </section>
 
 
         </section>
@@ -292,8 +440,9 @@
     </main>
 
 
+
     <!-- =========================
-         MEMBER SIDEBAR JS
+         COMPONENTS
     ========================== -->
 
     <script
@@ -301,24 +450,18 @@
     ></script>
 
 
-    <!-- =========================
-         MEMBER NAVBAR JS
-    ========================== -->
-
     <script
         src="../../../components/member-navbar/member-navbar.js"
     ></script>
 
 
     <!-- =========================
-         EXPERT PAGE JS
+         PAGE JS
     ========================== -->
 
-    <script
-        src="trainer-recomend.js"
-    ></script>
+    <script src="trainer-recomend.js"></script>
 
 
 </body>
 
-</html>
+</html> 

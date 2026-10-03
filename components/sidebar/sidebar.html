@@ -1,164 +1,304 @@
-<!DOCTYPE html><html lang="en">
+!DOCTYPE html>
+<html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Gym Sidebar</title>
 
-<!-- Font Awesome -->
-<link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
->
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
-<!-- Sidebar CSS -->
-<link rel="stylesheet" href="sidebar.css">
+    <!-- Sidebar CSS -->
+    <link rel="stylesheet" href="sidebar.css">
 
-</head><body><aside class="sidebar">
+</head>
+
+
+<body>
+
     <!-- =========================
-     LOGO
-========================== -->
-<div class="sidebar-logo">
+         SIDEBAR
+    ========================== -->
 
-    <img
-        src="/assets/images/gym-logo.png.png"
-        alt="GYM Logo"
-    >
-
-    <h2>GYM<span>PRO</span></h2>
-
-</div>
+    <aside class="sidebar">
 
 
-<!-- =========================
-     ADMIN PROFILE
-========================== -->
-<div class="admin-profile">
+        <!-- =========================
+             LOGO
+        ========================== -->
 
-    <div class="profile-icon">
-        <img
-            src="/assets/images/admin-avatar.png.png"
-            alt="Admin Profile"
-        >
-    </div>
+        <div class="sidebar-logo">
 
-    <div class="profile-info">
-        <h3>Admin</h3>
-        <p>Administration</p>
-    </div>
+            <img
+                src="/assets/images/gym-logo.png.png"
+                alt="GYM Logo"
+            >
 
-</div>
+            <h2>
+                GYM<span>PRO</span>
+            </h2>
+
+        </div>
 
 
-<!-- =========================
-     NAVIGATION
-========================== -->
-<nav class="sidebar-menu">
+        <!-- =========================
+             ADMIN PROFILE
+        ========================== -->
 
-    <!-- Dashboard -->
-    <a href="#" class="menu-item active">
-        <i class="fa-solid fa-chart-line"></i>
-        <span>Dashboard</span>
-    </a>
+        <div class="admin-profile">
 
+            <div class="profile-icon">
 
-    <!-- Management -->
-    <p class="menu-title">MANAGEMENT</p>
+                <img
+                    src="/assets/images/admin-avatar.png.png"
+                    alt="Admin Profile"
+                >
 
-
-    <a
-        href="/admin-dashboard/pages/trainers/trainer.html"
-        class="menu-item"
-    >
-        <i class="fa-solid fa-user-tie"></i>
-        <span>Trainer</span>
-    </a>
+            </div>
 
 
-    <a
-        href="/admin-dashboard/pages/trainers/Member/Member.html"
-        class="menu-item"
-    >
-        <i class="fa-solid fa-users"></i>
-        <span>Members</span>
-    </a>
+            <div class="profile-info">
+
+                <h3>
+                    Admin
+                </h3>
+
+                <p>
+                    Administration
+                </p>
+
+            </div>
+
+        </div>
 
 
-    <a
-        href="/admin-dashboard/pages/membership/membership.html"
-        class="menu-item"
-    >
-        <i class="fa-solid fa-id-card"></i>
-        <span>Memberships</span>
-    </a>
+        <!-- =========================
+             NAVIGATION
+        ========================== -->
+
+        <nav class="sidebar-menu">
 
 
-    <a
-        href="/admin-dashboard/pages/payment/payment.html"
-        class="menu-item"
-    >
-        <i class="fa-solid fa-credit-card"></i>
-        <span>Payment</span>
-    </a>
+            <!-- Dashboard -->
+
+            <a
+                href="#"
+                class="menu-item active"
+            >
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
 
 
-    <a
-        href="/admin-dashboard/pages/Attendance/Attendance.html"
-        class="menu-item"
-    >
-        <i class="fa-solid fa-calendar-check"></i>
-        <span>Attendance</span>
-    </a>
+            <!-- =========================
+                 MANAGEMENT
+            ========================== -->
+
+            <p class="menu-title">
+                MANAGEMENT
+            </p>
 
 
-    <!-- Reports -->
-    <p class="menu-title">REPORTS</p>
+            <!-- Trainer -->
+
+            <a
+                href="/admin-dashboard/pages/trainers/trainer.html"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-user-tie"></i>
+
+                <span>
+                    Trainer
+                </span>
+
+            </a>
 
 
-    <a
-        href="/admin-dashboard/pages/statistics/statistics.html"
-        class="menu-item"
-    >
-        <i class="fa-solid fa-chart-pie"></i>
-        <span>Statistics</span>
-    </a>
+            <!-- Trainer Requests -->
+
+            <a
+                href="/admin-dashboard/pages/trainer-requests/trainer-requests.html"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-user-clock"></i>
+
+                <span>
+                    Trainer Requests
+                </span>
+
+            </a>
 
 
-    <a
-        href="/admin-dashboard/pages/reports/report.html"
-        class="menu-item"
-    >
-        <i class="fa-solid fa-file-lines"></i>
-        <span>Reports</span>
-    </a>
+            <!-- Members -->
+
+            <a
+                href="/admin-dashboard/pages/trainers/Member/Member.html"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-users"></i>
+
+                <span>
+                    Members
+                </span>
+
+            </a>
 
 
-    <a
-        href="/admin-dashboard/pages/setting/setting.html"
-        class="menu-item"
-    >
-        <i class="fa-solid fa-gear"></i>
-        <span>Settings</span>
-    </a>
+            <!-- Memberships -->
 
-</nav>
+            <a
+                href="/admin-dashboard/pages/membership/membership.html"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-id-card"></i>
+
+                <span>
+                    Memberships
+                </span>
+
+            </a>
 
 
-<!-- =========================
-     LOGOUT
-========================== -->
-<div class="sidebar-bottom">
+            <!-- Payment -->
 
-    <a
-        href="/Login/login.html"
-        class="menu-item logout"
-    >
-        <i class="fa-solid fa-right-from-bracket"></i>
-        <span>Logout</span>
-    </a>
+            <a
+                href="/admin-dashboard/pages/payment/payment.html"
+                class="menu-item"
+            >
 
-</div>
+                <i class="fa-solid fa-credit-card"></i>
 
-</aside>
-<!-- Sidebar JavaScript -->
-<script src="sidebar.js"></script></body>
+                <span>
+                    Payment
+                </span>
+
+            </a>
+
+
+            <!-- Attendance -->
+
+            <a
+                href="/admin-dashboard/pages/Attendance/Attendance.html"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                <span>
+                    Attendance
+                </span>
+
+            </a>
+
+
+            <!-- =========================
+                 REPORTS
+            ========================== -->
+
+            <p class="menu-title">
+                REPORTS
+            </p>
+
+
+            <!-- Statistics -->
+
+            <a
+                href="/admin-dashboard/pages/statistics/statistics.html"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-chart-pie"></i>
+
+                <span>
+                    Statistics
+                </span>
+
+            </a>
+
+
+            <!-- Reports -->
+
+            <a
+                href="/admin-dashboard/pages/reports/report.html"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-file-lines"></i>
+
+                <span>
+                    Reports
+                </span>
+
+            </a>
+
+
+            <!-- Settings -->
+
+            <a
+                href="/admin-dashboard/pages/setting/setting.html"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- =========================
+             LOGOUT
+        ========================== -->
+
+        <div class="sidebar-bottom">
+
+            <a
+                href="/Login/login.html"
+                class="menu-item logout"
+            >
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- =========================
+         SIDEBAR JAVASCRIPT
+    ========================== -->
+
+    <script src="sidebar.js"></script>
+
+</body>
+
 </html> 

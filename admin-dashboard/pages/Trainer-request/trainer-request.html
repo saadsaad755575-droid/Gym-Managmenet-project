@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trainer Requests | Gym Management System</title>
+
+
+    <!-- ================= FONT AWESOME ================= -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- ================= REUSABLE COMPONENTS ================= -->
+
+    <link
+        rel="stylesheet"
+        href="../../../components/sidebar/sidebar.css">
+
+    <link
+        rel="stylesheet"
+        href="../../../components/navbar/navbar.css">
+
+    <link
+        rel="stylesheet"
+        href="../../../components/card/card.css">
+
+
+    <!-- ================= TRAINER REQUESTS CSS ================= -->
+
+    <link
+        rel="stylesheet"
+        href="trainer-request.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside id="sidebar"></aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+
+        <!-- ================= NAVBAR ================= -->
+
+        <header id="navbar"></header>
+
+
+        <!-- ================= TRAINER REQUESTS ================= -->
+
+        <section class="trainer-requests-page">
+
+
+            <!-- ================= PAGE HEADER ================= -->
+
+            <div class="page-header">
+
+                <div class="page-title-area">
+
+                    <span class="page-label">
+                        TRAINER MANAGEMENT
+                    </span>
+
+                    <h1>
+                        Trainer Requests
+                    </h1>
+
+                    <p>
+                        Review and manage trainer change requests submitted by members.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= REQUEST SUMMARY ================= -->
+
+            <section class="request-summary">
+
+
+                <!-- Pending -->
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+
+                        <i class="fa-solid fa-clock"></i>
+
+                    </div>
+
+                    <div class="summary-info">
+
+                        <span>
+                            Pending Requests
+                        </span>
+
+                        <h2 id="pendingRequests">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Approved -->
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                    </div>
+
+                    <div class="summary-info">
+
+                        <span>
+                            Approved
+                        </span>
+
+                        <h2 id="approvedRequests">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Rejected -->
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+
+                        <i class="fa-solid fa-circle-xmark"></i>
+
+                    </div>
+
+                    <div class="summary-info">
+
+                        <span>
+                            Rejected
+                        </span>
+
+                        <h2 id="rejectedRequests">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= REQUEST TABLE ================= -->
+
+            <section class="request-section">
+
+
+                <!-- Section Header -->
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Trainer Change Requests
+                        </h2>
+
+                        <p>
+                            Requests from members who want to change their assigned trainer.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Status Filter -->
+
+                    <div class="request-filter">
+
+                        <select id="requestStatusFilter">
+
+                            <option value="all">
+                                All Requests
+                            </option>
+
+                            <option value="pending">
+                                Pending
+                            </option>
+
+                            <option value="approved">
+                                Approved
+                            </option>
+
+                            <option value="rejected">
+                                Rejected
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Table -->
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Request ID
+                                </th>
+
+                                <th>
+                                    Member
+                                </th>
+
+                                <th>
+                                    Current Trainer
+                                </th>
+
+                                <th>
+                                    Requested Trainer
+                                </th>
+
+                                <th>
+                                    Request Date
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="trainerRequestsTableBody">
+
+                        </tbody>
+
+                    </table>
+
+
+                    <!-- Empty State -->
+
+                    <div
+                        id="emptyRequestState"
+                        class="empty-state"
+                    >
+
+                        <div class="empty-icon">
+
+                            <i class="fa-solid fa-inbox"></i>
+
+                        </div>
+
+                        <h3>
+                            No Trainer Requests
+                        </h3>
+
+                        <p>
+                            New trainer change requests from members will appear here.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="trainer-request.js"></script>
+
+</body>
+
+</html> 

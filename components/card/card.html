@@ -16,114 +16,129 @@
 
 <body>
 
-    <!-- Dashboard Cards -->
-    <div class="dashboard-cards">
-
-        <!-- Total Members -->
-        <div class="dashboard-card">
-
-            <div class="card-icon">
-                <i class="fa-solid fa-users"></i>
-            </div>
-
-            <div class="card-content">
-                <p>Total Members</p>
-                <h2>1,250</h2>
-                <span class="card-status">
-                    <i class="fa-solid fa-arrow-up"></i>
-                    8.5% this month
-                </span>
-            </div>
-
-        </div>
-
-
-        <!-- Total Trainers -->
-        <div class="dashboard-card">
-
-            <div class="card-icon">
-                <i class="fa-solid fa-user-tie"></i>
-            </div>
-
-            <div class="card-content">
-                <p>Total Trainers</p>
-                <h2>24</h2>
-                <span class="card-status">
-                    <i class="fa-solid fa-arrow-up"></i>
-                    4.2% this month
-                </span>
-            </div>
-
-        </div>
-
-
-        <!-- Active Memberships -->
-        <div class="dashboard-card">
-
-            <div class="card-icon">
-                <i class="fa-solid fa-id-card"></i>
-            </div>
-
-            <div class="card-content">
-                <p>Active Memberships</p>
-                <h2>980</h2>
-                <span class="card-status">
-                    <i class="fa-solid fa-arrow-up"></i>
-                    6.8% this month
-                </span>
-            </div>
-
-        </div>
-
-
-        <!-- Pending Payments -->
-        <div class="dashboard-card">
-
-            <div class="card-icon">
-                <i class="fa-solid fa-credit-card"></i>
-            </div>
-
-            <div class="card-content">
-                <p>Pending Payments</p>
-                <h2>45</h2>
-                <span class="card-status pending">
-                    <i class="fa-solid fa-clock"></i>
-                    Requires attention
-                </span>
-            </div>
-            <!--- Expired Memberships-->
-            <div class="dashboard-card">
-                <div class="card-icon">
-                    <i class="fa-solid fa-user-clock"></i>
-                </div>
-                <div class="card-content">
-                    <p>Expired Memberships</p>
-                    <h2>145</h2>
-                    <div class="card-status pending">
-                        <i class="fa-solid fa-circle-exclamation"></i>
-                        Needs attention
-                    </div>
-                </div>
-            </div>
-            <!--Today Attendance-->
-            <div class="dashboard-card">
-                <div class="card-icon">
-                    <i class="fa-solid fa-calendar-check"></i>
-                </div>
     
-                <div class="card-content">
-                    <p> Today Attendance</p>
-                    <h2>342</h2>
-                    <div class="card-status">
-                        <i class="fa-solid fa-arrow-up"></i>
-                        9% this month
-                    </div>
-                </div>
-            </div>
 
-        </div>
+<div class="dashboard-cards">
+    <!-- Total Members -->
+<div class="dashboard-card">
 
+    <div class="card-icon">
+        <i class="fa-solid fa-users"></i>
     </div>
+
+    <div class="card-content">
+        <p>Total Members</p>
+        <h2 id="totalMembersCard">0</h2>
+
+        <span class="card-status">
+            <i class="fa-solid fa-users"></i>
+            Current members
+        </span>
+    </div>
+
+</div>
+
+
+<!-- Total Trainers -->
+<div class="dashboard-card">
+
+    <div class="card-icon">
+        <i class="fa-solid fa-user-tie"></i>
+    </div>
+
+    <div class="card-content">
+        <p>Total Trainers</p>
+        <h2 id="totalTrainersCard">0</h2>
+
+        <span class="card-status">
+            <i class="fa-solid fa-user-tie"></i>
+            Current trainers
+        </span>
+    </div>
+
+</div>
+
+
+<!-- Active Memberships -->
+<div class="dashboard-card">
+
+    <div class="card-icon">
+        <i class="fa-solid fa-id-card"></i>
+    </div>
+
+    <div class="card-content">
+        <p>Active Memberships</p>
+        <h2 id="activeMembershipsCard">0</h2>
+
+        <span class="card-status">
+            <i class="fa-solid fa-circle-check"></i>
+            Currently active
+        </span>
+    </div>
+
+</div>
+
+
+<!-- Pending Payments -->
+<div class="dashboard-card">
+
+    <div class="card-icon">
+        <i class="fa-solid fa-credit-card"></i>
+    </div>
+
+    <div class="card-content">
+        <p>Pending Payments</p>
+        <h2 id="pendingPaymentsCard">0</h2>
+
+        <span class="card-status pending">
+            <i class="fa-solid fa-clock"></i>
+            Requires attention
+        </span>
+    </div>
+
+</div>
+
+
+<!-- Expired Memberships -->
+<div class="dashboard-card">
+
+    <div class="card-icon">
+        <i class="fa-solid fa-user-clock"></i>
+    </div>
+
+    <div class="card-content">
+        <p>Expired Memberships</p>
+        <h2 id="expiredMembershipsCard">0</h2>
+
+        <span class="card-status pending">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            Needs attention
+        </span>
+    </div>
+
+</div>
+
+
+<!-- Today's Attendance -->
+<div class="dashboard-card">
+
+    <div class="card-icon">
+        <i class="fa-solid fa-calendar-check"></i>
+    </div>
+
+    <div class="card-content">
+        <p>Today Attendance</p>
+        <h2 id="todayAttendanceCard">0</h2>
+
+        <span class="card-status">
+            <i class="fa-solid fa-calendar-check"></i>
+            Today's records
+        </span>
+    </div>
+
+</div>
+
+</div> 
 
 
     <!-- Card JavaScript -->

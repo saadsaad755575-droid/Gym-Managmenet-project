@@ -27,7 +27,7 @@ const GYM_LOCATION = {
 
     longitude: 74.3587,
 
-    radius: 50000
+    radius: 30000
 
 };
 
@@ -365,6 +365,7 @@ function loadLoggedInMember() {
     }
 
 
+
     let members;
 
 
@@ -441,6 +442,52 @@ function loadLoggedInMember() {
     }
 
 
+/* ========================================
+   RESET ATTENDANCE STATE
+   FOR NEW LOGGED-IN MEMBER
+======================================== */
+
+faceVerified = false;
+
+locationVerified = false;
+
+cameraStream = null;
+
+
+/* ========================================
+   RESET VERIFICATION UI
+======================================== */
+
+if (verificationStatus) {
+
+    verificationStatus.textContent =
+        "Identity Verification Required";
+
+    verificationStatus.className =
+        "status-pending";
+
+}
+
+
+if (cameraMessage) {
+
+    cameraMessage.textContent =
+        "Please verify your identity.";
+
+}
+
+
+/* ========================================
+   RESET ATTENDANCE BUTTON
+======================================== */
+
+if (markAttendanceBtn) {
+
+    markAttendanceBtn.disabled = true;
+
+} 
+
+
     const memberId =
         currentMember.id || currentMember.memberId ||
         currentMember.customerId ||  "-";
@@ -508,48 +555,41 @@ function updateDateTime() {
 }
 
 
+
+
+
 /* ========================================
    CHECK GYM LOCATION
 ======================================== */
 
 function checkGymLocation() {
 
-    if (!navigator.geolocation) {
+    return new Promise(function (resolve) {
 
-        setLocationStatus( "Location not supported",false);
+        const savedLocation =
+            sessionStorage.getItem("gymLocationVerified");
 
-        return;
-
-    }
-
-
-    setLocationStatus(
-        "Checking location...", false
-    );
+        const savedTime =
+            sessionStorage.getItem("gymLocationVerifiedTime");
 
 
-    navigator.geolocation.getCurrentPosition(
+        /*
+           Last successful location ko
+           sirf 10 minutes tak use karenge.
+        */
 
-        function (position) {
+        if (savedLocation === "true" && savedTime) {
 
-            const userLatitude =position.coords.latitude;
+            const currentTime = Date.now();
 
+            const locationAge =
+                currentTime - Number(savedTime);
 
-            const userLongitude =  position.coords.longitude;
-
-
-            const distance = calculateDistance(
-
-                    userLatitude, userLongitude,
-
-                    GYM_LOCATION.latitude,GYM_LOCATION.longitude
-
-                );
+            const tenMinutes =
+                10 * 60 * 1000;
 
 
-            if (
-                distance <= GYM_LOCATION.radius
-            ) {
+            if (locationAge <= tenMinutes) {
 
                 locationVerified = true;
 
@@ -562,55 +602,238 @@ function checkGymLocation() {
 
                 updateAttendanceButton();
 
+
+                console.log(
+                    "USING RECENTLY VERIFIED GYM LOCATION"
+                );
+
+
+                resolve(true);
+
+                return;
             }
 
             else {
 
-                locationVerified =false;
+                sessionStorage.removeItem(
+                    "gymLocationVerified"
+                );
+
+                sessionStorage.removeItem(
+                    "gymLocationVerifiedTime"
+                );
+            }
+        }
+
+
+        if (!navigator.geolocation) {
+
+            locationVerified = false;
+
+            setLocationStatus(
+                "Location not supported",
+                false
+            );
+
+            updateAttendanceButton();
+
+            resolve(false);
+
+            return;
+        }
+
+
+        setLocationStatus(
+            "Checking location...",
+            false
+        );
+
+
+        navigator.geolocation.getCurrentPosition(
+
+            function (position) {
+
+                const userLatitude =
+                    position.coords.latitude;
+
+                const userLongitude =
+                    position.coords.longitude;
+
+
+                console.log(
+                    "LOCATION RECEIVED:",
+                    userLatitude,
+                    userLongitude
+                );
+
+
+                const distance =
+                    calculateDistance(
+
+                        userLatitude,
+                        userLongitude,
+
+                        GYM_LOCATION.latitude,
+                        GYM_LOCATION.longitude
+                    );
+
+
+                console.log(
+                    "DISTANCE FROM GYM:",
+                    distance,
+                    "meters"
+                );
+
+
+                if (
+                    distance <= GYM_LOCATION.radius
+                ) {
+
+                    locationVerified = true;
+
+
+                    /*
+                       Successful verification ko
+                       current browser session mein
+                       temporarily save karenge.
+                    */
+
+                    sessionStorage.setItem(
+                        "gymLocationVerified",
+                        "true"
+                    );
+
+
+                    sessionStorage.setItem(
+                        "gymLocationVerifiedTime",
+                        Date.now().toString()
+                    );
+
+
+                    setLocationStatus(
+                        "Gym location verified",
+                        true
+                    );
+
+                }
+
+                else {
+
+                    locationVerified = false;
+
+
+                    sessionStorage.removeItem(
+                        "gymLocationVerified"
+                    );
+
+
+                    sessionStorage.removeItem(
+                        "gymLocationVerifiedTime"
+                    );
+
+
+                    setLocationStatus(
+                        "You are outside the gym location",
+                        false
+                    );
+                }
+
+
+                updateAttendanceButton();
+
+
+                resolve(locationVerified);
+
+            },
+
+
+            function (error) {
+
+                console.error(
+                    "LOCATION ERROR:",
+                    error.code,
+                    error.message
+                );
+
+
+                /*
+                   Agar browser ne temporary location
+                   nahi di, to check karenge ke recent
+                   successful gym verification saved hai
+                   ya nahi.
+                */
+
+                const recentVerification =
+                    sessionStorage.getItem(
+                        "gymLocationVerified"
+                    );
+
+                const recentTime =
+                    sessionStorage.getItem(
+                        "gymLocationVerifiedTime"
+                    );
+
+
+                if (
+                    recentVerification === "true" &&
+                    recentTime &&
+                    Date.now() -
+                    Number(recentTime) <=
+                    10 * 60 * 1000
+                ) {
+
+                    locationVerified = true;
+
+
+                    setLocationStatus(
+                        "Gym location verified",
+                        true
+                    );
+
+
+                    console.log(
+                        "LOCATION REQUEST FAILED - USING RECENT VERIFIED LOCATION"
+                    );
+
+
+                    updateAttendanceButton();
+
+
+                    resolve(true);
+
+                    return;
+                }
+
+
+                locationVerified = false;
 
 
                 setLocationStatus(
-                    "You are outside the gym location", false
+                    "Location could not be verified",
+                    false
                 );
 
 
                 updateAttendanceButton();
 
+
+                resolve(false);
+
+            },
+
+
+            {
+                enableHighAccuracy: true,
+                timeout: 15000,
+                maximumAge: 0
             }
 
-        },
+        );
 
+    });
 
-        function (error) {
+} 
 
-            console.error(
-                "Location error:", error
-            );
-
-
-            locationVerified = false;
-
-
-            setLocationStatus(
-                "Location permission required", false
-            );
-
-
-            updateAttendanceButton();
-
-        },
-
-        {
-
-            enableHighAccuracy: true,
-
-            timeout: 10000,maximumAge: 0
-
-        }
-
-    );
-
-}
 
 
 /* ========================================
@@ -805,8 +1028,7 @@ async function startIdentityVerification() {
             function (resolve) {
 
                 setTimeout(
-                    resolve,
-                    1500
+                    resolve, 1500
                 );
 
             }
@@ -843,15 +1065,45 @@ async function startIdentityVerification() {
            CHECK LOCATION
         ============================== */
 
-        checkGymLocation();
+/* ==============================
+   CHECK LOCATION
+============================== */
+
+showMessage(
+    "Identity verified. Checking gym location...",
+    "success"
+);
 
 
-        updateAttendanceButton();
+const locationOK =
+    await checkGymLocation();
 
 
-        showMessage(
-            "Identity verified. Checking gym location...", "success"
-        );
+/* ==============================
+   FINAL BUTTON UPDATE
+============================== */
+
+updateAttendanceButton();
+
+
+if (locationOK) {
+
+    showMessage(
+        "Identity and gym location verified. You can mark attendance.",
+        "success"
+    );
+
+}
+
+else {
+
+    showMessage(
+        "Identity verified, but gym location could not be verified.",
+        "error"
+    );
+
+}
+
 
     }
 
@@ -981,6 +1233,10 @@ function updateAttendanceButton() {
 
 
     const alreadyMarked =  hasMarkedToday();
+    console.log ("CURRENT MEMBER", currentMember);
+    console.log("FACE VERIFIED",faceVerified);
+    console.log("LOCATION VERIFIED", locationVerified);
+    console.log("ALREADY MARKED",alreadyMarked);
 
 
     if (
