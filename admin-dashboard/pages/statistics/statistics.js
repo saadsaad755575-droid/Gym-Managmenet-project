@@ -1,8 +1,14 @@
+
+
 // ========================================
 // COMPONENT LOADER
 // ========================================
 
 function loadComponent(elementId, filePath) {
+
+    const element = document.getElementById(elementId);
+
+    if (!element) return;
 
     fetch(filePath)
         .then(response => {
@@ -18,7 +24,7 @@ function loadComponent(elementId, filePath) {
         })
         .then(data => {
 
-            document.getElementById(elementId).innerHTML = data;
+            element.innerHTML = data;
 
         })
         .catch(error => {
@@ -30,165 +36,84 @@ function loadComponent(elementId, filePath) {
 
 
 // ========================================
-// GYM MANAGEMENT SYSTEM
-// STATISTICS MANAGEMENT
-// ========================================
-
-
-// ========================================
 // STORAGE KEYS
 // ========================================
 
-const STATISTICS_STORAGE_KEY = "gymStatistics";
-const ATTENDANCE_STORAGE_KEY = "attendance";
-
-const POSSIBLE_MEMBER_KEYS = [
-    "gymMembers",
-    "members",
-    "gymMembersData"
-];
-
-const POSSIBLE_MEMBERSHIP_KEYS = [
-    "gymMemberships",
-    "memberships",
-    "gymMembershipData"
-];
-
-const POSSIBLE_PAYMENT_KEYS = [
-    "gymPayments",
-    "payments",
-    "gymPaymentData"
-];
-
-const POSSIBLE_TRAINER_KEYS = [
-    "gymTrainers",
-    "trainers",
-    "gymTrainerData"
-];
+const MEMBER_STORAGE_KEY = "gymMembers";
+const MEMBERSHIP_STORAGE_KEY = "gymMemberships";
+const PAYMENT_STORAGE_KEY = "gymPayments";
+const ATTENDANCE_STORAGE_KEY = "gymAttendance";
+const TRAINER_STORAGE_KEY = "gymTrainers";
 
 
 // ========================================
-// GET LOCAL STORAGE DATA
+// LOAD DATA SAFELY
 // ========================================
 
-function getStorageData(possibleKeys) {
+function getArrayFromStorage(key) {
 
-    for (const key of possibleKeys) {
+    try {
 
-        const data = localStorage.getItem(key);
+        const data = JSON.parse(
+            localStorage.getItem(key)
+        );
 
-        if (data) {
+        return Array.isArray(data) ? data : [];
 
-            try {
+    } catch (error) {
 
-                const parsed = JSON.parse(data);
+        console.error(
+            `Error reading ${key}:`,
+            error
+        );
 
-                if (Array.isArray(parsed)) {
-                    return parsed;
-                }
-
-            } catch (error) {
-
-                console.error(
-                    "Invalid localStorage data:", key
-                );
-
-            }
-        }
+        return [];
     }
-
-    return [];
 }
 
-
-// ========================================
-// GET MEMBERS
-// ========================================
 
 function getMembers() {
 
-    return getStorageData(
-        POSSIBLE_MEMBER_KEYS
+    return getArrayFromStorage(
+        MEMBER_STORAGE_KEY
     );
 }
 
-
-// ========================================
-// GET MEMBERSHIPS
-// ========================================
 
 function getMemberships() {
 
-    return getStorageData(
-        POSSIBLE_MEMBERSHIP_KEYS
+    return getArrayFromStorage(
+        MEMBERSHIP_STORAGE_KEY
     );
 }
 
-
-// ========================================
-// GET PAYMENTS
-// ========================================
 
 function getPayments() {
 
-    return getStorageData(
-        POSSIBLE_PAYMENT_KEYS
+    return getArrayFromStorage(
+        PAYMENT_STORAGE_KEY
     );
 }
 
-
-// ========================================
-// GET ATTENDANCE
-// ========================================
 
 function getAttendance() {
 
-    return JSON.parse(
-        localStorage.getItem(
-            ATTENDANCE_STORAGE_KEY
-        )
-    ) || [];
+    return getArrayFromStorage(
+        ATTENDANCE_STORAGE_KEY
+    );
 }
 
 
-// ========================================
-// GET TRAINERS
-// ========================================
-
 function getTrainers() {
 
-    return getStorageData(
-        POSSIBLE_TRAINER_KEYS
+    return getArrayFromStorage(
+        TRAINER_STORAGE_KEY
     );
 }
 
 
 // ========================================
-// SAFE NUMBER
-// ========================================
-
-function getNumber(value) {
-
-    if (typeof value === "number") {
-        return value;
-    }
-
-    if (!value) {
-        return 0;
-    }
-
-    return Number(
-        String(value)
-            .replace(/Rs\.?/gi, "")
-            .replace(/,/g, "")
-            .replace(/PKR/gi, "")
-            .trim()
-    ) || 0;
-}
-
-
-// ========================================
-// FIND ELEMENT
+// GET ELEMENT
 // ========================================
 
 function getElement(selector) {
@@ -203,11 +128,46 @@ function getElement(selector) {
 
 function updateText(selector, value) {
 
-    const element = getElement(selector);
+    const element =
+        getElement(selector);
 
     if (element) {
+
         element.textContent = value;
+
     }
+}
+
+
+// ========================================
+// NUMBER CONVERTER
+// ========================================
+
+function getNumber(value) {
+
+    if (typeof value === "number") {
+
+        return value;
+
+    }
+
+    if (
+        value === null ||
+        value === undefined ||
+        value === ""
+    ) {
+
+        return 0;
+
+    }
+
+    return Number(
+        String(value)
+            .replace(/Rs\.?/gi, "")
+            .replace(/PKR/gi, "")
+            .replace(/,/g, "")
+            .trim()
+    ) || 0;
 }
 
 
@@ -217,7 +177,8 @@ function updateText(selector, value) {
 
 function updateTotalMembers() {
 
-    const members = getMembers();
+    const members =
+        getMembers();
 
     updateText(
         ".statistics-cards .stat-card:nth-child(1) h2",
@@ -237,20 +198,75 @@ function updateActiveMemberships() {
 
     let activeCount = 0;
 
-    memberships.forEach((membership) => {
+    const today =
+        new Date();
 
-        const status =
+    today.setHours(
+        0,
+        0,
+        0,
+        0
+    );
+
+
+    memberships.forEach(membership => {
+
+        const paymentStatus =
             String(
-                membership.status ||
-                membership.membershipStatus ||
-                ""
-            ).toLowerCase().trim();
+                membership.paymentStatus || ""
+            )
+            .trim()
+            .toLowerCase();
 
-        if (status === "active") {
+
+        const expiryDateValue =
+            membership.expiryDate ||
+            "";
+
+
+        let isExpired = false;
+
+
+        if (expiryDateValue) {
+
+            const expiryDate =
+                new Date(
+                    `${expiryDateValue}T00:00:00`
+                );
+
+            if (
+                !isNaN(
+                    expiryDate.getTime()
+                )
+            ) {
+
+                isExpired =
+                    expiryDate < today;
+
+            }
+
+        }
+
+
+        /*
+         * Membership is considered active when:
+         *
+         * 1. Payment is Paid
+         * 2. Expiry date has not passed
+         *
+         */
+
+        if (
+            paymentStatus === "paid" &&
+            !isExpired
+        ) {
+
             activeCount++;
+
         }
 
     });
+
 
     updateText(
         ".statistics-cards .stat-card:nth-child(2) h2",
@@ -260,26 +276,43 @@ function updateActiveMemberships() {
 
 
 // ========================================
-// MONTH DATE CHECK
+// CURRENT MONTH CHECK
 // ========================================
 
 function isCurrentMonth(dateValue) {
 
     if (!dateValue) {
+
         return false;
+
     }
 
-    const date = new Date(dateValue);
 
-    if (isNaN(date.getTime())) {
+    const date =
+        new Date(dateValue);
+
+
+    if (
+        isNaN(
+            date.getTime()
+        )
+    ) {
+
         return false;
+
     }
 
-    const now = new Date();
+
+    const now =
+        new Date();
+
 
     return (
-        date.getMonth() === now.getMonth() &&
-        date.getFullYear() === now.getFullYear()
+        date.getMonth() ===
+            now.getMonth() &&
+
+        date.getFullYear() ===
+            now.getFullYear()
     );
 }
 
@@ -295,48 +328,66 @@ function calculateMonthlyRevenue() {
 
     let total = 0;
 
-    payments.forEach((payment) => {
+
+    payments.forEach(payment => {
 
         const status =
             String(
-                payment.status ||
-                payment.paymentStatus ||""
-            ).toLowerCase().trim();
+                payment.status || ""
+            )
+            .trim()
+            .toLowerCase();
 
-        const paymentDate =
-            payment.date ||
-            payment.paymentDate ||
-            payment.createdAt;
+
+        /*
+         * Only Paid payments count
+         * as revenue.
+         */
 
         if (
-            status &&
-            ![
-                "paid",
-                "completed",
-                "success",
-                "successful"
-            ].includes(status)
+            status !== "paid"
         ) {
+
             return;
+
         }
+
+
+        const paymentDate =
+            payment.paymentDate ||
+            payment.date ||
+            payment.createdAt;
+
+
+        /*
+         * If payment has a date,
+         * only current month's
+         * payments are counted.
+         */
 
         if (
             paymentDate &&
             !isCurrentMonth(paymentDate)
         ) {
+
             return;
+
         }
 
+
         const amount =
-            payment.amount ??
-            payment.paymentAmount ??
-            payment.price ??
-            payment.total ??
+            payment.amount ||
+            payment.paymentAmount ||
+            payment.price ||
+            payment.total ||
             0;
 
-        total += getNumber(amount);
+
+        total +=
+            getNumber(amount);
 
     });
+
 
     return total;
 }
@@ -350,7 +401,8 @@ function formatRupees(value) {
 
     return (
         "Rs. " +
-        Number(value).toLocaleString("en-PK")
+        Number(value)
+            .toLocaleString("en-PK")
     );
 }
 
@@ -361,12 +413,15 @@ function formatRupees(value) {
 
 function updateRevenueCard() {
 
-    const revenue = calculateMonthlyRevenue();
+    const revenue =
+        calculateMonthlyRevenue();
+
 
     updateText(
         ".statistics-cards .stat-card:nth-child(3) h2",
         formatRupees(revenue)
     );
+
 
     updateText(
         ".revenue-content h3",
@@ -381,26 +436,27 @@ function updateRevenueCard() {
 
 function getTodayDate() {
 
-    const now = new Date();
-    const year = now.getFullYear();
+    const now =
+        new Date();
+
+
+    const year =
+        now.getFullYear();
+
 
     const month =
         String(
             now.getMonth() + 1
         ).padStart(2, "0");
 
+
     const day =
         String(
             now.getDate()
         ).padStart(2, "0");
 
-    return (
-        year +
-        "-" +
-        month +
-        "-" +
-        day
-    );
+
+    return `${year}-${month}-${day}`;
 }
 
 
@@ -410,24 +466,48 @@ function getTodayDate() {
 
 function updateTodayAttendance() {
 
-    const attendance =  getAttendance();
+    const attendance =
+        getAttendance();
 
-    const today = getTodayDate();
+
+    const today =
+        getTodayDate();
+
 
     let count = 0;
 
-    attendance.forEach((record) => {
+
+    attendance.forEach(record => {
+
+        const recordDate =
+            record.date ||
+            record.attendanceDate ||
+            record.createdAt;
+
+
+        if (!recordDate) {
+
+            return;
+
+        }
+
 
         if (
-            record.date === today
+            String(recordDate)
+                .substring(0, 10) ===
+            today
         ) {
+
             count++;
+
         }
 
     });
 
+
     updateText(
-        ".statistics-cards .stat-card:nth-child(4) h2",  count
+        ".statistics-cards .stat-card:nth-child(4) h2",
+        count
     );
 }
 
@@ -438,45 +518,61 @@ function updateTodayAttendance() {
 
 function updateMemberGrowth() {
 
-    const members =  getMembers();
+    const members =
+        getMembers();
+
 
     const bars =
         document.querySelectorAll(
             ".member-growth .chart-bar"
         );
 
+
     if (!bars.length) {
+
         return;
+
     }
 
-    const monthlyCounts = new Array(12).fill(0);
 
-    members.forEach((member) => {
+    const monthlyCounts =
+        new Array(12).fill(0);
 
-        const date =
+
+    members.forEach(member => {
+
+        const dateValue =
             member.joinDate ||
             member.registrationDate ||
             member.dateJoined ||
             member.createdAt ||
             member.date;
 
-        if (!date) {
+
+        if (!dateValue) {
+
             return;
+
         }
 
-        const memberDate =
-            new Date(date);
+
+        const date =
+            new Date(dateValue);
+
 
         if (
             isNaN(
-                memberDate.getTime()
+                date.getTime()
             )
         ) {
+
             return;
+
         }
 
+
         monthlyCounts[
-            memberDate.getMonth()
+            date.getMonth()
         ]++;
 
     });
@@ -484,32 +580,53 @@ function updateMemberGrowth() {
 
     const maximum =
         Math.max(
-            ...monthlyCounts, 1
+            ...monthlyCounts,
+            1
         );
 
 
     bars.forEach((bar, index) => {
 
-        const span =  bar.querySelector("span");
+        const span =
+            bar.querySelector("span");
+
+
         if (!span) {
+
             return;
+
         }
 
-        const count =  monthlyCounts[index];
 
-        let height =(count / maximum) * 100;
+        const count =
+            monthlyCounts[index];
+
+
+        let height =
+            (count / maximum) * 100;
+
 
         if (
             count === 0
         ) {
+
             height = 3;
+
         }
 
-        span.style.height =  height + "%";
 
-        span.title = count +
+        span.style.height =
+            height + "%";
+
+
+        span.title =
+            count +
             " new member" +
-            (count === 1 ? "" : "s");
+            (
+                count === 1
+                    ? ""
+                    : "s"
+            );
 
     });
 }
@@ -521,53 +638,71 @@ function updateMemberGrowth() {
 
 function updateMembershipStatistics() {
 
-    const memberships = getMemberships();
+    const memberships =
+        getMemberships();
 
-    const total = memberships.length;
 
     const categories = {
+
         premium: 0,
+
         standard: 0,
+
         basic: 0
+
     };
 
 
-    memberships.forEach((membership) => {
+    memberships.forEach(membership => {
 
-        const type =
+        const plan =
             String(
-                membership.type ||
                 membership.plan ||
+                membership.membershipPlan ||
+                membership.type ||
                 membership.membershipType ||
-                membership.membershipPlan || ""
-            ).toLowerCase().trim();
+                ""
+            )
+            .trim()
+            .toLowerCase();
+
 
         if (
-            type.includes("premium")
+            plan.includes("premium")
         ) {
 
             categories.premium++;
 
-        } else if (
-            type.includes("standard")
+        }
+
+        else if (
+            plan.includes("standard")
         ) {
 
             categories.standard++;
 
-        } else if (
-            type.includes("basic")
+        }
+
+        else if (
+            plan.includes("basic")
         ) {
 
             categories.basic++;
+
         }
 
     });
+
+
+    const total =
+        memberships.length;
 
 
     const items =
         document.querySelectorAll(
             ".membership-list .membership-item"
         );
+
 
     const progressBars =
         document.querySelectorAll(
@@ -576,9 +711,13 @@ function updateMembershipStatistics() {
 
 
     const values = [
+
         categories.premium,
+
         categories.standard,
+
         categories.basic
+
     ];
 
 
@@ -587,21 +726,36 @@ function updateMembershipStatistics() {
         const percentage =
             total > 0
                 ? Math.round(
-                    (values[index] / total) * 100
+                    (
+                        values[index] /
+                        total
+                    ) * 100
                 )
                 : 0;
 
-        const strong = item.querySelector("strong");
+
+        const strong =
+            item.querySelector(
+                "strong"
+            );
+
 
         if (strong) {
-            strong.textContent = percentage + "%";
+
+            strong.textContent =
+                percentage + "%";
+
         }
+
 
         if (
             progressBars[index]
         ) {
-            progressBars[index].style.width =
+
+            progressBars[index]
+                .style.width =
                 percentage + "%";
+
         }
 
     });
@@ -614,69 +768,80 @@ function updateMembershipStatistics() {
 
 function updateRevenueChart() {
 
-    const payments = getPayments();
+    const payments =
+        getPayments();
+
 
     const bars =
         document.querySelectorAll(
             ".revenue-bars span"
         );
 
+
     if (!bars.length) {
+
         return;
+
     }
 
 
-    const monthlyRevenue = new Array(12).fill(0);
+    const monthlyRevenue =
+        new Array(12).fill(0);
 
 
-    payments.forEach((payment) => {
+    payments.forEach(payment => {
 
-        const paymentDate =
-            payment.date ||
-            payment.paymentDate ||
-            payment.createdAt;
+        const status =
+            String(
+                payment.status || ""
+            )
+            .trim()
+            .toLowerCase();
 
-        if (!paymentDate) {
+
+        if (
+            status !== "paid"
+        ) {
+
             return;
+
         }
 
-        const date = new Date(paymentDate);
+
+        const paymentDate =
+            payment.paymentDate ||
+            payment.date ||
+            payment.createdAt;
+
+
+        if (!paymentDate) {
+
+            return;
+
+        }
+
+
+        const date =
+            new Date(paymentDate);
+
 
         if (
             isNaN(
                 date.getTime()
             )
         ) {
+
             return;
-        }
 
-
-        const status =
-            String(
-                payment.status ||
-                payment.paymentStatus ||
-                ""
-            ).toLowerCase().trim();
-
-
-        if (
-            status &&
-            ![
-                "paid",
-                "completed",
-                "success",
-                "successful"
-            ].includes(status)
-        ) {
-            return;
         }
 
 
         const amount =
-            payment.amount ??
-            payment.paymentAmount ??
-            payment.price ??
-            payment.total ?? 0;
+            payment.amount ||
+            payment.paymentAmount ||
+            payment.price ||
+            payment.total ||
+            0;
 
 
         monthlyRevenue[
@@ -693,7 +858,8 @@ function updateRevenueChart() {
         );
 
 
-    const currentMonth = new Date().getMonth();
+    const currentMonth =
+        new Date().getMonth();
 
 
     bars.forEach((bar, index) => {
@@ -701,28 +867,40 @@ function updateRevenueChart() {
         const monthIndex =
             (
                 currentMonth -
-                (bars.length - 1 - index) +
+                (
+                    bars.length -
+                    1 -
+                    index
+                ) +
                 12
             ) % 12;
 
 
-        const amount =  monthlyRevenue[monthIndex];
+        const amount =
+            monthlyRevenue[
+                monthIndex
+            ];
 
 
-        let height = (amount / maximum) * 100;
+        let height =
+            (amount / maximum) * 100;
 
 
         if (
             amount === 0
         ) {
+
             height = 3;
+
         }
 
 
-        bar.style.height = height + "%";
+        bar.style.height =
+            height + "%";
 
 
-        bar.title = formatRupees(amount);
+        bar.title =
+            formatRupees(amount);
 
     });
 }
@@ -737,19 +915,25 @@ function updateTrainerStatistics() {
     const trainers =
         getTrainers();
 
+
     let available = 0;
+
     let limited = 0;
+
     let busy = 0;
 
 
-    trainers.forEach((trainer) => {
+    trainers.forEach(trainer => {
 
         const status =
             String(
                 trainer.status ||
                 trainer.availability ||
-                trainer.trainerStatus ||""
-            ).toLowerCase().trim();
+                trainer.trainerStatus ||
+                ""
+            )
+            .trim()
+            .toLowerCase();
 
 
         if (
@@ -758,14 +942,17 @@ function updateTrainerStatistics() {
 
             available++;
 
-        } else if (
-            status === "limited" ||
+        }
+
+        else if (
             status.includes("limited")
         ) {
 
             limited++;
 
-        } else if (
+        }
+
+        else if (
             status === "busy" ||
             status.includes("assigned")
         ) {
@@ -789,24 +976,27 @@ function updateTrainerStatistics() {
 
         trainerStats[0]
             .querySelector("strong")
-            .textContent = available;
+            .textContent =
+            available;
 
 
         trainerStats[1]
             .querySelector("strong")
-            .textContent = limited;
+            .textContent =
+            limited;
 
 
         trainerStats[2]
             .querySelector("strong")
-            .textContent = busy;
+            .textContent =
+            busy;
 
     }
 }
 
 
-//======================================
-// UPDATE REPORT DATE
+// ========================================
+// REPORT DATE
 // ========================================
 
 function updateReportDate() {
@@ -816,12 +1006,16 @@ function updateReportDate() {
             ".report-date"
         );
 
+
     if (!dateElement) {
+
         return;
+
     }
 
 
-    const now = new Date();
+    const now =
+        new Date();
 
 
     const month =
@@ -833,12 +1027,14 @@ function updateReportDate() {
         );
 
 
-    const year = now.getFullYear();
+    const year =
+        now.getFullYear();
 
 
     dateElement.innerHTML = `
         <i class="fa-solid fa-calendar-days"></i>
-        ${month} ${year}`;
+        ${month} ${year}
+    `;
 }
 
 
@@ -866,7 +1062,32 @@ function updateStatistics() {
 
     updateReportDate();
 
-    console.log("Statistics updated successfully.");
+
+    console.log(
+        "Statistics updated successfully."
+    );
+
+
+    /*
+     * Debug information
+     * visible in browser console.
+     */
+
+    console.log(
+        "Members:",
+        getMembers()
+    );
+
+    console.log(
+        "Memberships:",
+        getMemberships()
+    );
+
+    console.log(
+        "Payments:",
+        getPayments()
+    );
+
 }
 
 
@@ -875,7 +1096,8 @@ function updateStatistics() {
 // ========================================
 
 window.addEventListener(
-    "storage",function () {
+    "storage",
+    function () {
 
         updateStatistics();
 
@@ -896,12 +1118,14 @@ document.addEventListener(
             "../../../components/sidebar/sidebar.html"
         );
 
+
         loadComponent(
             "navbar",
             "../../../components/navbar/navbar.html"
         );
 
+
         updateStatistics();
 
     }
-);
+); 

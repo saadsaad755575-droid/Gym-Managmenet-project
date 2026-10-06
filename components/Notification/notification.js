@@ -1,10 +1,17 @@
-
 /* =========================
    NOTIFICATION COMPONENT
 ========================= */
 
-const NOTIFICATION_KEY = "trainerNotifications";
-const MEMBER_NOTIFICATION_KEY = "memberNotifications";
+
+/* =========================
+   STORAGE KEYS
+========================= */
+
+const NOTIFICATION_KEY =
+    "trainerNotifications";
+
+const MEMBER_NOTIFICATION_KEY =
+    "memberNotifications";
 
 
 /* =========================
@@ -13,9 +20,24 @@ const MEMBER_NOTIFICATION_KEY = "memberNotifications";
 
 function getNotifications() {
 
-    return JSON.parse(
-        localStorage.getItem(NOTIFICATION_KEY)
-    ) || [];
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(
+                NOTIFICATION_KEY
+            )
+        ) || [];
+
+    } catch (error) {
+
+        console.error(
+            "Error reading trainer notifications:",
+            error
+        );
+
+        return [];
+
+    }
 
 }
 
@@ -40,11 +62,24 @@ function saveNotifications(notifications) {
 
 function getMemberNotifications() {
 
-    return JSON.parse(
-        localStorage.getItem(
-            MEMBER_NOTIFICATION_KEY
-        )
-    ) || [];
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(
+                MEMBER_NOTIFICATION_KEY
+            )
+        ) || [];
+
+    } catch (error) {
+
+        console.error(
+            "Error reading member notifications:",
+            error
+        );
+
+        return [];
+
+    }
 
 }
 
@@ -53,18 +88,22 @@ function getMemberNotifications() {
    SAVE MEMBER NOTIFICATIONS
 ========================= */
 
-function saveMemberNotifications(notifications) {
+function saveMemberNotifications(
+    notifications
+) {
 
     localStorage.setItem(
         MEMBER_NOTIFICATION_KEY,
-        JSON.stringify(notifications)
+        JSON.stringify(
+            notifications
+        )
     );
 
 }
 
 
 /* =========================
-   FIND MEMBER FROM NOTIFICATION
+   FIND MEMBER
 ========================= */
 
 function findMemberForNotification(
@@ -74,67 +113,228 @@ function findMemberForNotification(
 
     const members =
         JSON.parse(
-            localStorage.getItem("gymMembers")
+            localStorage.getItem(
+                "gymMembers"
+            )
         ) || [];
 
 
     if (!Array.isArray(members)) {
+
         return null;
+
     }
 
 
     const notificationText =
-        `${title} ${message}`.toLowerCase();
+        `${title || ""} ${message || ""}`
+            .toLowerCase();
 
 
-    const matchedMembers =
-        members.filter(member => {
+    const matchedMember =
+        members.find(
+            function (member) {
 
-            const memberName =
-                member.name ||
-                member.fullName ||
-                member.memberName ||
-                member.customerName ||
-                `${member.firstName || ""} ${member.lastName || ""}`.trim();
+                const memberName =
+                    member.name ||
+                    member.fullName ||
+                    member.memberName ||
+                    member.customerName ||
+                    `${member.firstName || ""} ${member.lastName || ""}`
+                        .trim();
 
 
-            if (!memberName) {
-                return false;
+                if (!memberName) {
+
+                    return false;
+
+                }
+
+
+                return notificationText.includes(
+                    String(memberName)
+                        .toLowerCase()
+                );
+
             }
+        );
 
 
-            return notificationText.includes(
-                String(memberName).toLowerCase()
-            );
+    return matchedMember || null;
 
-        });
+}
 
-if (!targetMemberId) {
 
-        const matchedMember =
+/* =========================
+   GET CURRENT TRAINER NAME
+========================= */
+
+function getCurrentTrainerName() {
+
+    return (
+        localStorage.getItem(
+            "loggedInTrainer"
+        ) ||
+
+        localStorage.getItem(
+            "currentTrainer"
+        ) ||
+
+        "Trainer"
+    );
+
+}
+
+
+/* =========================
+   CREATE NOTIFICATION
+========================= */
+
+function createNotification(
+    title,
+    message,
+    type = "general",
+    icon = "fa-bell",
+    targetMemberId = "",
+    targetMemberName = "",
+    trainerName = ""
+) {
+
+
+    /* =========================
+       TRAINER NOTIFICATION
+    ========================= */
+
+    const notifications =
+        getNotifications();
+
+
+    const trainerNotification = {
+
+        id:
+            Date.now().toString() +
+            Math.random()
+                .toString(36)
+                .substring(2),
+
+        type:
+            type,
+
+        title:
+            title,
+
+        message:
+            message,
+
+        icon:
+            icon,
+
+        read:
+            false,
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    notifications.unshift(
+        trainerNotification
+    );
+
+
+    saveNotifications(
+        notifications
+    );
+
+
+    /* =========================
+       FIND MEMBER
+    ========================= */
+
+    let matchedMember =
+        null;
+
+
+    if (targetMemberId) {
+
+        const members =
+            JSON.parse(
+                localStorage.getItem(
+                    "gymMembers"
+                )
+            ) || [];
+
+
+        if (Array.isArray(members)) {
+
+            matchedMember =
+                members.find(
+                    function (member) {
+
+                        const memberId =
+                            member.memberId ||
+                            member.id ||
+                            member.memberID;
+
+
+                        return String(
+                            memberId || ""
+                        ).trim() ===
+                        String(
+                            targetMemberId
+                        ).trim();
+
+                    }
+                );
+
+        }
+
+    }
+
+    if (!matchedMember) {
+
+        matchedMember =
             findMemberForNotification(
                 title,
                 message
             );
 
+    }
 
-        if (matchedMember) {
 
-            targetMemberId =
-                matchedMember.memberId;
+    /* =========================
+       FINAL MEMBER ID
+    ========================= */
 
-            targetMemberName =
-                matchedMember.memberName;
+    if (matchedMember) {
 
-        }
+        targetMemberId =
+            matchedMember.memberId ||
+            matchedMember.id ||
+            matchedMember.memberID ||
+            "";
+
+        targetMemberName =
+            targetMemberName ||
+
+            matchedMember.name ||
+
+            matchedMember.fullName ||
+
+            matchedMember.memberName ||
+
+            matchedMember.customerName ||
+
+            `${matchedMember.firstName || ""} ${matchedMember.lastName || ""}`
+                .trim();
 
     }
 
 
     /* =========================
        CREATE MEMBER NOTIFICATION
-       ONLY WHEN MEMBER IS FOUND
-    ========================== */
+    ========================= */
 
     if (targetMemberId) {
 
@@ -151,7 +351,9 @@ if (!targetMemberId) {
                     .substring(2),
 
             memberId:
-                String(targetMemberId),
+                String(
+                    targetMemberId
+                ),
 
             memberName:
                 targetMemberName || "",
@@ -193,7 +395,7 @@ if (!targetMemberId) {
 
         /* =========================
            MEMBER EVENT
-        ========================== */
+        ========================= */
 
         window.dispatchEvent(
             new CustomEvent(
@@ -206,6 +408,24 @@ if (!targetMemberId) {
         );
 
     }
+
+
+    /* =========================
+       TRAINER EVENT
+    ========================= */
+
+    window.dispatchEvent(
+        new CustomEvent(
+            "notificationCreated",
+            {
+                detail:
+                    trainerNotification
+            }
+        )
+    );
+
+
+    return trainerNotification;
 
 }
 
@@ -222,11 +442,16 @@ function markNotificationAsRead(id) {
 
     const notification =
         notifications.find(
-            item => item.id === id
+            item =>
+                item.id === id
         );
 
 
-    if (!notification) return;
+    if (!notification) {
+
+        return;
+
+    }
 
 
     notification.read = true;
@@ -257,7 +482,7 @@ function markAllNotificationsAsRead() {
 
 
     notifications.forEach(
-        notification => {
+        function (notification) {
 
             notification.read = true;
 
@@ -352,7 +577,9 @@ function getUnreadNotificationCount() {
    MARK ONE MEMBER NOTIFICATION READ
 ========================= */
 
-function markMemberNotificationAsRead(id) {
+function markMemberNotificationAsRead(
+    id
+) {
 
     const notifications =
         getMemberNotifications();
@@ -360,11 +587,16 @@ function markMemberNotificationAsRead(id) {
 
     const notification =
         notifications.find(
-            item => item.id === id
+            item =>
+                item.id === id
         );
 
 
-    if (!notification) return;
+    if (!notification) {
+
+        return;
+
+    }
 
 
     notification.read = true;
@@ -397,11 +629,13 @@ function markAllMemberNotificationsAsRead(
 
 
     notifications.forEach(
-        notification => {
+        function (notification) {
 
             if (
                 !memberId ||
-                String(notification.memberId) ===
+                String(
+                    notification.memberId
+                ) ===
                 String(memberId)
             ) {
 
@@ -431,7 +665,9 @@ function markAllMemberNotificationsAsRead(
    DELETE ONE MEMBER NOTIFICATION
 ========================= */
 
-function deleteMemberNotification(id) {
+function deleteMemberNotification(
+    id
+) {
 
     const notifications =
         getMemberNotifications();
@@ -471,12 +707,15 @@ function getUnreadMemberNotificationCount(
 
 
     return notifications.filter(
-        notification => {
+        function (notification) {
 
             const memberMatch =
                 !memberId ||
-                String(notification.memberId) ===
+                String(
+                    notification.memberId
+                ) ===
                 String(memberId);
+
 
             return (
                 memberMatch &&
@@ -487,3 +726,4 @@ function getUnreadMemberNotificationCount(
     ).length;
 
 }
+

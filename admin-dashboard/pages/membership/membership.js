@@ -1,7 +1,6 @@
 
 /* =========================================================
    MEMBERSHIP MANAGEMENT JS
-   Existing Logic + Membership Start/Expiry Date
 ========================================================= */
 
 

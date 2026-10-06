@@ -1063,17 +1063,73 @@ loadCustomers();
                 /*============================
                 CREATE NOTIFICATION
                 =============================*/
-                createNotification(
-                    "diet",
-                    editingPlanId
-                    ?"Diet Plan Updated" : "New Diet Plan",
-                    editingPlanId
-                    ?`${customerName}'s diet
-                    plan has been updated.`
-                    :` A new diet plan has been assigned to $ 
-                    {customerName}.`,
-                    "fa-utensils"
-                );
+                
+createNotification(
+    "diet",
+    editingPlanId
+        ? "Diet Plan Updated"
+        : "New Diet Plan",
+
+    editingPlanId
+        ? `${customerName}'s diet plan has been updated.`
+        : `A new diet plan has been assigned to ${customerName}.`,
+
+    "fa-utensils"
+);
+
+            
+
+/* =========================================
+   MEMBER NOTIFICATION
+========================================= */
+
+const memberNotifications =
+    JSON.parse(
+        localStorage.getItem("memberNotifications")
+    ) || [];
+
+const memberNotification = {
+
+    id:
+        Date.now().toString() +
+        Math.random()
+            .toString(36)
+            .substring(2),
+
+    memberId: String(customerId),
+
+    type: "diet",
+
+    title: editingPlanId
+        ? "Diet Plan Updated"
+        : "New Diet Plan",
+
+    message: editingPlanId
+        ? "Your trainer has updated your diet plan. Please check your latest plan."
+        : "Your trainer has assigned you a new diet plan. Please check your latest plan.",
+
+    trainerName:
+        localStorage.getItem("loggedInTrainer") ||
+        "Your Trainer",
+
+    icon: "fa-utensils",
+
+    read: false,
+
+    createdAt:
+        new Date().toISOString()
+
+};
+
+memberNotifications.unshift(
+    memberNotification
+);
+
+localStorage.setItem(
+    "memberNotifications",
+    JSON.stringify(memberNotifications)
+);
+
 
 
                 /* =========================================
