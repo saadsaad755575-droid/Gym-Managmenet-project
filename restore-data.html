@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gym Management - Restore Backup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #151515;
+      color: white;
+      max-width: 650px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    h2 { color: #e8b923; }
+    input, button {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      margin: 16px 0;
+      padding: 12px;
+      border-radius: 6px;
+    }
+    button {
+      background: #e8b923;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #status {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <h2>Gym Management System</h2>
+  <h3>Restore Local Storage Backup</h3>
+
+  <p>
+    Select your gym-management-backup.json file.
+    This will replace matching Local Storage keys
+    on this website with the backup values.
+  </p>
+
+  <input type="file" id="backupFile" accept=".json,application/json">
+  <button id="restoreBtn">Restore Backup</button>
+
+  <p id="status">Waiting for backup file...</p>
+
+  <script>
+    const fileInput = document.getElementById("backupFile");
+    const restoreBtn = document.getElementById("restoreBtn");
+    const statusBox = document.getElementById("status");
+
+    restoreBtn.addEventListener("click", async () => {
+      const file = fileInput.files[0];
+
+      if (!file) {
+        statusBox.textContent = "Please select your backup JSON file first.";
+        return;
+      }
+
+      if (!confirm(
+        "Restore backup into this website's Local Storage? " +
+        "Existing matching keys will be overwritten."
+      )) {
+        return;
+      }
+
+      try {
+        const backupText = await file.text();
+        const backup = JSON.parse(backupText);
+
+        // Supports either a direct Local Storage object or
+        // the { data: {...} } format.
+        const data = backup.data &&
+          typeof backup.data === "object" &&
+          !Array.isArray(backup.data)
+          ? backup.data
+          : backup;
+
+        const reservedKeys = ["origin", "exportedAt", "data"];
+        const entries = Object.entries(data).filter(
+          ([key, value]) =>
+            !reservedKeys.includes(key) &&
+            typeof value === "string"
+        );
+
+        if (entries.length === 0) {
+          throw new Error(
+            "No Local Storage entries found. Check the backup format."
+          );
+        }
+
+        // Validate storage capacity before changing anything.
+        const testKey = "__gym_restore_test__";
+        localStorage.setItem(testKey, "ok");
+        localStorage.removeItem(testKey);
+
+        for (const [key, value] of entries) {
+          localStorage.setItem(key, value);
+        }
+
+        statusBox.textContent =
+          "Restore completed successfully!\n\n" +
+          "Imported keys: " + entries.length + "\n\n" +
+          "Close this temporary page and open your Gym Management System.";
+      } catch (error) {
+        statusBox.textContent =
+          "Restore failed: " + error.message +
+          "\n\nNo success is claimed. Check the backup file and browser storage.";
+      }
+    });
+  </script>
+</body>
+</html>
+
+ 
