@@ -3,94 +3,93 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Admin Dashboard</title>
-    <!----font Awesome-->
+
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
+
+    <!-- Component CSS -->
     <link rel="stylesheet" href="../components/Button/button.css" />
     <link rel="stylesheet" href="../components/sidebar/sidebar.css" />
     <link rel="stylesheet" href="../components/navbar/navbar.css" />
     <link rel="stylesheet" href="../components/card/card.css" />
     <link rel="stylesheet" href="../components/modal/modal.css" />
     <link rel="stylesheet" href="../components/table/table.css" />
+
+    <!-- Dashboard CSS -->
     <link rel="stylesheet" href="admin.css" />
-  
   </head>
+
   <body>
     <div class="admin-layout">
+      <!-- SIDEBAR -->
       <aside id="sidebar"></aside>
+
       <main class="admin-main">
+        <!-- NAVBAR -->
         <header id="navbar"></header>
+
         <section class="dashboard-content">
+          <!-- DASHBOARD CARDS -->
           <div id="cards"></div>
 
-          <!-- Quick Actions -->
+          <!-- QUICK ACTIONS -->
           <section class="quick-actions">
             <h2>Quick Actions</h2>
 
             <div class="quick-actions-container">
-              <!-- Add Member -->
               <button class="quick-action-btn" id="addNewMemberBtn">
                 <span class="quick-action-icon">
                   <i class="fa-solid fa-user-plus"></i>
                 </span>
-
-                <span class="button-text"> Add New Member </span>
-
+                <span class="button-text">Add New Member</span>
                 <span class="button-arrow">
                   <i class="fa-solid fa-chevron-right"></i>
                 </span>
               </button>
 
-              <!-- Add Trainer -->
               <button class="quick-action-btn" id="addNewTrainerBtn">
                 <span class="quick-action-icon">
                   <i class="fa-solid fa-dumbbell"></i>
                 </span>
-
-                <span class="button-text"> Add New Trainer </span>
-
+                <span class="button-text">Add New Trainer</span>
                 <span class="button-arrow">
                   <i class="fa-solid fa-chevron-right"></i>
                 </span>
               </button>
 
-              <!-- New Membership -->
               <button class="quick-action-btn" id="newMembershipBtn">
                 <span class="quick-action-icon">
                   <i class="fa-solid fa-id-card"></i>
                 </span>
-
-                <span class="button-text"> New Membership </span>
-
+                <span class="button-text">New Membership</span>
                 <span class="button-arrow">
                   <i class="fa-solid fa-chevron-right"></i>
-                </span>.
+                </span>
               </button>
 
-              <!-- Mark Attendance -->
               <button class="quick-action-btn" id="markAttendanceBtn">
                 <span class="quick-action-icon">
                   <i class="fa-solid fa-calendar-check"></i>
                 </span>
-
-                <span class="button-text"> Mark Attendance </span>
-
+                <span class="button-text">Mark Attendance</span>
                 <span class="button-arrow">
                   <i class="fa-solid fa-chevron-right"></i>
                 </span>
               </button>
             </div>
           </section>
-          <!--- Statistics Section-->
+
+          <!-- =====================================
+                 DASHBOARD STATISTICS
+            ====================================== -->
 
           <section class="dashboard-statistics">
-            <!-- =========================
-         MEMBERSHIP OVERVIEW
-    ========================== -->
-
+            <!-- MEMBERSHIP OVERVIEW -->
             <div class="statistics-card">
               <div class="statistics-header">
                 <div>
@@ -103,34 +102,31 @@
                 <div class="donut-chart membership-donut">
                   <div class="donut-center">
                     <span>Total</span>
-                    <strong>320</strong>
+                    <strong id="membershipTotal">0</strong>
                   </div>
                 </div>
 
                 <div class="chart-legend">
                   <div class="legend-item">
                     <span class="legend-dot active"></span>
-
                     <div>
-                      <strong>245</strong>
+                      <strong id="membershipActive">0</strong>
                       <small>Active Membership</small>
                     </div>
                   </div>
 
                   <div class="legend-item">
                     <span class="legend-dot expired"></span>
-
                     <div>
-                      <strong>45</strong>
+                      <strong id="membershipExpired">0</strong>
                       <small>Expired Membership</small>
                     </div>
                   </div>
 
                   <div class="legend-item">
                     <span class="legend-dot pending"></span>
-
                     <div>
-                      <strong>30</strong>
+                      <strong id="membershipPending">0</strong>
                       <small>Pending Membership</small>
                     </div>
                   </div>
@@ -138,10 +134,7 @@
               </div>
             </div>
 
-            <!-- =========================
-         MONTHLY REVENUE
-    ========================== -->
-
+            <!-- MONTHLY REVENUE OVERVIEW -->
             <div class="statistics-card revenue-card">
               <div class="statistics-header">
                 <div>
@@ -151,7 +144,7 @@
               </div>
 
               <div class="revenue-chart">
-                <div class="revenue-value">Rs. 85,600</div>
+                <div class="revenue-value" id="monthlyRevenueValue">Rs. 0</div>
 
                 <div class="chart-area">
                   <div class="chart-line"></div>
@@ -165,20 +158,17 @@
                 </div>
 
                 <div class="chart-months">
-                  <span>Jan</span>
-                  <span>Feb</span>
-                  <span>Mar</span>
-                  <span>Apr</span>
                   <span>May</span>
                   <span>Jun</span>
+                  <span>Jul</span>
+                  <span>Aug</span>
+                  <span>Sep</span>
+                  <span>Oct</span>
                 </div>
               </div>
             </div>
 
-            <!-- =========================
-         TRAINER STATUS OVERVIEW
-    ========================== -->
-
+            <!-- TRAINER STATUS OVERVIEW -->
             <div class="statistics-card">
               <div class="statistics-header">
                 <div>
@@ -191,34 +181,31 @@
                 <div class="donut-chart trainer-donut">
                   <div class="donut-center">
                     <span>Total</span>
-                    <strong>18</strong>
+                    <strong id="trainerTotal">0</strong>
                   </div>
                 </div>
 
                 <div class="chart-legend">
                   <div class="legend-item">
                     <span class="legend-dot available"></span>
-
                     <div>
-                      <strong>8</strong>
+                      <strong id="trainerAvailable">0</strong>
                       <small>Available</small>
                     </div>
                   </div>
 
                   <div class="legend-item">
                     <span class="legend-dot limited"></span>
-
                     <div>
-                      <strong>5</strong>
+                      <strong id="trainerLimited">0</strong>
                       <small>Limited Slot</small>
                     </div>
                   </div>
 
                   <div class="legend-item">
                     <span class="legend-dot busy"></span>
-
                     <div>
-                      <strong>5</strong>
+                      <strong id="trainerBusy">0</strong>
                       <small>Assigned / Busy</small>
                     </div>
                   </div>
@@ -227,9 +214,15 @@
             </div>
           </section>
 
+          <!-- =====================================
+                 DASHBOARD TABLES
+            ====================================== -->
+
           <div class="dashboard-bottom">
+            <!-- RECENT MEMBERS COMPONENT -->
             <div id="table"></div>
 
+            <!-- PENDING PAYMENTS -->
             <div class="dashboard-small-table">
               <h3>Pending Payments</h3>
               <p>Payments awaiting confirmation</p>
@@ -244,43 +237,16 @@
                     </tr>
                   </thead>
 
-                  <tbody>
+                  <tbody id="pendingPaymentsTableBody">
                     <tr>
-                      <td>Ahmed Khan</td>
-                      <td>Rs. 5,000</td>
-                      <td>
-                        <span class="table-status pending"> Pending </span>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>Husain</td>
-                      <td>Rs. 3,500</td>
-                      <td>
-                        <span class="table-status pending"> Pending </span>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>Talha</td>
-                      <td>Rs. 4,000</td>
-                      <td>
-                        <span class="table-status pending"> Pending </span>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>Saad</td>
-                      <td>Rs. 5,500</td>
-                      <td>
-                        <span class="table-status pending"> Pending </span>
-                      </td>
+                      <td colspan="3">Loading payments...</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
 
+            <!-- TODAY'S ATTENDANCE -->
             <div class="dashboard-small-table">
               <h3>Today's Attendance</h3>
               <p>Members attendance today</p>
@@ -295,37 +261,9 @@
                     </tr>
                   </thead>
 
-                  <tbody>
+                  <tbody id="todayAttendanceTableBody">
                     <tr>
-                      <td>Ahmed Khan</td>
-                      <td>08:15 AM</td>
-                      <td>
-                        <span class="table-status active"> Present </span>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>Husain</td>
-                      <td>09:00 AM</td>
-                      <td>
-                        <span class="table-status active"> Present </span>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>Talha</td>
-                      <td>09:30 AM</td>
-                      <td>
-                        <span class="table-status active"> Present </span>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>Saad</td>
-                      <td>--</td>
-                      <td>
-                        <span class="table-status expired"> Absent </span>
-                      </td>
+                      <td colspan="3">Loading attendance...</td>
                     </tr>
                   </tbody>
                 </table>
@@ -335,6 +273,8 @@
         </section>
       </main>
     </div>
+
+    <!-- DASHBOARD JAVASCRIPT -->
     <script src="admin.js"></script>
   </body>
 </html>

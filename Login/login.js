@@ -608,11 +608,6 @@ loginButton.addEventListener(
 
             /* ==================================================
                PASSWORD VALIDATION
-
-               IMPORTANT:
-               Password is NOT saved.
-               Member can enter a new valid
-               password every time.
             ================================================== */
 
             const passwordError =

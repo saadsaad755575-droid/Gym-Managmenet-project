@@ -27,7 +27,7 @@ const GYM_LOCATION = {
 
     longitude: 74.3587,
 
-    radius: 30000
+    radius: 30000,
 
 };
 
