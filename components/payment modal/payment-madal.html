@@ -1,0 +1,122 @@
+<!-- ==========================================================
+     payment-modal.html  -  reusable component
+     Token banner + Pay Now modal (3 steps: form, token, success)
+     Page mein: <div id="payment-modal"></div>
+     ========================================================== -->
+
+<!-- TOKEN BANNER (SMS jaisi notification) -->
+
+<div class="pay-banner" id="payBanner" hidden>
+
+    <i class="fa-solid fa-bell"></i>
+
+    <span id="payBannerText"></span>
+
+    <button id="payBannerClose" aria-label="Close">&times;</button>
+
+</div>
+
+
+<!-- PAYMENT MODAL -->
+
+<div class="pay-overlay" id="payOverlay" hidden>
+
+    <div class="pay-modal">
+
+        <button class="pay-close" id="payClose" aria-label="Close">&times;</button>
+
+
+        <!-- STEP 1: method + account -->
+
+        <div id="payStepForm">
+
+            <h3><i class="fa-solid fa-credit-card"></i> Complete Payment</h3>
+
+            <div class="pay-summary">
+                <div><span>Plan</span><strong id="payPlanName">-</strong></div>
+                <div><span>Duration</span><strong id="payDuration">-</strong></div>
+                <div><span>Amount</span><strong id="payAmount">-</strong></div>
+            </div>
+
+            <label for="payMethod">Payment Method</label>
+
+            <select id="payMethod">
+                <option value="">Select method</option>
+            </select>
+
+            <label for="payAccount">Account / Card Number</label>
+
+            <input
+                id="payAccount"
+                type="text"
+                inputmode="numeric"
+                autocomplete="off"
+                placeholder="Enter demo account number"
+            >
+
+            <small id="payHint">Demo only. Do not enter real account details.</small>
+
+            <div class="pay-error" id="payError" hidden></div>
+
+            <button class="pay-btn full" id="paySendBtn">
+                <i class="fa-solid fa-paper-plane"></i> Send Token
+            </button>
+
+        </div>
+
+
+        <!-- STEP 2: token verify -->
+
+        <div id="payStepToken" hidden>
+
+            <h3><i class="fa-solid fa-shield-halved"></i> Verify Token</h3>
+
+            <p class="pay-note">
+                Enter the 6-digit token shown in the notification at the top of the page.
+            </p>
+
+            <input
+                id="payToken"
+                type="text"
+                inputmode="numeric"
+                maxlength="6"
+                autocomplete="off"
+                placeholder="------"
+                class="token-input"
+            >
+
+            <div class="pay-timer" id="payTimer">05:00</div>
+
+            <div class="pay-error" id="payTokenError" hidden></div>
+
+            <button class="pay-btn full" id="payVerifyBtn">
+                <i class="fa-solid fa-check"></i> Verify &amp; Pay
+            </button>
+
+            <div class="pay-links">
+                <button class="link-btn" id="payResendBtn">Resend token</button>
+                <button class="link-btn danger" id="payCancelBtn">Cancel payment</button>
+            </div>
+
+        </div>
+
+
+        <!-- STEP 3: success -->
+
+        <div id="payStepDone" class="pay-done" hidden>
+
+            <div class="done-icon"><i class="fa-solid fa-circle-check"></i></div>
+
+            <h3>Payment Successful</h3>
+
+            <div class="pay-summary" id="payReceipt"></div>
+
+            <button class="pay-btn full" id="payDoneBtn">Done</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+ 

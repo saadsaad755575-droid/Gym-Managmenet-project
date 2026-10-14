@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,6 +40,16 @@
 
 
     <!-- =========================
+         PAYMENT MODAL COMPONENT CSS (reusable)
+    ========================== -->
+
+    <link
+        rel="stylesheet"
+        href="../../../components/payment modal/payment-modal.css"
+    >
+
+
+    <!-- =========================
          MY FEES CSS
     ========================== -->
 
@@ -66,7 +75,7 @@
 
 
     <!-- ==================================================
-         MEMBER SIDEBAR
+         MEMBER SIDEBAR (component)
     ================================================== -->
 
     <div id="member-sidebar"></div>
@@ -81,7 +90,7 @@
 
 
         <!-- ==================================================
-             MEMBER NAVBAR
+             MEMBER NAVBAR (component)
         ================================================== -->
 
         <div id="member-navbar"></div>
@@ -115,10 +124,42 @@
                         </h1>
 
                         <p>
-                            View your membership fee and payment history.
+                            Choose a plan, pay securely and track your payment history.
                         </p>
 
                     </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==================================================
+                 PAYMENT ALERT
+            ================================================== -->
+
+            <section
+                class="fee-alert"
+                id="feeAlert"
+                style="display: none;"
+            >
+
+                <div class="fee-alert-icon">
+
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+
+                </div>
+
+                <div class="fee-alert-content">
+
+                    <strong id="feeAlertTitle">
+                        Payment Alert
+                    </strong>
+
+                    <p id="feeAlertMessage">
+                        Please check your payment details.
+                    </p>
 
                 </div>
 
@@ -162,7 +203,6 @@
                 </div>
 
 
-
                 <!-- TOTAL PAID -->
 
                 <div class="fee-summary-card">
@@ -192,7 +232,6 @@
                 </div>
 
 
-
                 <!-- REMAINING -->
 
                 <div class="fee-summary-card">
@@ -220,7 +259,6 @@
                     </div>
 
                 </div>
-
 
 
                 <!-- PAYMENT STATUS -->
@@ -259,6 +297,56 @@
 
 
             <!-- ==================================================
+                 CHOOSE YOUR PLAN (plan cards JS se bharte hain)
+            ================================================== -->
+
+            <section class="fees-section plan-select-section">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            <i class="fa-solid fa-dumbbell"></i>
+                            Choose Your Plan
+                        </h2>
+
+                        <p>
+                            Select a membership plan, then click Pay Now
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="plan-grid"
+                    id="planGrid"
+                ></div>
+
+
+                <div class="plan-actions">
+
+                    <button
+                        class="pay-btn"
+                        id="payNowBtn"
+                        disabled
+                    >
+
+                        <i class="fa-solid fa-lock"></i>
+                        Pay Now
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==================================================
                  MEMBERSHIP DETAILS
             ================================================== -->
 
@@ -283,7 +371,6 @@
                 </div>
 
 
-
                 <div class="membership-details-card">
 
 
@@ -303,7 +390,6 @@
                     </div>
 
 
-
                     <!-- DURATION -->
 
                     <div class="membership-detail">
@@ -320,7 +406,6 @@
                     </div>
 
 
-
                     <!-- TOTAL FEE -->
 
                     <div class="membership-detail">
@@ -335,7 +420,6 @@
                         </strong>
 
                     </div>
-
 
 
                     <!-- STATUS -->
@@ -355,38 +439,6 @@
                         </strong>
 
                     </div>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- ==================================================
-                 PAYMENT ALERT
-            ================================================== -->
-
-            <section
-                class="fee-alert"
-                id="feeAlert"
-                style="display: none;"
-            >
-
-                <div class="fee-alert-icon">
-
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-
-                </div>
-
-                <div class="fee-alert-content">
-
-                    <strong id="feeAlertTitle">
-                        Payment Alert
-                    </strong>
-
-                    <p id="feeAlertMessage">
-                        Please check your payment details.
-                    </p>
 
                 </div>
 
@@ -419,9 +471,6 @@
                 </div>
 
 
-
-                <!-- TABLE -->
-
                 <div class="payment-table-wrapper">
 
                     <table class="payment-history-table">
@@ -430,29 +479,17 @@
 
                             <tr>
 
-                                <th>
-                                    Payment ID
-                                </th>
+                                <th>Payment ID</th>
 
-                                <th>
-                                    Membership
-                                </th>
+                                <th>Membership</th>
 
-                                <th>
-                                    Amount
-                                </th>
+                                <th>Amount</th>
 
-                                <th>
-                                    Payment Date
-                                </th>
+                                <th>Payment Date</th>
 
-                                <th>
-                                    Due Date
-                                </th>
+                                <th>Due Date</th>
 
-                                <th>
-                                    Status
-                                </th>
+                                <th>Status</th>
 
                             </tr>
 
@@ -523,7 +560,8 @@
                         </strong>
 
                         <p>
-                            Only payments associated with your
+                            Payments are verified with a one-time
+                            token. Only payments linked to your
                             Member ID are displayed here.
                         </p>
 
@@ -541,10 +579,12 @@
 
 
     <!-- ==================================================
-         MEMBER MODAL
+         COMPONENT CONTAINERS
     ================================================== -->
 
     <div id="member-modal"></div>
+
+    <div id="payment-modal"></div>
 
 
 
@@ -559,6 +599,16 @@
 
 
     <!-- ==================================================
+         PAYMENT SYSTEM (shared logic) - ORDER ZAROORI HAI
+    ================================================== -->
+
+    <script src="../../../components/shared/payment-service.js"></script>
+
+    <script src="../../../components/shared/storage.js"></script>
+
+
+
+    <!-- ==================================================
          MY FEES JS
     ================================================== -->
 
@@ -568,3 +618,5 @@
 </body>
 
 </html>
+
+ 

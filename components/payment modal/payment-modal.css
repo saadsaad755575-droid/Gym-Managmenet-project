@@ -1,0 +1,273 @@
+/* ==========================================================
+   payment-modal.css  -  reusable component styles
+   Token banner, payment modal aur .pay-btn button
+   ========================================================== */
+
+:root {
+  --pay-gold: #f5c518;
+  --pay-bg: #14171f;
+  --pay-card: #1b1f2a;
+  --pay-border: rgba(245, 197, 24, 0.25);
+  --pay-text: #ffffff;
+  --pay-muted: #9aa3b5;
+  --pay-green: #2ecc71;
+  --pay-red: #ff5a5f;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ---------- Button ---------- */
+
+.pay-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: var(--pay-gold);
+  color: #111;
+  border: none;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.pay-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.pay-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pay-btn.full {
+  width: 100%;
+  margin-top: 16px;
+}
+
+/* ---------- Token banner ---------- */
+
+.pay-banner {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 380px;
+  padding: 14px 16px;
+  background: #1f2433;
+  color: var(--pay-text);
+  border: 1px solid var(--pay-gold);
+  border-left: 5px solid var(--pay-gold);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  animation: payBannerIn 0.35s ease;
+}
+
+.pay-banner i {
+  color: var(--pay-gold);
+}
+
+.pay-banner strong {
+  color: var(--pay-gold);
+  letter-spacing: 2px;
+}
+
+.pay-banner button {
+  background: none;
+  border: none;
+  color: var(--pay-muted);
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+@keyframes payBannerIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ---------- Modal ---------- */
+
+.pay-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.pay-modal {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  max-height: 92vh;
+  overflow-y: auto;
+  padding: 28px 24px;
+  background: var(--pay-bg);
+  color: var(--pay-text);
+  border: 1px solid var(--pay-border);
+  border-radius: 18px;
+  box-sizing: border-box;
+}
+
+.pay-modal h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 16px;
+  color: var(--pay-gold);
+}
+
+.pay-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: var(--pay-muted);
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.pay-modal label {
+  display: block;
+  margin: 14px 0 6px;
+  font-size: 0.85rem;
+  color: var(--pay-muted);
+}
+
+.pay-modal select,
+.pay-modal input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  background: var(--pay-card);
+  color: var(--pay-text);
+  border: 1px solid var(--pay-border);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.pay-modal select:focus,
+.pay-modal input:focus {
+  outline: none;
+  border-color: var(--pay-gold);
+}
+
+.pay-modal small {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.78rem;
+  color: var(--pay-muted);
+}
+
+.pay-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  background: var(--pay-card);
+  border-radius: 12px;
+}
+
+.pay-summary div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.9rem;
+}
+
+.pay-summary span {
+  color: var(--pay-muted);
+}
+
+.pay-note {
+  margin: 0 0 14px;
+  font-size: 0.88rem;
+  color: var(--pay-muted);
+}
+
+.token-input {
+  text-align: center;
+  font-size: 1.6rem !important;
+  letter-spacing: 10px;
+}
+
+.pay-timer {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--pay-gold);
+}
+
+.pay-timer.expired {
+  color: var(--pay-red);
+}
+
+.pay-error {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: rgba(255, 90, 95, 0.12);
+  border: 1px solid var(--pay-red);
+  border-radius: 8px;
+  color: var(--pay-red);
+  font-size: 0.85rem;
+}
+
+.pay-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--pay-gold);
+  font-family: inherit;
+  font-size: 0.85rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.link-btn.danger {
+  color: var(--pay-red);
+}
+
+.pay-done {
+  text-align: center;
+}
+
+.pay-done h3 {
+  justify-content: center;
+}
+
+.done-icon {
+  margin-bottom: 8px;
+  font-size: 3.2rem;
+  color: var(--pay-green);
+}
+
+@media (max-width: 600px) {
+  .pay-banner {
+    left: 12px;
+    right: 12px;
+    max-width: none;
+  }
+}
+
+ 

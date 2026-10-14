@@ -1,330 +1,230 @@
 
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Payment Management</title>
+    <title>Payment Management | Gym Management System</title>
 
     <!-- Font Awesome -->
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
-    <!-- Components CSS -->
-    <link rel="stylesheet" href="../../components/sidebar/sidebar.css" />
-    <link rel="stylesheet" href="../../components/navbar/navbar.css" />
-    <link rel="stylesheet" href="../../components/button/button.css" />
-    <link rel="stylesheet" href="../../components/table/table.css" />
-    <link rel="stylesheet" href="../../components/modal/modal.css" />
+    <!-- Existing Components CSS -->
+    <link rel="stylesheet" href="../../../components/sidebar/sidebar.css">
+    <link rel="stylesheet" href="../../../components/navbar/navbar.css">
+    <link rel="stylesheet" href="../../../components/button/button.css">
+    <link rel="stylesheet" href="../../../components/table/table.css">
+    <link rel="stylesheet" href="../../../components/modal/modal.css">
 
-    <!-- Payment CSS -->
-    <link rel="stylesheet" href="payment.css" />
-  </head>
+    <!-- Payment Page CSS -->
+    <link rel="stylesheet" href="payment.css">
+</head>
 
-  <body>
-    <div class="admin-layout">
+<body>
 
-      <!-- SIDEBAR -->
-      <aside id="sidebar"></aside>
+    <div class="dashboard-container">
 
-      <!-- MAIN -->
-      <main class="admin-main">
+        <!-- Sidebar -->
+        <aside id="sidebar"></aside>
 
-        <!-- NAVBAR -->
-        <header id="navbar"></header>
+        <!-- Main Content -->
+        <main class="main-content">
 
-        <section class="payment-content">
+            <!-- Navbar -->
+            <header id="navbar"></header>
 
-          <!-- PAGE HEADER -->
-          <div class="page-header">
-            <div>
-              <h1>Payment Management</h1>
-              <p>Manage member payments and payment status.</p>
-            </div>
+            <section class="payment-page">
 
-            <button class="reusable-button" id="addPaymentBtn">
-              <i class="fa-solid fa-plus"></i>
-              Add Payment
+                <!-- Page Heading -->
+                <div class="page-header">
+                    <div>
+                        <h1>
+                            <i class="fa-solid fa-money-bill-transfer"></i>
+                            Payment Management
+                        </h1>
+
+                        <p>
+                            Monitor online member payments received in the gym account.
+                        </p>
+                    </div>
+
+                    <span class="live-pill">
+                        <i class="fa-solid fa-circle"></i>
+                        Live from member payments
+                    </span>
+                </div>
+
+                <!-- Summary Cards -->
+                <div class="payment-summary">
+
+                    <div class="summary-card">
+                        <div class="summary-icon paid-icon">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+
+                        <div>
+                            <p>Total Paid</p>
+                            <h2 id="totalPaid">Rs. 0</h2>
+                        </div>
+                    </div>
+
+                    <div class="summary-card">
+                        <div class="summary-icon pending-icon">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+
+                        <div>
+                            <p>Total Pending</p>
+                            <h2 id="totalPending">Rs. 0</h2>
+                        </div>
+                    </div>
+
+                    <div class="summary-card">
+                        <div class="summary-icon failed-icon">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </div>
+
+                        <div>
+                            <p>Total Failed</p>
+                            <h2 id="totalFailed">Rs. 0</h2>
+                        </div>
+                    </div>
+
+                    <div class="summary-card">
+                        <div class="summary-icon revenue-icon">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+
+                        <div>
+                            <p>Gym Account (Revenue)</p>
+                            <h2 id="totalRevenue">Rs. 0</h2>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Payment Records -->
+                <section class="payment-records">
+
+                    <div class="section-heading">
+                        <div>
+                            <h2>Payment Records</h2>
+                            <p>Search and filter payments made by members. Records are view-only.</p>
+                        </div>
+                    </div>
+
+                    <!-- Search and Filter -->
+                    <div class="payment-toolbar">
+
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                            <input
+                                type="search"
+                                id="paymentSearch"
+                                placeholder="Search by member name, ID or payment ID..."
+                            >
+                        </div>
+
+                        <select id="paymentStatusFilter">
+                            <option value="all">All Statuses</option>
+                            <option value="paid">Paid</option>
+                            <option value="pending">Pending</option>
+                            <option value="failed">Failed</option>
+                            <option value="expired">Expired</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+
+                        <select id="paymentMethodFilter">
+                            <option value="all">All Payment Methods</option>
+                            <option value="JazzCash">JazzCash</option>
+                            <option value="Easypaisa">Easypaisa</option>
+                            <option value="Debit Card">Debit Card</option>
+                            <option value="Cash">Cash</option>
+                        </select>
+
+                    </div>
+
+                    <!-- Table -->
+                    <div class="table-responsive">
+
+                        <table class="payment-table">
+
+                            <thead>
+                                <tr>
+                                    <th>Payment ID</th>
+                                    <th>Member</th>
+                                    <th>Membership</th>
+                                    <th>Amount</th>
+                                    <th>Method</th>
+                                    <th>Payment Date</th>
+                                    <th>Due Date</th>
+                                    <th>Status</th>
+                                    <th>View</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="paymentTableBody">
+                                <!-- Payment records will be rendered by JavaScript -->
+                            </tbody>
+
+                        </table>
+
+                        <p id="emptyPaymentMessage" class="empty-message" hidden>
+                            No payment records found.
+                        </p>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- View Payment Modal (sirf dekhne ke liye) -->
+    <div id="paymentViewModal" class="pv-overlay" hidden>
+
+        <div class="pv-modal">
+
+            <button
+                type="button"
+                id="closePaymentView"
+                class="pv-close"
+                aria-label="Close"
+            >
+                &times;
             </button>
-          </div>
 
-          <!-- PAGE MESSAGE -->
-          <p id="paymentMessage" class="payment-message"></p>
+            <h2>
+                <i class="fa-solid fa-receipt"></i>
+                Payment Details
+            </h2>
 
-          <!-- SUMMARY -->
-          <div class="payment-summary">
+            <div class="pv-list" id="paymentViewBody"></div>
 
-            <div class="payment-card">
-              <div class="payment-icon">
-                <i class="fa-solid fa-circle-check"></i>
-              </div>
+            <button type="button" id="paymentViewDone" class="primary-btn">
+                Close
+            </button>
 
-              <div>
-                <p>Total Paid</p>
-                <h2 id="totalPaid">Rs. 0</h2>
-              </div>
-            </div>
+        </div>
 
-            <div class="payment-card">
-              <div class="payment-icon">
-                <i class="fa-solid fa-clock"></i>
-              </div>
-
-              <div>
-                <p>Pending</p>
-                <h2 id="totalPending">Rs. 0</h2>
-              </div>
-            </div>
-
-            <div class="payment-card">
-              <div class="payment-icon">
-                <i class="fa-solid fa-triangle-exclamation"></i>
-              </div>
-
-              <div>
-                <p>Overdue</p>
-                <h2 id="totalOverdue">Rs. 0</h2>
-              </div>
-            </div>
-
-            <div class="payment-card">
-              <div class="payment-icon">
-                <i class="fa-solid fa-money-bill-wave"></i>
-              </div>
-
-              <div>
-                <p>Total Revenue</p>
-                <h2 id="totalRevenue">Rs. 0</h2>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- SEARCH + FILTER -->
-          <div class="payment-tools">
-
-            <div class="search-box">
-              <i class="fa-solid fa-magnifying-glass"></i>
-
-              <input
-                type="text"
-                id="paymentSearch"
-                placeholder="Search member..."
-              />
-            </div>
-
-            <select id="paymentStatusFilter">
-              <option value="all">All Payments</option>
-              <option value="paid">Paid</option>
-              <option value="pending">Pending</option>
-              <option value="overdue">Overdue</option>
-            </select>
-
-          </div>
-
-          <!-- PAYMENT TABLE -->
-          <div class="payment-table-section">
-
-            <div class="section-header">
-              <div>
-                <h2>Member Payments</h2>
-                <p>Payments of existing gym members.</p>
-              </div>
-            </div>
-
-            <div class="table-container">
-
-              <table class="payment-table">
-
-                <thead>
-                  <tr>
-                    <th>Payment ID</th>
-                    <th>Member</th>
-                    <th>Membership</th>
-                    <th>Amount</th>
-                    <th>Payment Date</th>
-                    <th>Due Date</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-
-                <tbody id="paymentTableBody"></tbody>
-
-              </table>
-
-              <p id="emptyPaymentMessage" class="empty-payment-message">
-                No payments found.
-              </p>
-
-            </div>
-          </div>
-
-        </section>
-      </main>
     </div>
 
+    <!-- Payment System (shared logic) - ORDER ZAROORI HAI -->
+    <script src="../../../components/shared/storage.js"></script>
+    <script src="../../../components/shared/payment-service.js"></script>
 
-    <!-- =========================
-         PAYMENT MODAL
-    ========================== -->
-
-    <div id="paymentModal" class="modal">
-
-      <div class="modal-content">
-
-        <div class="modal-header">
-
-          <h2 id="paymentModalTitle">Add Payment</h2>
-
-          <button class="modal-close" id="closePaymentModal">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-
-        </div>
-
-        <div class="modal-body">
-
-          <!-- MODAL MESSAGE -->
-          <p id="paymentFormMessage" class="payment-form-message"></p>
-
-          <!-- MEMBER -->
-          <div class="form-group">
-
-            <label for="paymentMember">
-              Select Member
-            </label>
-
-            <select id="paymentMember">
-              <option value="">
-                Select existing member
-              </option>
-            </select>
-
-          </div>
-
-
-          <!-- MEMBERSHIP -->
-          <div class="form-group">
-
-            <label for="paymentMembership">
-              Membership
-            </label>
-
-            <select id="paymentMembership">
-              <option value="">
-                Select membership
-              </option>
-            </select>
-
-          </div>
-
-
-          <!-- AMOUNT -->
-          <div class="form-group">
-
-            <label for="paymentAmount">
-              Amount
-            </label>
-
-            <input
-              type="number"
-              id="paymentAmount"
-              placeholder="Enter amount"
-              min="0"
-            />
-
-          </div>
-
-
-          <!-- PAYMENT DATE -->
-          <div class="form-group">
-
-            <label for="paymentDate">
-              Payment Date
-            </label>
-
-            <input
-              type="date"
-              id="paymentDate"
-            />
-
-          </div>
-
-
-          <!-- DUE DATE -->
-          <div class="form-group">
-
-            <label for="paymentDueDate">
-              Due Date
-            </label>
-
-            <input
-              type="date"
-              id="paymentDueDate"
-            />
-
-          </div>
-
-
-          <!-- STATUS -->
-          <div class="form-group">
-
-            <label for="paymentStatus">
-              Payment Status
-            </label>
-
-            <select id="paymentStatus">
-
-              <option value="paid">
-                Paid
-              </option>
-
-              <option value="pending">
-                Pending
-              </option>
-
-              <option value="overdue">
-                Overdue
-              </option>
-
-            </select>
-
-          </div>
-
-        </div>
-
-
-        <!-- FOOTER -->
-        <div class="modal-footer">
-
-          <button
-            class="modal-cancel"
-            id="cancelPayment"
-          >
-            Cancel
-          </button>
-
-          <button
-            class="modal-submit"
-            id="savePayment"
-          >
-            <i class="fa-solid fa-plus"></i>
-            <span id="savePaymentText">Add Payment</span>
-          </button>
-
-        </div>
-
-      </div>
-    </div>
-
-
-    <!-- JAVASCRIPT -->
+    <!-- Payment Page Logic -->
     <script src="payment.js"></script>
 
-  </body>
+</body>
 </html>
+
+ 

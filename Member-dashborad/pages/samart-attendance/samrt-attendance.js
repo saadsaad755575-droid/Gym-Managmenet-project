@@ -27,14 +27,12 @@ const GYM_LOCATION = {
 
     longitude: 74.3587,
 
-    radius: 30000,
+    radius: 200000,
 
 };
-
-
-/* ========================================
+/*============================
    VARIABLES
-======================================== */
+====================== */
 
 let currentMember = null;
 
@@ -47,9 +45,9 @@ let cameraStream = null;
 let cameraVideo = null;
 
 
-/* ========================================
+/* ================================
    DOM ELEMENTS
-======================================== */
+============================== */
 
 let startFaceVerification;
 
@@ -75,10 +73,10 @@ let attendanceMessage;
 let todayAttendanceStatus;
 
 
-/* ========================================
+/* ================================
    LOAD COMPONENT
    SAME PATTERN AS MEMBER PROFILE
-======================================== */
+============================ */
 
 function loadComponent(
     containerId, filePath
@@ -136,7 +134,7 @@ function loadComponent(
             }
 
 
-            /* ==============================
+            /* ========================
                NAVBAR INITIALIZATION
             ============================== */
 
@@ -693,9 +691,7 @@ function checkGymLocation() {
 
 
                     /*
-                       Successful verification ko
-                       current browser session mein
-                       temporarily save karenge.
+                       Successful verification
                     */
 
                     sessionStorage.setItem(
@@ -754,14 +750,6 @@ function checkGymLocation() {
                     error.code,
                     error.message
                 );
-
-
-                /*
-                   Agar browser ne temporary location
-                   nahi di, to check karenge ke recent
-                   successful gym verification saved hai
-                   ya nahi.
-                */
 
                 const recentVerification =
                     sessionStorage.getItem(
@@ -1635,8 +1623,7 @@ function formatTime(
     }
 
 
-    let hours =
-        parseInt(parts[0],10);
+    let hours = parseInt(parts[0],10);
 
 
     const minutes =parts[1];
@@ -1646,15 +1633,12 @@ function formatTime(
         hours >= 12 ? "PM": "AM";
 
 
-    hours =
-        hours % 12 || 12;
+    hours = hours % 12 || 12;
 
 
     return (
-        hours +
-        ":" +
-        minutes +
-        " " +
+        hours + ":" +
+        minutes + " " +
         period
     );
 
@@ -1666,8 +1650,7 @@ function formatTime(
 ======================================== */
 
 function showMessage(
-    message,
-    type
+    message,type
 ) {
 
     if (!attendanceMessage) {
@@ -1677,8 +1660,7 @@ function showMessage(
     }
 
 
-    attendanceMessage.textContent =
-        message;
+    attendanceMessage.textContent = message;
 
 
     attendanceMessage.className =
@@ -1703,9 +1685,9 @@ function showMessage(
 }
 
 
-/* ========================================
+/* ==============================
    PAGE CLEANUP
-======================================== */
+======================= */
 
 window.addEventListener(
     "beforeunload",
